@@ -1,28 +1,41 @@
 {
-  "robotics":[
+  "robotics": [
     {
-      "title":"Line Following Robot",
-      "description":"Arduino based autonomous robot.",
-      "image":"assets/images/robotics/line-follower/cover.jpg",
-      "report":"projects/robotics/line-follower/report.pdf",
-      "github":"",
-      "tags":["Arduino","PID","Robotics"]
+      "id": 1,
+      "title": "Line Following Robot",
+      "description": "Arduino-based autonomous line following robot.",
+      "image": "assets/images/robotics/line-follower/cover.jpg",
+      "report": "projects/robotics/line-follower/report.pdf",
+      "github": "",
+      "tags": [
+        "Arduino",
+        "PID",
+        "Robotics"
+      ]
     }
   ],
 
-  "cad":[
+  "cad": [
     {
-      "title":"Motorcycle Mudguard",
-      "description":"Designed and simulated in SolidWorks.",
-      "image":"assets/images/cad/mudguard/cover.jpg",
-      "report":"projects/cad/mudguard/report.pdf",
-      "github":"",
-      "tags":["SolidWorks","FEA","CAD"]
+      "id": 2,
+      "title": "Motorcycle Mudguard",
+      "description": "Designed and simulated in SolidWorks.",
+      "image": "assets/images/cad/mudguard/cover.jpg",
+      "report": "projects/cad/mudguard/report.pdf",
+      "github": "",
+      "tags": [
+        "SolidWorks",
+        "FEA",
+        "CAD"
+      ]
     }
   ],
 
-  "cam":[],
-  "cae":[],
-  "embedded":[],
-  "manufacturing":[]
+  "cam": [],
+
+  "cae": [],
+
+  "embedded": [],
+
+  "manufacturing": []
 }
