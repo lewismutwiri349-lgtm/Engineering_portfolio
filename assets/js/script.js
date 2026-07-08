@@ -1,118 +1,116 @@
 /* ==========================
-   THEME TOGGLE
+   THEME
 ========================== */
 
-const themeButton = document.getElementById("themeToggle");
+const themeToggle = document.getElementById("themeToggle");
 
-const currentTheme = localStorage.getItem("theme");
-
-if (currentTheme === "light") {
+if (localStorage.getItem("theme") === "light") {
     document.body.classList.add("light-mode");
-    if (themeButton) themeButton.textContent = "☀️";
+    if (themeToggle) themeToggle.textContent = "☀️";
 }
 
-if (themeButton) {
+themeToggle?.addEventListener("click", () => {
 
-    themeButton.addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
 
-        document.body.classList.toggle("light-mode");
+    if (document.body.classList.contains("light-mode")) {
 
-        if (document.body.classList.contains("light-mode")) {
+        localStorage.setItem("theme", "light");
+        themeToggle.textContent = "☀️";
 
-            localStorage.setItem("theme", "light");
-            themeButton.textContent = "☀️";
+    } else {
 
-        } else {
-
-            localStorage.setItem("theme", "dark");
-            themeButton.textContent = "🌙";
-
-        }
-
-    });
-
-}
-
-/* ==========================
-   ACTIVE NAVIGATION
-========================== */
-
-const navLinks = document.querySelectorAll(".nav-links a");
-
-navLinks.forEach(link => {
-
-    if (link.href === window.location.href) {
-
-        link.style.color = "#1E88E5";
-        link.style.fontWeight = "600";
+        localStorage.setItem("theme", "dark");
+        themeToggle.textContent = "🌙";
 
     }
 
 });
 
 /* ==========================
-   CARD FADE-IN
+   LOAD PROJECTS
 ========================== */
 
-const cards = document.querySelectorAll(".card");
+async function loadProjects() {
 
-const observer = new IntersectionObserver((entries) => {
+    const roboticsContainer = document.getElementById("roboticsProjects");
 
-    entries.forEach(entry => {
+    const cadContainer = document.getElementById("cadProjects");
 
-        if (entry.isIntersecting) {
+    try {
 
-            entry.target.classList.add("show");
+        const response = await fetch("data/projects.json");
 
-        }
+        const data = await response.json();
 
-    });
+        if (roboticsContainer) {
 
-}, {
-    threshold: 0.15
-});
+            data.robotics.forEach(project => {
 
-cards.forEach(card => observer.observe(card));
-
-/* ==========================
-   PARALLAX HERO
-========================== */
-
-window.addEventListener("scroll", () => {
-
-    const hero = document.querySelector(".hero");
-
-    if (hero) {
-
-        hero.style.backgroundPositionY =
-            window.scrollY * 0.3 + "px";
-
-    }
-
-});
-
-/* ==========================
-   SMOOTH SCROLL
-========================== */
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-    anchor.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        const target = document.querySelector(this.getAttribute("href"));
-
-        if (target) {
-
-            target.scrollIntoView({
-
-                behavior: "smooth"
+                roboticsContainer.innerHTML += createCard(project);
 
             });
 
         }
 
-    });
+        if (cadContainer) {
 
-});
+            data.cad.forEach(project => {
+
+                cadContainer.innerHTML += createCard(project);
+
+            });
+
+        }
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+function createCard(project){
+
+return `
+
+<div class="card">
+
+<img src="${project.image}" class="project-image">
+
+<h3>${project.title}</h3>
+
+<p>${project.description}</p>
+
+<div class="tag-list">
+
+${project.tags.map(tag=>`<span>${tag}</span>`).join("")}
+
+</div>
+
+<div class="project-buttons">
+
+<a href="${project.report}" class="btn-primary">
+
+Report
+
+</a>
+
+<a href="${project.github}" class="btn-secondary">
+
+GitHub
+
+</a>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+loadProjects();
