@@ -114,3 +114,174 @@ GitHub
 }
 
 loadProjects();
+/* ==========================
+   THEME TOGGLE
+========================== */
+
+const themeToggle = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light-mode");
+    if (themeToggle) themeToggle.textContent = "☀️";
+}
+
+themeToggle?.addEventListener("click", () => {
+
+    document.body.classList.toggle("light-mode");
+
+    if (document.body.classList.contains("light-mode")) {
+        localStorage.setItem("theme", "light");
+        themeToggle.textContent = "☀️";
+    } else {
+        localStorage.setItem("theme", "dark");
+        themeToggle.textContent = "🌙";
+    }
+
+});
+
+
+/* ==========================
+   CREATE PROJECT CARD
+========================== */
+
+function createCard(project){
+
+return `
+
+<div class="card">
+
+<img src="${project.image}" class="project-image" alt="${project.title}">
+
+<h3>${project.title}</h3>
+
+<p>${project.description}</p>
+
+<div class="tag-list">
+
+${project.tags.map(tag=>`<span>${tag}</span>`).join("")}
+
+</div>
+
+<div class="project-buttons">
+
+<a href="${project.report}" class="btn-primary">
+
+Report
+
+</a>
+
+<a href="${project.github || '#'}" class="btn-secondary">
+
+GitHub
+
+</a>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* ==========================
+   LOAD PROJECTS
+========================== */
+
+async function loadProjects(){
+
+try{
+
+const response=await fetch("data/projects.json");
+
+const data=await response.json();
+
+const robotics=document.getElementById("roboticsProjects");
+const cad=document.getElementById("cadProjects");
+const featured=document.getElementById("featuredProjects");
+const portfolio=document.getElementById("portfolioProjects");
+
+if(robotics){
+
+data.robotics.forEach(project=>{
+
+robotics.innerHTML+=createCard(project);
+
+});
+
+}
+
+if(cad){
+
+data.cad.forEach(project=>{
+
+cad.innerHTML+=createCard(project);
+
+});
+
+}
+
+if(featured){
+
+const projects=[
+
+...data.robotics,
+
+...data.cad,
+
+...(data.cam || []),
+
+...(data.cae || []),
+
+...(data.embedded || []),
+
+...(data.manufacturing || [])
+
+];
+
+projects.slice(0,6).forEach(project=>{
+
+featured.innerHTML+=createCard(project);
+
+});
+
+}
+
+if(portfolio){
+
+const projects=[
+
+...data.robotics,
+
+...data.cad,
+
+...(data.cam || []),
+
+...(data.cae || []),
+
+...(data.embedded || []),
+
+...(data.manufacturing || [])
+
+];
+
+projects.forEach(project=>{
+
+portfolio.innerHTML+=createCard(project);
+
+});
+
+}
+
+}
+
+catch(error){
+
+console.error(error);
+
+}
+
+}
+
+loadProjects();
