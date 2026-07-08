@@ -1,121 +1,50 @@
 {
-  "robotics": [
-    {
-      "id": 1,
-      "slug": "line-following-robot",
-      "title": "Line Following Robot",
-      "subtitle": "Autonomous Mobile Robot",
-      "description": "Arduino-based autonomous robot capable of following a predefined path using infrared sensors and PID control.",
+  "id": 1,
+  "slug": "motorcycle-mudguard",
+  "title": "Motorcycle Mudguard",
+  "subtitle": "Design and Structural Analysis",
+  "category": "cad",
+  "featured": true,
+  "status": "Completed",
+  "difficulty": "Intermediate",
+  "duration": "2 Weeks",
 
-      "category": "robotics",
-
-      "featured": true,
-
-      "status": "Completed",
-
-      "date": "2026-07-08",
-
-      "software": [
-        "Arduino IDE",
-        "SolidWorks",
-        "C++"
-      ],
-
-      "tags": [
-        "Arduino",
-        "Robotics",
-        "PID"
-      ],
-
-      "coverImage": "assets/images/robotics/line-following-robot/cover.jpg",
-
-      "gallery": [
-        "assets/images/robotics/line-following-robot/1.jpg",
-        "assets/images/robotics/line-following-robot/2.jpg",
-        "assets/images/robotics/line-following-robot/3.jpg"
-      ],
-
-      "downloads": {
-        "report": "projects/robotics/line-following-robot/report.pdf",
-        "sourceCode": "",
-        "cad": "",
-        "zip": ""
-      },
-
-      "youtube": "",
-
-      "github": "",
-
-      "resume": "assets/resumes/Robotics_CV.pdf"
-    }
+  "software": [
+    "SolidWorks",
+    "SolidWorks Simulation"
   ],
 
-  "cad": [
-    {
-      "id": 2,
-      "slug": "motorcycle-mudguard",
-
-      "title": "Motorcycle Mudguard",
-
-      "subtitle": "Design & FEA",
-
-      "description": "Complete design and structural analysis of a motorcycle mudguard using SolidWorks Simulation.",
-
-      "category": "cad",
-
-      "featured": true,
-
-      "status": "Completed",
-
-      "date": "2026-07-08",
-
-      "software": [
-        "SolidWorks",
-        "SolidWorks Simulation"
-      ],
-
-      "tags": [
-        "CAD",
-        "FEA",
-        "Sheet Metal"
-      ],
-
-      "coverImage": "assets/images/cad/motorcycle-mudguard/cover.jpg",
-
-      "gallery": [
-        "assets/images/cad/motorcycle-mudguard/1.jpg",
-        "assets/images/cad/motorcycle-mudguard/2.jpg",
-        "assets/images/cad/motorcycle-mudguard/3.jpg"
-      ],
-
-      "downloads": {
-
-        "report": "projects/cad/motorcycle-mudguard/report.pdf",
-
-        "drawing": "projects/cad/motorcycle-mudguard/drawing.pdf",
-
-        "step": "projects/cad/motorcycle-mudguard/model.step",
-
-        "solidworks": "projects/cad/motorcycle-mudguard/model.sldprt",
-
-        "zip": "projects/cad/motorcycle-mudguard/project.zip"
-
-      },
-
-      "youtube": "",
-
-      "github": "",
-
-      "resume": "assets/resumes/CAD_CAM_CAE_CV.pdf"
-
-    }
+  "engineeringProcess": [
+    "Research",
+    "CAD Design",
+    "Assembly",
+    "Engineering Drawing",
+    "Simulation",
+    "Manufacturing"
   ],
 
-  "cam": [],
+  "description": "Complete design and structural analysis of a motorcycle mudguard.",
 
-  "cae": [],
+  "problem": "Design a lightweight mudguard capable of withstanding road vibration while remaining manufacturable.",
 
-  "embedded": [],
+  "solution": "Optimized geometry using SolidWorks and validated the design using finite element analysis.",
 
-  "manufacturing": []
+  "coverImage": "assets/images/cad/motorcycle-mudguard/cover.jpg",
+
+  "gallery": [
+    "assets/images/cad/motorcycle-mudguard/1.jpg",
+    "assets/images/cad/motorcycle-mudguard/2.jpg",
+    "assets/images/cad/motorcycle-mudguard/3.jpg"
+  ],
+
+  "downloads": {
+    "report": "projects/cad/motorcycle-mudguard/report.pdf",
+    "drawing": "projects/cad/motorcycle-mudguard/drawing.pdf",
+    "step": "projects/cad/motorcycle-mudguard/model.step",
+    "sldprt": "projects/cad/motorcycle-mudguard/model.sldprt",
+    "zip": "projects/cad/motorcycle-mudguard/project.zip"
+  },
+
+  "youtube": "",
+  "github": ""
 }
