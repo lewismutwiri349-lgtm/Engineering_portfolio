@@ -586,3 +586,55 @@ flex:1;
 text-align:center;
 
 }
+/* ==========================
+CONTACT FORM
+========================== */
+
+.contact-form{
+
+max-width:800px;
+
+margin:auto;
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.contact-form input,
+.contact-form textarea{
+
+padding:18px;
+
+border-radius:12px;
+
+border:1px solid var(--border);
+
+background:var(--card);
+
+color:var(--text);
+
+font-size:16px;
+
+outline:none;
+
+}
+
+.contact-form textarea{
+
+resize:vertical;
+
+min-height:180px;
+
+}
+
+.contact-form button{
+
+border:none;
+
+cursor:pointer;
+
+}
