@@ -657,3 +657,44 @@ font-size:18px;
 margin-bottom:40px;
 
 }
+.status{
+
+display:inline-block;
+
+padding:8px 16px;
+
+border-radius:30px;
+
+background:#22c55e;
+
+color:white;
+
+font-weight:bold;
+
+margin-bottom:20px;
+
+}
+
+.software{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+margin:20px 0;
+
+}
+
+.software span{
+
+padding:8px 15px;
+
+background:#1f2937;
+
+border-radius:20px;
+
+font-size:14px;
+
+}
