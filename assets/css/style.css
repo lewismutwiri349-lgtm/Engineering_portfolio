@@ -388,3 +388,48 @@ width:100%;
 }
 
 }
+/* ===========================
+   LIGHT MODE
+=========================== */
+
+body.light-mode{
+
+    --bg:#F4F7FB;
+    --surface:#FFFFFF;
+    --card:#FFFFFF;
+
+    --text:#08131F;
+    --text-secondary:#495057;
+
+    --border:#DCE4EC;
+
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+
+.card{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+}
+
+.card.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+.card{
+
+    transition:
+        transform .4s ease,
+        opacity .8s ease,
+        border-color .3s ease;
+
+}
