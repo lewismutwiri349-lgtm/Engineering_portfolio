@@ -2,32 +2,112 @@
   "robotics": [
     {
       "id": 1,
+      "slug": "line-following-robot",
       "title": "Line Following Robot",
-      "description": "Arduino-based autonomous line following robot.",
-      "image": "assets/images/robotics/line-follower/cover.jpg",
-      "report": "projects/robotics/line-follower/report.pdf",
-      "github": "",
+      "subtitle": "Autonomous Mobile Robot",
+      "description": "Arduino-based autonomous robot capable of following a predefined path using infrared sensors and PID control.",
+
+      "category": "robotics",
+
+      "featured": true,
+
+      "status": "Completed",
+
+      "date": "2026-07-08",
+
+      "software": [
+        "Arduino IDE",
+        "SolidWorks",
+        "C++"
+      ],
+
       "tags": [
         "Arduino",
-        "PID",
-        "Robotics"
-      ]
+        "Robotics",
+        "PID"
+      ],
+
+      "coverImage": "assets/images/robotics/line-following-robot/cover.jpg",
+
+      "gallery": [
+        "assets/images/robotics/line-following-robot/1.jpg",
+        "assets/images/robotics/line-following-robot/2.jpg",
+        "assets/images/robotics/line-following-robot/3.jpg"
+      ],
+
+      "downloads": {
+        "report": "projects/robotics/line-following-robot/report.pdf",
+        "sourceCode": "",
+        "cad": "",
+        "zip": ""
+      },
+
+      "youtube": "",
+
+      "github": "",
+
+      "resume": "assets/resumes/Robotics_CV.pdf"
     }
   ],
 
   "cad": [
     {
       "id": 2,
+      "slug": "motorcycle-mudguard",
+
       "title": "Motorcycle Mudguard",
-      "description": "Designed and simulated in SolidWorks.",
-      "image": "assets/images/cad/mudguard/cover.jpg",
-      "report": "projects/cad/mudguard/report.pdf",
-      "github": "",
-      "tags": [
+
+      "subtitle": "Design & FEA",
+
+      "description": "Complete design and structural analysis of a motorcycle mudguard using SolidWorks Simulation.",
+
+      "category": "cad",
+
+      "featured": true,
+
+      "status": "Completed",
+
+      "date": "2026-07-08",
+
+      "software": [
         "SolidWorks",
+        "SolidWorks Simulation"
+      ],
+
+      "tags": [
+        "CAD",
         "FEA",
-        "CAD"
-      ]
+        "Sheet Metal"
+      ],
+
+      "coverImage": "assets/images/cad/motorcycle-mudguard/cover.jpg",
+
+      "gallery": [
+        "assets/images/cad/motorcycle-mudguard/1.jpg",
+        "assets/images/cad/motorcycle-mudguard/2.jpg",
+        "assets/images/cad/motorcycle-mudguard/3.jpg"
+      ],
+
+      "downloads": {
+
+        "report": "projects/cad/motorcycle-mudguard/report.pdf",
+
+        "drawing": "projects/cad/motorcycle-mudguard/drawing.pdf",
+
+        "step": "projects/cad/motorcycle-mudguard/model.step",
+
+        "solidworks": "projects/cad/motorcycle-mudguard/model.sldprt",
+
+        "zip": "projects/cad/motorcycle-mudguard/project.zip"
+
+      },
+
+      "youtube": "",
+
+      "github": "",
+
+      "resume": "assets/resumes/CAD_CAM_CAE_CV.pdf"
+
     }
   ],
 
