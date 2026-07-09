@@ -1,17 +1,17 @@
 {
   "id": 1,
-  "slug": "motorcycle-mudguard",
-  "title": "Motorcycle Mudguard",
-  "subtitle": "Design and Structural Analysis",
+  "slug": "pcb_enclosure",
+  "title": "PCB_enclosure",
+  "subtitle": "Design",
   "category": "cad",
   "featured": true,
   "status": "Completed",
   "difficulty": "Intermediate",
-  "duration": "2 Weeks",
+  "duration": "15 minutes",
 
   "software": [
     "SolidWorks",
-    "SolidWorks Simulation"
+    "SolidWorks design"
   ],
 
   "engineeringProcess": [
@@ -19,32 +19,31 @@
     "CAD Design",
     "Assembly",
     "Engineering Drawing",
-    "Simulation",
-    "Manufacturing"
+    "Simulation"
   ],
 
-  "description": "Complete design and structural analysis of a motorcycle mudguard.",
+  "description": "Designed a PCB enclosure in SolidWorks, where I learned how to use the Vent feature to provide adequate ventilation for the internal components. Throughout the project, I also improved my understanding of the Extruded Cut feature for creating precise openings and internal geometry. The project took approximately 15 minutes to complete. Additionally, I learned how to select appropriate materials for the application, reducing the enclosure's weight from 750 g in the initial design to 450 g in the optimized version while maintaining its functionality..",
 
-  "problem": "Design a lightweight mudguard capable of withstanding road vibration while remaining manufacturable.",
+  "problem": "Design a Compact Electronics Enclosure (DFM/CAD focus).",
 
-  "solution": "Optimized geometry using SolidWorks and validated the design using finite element analysis.",
+  "solution": "Optimized geometry using SolidWorks",
 
-  "coverImage": "assets/images/cad/motorcycle-mudguard/cover.jpg",
+  "coverImage": "assets/images/cad/pcb_enclosure/cover.jpg",
 
   "gallery": [
-    "assets/images/cad/motorcycle-mudguard/1.jpg",
-    "assets/images/cad/motorcycle-mudguard/2.jpg",
-    "assets/images/cad/motorcycle-mudguard/3.jpg"
+    "assets/images/cad/pcb_enclosure/1.jpg",
+    "assets/images/cad/pcb_enclosure/2.jpg",
+    "assets/images/cad/pcb_enclosure/3.jpg"
   ],
 
   "downloads": {
-    "report": "projects/cad/motorcycle-mudguard/report.pdf",
-    "drawing": "projects/cad/motorcycle-mudguard/drawing.pdf",
-    "step": "projects/cad/motorcycle-mudguard/model.step",
-    "sldprt": "projects/cad/motorcycle-mudguard/model.sldprt",
-    "zip": "projects/cad/motorcycle-mudguard/project.zip"
+    "report": "projects/cad/pcb_enclosure/report.pdf",
+    "drawing": "projects/cad/pcb_enclosure/drawing.pdf",
+    "step": "projects/cad/pcb_enclosure/model.step",
+    "sldprt": "projects/cad/pcb_enclosure/model.sldprt",
+    "zip": "projects/cad/pcb_enclosure/project.zip"
   },
 
-  "youtube": "",
+  "youtube": "https://youtube.com/@cadcaeembedded?si=AuFdkE7ENCPYISFf",
   "github": ""
 }
