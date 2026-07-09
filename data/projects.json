@@ -34,11 +34,11 @@
   ],
 
   "downloads": {
-    "report": "projects/cad/pcb_enclosure/report.pdf",
-    "drawing": "projects/cad/pcb_enclosure/drawing.pdf",
-    "step": "projects/cad/pcb_enclosure/model.step",
-    "sldprt": "projects/cad/pcb_enclosure/model.sldprt",
-    "zip": "projects/cad/pcb_enclosure/project.zip"
+    "report": "projects/cad/solidworks/pcb_enclosure/report.pdf",
+    "drawing": "projects/cad/solidworks/pcb_enclosure/drawing.pdf",
+    "step": "projects/cad/solidworks/pcb_enclosure/model.step",
+    "sldprt": "projects/cad/solidworks/pcb_enclosure/model.sldprt",
+    "zip": "projects/cad/solidworks/pcb_enclosure/project.zip"
   },
 
   "youtube": "https://youtube.com/@cadcaeembedded?si=AuFdkE7ENCPYISFf",
