@@ -16,10 +16,7 @@
 
   "engineeringProcess": [
     "Research",
-    "CAD Design",
-    "Assembly",
-    "Engineering Drawing",
-    "Simulation"
+    "CAD Design"
   ],
 
   "description": "Designed a PCB enclosure in SolidWorks, where I learned how to use the Vent feature to provide adequate ventilation for the internal components. Throughout the project, I also improved my understanding of the Extruded Cut feature for creating precise openings and internal geometry. The project took approximately 15 minutes to complete. Additionally, I learned how to select appropriate materials for the application, reducing the enclosure's weight from 750 g in the initial design to 450 g in the optimized version while maintaining its functionality..",
