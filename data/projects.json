@@ -1,8 +1,8 @@
 {
   "id": 1,
-  "slug": "pcb_enclosure",
-  "title": "PCB_enclosure",
-  "subtitle": "Design",
+  "slug": "pcb-enclosure",
+  "title": "PCB Enclosure",
+  "subtitle": "SolidWorks Product Design",
   "category": "cad",
   "featured": true,
   "status": "Completed",
@@ -10,8 +10,7 @@
   "duration": "15 minutes",
 
   "software": [
-    "SolidWorks",
-    "SolidWorks design"
+    "SolidWorks"
   ],
 
   "engineeringProcess": [
@@ -19,11 +18,11 @@
     "CAD Design"
   ],
 
-  "description": "Designed a PCB enclosure in SolidWorks, where I learned how to use the Vent feature to provide adequate ventilation for the internal components. Throughout the project, I also improved my understanding of the Extruded Cut feature for creating precise openings and internal geometry. The project took approximately 15 minutes to complete. Additionally, I learned how to select appropriate materials for the application, reducing the enclosure's weight from 750 g in the initial design to 450 g in the optimized version while maintaining its functionality..",
+  "description": "Designed a PCB enclosure in SolidWorks, where I learned how to use the Vent feature to provide adequate ventilation for the internal components. Throughout the project, I also improved my understanding of the Extruded Cut feature for creating precise openings and internal geometry. The project took approximately 15 minutes to complete. Additionally, I learned how to select appropriate materials for the application, reducing the enclosure's weight from 750 g in the initial design to 450 g in the optimized version while maintaining its functionality.",
 
-  "problem": "Design a Compact Electronics Enclosure (DFM/CAD focus).",
+  "problem": "Design a compact PCB enclosure that protects the electronics while providing adequate ventilation and minimizing weight.",
 
-  "solution": "Optimized geometry using SolidWorks",
+  "solution": "Designed and optimized the enclosure in SolidWorks using the Vent and Extruded Cut features, then selected an appropriate material to reduce the weight from 750 g to 450 g while maintaining functionality.",
 
   "coverImage": "assets/images/cad/pcb_enclosure/cover.png",
 
@@ -41,6 +40,13 @@
     "zip": "projects/cad/solidworks/pcb_enclosure/project.zip"
   },
 
+  "tags": [
+    "PCB",
+    "Enclosure",
+    "SolidWorks"
+  ],
+
   "youtube": "https://youtube.com/@cadcaeembedded?si=AuFdkE7ENCPYISFf",
+
   "github": ""
 }
