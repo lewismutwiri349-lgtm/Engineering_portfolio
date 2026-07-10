@@ -47,11 +47,20 @@ body{
 
     font-family:'Inter',sans-serif;
 
-    background:var(--bg);
-
     color:var(--text);
 
     line-height:1.7;
+
+    background-image:url("../images/hero-bird.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+
+    background-repeat:no-repeat;
+
 
 }
 
@@ -59,6 +68,9 @@ body{
    BACKGROUND GRID
 =========================== */
 
+/* ===========================
+   NAVBAR
+=========================== */
 body::before{
 
     content:"";
@@ -67,23 +79,11 @@ body::before{
 
     inset:0;
 
-    background-image:
-
-    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-
-    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-
-    background-size:45px 45px;
-
-    pointer-events:none;
+    background:rgba(0,0,0,.65);
 
     z-index:-1;
 
 }
-
-/* ===========================
-   NAVBAR
-=========================== */
 
 .navbar{
 
@@ -160,8 +160,9 @@ body::before{
 =========================== */
 
 .hero{
+    position:relative;
 
-    min-height:90vh;
+    min-height:100vh;
 
     display:flex;
 
@@ -169,14 +170,29 @@ body::before{
 
     justify-content:center;
 
-    text-align:center;
+    background-image:url("../images/hero-bird.jpg");
 
-    padding:80px 20px;
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+}
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
 
 }
 
 .hero-content{
-
+    position:relative;
+    z-index:2;
     max-width:900px;
 
 }

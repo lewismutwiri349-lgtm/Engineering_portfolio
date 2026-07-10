@@ -2,6 +2,12 @@
    PROJECT PAGE
 ========================================== */
 
+function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str ?? "";
+    return div.innerHTML;
+}
+
 async function loadProject() {
 
     const title = document.getElementById("projectTitle");
@@ -11,7 +17,25 @@ async function loadProject() {
     const params = new URLSearchParams(window.location.search);
     const slug = params.get("id");
 
-    const projects = await getProjects();
+    let projects;
+
+    try {
+
+        projects = await getProjects();
+
+    } catch (err) {
+
+        title.innerText = "Couldn't load this project";
+
+        const desc = document.getElementById("projectDescription");
+
+        if (desc) {
+            desc.innerText = err.message;
+        }
+
+        return;
+
+    }
 
     const project = projects.find(p => p.slug === slug);
 
@@ -19,208 +43,229 @@ async function loadProject() {
 
         title.innerText = "Project Not Found";
 
+        const desc = document.getElementById("projectDescription");
+
+        if (desc) {
+            desc.innerText = "That project doesn't exist or may have been moved.";
+        }
+
         return;
 
     }
 
-    document.title = project.title;
+    /* ==========================================
+       PAGE INFORMATION
+    ========================================== */
 
-    document.getElementById("projectTitle").innerText = project.title;
+    document.title = `${project.title} | Lewis Mutwiri`;
 
-    document.getElementById("projectDescription").innerText = project.description;
+    title.innerText = project.title;
 
-    document.getElementById("projectImage").src = project.coverImage;
+    const description = document.getElementById("projectDescription");
 
-    document.getElementById("projectImage").alt = project.title;
+    if (description) {
+        description.innerText = project.description || "";
+    }
 
-    /* -------------------------
+    const image = document.getElementById("projectImage");
+
+    if (image) {
+
+        image.src = project.coverImage;
+        image.alt = project.title;
+
+        image.decoding = "async";
+        image.fetchPriority = "high";
+
+        image.onerror = () => {
+
+            image.style.display = "none";
+
+        };
+
+    }
+
+    /* ==========================================
        TAGS
-    ------------------------- */
+    ========================================== */
 
     const tags = document.getElementById("projectTags");
 
     if (tags) {
 
-        tags.innerHTML = "";
+        tags.innerHTML = (project.tags || [])
 
-        project.tags.forEach(tag => {
+            .map(tag => `<span>${escapeHtml(tag)}</span>`)
 
-            tags.innerHTML += `<span>${tag}</span>`;
-
-        });
+            .join("");
 
     }
 
-    /* -------------------------
-       DOWNLOADS
-    ------------------------- */
+    /* ==========================================
+       SOFTWARE
+    ========================================== */
+
+    const software = document.getElementById("softwareList");
+
+    if (software) {
+
+        software.innerHTML = (project.software || [])
+
+            .map(item => `<span>${escapeHtml(item)}</span>`)
+
+            .join("");
+
+    }
+
+    /* ==========================================
+       ENGINEERING PROCESS
+    ========================================== */
+
+    const process = document.getElementById("engineeringProcess");
+
+    if (process) {
+
+        process.innerHTML = (project.engineeringProcess || [])
+
+            .map(step => `<span>${escapeHtml(step)}</span>`)
+
+            .join("");
+
+    }
+
+    /* ==========================================
+       ENGINEERING PROBLEM
+    ========================================== */
+
+    const problem = document.getElementById("problem");
+
+    if (problem) {
+
+        problem.innerText = project.problem || "";
+
+    }
+
+    /* ==========================================
+       ENGINEERING SOLUTION
+    ========================================== */
+
+    const solution = document.getElementById("solution");
+
+    if (solution) {
+
+        solution.innerText = project.solution || "";
+
+    }
+
+    /* ==========================================
+       PROJECT GALLERY
+    ========================================== */
+
+    const gallery = document.getElementById("projectGallery");
+
+    if (gallery) {
+
+        gallery.innerHTML = (project.gallery || [])
+
+            .map((img, index) => `
+
+                <img
+                    class="gallery-image"
+                    src="${img}"
+                    alt="${escapeHtml(project.title)} - Image ${index + 1}"
+                    loading="lazy"
+                    onerror="this.remove()">
+
+            `)
+
+            .join("");
+
+    }
+
+    /* ==========================================
+       DOWNLOAD BUTTONS
+    ========================================== */
 
     const downloads = document.getElementById("downloadButtons");
 
     if (downloads) {
 
-        downloads.innerHTML = "";
+        downloads.innerHTML = Object.entries(project.downloads || {})
 
-        Object.entries(project.downloads).forEach(([name, file]) => {
+            .filter(([, file]) => file && file.trim() !== "")
 
-            if (file) {
-
-                downloads.innerHTML += `
+            .map(([name, file]) => `
 
                 <a
                     class="btn-primary"
                     href="${file}"
-                    target="_blank">
+                    target="_blank"
+                    rel="noopener noreferrer">
 
-                    ${name}
+                    ${escapeHtml(name.toUpperCase())}
 
                 </a>
 
-                `;
+            `)
 
-            }
-
-        });
+            .join("");
 
     }
 
-    /* -------------------------
-       SOFTWARE
-    ------------------------- */
+    /* ==========================================
+       PROJECT LINKS
+    ========================================== */
 
-    const software = document.getElementById("softwareList");
-
-    if (software && project.software) {
-
-        software.innerHTML = "";
-
-        project.software.forEach(item => {
-
-            software.innerHTML += `<span>${item}</span>`;
-
-        });
-
-    }
-
-    /* -------------------------
-       ENGINEERING WORKFLOW
-    ------------------------- */
-
-    const workflow = document.getElementById("workflow");
-
-    if (workflow && project.engineeringProcess) {
-
-        workflow.innerHTML = "";
-
-        project.engineeringProcess.forEach(step => {
-
-            workflow.innerHTML += `
-
-            <div class="card">
-
-                ${step}
-
-            </div>
-
-            `;
-
-        });
-
-    }
-
-    /* -------------------------
-       PROBLEM
-    ------------------------- */
-
-    const problem = document.getElementById("problem");
-
-    if (problem && project.problem) {
-
-        problem.innerText = project.problem;
-
-    }
-
-    /* -------------------------
-       SOLUTION
-    ------------------------- */
-
-    const solution = document.getElementById("solution");
-
-    if (solution && project.solution) {
-
-        solution.innerText = project.solution;
-
-    }
-
-    /* -------------------------
-       GALLERY
-    ------------------------- */
-
-    const gallery = document.getElementById("gallery");
-
-    if (gallery && project.gallery) {
-
-        gallery.innerHTML = "";
-
-        project.gallery.forEach(image => {
-
-            gallery.innerHTML += `
-
-            <img
-                class="project-image"
-                src="${image}"
-                alt="${project.title}">
-
-            `;
-
-        });
-
-    }
-
-    /* -------------------------
-       EXTERNAL LINKS
-    ------------------------- */
-
-    const links = document.getElementById("externalLinks");
+    const links = document.getElementById("projectLinks");
 
     if (links) {
 
-        links.innerHTML = "";
+        let html = "";
 
-        if (project.github) {
+        if (project.youtube && project.youtube.trim() !== "") {
 
-            links.innerHTML += `
+            html += `
 
-            <a
-                href="${project.github}"
-                target="_blank"
-                class="btn-secondary">
+                <a
+                    href="${project.youtube}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-primary">
 
-                GitHub
+                    ▶ Watch on YouTube
 
-            </a>
+                </a>
+
+            `;
+
+        }
+
+        if (project.github && project.github.trim() !== "") {
+
+            html += `
+
+                <a
+                    href="${project.github}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-secondary">
+
+                    💻 GitHub Repository
+
+                </a>
 
             `;
 
         }
 
-        if (project.youtube) {
-
-            links.innerHTML += `
-
-            <a
-                href="${project.youtube}"
-                target="_blank"
-                class="btn-primary">
-
-                Watch on YouTube
-
-            </a>
-
-            `;
-
-        }
+        links.innerHTML = html;
 
     }
 
 }
+
+/* ==========================================
+   START
+========================================== */
+
+document.addEventListener("DOMContentLoaded", loadProject);
