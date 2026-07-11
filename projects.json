@@ -85,9 +85,9 @@
       "problem": "Off-the-shelf enclosures rarely line up with a custom PCB's mounting holes, port cutouts and component clearances, leading to a messy final assembly.",
       "solution": "Modelled the enclosure directly around the PCB's outline, standoffs and connector positions, with wall thickness and snap-fit tabs sized for reliable FDM 3D printing.",
       "gallery": [
-        "assets/images/pcb-enclosure-1.jpg",
-        "assets/images/pcb-enclosure-2.jpg",
-        "assets/images/pcb-enclosure-3.jpg"
+        "assets/images/cad/pcb-enclosure/1.png",
+        "assets/images/cad/pcb-enclosure/2.png",
+        "assets/images/cad/pcb-enclosure/3.png"
       ],
       "downloads": {
         "drawing": "",
