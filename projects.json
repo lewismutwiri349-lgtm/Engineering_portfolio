@@ -19,8 +19,8 @@
     "problem": "What problem was this project solving?",
     "solution": "How did you solve it?",
     "gallery": [
-      "assets/images/your-project-1.jpg",
-      "assets/images/your-project-2.jpg"
+      "assets/images/gallery/your-project/1.jpg",
+      "assets/images/gallery/your-project/2.jpg"
     ],
     "downloads": {
       "drawing": "",
@@ -38,7 +38,7 @@
       "category": "cad",
       "subtitle": "Parametric helical gear with a true involute tooth profile",
       "description": "A fully parametric helical gear modelled from first principles, driven by module, helix angle and tooth count so the geometry updates automatically as the design changes.",
-      "coverImage": "assets/images/helical-gear-cover.jpg",
+      "coverImage": "assets/images/gallery/helical-gear/cover.jpg",
       "status": "Completed",
       "difficulty": "Intermediate",
       "duration": "1 week",
@@ -52,9 +52,9 @@
       "problem": "Standard SolidWorks toolbox gears don't expose the underlying involute geometry, making it hard to customise tooth profile, helix angle or backlash for a non-standard application.",
       "solution": "Built the involute tooth profile from equations driven by module and pressure angle, then used a helical sweep to generate the full tooth geometry, with every parameter (module, teeth, helix angle, face width) exposed for reuse in future gear designs.",
       "gallery": [
-        "assets/images/helical-gear-1.jpg",
-        "assets/images/helical-gear-2.jpg",
-        "assets/images/helical-gear-3.jpg"
+        "assets/images/gallery/helical-gear/1.jpg",
+        "assets/images/gallery/helical-gear/2.jpg",
+        "assets/images/gallery/helical-gear/3.jpg"
       ],
       "downloads": {
         "drawing": "",
@@ -74,7 +74,7 @@
       "coverImage": "assets/images/cad/pcb-enclosure/cover.png",
       "status": "Completed",
       "difficulty": "Beginner",
-      "duration": "3 days",
+      "duration": "15 minutes",
       "software": ["SolidWorks", "3D Printing"],
       "engineeringProcess": [
         "PCB Measurement",
@@ -85,12 +85,10 @@
       "problem": "Off-the-shelf enclosures rarely line up with a custom PCB's mounting holes, port cutouts and component clearances, leading to a messy final assembly.",
       "solution": "Modelled the enclosure directly around the PCB's outline, standoffs and connector positions, with wall thickness and snap-fit tabs sized for reliable FDM 3D printing.",
       "gallery": [
-        "assets/images/cad/pcb-enclosure/1.png",
-        "assets/images/cad/pcb-enclosure/2.png",
-        "assets/images/cad/pcb-enclosure/3.png"
+        "assets/images/pcb-enclosure1.png"
       ],
       "downloads": {
-        "drawing": "",
+        "image": "assets/images/pcb-enclosure1.png",
         "cadFile": ""
       },
       "tags": ["enclosure", "electronics housing", "3D printing", "product design"],
