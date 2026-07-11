@@ -33,39 +33,6 @@
   },
   "cad": [
     {
-      "slug": "helical-gear",
-      "title": "Helical Gear",
-      "category": "cad",
-      "subtitle": "Parametric helical gear with a true involute tooth profile",
-      "description": "A fully parametric helical gear modelled from first principles, driven by module, helix angle and tooth count so the geometry updates automatically as the design changes.",
-      "coverImage": "assets/images/gallery/helical-gear/cover.jpg",
-      "status": "Completed",
-      "difficulty": "Intermediate",
-      "duration": "1 week",
-      "software": ["SolidWorks", "GD&T"],
-      "engineeringProcess": [
-        "Gear Geometry Calculation",
-        "Involute Curve Derivation",
-        "Parametric Modelling",
-        "Engineering Drawing"
-      ],
-      "problem": "Standard SolidWorks toolbox gears don't expose the underlying involute geometry, making it hard to customise tooth profile, helix angle or backlash for a non-standard application.",
-      "solution": "Built the involute tooth profile from equations driven by module and pressure angle, then used a helical sweep to generate the full tooth geometry, with every parameter (module, teeth, helix angle, face width) exposed for reuse in future gear designs.",
-      "gallery": [
-        "assets/images/gallery/helical-gear/1.jpg",
-        "assets/images/gallery/helical-gear/2.jpg",
-        "assets/images/gallery/helical-gear/3.jpg"
-      ],
-      "downloads": {
-        "drawing": "",
-        "cadFile": ""
-      },
-      "tags": ["gears", "power transmission", "mechanism design", "parametric modelling"],
-      "youtube": "",
-      "github": "",
-      "featured": true
-    },
-    {
       "slug": "pcb-enclosure",
       "title": "PCB Enclosure",
       "category": "cad",
