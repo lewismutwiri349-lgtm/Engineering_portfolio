@@ -71,7 +71,7 @@
       "category": "cad",
       "subtitle": "Custom-fit enclosure design for a PCB assembly",
       "description": "A snap-fit enclosure designed around a specific PCB's mounting holes, connectors and component heights, built for FDM 3D printing.",
-      "coverImage": "assets/images/cad/pcb-enclosure/cover.png",
+      "coverImage": "assets/images/cad/pcb-enclosure/cover",
       "status": "Completed",
       "difficulty": "Beginner",
       "duration": "15 minutes",
@@ -85,10 +85,10 @@
       "problem": "Off-the-shelf enclosures rarely line up with a custom PCB's mounting holes, port cutouts and component clearances, leading to a messy final assembly.",
       "solution": "Modelled the enclosure directly around the PCB's outline, standoffs and connector positions, with wall thickness and snap-fit tabs sized for reliable FDM 3D printing.",
       "gallery": [
-        "assets/images/pcb-enclosure1.png"
+        "assets/images/pcb-enclosure1"
       ],
       "downloads": {
-        "image": "assets/images/pcb-enclosure1.png",
+        "image": "assets/images/pcb-enclosure1",
         "cadFile": ""
       },
       "tags": ["enclosure", "electronics housing", "3D printing", "product design"],
@@ -104,7 +104,7 @@
       "category": "cam",
       "subtitle": "Replace with a one-line description of your CAM project",
       "description": "Replace with a short paragraph describing this project.",
-      "coverImage": "assets/images/your-cam-cover.jpg",
+      "coverImage": "assets/images/pcb-enclosure.png",
       "status": "In Progress",
       "difficulty": "Beginner",
       "duration": "",
