@@ -71,7 +71,7 @@
       "category": "cad",
       "subtitle": "Custom-fit enclosure design for a PCB assembly",
       "description": "A snap-fit enclosure designed around a specific PCB's mounting holes, connectors and component heights, built for FDM 3D printing.",
-      "coverImage": "assets/images/pcb-enclosure-cover.jpg",
+      "coverImage": "assets/images/cad/pcb-enclosure/cover.png",
       "status": "Completed",
       "difficulty": "Beginner",
       "duration": "3 days",
