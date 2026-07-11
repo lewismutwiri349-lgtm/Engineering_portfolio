@@ -1,170 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Contact | Lewis Mutwiri</title>
-
-    <meta name="description"
-        content="Contact Lewis Mutwiri for CAD Design, CAM, CAE, Robotics and Engineering Projects.">
-
-    <link rel="stylesheet" href="assets/css/style.css">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Lewis Mutwiri</title>
+<meta name="description" content="Contact Lewis Mutwiri for CAD design, CAM, CAE, robotics and engineering projects.">
+<meta name="theme-color" content="#08131F">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-<header>
+<a href="#main" class="skip-link">Skip to content</a>
 
-<nav class="navbar">
+<header class="site-header">
+    <nav class="navbar" aria-label="Primary">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">LM</span>
+            <span class="brand-text"><strong>Lewis Mutwiri</strong><span>Mechanical Engineer</span></span>
+        </a>
 
-<div class="logo">LM</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="robotics.html">Robotics</a></li>
+            <li><a href="cad-cam-cae.html">CAD • CAM • CAE</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
 
-<ul class="nav-links">
-
-<li><a href="index.html">Home</a></li>
-<li><a href="robotics.html">Robotics</a></li>
-<li><a href="cad-cam-cae.html">CAD • CAM • CAE</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-
-</ul>
-
-<button id="themeToggle">🌙</button>
-
-</nav>
-
+        <div class="nav-actions">
+            <button id="themeToggle" aria-label="Switch to light mode">🌙</button>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span>
+            </button>
+        </div>
+    </nav>
 </header>
 
-<section class="hero">
+<main id="main">
 
-<div class="hero-content">
-
-<h1>Let's Work Together</h1>
-
-<h2>Engineering Design & Product Development</h2>
-
-<p>
-
-Have a project in mind? Feel free to contact me for CAD design,
-engineering drawings, simulation, manufacturing support,
-or robotics development.
-
-</p>
-
-</div>
-
+<section class="hero" style="min-height:52vh;">
+    <div class="container" style="grid-template-columns:1fr;">
+        <div class="hero-content">
+            <span class="hero-tag"><span class="dot"></span> Open to freelance & R&D work</span>
+            <h1>Let's Work Together</h1>
+            <h2>Engineering Design & Product Development</h2>
+            <p>Have a project in mind? Reach out for CAD design, engineering drawings, simulation, manufacturing support or robotics development.</p>
+        </div>
+    </div>
 </section>
 
 <section class="section">
-
-<div class="cards">
-
-<div class="card">
-
-<h3>📧 Email</h3>
-
-<p>
-
-<a href="mailto:lewismutwiri349@gmail.com">
-
-lewismutwiri349@gmail.com
-
-</a>
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>📱 Phone</h3>
-
-<p>
-
-<a href="tel:+254114870566">
-
-+254 114 870 566
-
-</a>
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>📄 Resume</h3>
-
-<p>
-
-<a href="assets/resumes/General_CV.pdf" download>
-
-Download General CV
-
-</a>
-
-</p>
-
-</div>
-
-</div>
-
+    <div class="container">
+        <div class="cards">
+            <div class="card">
+                <h3>📧 Email</h3>
+                <p><a href="mailto:lewismutwiri349@gmail.com">lewismutwiri349@gmail.com</a></p>
+            </div>
+            <div class="card">
+                <h3>📱 Phone</h3>
+                <p><a href="tel:+254114870566">+254 114 870 566</a></p>
+            </div>
+            <div class="card">
+                <h3>📄 Résumé</h3>
+                <p><a href="assets/resumes/General_CV.pdf" download>Download General CV</a></p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="section">
+    <div class="container">
+        <div class="section-eyebrow">Send a message</div>
+        <h2 class="section-title">Tell me about your project</h2>
 
-<h2 class="section-title">
+        <form class="contact-form" action="#" method="post">
+            <div class="form-row">
+                <div class="field">
+                    <label for="name">Your name</label>
+                    <input id="name" name="name" type="text" placeholder="Jane Otieno" required autocomplete="name">
+                </div>
+                <div class="field">
+                    <label for="email">Your email</label>
+                    <input id="email" name="email" type="email" placeholder="jane@company.com" required autocomplete="email">
+                </div>
+            </div>
 
-Send a Message
+            <div class="field">
+                <label for="subject">Subject</label>
+                <input id="subject" name="subject" type="text" placeholder="CAD design for a bracket assembly" required>
+            </div>
 
-</h2>
+            <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="7" placeholder="Describe your project, timeline and any files you'd like to share…" required></textarea>
+            </div>
 
-<form class="contact-form">
-
-<input
-type="text"
-placeholder="Your Name"
-required>
-
-<input
-type="email"
-placeholder="Your Email"
-required>
-
-<input
-type="text"
-placeholder="Subject"
-required>
-
-<textarea
-rows="7"
-placeholder="Write your message..."
-required></textarea>
-
-<button
-type="submit"
-class="btn-primary">
-
-Send Message
-
-</button>
-
-</form>
-
+            <button type="submit" class="btn-primary">Send Message</button>
+            <p class="form-note">I typically reply within 24–48 hours.</p>
+        </form>
+    </div>
 </section>
 
-<footer>
+</main>
 
-© 2026 Lewis Mutwiri
-
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-stamp">
+            <span>© 2026 Lewis Mutwiri. All rights reserved.</span>
+            <span class="stamp-fields">
+                <span>Sheet <b>1/1</b></span>
+                <span>Rev <b>A</b></span>
+                <span>Scale <b>N.T.S.</b></span>
+            </span>
+        </div>
+    </div>
 </footer>
 
+<script src="assets/js/projects.js"></script>
 <script src="assets/js/script.js"></script>
-
 </body>
-
 </html>

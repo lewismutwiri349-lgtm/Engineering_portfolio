@@ -1,200 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Project | Lewis Mutwiri</title>
-
-<meta name="description" content="Engineering Project">
-
+<meta name="description" content="Engineering project case study by Lewis Mutwiri.">
+<meta name="theme-color" content="#08131F">
 <link rel="stylesheet" href="assets/css/style.css">
-
 </head>
 
 <body>
 
-<header>
+<a href="#main" class="skip-link">Skip to content</a>
 
-<nav class="navbar">
+<header class="site-header">
+    <nav class="navbar" aria-label="Primary">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">LM</span>
+            <span class="brand-text"><strong>Lewis Mutwiri</strong><span>Mechanical Engineer</span></span>
+        </a>
 
-<div class="logo">LM</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="robotics.html">Robotics</a></li>
+            <li><a href="cad-cam-cae.html">CAD • CAM • CAE</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
 
-<ul class="nav-links">
-
-<li><a href="index.html">Home</a></li>
-<li><a href="robotics.html">Robotics</a></li>
-<li><a href="cad.html">CAD</a></li>
-<li><a href="cam.html">CAM</a></li>
-<li><a href="cae.html">CAE</a></li>
-<li><a href="portfolio.html">Portfolio</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-
-</ul>
-
-<button id="themeToggle">🌙</button>
-
-</nav>
-
+        <div class="nav-actions">
+            <button id="themeToggle" aria-label="Switch to light mode">🌙</button>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span>
+            </button>
+        </div>
+    </nav>
 </header>
 
-<section class="hero">
+<main id="main">
 
-<div class="hero-content">
+<section class="hero" style="min-height:44vh;">
+    <div class="container" style="grid-template-columns:1fr;">
+        <div class="hero-content">
+            <a href="portfolio.html" class="hero-tag" style="text-decoration:none;">← Back to Portfolio</a>
+            <h1 id="projectTitle">Loading…</h1>
+            <p id="projectDescription">Loading project…</p>
+            <div class="project-meta-bar" id="projectMetaBar"></div>
+        </div>
+    </div>
+</section>
 
-<h1 id="projectTitle">Loading...</h1>
+<section class="section" style="padding-top:0;">
+    <div class="container">
+        <img id="projectImage" class="project-image" alt="">
+    </div>
+</section>
 
-<p id="projectDescription">
+<section class="section" style="padding-block:0 40px;">
+    <div class="container">
+        <h2 class="section-title" style="font-size:22px;">Tags</h2>
+        <div id="projectTags" class="tag-list"></div>
+    </div>
+</section>
 
-Loading project...
+<section class="section" style="padding-block:0 40px;">
+    <div class="container">
+        <h2 class="section-title" style="font-size:22px;">Software Used</h2>
+        <div id="softwareList" class="tech-grid"></div>
+    </div>
+</section>
 
-</p>
+<section class="section" style="padding-block:0 40px;">
+    <div class="container">
+        <h2 class="section-title" style="font-size:22px;">Engineering Process</h2>
+        <div id="engineeringProcess" class="tech-grid"></div>
+    </div>
+</section>
 
-</div>
+<section class="section" style="padding-block:0 40px;">
+    <div class="container">
+        <h2 class="section-title" style="font-size:22px;">Engineering Problem</h2>
+        <p id="problem"></p>
+    </div>
+</section>
 
+<section class="section" style="padding-block:0 40px;">
+    <div class="container">
+        <h2 class="section-title" style="font-size:22px;">Solution</h2>
+        <p id="solution"></p>
+    </div>
+</section>
+
+<section class="section" style="padding-block:0 40px;">
+    <div class="container">
+        <h2 class="section-title" style="font-size:22px;">Project Gallery</h2>
+        <div id="projectGallery" class="gallery"></div>
+    </div>
+</section>
+
+<section class="section" style="padding-block:0 40px;">
+    <div class="container">
+        <h2 class="section-title" style="font-size:22px;">Downloads</h2>
+        <div id="downloadButtons" class="project-buttons"></div>
+    </div>
 </section>
 
 <section class="section">
-
-<img
-id="projectImage"
-class="project-image"
-alt="Project Image">
-
+    <div class="container">
+        <h2 class="section-title" style="font-size:22px;">Project Links</h2>
+        <div id="projectLinks" class="project-buttons"></div>
+    </div>
 </section>
 
-<section class="section">
+</main>
 
-<h2 class="section-title">
-
-Project Tags
-
-</h2>
-
-<div
-id="projectTags"
-class="tag-list">
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-
-Software Used
-
-</h2>
-
-<div
-id="softwareList"
-class="tech-grid">
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-
-Engineering Process
-
-</h2>
-
-<div
-id="engineeringProcess"
-class="tech-grid">
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-
-Engineering Problem
-
-</h2>
-
-<p id="problem"></p>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-
-Solution
-
-</h2>
-
-<p id="solution"></p>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-
-Project Gallery
-
-</h2>
-
-<div
-id="projectGallery"
-class="gallery">
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-
-Downloads
-
-</h2>
-
-<div
-id="downloadButtons"
-class="project-buttons">
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-
-Project Links
-
-</h2>
-
-<div
-id="projectLinks"
-class="project-buttons">
-
-</div>
-
-</section>
-
-<footer>
-
-© 2026 Lewis Mutwiri
-
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-stamp">
+            <span>© 2026 Lewis Mutwiri. All rights reserved.</span>
+            <span class="stamp-fields">
+                <span>Sheet <b>1/1</b></span>
+                <span>Rev <b>A</b></span>
+                <span>Scale <b>N.T.S.</b></span>
+            </span>
+        </div>
+    </div>
 </footer>
 
+<script src="assets/js/projects.js"></script>
 <script src="assets/js/script.js"></script>
-
 </body>
-
 </html>

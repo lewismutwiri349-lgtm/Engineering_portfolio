@@ -1,109 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Engineering Portfolio | Lewis Mutwiri</title>
-
 <meta name="description" content="Engineering portfolio showcasing CAD, CAM, CAE, Robotics, Manufacturing and Embedded Programming projects by Lewis Mutwiri.">
-
+<meta name="theme-color" content="#08131F">
 <link rel="stylesheet" href="assets/css/style.css">
-
 </head>
 
 <body>
 
-<header>
+<a href="#main" class="skip-link">Skip to content</a>
 
-<nav class="navbar">
+<header class="site-header">
+    <nav class="navbar" aria-label="Primary">
+        <a href="index.html" class="brand">
+            <span class="brand-mark">LM</span>
+            <span class="brand-text"><strong>Lewis Mutwiri</strong><span>Mechanical Engineer</span></span>
+        </a>
 
-<div class="logo">LM</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="robotics.html">Robotics</a></li>
+            <li><a href="cad-cam-cae.html">CAD • CAM • CAE</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
 
-<ul class="nav-links">
-
-<li><a href="index.html">Home</a></li>
-
-<li><a href="robotics.html">Robotics</a></li>
-
-<li><a href="cad.html">CAD</a></li>
-
-<li><a href="cam.html">CAM</a></li>
-
-<li><a href="cae.html">CAE</a></li>
-
-<li><a href="portfolio.html">Portfolio</a></li>
-
-<li><a href="about.html">About</a></li>
-
-<li><a href="contact.html">Contact</a></li>
-
-</ul>
-
-<button id="themeToggle">🌙</button>
-
-</nav>
-
+        <div class="nav-actions">
+            <button id="themeToggle" aria-label="Switch to light mode">🌙</button>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span>
+            </button>
+        </div>
+    </nav>
 </header>
 
-<section class="hero">
+<main id="main">
 
-<div class="hero-content">
+<section class="hero" style="min-height:52vh;">
+    <div class="container" style="grid-template-columns:1fr;">
+        <div class="hero-content">
+            <span class="hero-tag"><span class="dot"></span> Full project register</span>
+            <h1>Engineering Portfolio</h1>
+            <h2>Every project, one place</h2>
+            <p>Browse work across CAD, CAM, CAE, robotics, manufacturing and embedded programming — search by name, software or tag.</p>
+        </div>
+    </div>
+</section>
 
-<h1>Engineering Portfolio</h1>
+<section class="section" style="padding-block:56px 0;">
+    <div class="container">
+        <div class="search-bar">
+            <div class="search-field">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <label for="searchBox" class="visually-hidden">Search projects</label>
+                <input id="searchBox" type="text" placeholder="Search by project name, software or tag…">
+            </div>
+        </div>
 
-<h2>Mechanical Engineering Projects</h2>
-
-<p>
-
-Explore my work in CAD, CAM, CAE, Robotics, Manufacturing and Embedded Programming.
-
-</p>
-
-</div>
-
+        <div class="filter-chips" id="filterChips" role="group" aria-label="Filter by discipline"></div>
+    </div>
 </section>
 
 <section class="section">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="section-title">All Projects</h2>
+            <span class="results-count" id="resultsCount" aria-live="polite"></span>
+        </div>
 
-<h2 class="section-title">
-
-Search Projects
-
-</h2>
-
-<input
-id="searchBox"
-type="text"
-placeholder="Search by project name, software or tag...">
-
+        <div id="portfolioProjects" class="cards" aria-live="polite"></div>
+    </div>
 </section>
 
-<section class="section">
+</main>
 
-<h2 class="section-title">
-
-All Projects
-
-</h2>
-
-<div id="portfolioProjects" class="cards">
-
-</div>
-
-</section>
-
-<footer>
-
-© 2026 Lewis Mutwiri. All Rights Reserved.
-
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="brand">
+                    <span class="brand-mark">LM</span>
+                    <span class="brand-text"><strong>Lewis Mutwiri</strong><span>Mechanical Engineer</span></span>
+                </span>
+                <p>Design → Analyse → Automate. Mechanical engineering with a focus on CAD, CAE and embedded robotics.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Site</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="robotics.html">Robotics</a></li>
+                    <li><a href="cad-cam-cae.html">CAD • CAM • CAE</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="assets/resumes/General_CV.pdf" download>Download CV</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:lewismutwiri349@gmail.com">lewismutwiri349@gmail.com</a></li>
+                    <li><a href="tel:+254114870566">+254 114 870 566</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-stamp">
+            <span>© 2026 Lewis Mutwiri. All rights reserved.</span>
+            <span class="stamp-fields">
+                <span>Sheet <b>1/1</b></span>
+                <span>Rev <b>A</b></span>
+                <span>Scale <b>N.T.S.</b></span>
+            </span>
+        </div>
+    </div>
 </footer>
 
+<script src="assets/js/projects.js"></script>
 <script src="assets/js/script.js"></script>
-
 </body>
-
 </html>

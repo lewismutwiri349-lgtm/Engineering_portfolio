@@ -1,271 +1,128 @@
-/* ==========================================
-   PROJECT PAGE
-========================================== */
+/* ==========================================================
+   UI BEHAVIOURS
+   Theme toggle · sticky header · mobile nav · active link
+   · card reveal-on-scroll · smooth scroll
+========================================================== */
 
-function escapeHtml(str) {
-    const div = document.createElement("div");
-    div.textContent = str ?? "";
-    return div.innerHTML;
-}
+(function () {
 
-async function loadProject() {
+    /* ------------------------------------------------------
+       THEME TOGGLE
+    ------------------------------------------------------ */
+    const themeButton = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("theme");
 
-    const title = document.getElementById("projectTitle");
+    if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
+    }
 
-    if (!title) return;
+    function syncThemeButton() {
+        if (!themeButton) return;
+        const isLight = document.body.classList.contains("light-mode");
+        themeButton.textContent = isLight ? "☀️" : "🌙";
+        themeButton.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    }
 
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get("id");
+    syncThemeButton();
 
-    let projects;
+    if (themeButton) {
+        themeButton.addEventListener("click", () => {
+            document.body.classList.toggle("light-mode");
+            localStorage.setItem(
+                "theme",
+                document.body.classList.contains("light-mode") ? "light" : "dark"
+            );
+            syncThemeButton();
+        });
+    }
 
-    try {
+    /* ------------------------------------------------------
+       MOBILE NAV
+    ------------------------------------------------------ */
+    const navToggle = document.getElementById("navToggle");
+    const navLinksEl = document.getElementById("navLinks");
 
-        projects = await getProjects();
+    if (navToggle && navLinksEl) {
+        navToggle.addEventListener("click", () => {
+            const isOpen = navLinksEl.classList.toggle("is-open");
+            navToggle.setAttribute("aria-expanded", String(isOpen));
+        });
 
-    } catch (err) {
+        navLinksEl.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinksEl.classList.remove("is-open");
+                navToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
 
-        title.innerText = "Couldn't load this project";
+    /* ------------------------------------------------------
+       STICKY HEADER SHADOW
+    ------------------------------------------------------ */
+    const header = document.querySelector(".site-header");
 
-        const desc = document.getElementById("projectDescription");
+    function syncHeaderShadow() {
+        if (!header) return;
+        header.classList.toggle("is-scrolled", window.scrollY > 8);
+    }
 
-        if (desc) {
-            desc.innerText = err.message;
+    syncHeaderShadow();
+    window.addEventListener("scroll", syncHeaderShadow, { passive: true });
+
+    /* ------------------------------------------------------
+       ACTIVE NAVIGATION LINK
+       (matches on pathname so query strings don't break it)
+    ------------------------------------------------------ */
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        const linkPath = link.getAttribute("href").split("/").pop();
+        if (linkPath === currentPath) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+        }
+    });
+
+    /* ------------------------------------------------------
+       CARD REVEAL ON SCROLL
+       Exposed globally so dynamically-injected cards
+       (rendered from projects.json) can re-trigger it.
+    ------------------------------------------------------ */
+    let revealObserver;
+
+    function initCardReveal(scope = document) {
+        if (!revealObserver) {
+            revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
         }
 
-        return;
-
+        scope.querySelectorAll(".card:not(.show)").forEach(card => revealObserver.observe(card));
     }
 
-    const project = projects.find(p => p.slug === slug);
-
-    if (!project) {
-
-        title.innerText = "Project Not Found";
-
-        const desc = document.getElementById("projectDescription");
-
-        if (desc) {
-            desc.innerText = "That project doesn't exist or may have been moved.";
-        }
-
-        return;
-
-    }
-
-    /* ==========================================
-       PAGE INFORMATION
-    ========================================== */
-
-    document.title = `${project.title} | Lewis Mutwiri`;
-
-    title.innerText = project.title;
-
-    const description = document.getElementById("projectDescription");
-
-    if (description) {
-        description.innerText = project.description || "";
-    }
-
-    const image = document.getElementById("projectImage");
-
-    if (image) {
-
-        image.src = project.coverImage;
-        image.alt = project.title;
-
-        image.decoding = "async";
-        image.fetchPriority = "high";
-
-        image.onerror = () => {
-
-            image.style.display = "none";
-
-        };
-
-    }
-
-    /* ==========================================
-       TAGS
-    ========================================== */
-
-    const tags = document.getElementById("projectTags");
-
-    if (tags) {
-
-        tags.innerHTML = (project.tags || [])
-
-            .map(tag => `<span>${escapeHtml(tag)}</span>`)
-
-            .join("");
-
-    }
-
-    /* ==========================================
-       SOFTWARE
-    ========================================== */
-
-    const software = document.getElementById("softwareList");
-
-    if (software) {
-
-        software.innerHTML = (project.software || [])
-
-            .map(item => `<span>${escapeHtml(item)}</span>`)
-
-            .join("");
-
-    }
-
-    /* ==========================================
-       ENGINEERING PROCESS
-    ========================================== */
-
-    const process = document.getElementById("engineeringProcess");
-
-    if (process) {
-
-        process.innerHTML = (project.engineeringProcess || [])
-
-            .map(step => `<span>${escapeHtml(step)}</span>`)
-
-            .join("");
-
-    }
-
-    /* ==========================================
-       ENGINEERING PROBLEM
-    ========================================== */
-
-    const problem = document.getElementById("problem");
-
-    if (problem) {
-
-        problem.innerText = project.problem || "";
-
-    }
-
-    /* ==========================================
-       ENGINEERING SOLUTION
-    ========================================== */
-
-    const solution = document.getElementById("solution");
-
-    if (solution) {
-
-        solution.innerText = project.solution || "";
-
-    }
-
-    /* ==========================================
-       PROJECT GALLERY
-    ========================================== */
-
-    const gallery = document.getElementById("projectGallery");
-
-    if (gallery) {
-
-        gallery.innerHTML = (project.gallery || [])
-
-            .map((img, index) => `
-
-                <img
-                    class="gallery-image"
-                    src="${img}"
-                    alt="${escapeHtml(project.title)} - Image ${index + 1}"
-                    loading="lazy"
-                    onerror="this.remove()">
-
-            `)
-
-            .join("");
-
-    }
-
-    /* ==========================================
-       DOWNLOAD BUTTONS
-    ========================================== */
-
-    const downloads = document.getElementById("downloadButtons");
-
-    if (downloads) {
-
-        downloads.innerHTML = Object.entries(project.downloads || {})
-
-            .filter(([, file]) => file && file.trim() !== "")
-
-            .map(([name, file]) => `
-
-                <a
-                    class="btn-primary"
-                    href="${file}"
-                    target="_blank"
-                    rel="noopener noreferrer">
-
-                    ${escapeHtml(name.toUpperCase())}
-
-                </a>
-
-            `)
-
-            .join("");
-
-    }
-
-    /* ==========================================
-       PROJECT LINKS
-    ========================================== */
-
-    const links = document.getElementById("projectLinks");
-
-    if (links) {
-
-        let html = "";
-
-        if (project.youtube && project.youtube.trim() !== "") {
-
-            html += `
-
-                <a
-                    href="${project.youtube}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn-primary">
-
-                    ▶ Watch on YouTube
-
-                </a>
-
-            `;
-
-        }
-
-        if (project.github && project.github.trim() !== "") {
-
-            html += `
-
-                <a
-                    href="${project.github}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn-secondary">
-
-                    💻 GitHub Repository
-
-                </a>
-
-            `;
-
-        }
-
-        links.innerHTML = html;
-
-    }
-
-}
-
-/* ==========================================
-   START
-========================================== */
-
-document.addEventListener("DOMContentLoaded", loadProject);
+    window.initCardReveal = initCardReveal;
+    initCardReveal();
+
+    /* ------------------------------------------------------
+       SMOOTH SCROLL FOR IN-PAGE ANCHORS
+    ------------------------------------------------------ */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("href");
+            if (targetId.length < 2) return;
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+                target.setAttribute("tabindex", "-1");
+                target.focus({ preventScroll: true });
+            }
+        });
+    });
+
+})();
