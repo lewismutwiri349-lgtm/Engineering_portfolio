@@ -31,17 +31,14 @@
       "coverImage": "assets/images/cad/pcb_enclosure/cover.png",
 
       "gallery": [
-        "assets/images/cad/pcb_enclosure/1.png",
-        "assets/images/cad/pcb_enclosure/2.png",
-        "assets/images/cad/pcb_enclosure/3.png"
+        "assets/images/cad/pcb_enclosure/1.PNG",
+        "assets/images/cad/pcb_enclosure/2.PNG",
+        "assets/images/cad/pcb_enclosure/3.PNG"
       ],
 
       "downloads": {
-        "report": "projects/cad/solidworks/pcb_enclosure/report.pdf",
-        "drawing": "projects/cad/solidworks/pcb_enclosure/drawing.pdf",
-        "step": "projects/cad/solidworks/pcb_enclosure/model.step",
-        "sldprt": "projects/cad/solidworks/pcb_enclosure/model.sldprt",
-        "zip": "projects/cad/solidworks/pcb_enclosure/project.zip"
+        "sldprt": "projects/cad/solidworks/pcb_enclosure/pcb_enclosure_file.sldprt",
+        "zip": "projects/cad/solidworks/pcb_enclosure/pcb_enclosure.zip"
       },
 
       "tags": [
