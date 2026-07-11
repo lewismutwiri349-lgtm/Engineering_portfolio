@@ -1,4 +1,36 @@
 {
+  "_template": {
+    "_note": "COPY THIS OBJECT into the array for the right category, then fill in the fields. This '_template' key is ignored by projects.js (it only reads array values), so it's safe to leave here as a reference.",
+    "slug": "your-project-slug",
+    "title": "Your Project Title",
+    "category": "cad",
+    "subtitle": "One-line description shown on project cards",
+    "description": "A short paragraph shown at the top of the project detail page.",
+    "coverImage": "assets/images/your-project-cover.jpg",
+    "status": "Completed",
+    "difficulty": "Beginner",
+    "duration": "1 week",
+    "software": ["SolidWorks"],
+    "engineeringProcess": [
+      "Step One",
+      "Step Two",
+      "Step Three"
+    ],
+    "problem": "What problem was this project solving?",
+    "solution": "How did you solve it?",
+    "gallery": [
+      "assets/images/your-project-1.jpg",
+      "assets/images/your-project-2.jpg"
+    ],
+    "downloads": {
+      "drawing": "",
+      "cadFile": ""
+    },
+    "tags": ["tag-one", "tag-two"],
+    "youtube": "",
+    "github": "",
+    "featured": false
+  },
   "cad": [
     {
       "slug": "helical-gear",
@@ -39,7 +71,7 @@
       "category": "cad",
       "subtitle": "Custom-fit enclosure design for a PCB assembly",
       "description": "A snap-fit enclosure designed around a specific PCB's mounting holes, connectors and component heights, built for FDM 3D printing.",
-      "coverImage": "assets/images/cad/pcb-enclosure/cover.png",
+      "coverImage": "assets/images/pcb-enclosure-cover.jpg",
       "status": "Completed",
       "difficulty": "Beginner",
       "duration": "3 days",
@@ -53,9 +85,9 @@
       "problem": "Off-the-shelf enclosures rarely line up with a custom PCB's mounting holes, port cutouts and component clearances, leading to a messy final assembly.",
       "solution": "Modelled the enclosure directly around the PCB's outline, standoffs and connector positions, with wall thickness and snap-fit tabs sized for reliable FDM 3D printing.",
       "gallery": [
-        "assets/images/cad/pcb-enclosure/1.png",
-        "assets/images/cad/pcb-enclosure/2.png",
-        "assets/images/cad/pcb-enclosure/3.png"
+        "assets/images/pcb-enclosure-1.jpg",
+        "assets/images/pcb-enclosure-2.jpg",
+        "assets/images/pcb-enclosure-3.jpg"
       ],
       "downloads": {
         "drawing": "",
@@ -67,9 +99,75 @@
       "featured": true
     }
   ],
-  "cam": [],
-  "cae": [],
-  "robotics": [],
+  "cam": [
+    {
+      "slug": "example-cam-project",
+      "title": "Example CAM Project — edit or delete me",
+      "category": "cam",
+      "subtitle": "Replace with a one-line description of your CAM project",
+      "description": "Replace with a short paragraph describing this project.",
+      "coverImage": "assets/images/your-cam-cover.jpg",
+      "status": "In Progress",
+      "difficulty": "Beginner",
+      "duration": "",
+      "software": ["SolidWorks CAM"],
+      "engineeringProcess": ["Toolpath Planning", "Simulation", "Post Processing"],
+      "problem": "What manufacturing problem did this solve?",
+      "solution": "How did you solve it?",
+      "gallery": [],
+      "downloads": { "drawing": "", "cadFile": "" },
+      "tags": ["cnc", "toolpaths"],
+      "youtube": "",
+      "github": "",
+      "featured": false
+    }
+  ],
+  "cae": [
+    {
+      "slug": "example-cae-project",
+      "title": "Example CAE Project — edit or delete me",
+      "category": "cae",
+      "subtitle": "Replace with a one-line description of your CAE project",
+      "description": "Replace with a short paragraph describing this project.",
+      "coverImage": "assets/images/your-cae-cover.jpg",
+      "status": "In Progress",
+      "difficulty": "Beginner",
+      "duration": "",
+      "software": ["ANSYS"],
+      "engineeringProcess": ["Mesh Setup", "Load Cases", "Post-Processing Results"],
+      "problem": "What was being validated or optimised?",
+      "solution": "What did the simulation show, and what changed as a result?",
+      "gallery": [],
+      "downloads": { "drawing": "", "cadFile": "" },
+      "tags": ["fea", "simulation"],
+      "youtube": "",
+      "github": "",
+      "featured": false
+    }
+  ],
+  "robotics": [
+    {
+      "slug": "example-robotics-project",
+      "title": "Example Robotics Project — edit or delete me",
+      "category": "robotics",
+      "subtitle": "Replace with a one-line description of your robotics project",
+      "description": "Replace with a short paragraph describing this project.",
+      "coverImage": "assets/images/your-robotics-cover.jpg",
+      "status": "In Progress",
+      "difficulty": "Beginner",
+      "duration": "",
+      "software": ["Arduino IDE"],
+      "engineeringProcess": ["Circuit Design", "Firmware", "Testing"],
+      "problem": "What did this system need to sense, move, or automate?",
+      "solution": "How did the mechanical and electronic design work together?",
+      "gallery": [],
+      "downloads": { "drawing": "", "cadFile": "" },
+      "tags": ["automation", "embedded"],
+      "youtube": "",
+      "github": "",
+      "featured": false
+    }
+  ],
   "embedded": [],
   "manufacturing": []
 }
