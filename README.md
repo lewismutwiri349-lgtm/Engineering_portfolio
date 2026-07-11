@@ -8,7 +8,9 @@ blueprint linework, vellum type, ISO-style title blocks.
 ```
 index.html            Home
 robotics.html          Robotics & Automation
-cad-cam-cae.html        CAD • CAM • CAE
+cad.html                CAD
+cam.html                CAM
+cae.html                CAE
 portfolio.html         Full searchable/filterable project index
 projects.html          Project case-study template (?id=<slug>)
 about.html             About
