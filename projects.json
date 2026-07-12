@@ -1,66 +1,34 @@
 {
-  "_template": {
-    "_note": "COPY THIS OBJECT into the array for the right category, then fill in the fields. This '_template' key is ignored by projects.js (it only reads array values), so it's safe to leave here as a reference.",
-    "slug": "your-project-slug",
-    "title": "Your Project Title",
-    "category": "cad",
-    "subtitle": "One-line description shown on project cards",
-    "description": "A short paragraph shown at the top of the project detail page.",
-    "coverImage": "assets/images/your-project-cover.jpg",
-    "status": "Completed",
-    "difficulty": "Beginner",
-    "duration": "1 week",
-    "software": ["SolidWorks"],
-    "engineeringProcess": [
-      "Step One",
-      "Step Two",
-      "Step Three"
-    ],
-    "problem": "What problem was this project solving?",
-    "solution": "How did you solve it?",
-    "gallery": [
-      "assets/images/gallery/your-project/1.jpg",
-      "assets/images/gallery/your-project/2.jpg"
-    ],
-    "downloads": {
-      "drawing": "",
-      "cadFile": ""
-    },
-    "tags": ["tag-one", "tag-two"],
-    "youtube": "",
-    "github": "",
-    "featured": false
-  },
   "cad": [
     {
-  "slug": "pcb-enclosure",
-  "title": "pcb-enclosure",
-  "category": "cad",
-  "subtitle": "custom-fit enclosure for pcb assembly",
-  "description": "I was tasked with designing a custom PCB enclosure. The design was simple, cost-effective, and easy to print",
-  "coverImage": "assets/images/pcb-enclosure-cover.jpeg",
-  "status": "Completed",
-  "difficulty": "Intermediate",
-  "duration": "15 minutes",
-  "software": [
-    "SolidWorks"
-  ],
-  "engineeringProcess": [],
-  "problem": "I struggled with optimising weight to ensure an efficient  product was designed",
-  "solution": "I chose to proceed with lighter plastic pvc given its poor electrical conductivity to prevent short-circuit of electrical components",
-  "gallery": [
-    "assets/images/gallery/pcb-enclosure/1.jpeg"
-  ],
-  "downloads": {
-    "cadFile": "assets/images/cad/pcb-enclosure/pcbenclosure-solidworksfile.SLDPRT"
-  },
-  "tags": [
-    "cad",
-    "pcb"
-  ],
-  "youtube": "https://youtu.be/UVuoKZPkXu0",
-  "github": "",
-  "featured": true
-}
+      "slug": "pcb-enclosure",
+      "title": "pcb-enclosure",
+      "category": "cad",
+      "subtitle": "custom-fit enclosure for pcb assembly",
+      "description": "I was tasked with designing a custom PCB enclosure. The design was simple, cost-effective, and easy to print",
+      "coverImage": "assets/images/pcb-enclosure-cover.jpeg",
+      "status": "Completed",
+      "difficulty": "Intermediate",
+      "duration": "15 minutes",
+      "software": [
+        "SolidWorks"
+      ],
+      "engineeringProcess": [],
+      "problem": "I struggled with optimising weight to ensure an efficient product was designed",
+      "solution": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components",
+      "gallery": [
+        "assets/images/gallery/pcb-enclosure/1.jpeg"
+      ],
+      "downloads": {
+        "cadFile": "assets/images/cad/pcb-enclosure/pcbenclosure-solidworksfile.SLDPRT"
+      },
+      "tags": [
+        "cad",
+        "pcb"
+      ],
+      "youtube": "https://youtu.be/UVuoKZPkXu0",
+      "github": "",
+      "featured": true
+    }
   ]
 }
