@@ -33,36 +33,35 @@
   },
   "cad": [
     {
-      "slug": "pcb-enclosure",
-      "title": "PCB Enclosure",
-      "category": "cad",
-      "subtitle": "Custom-fit enclosure design for a PCB assembly",
-      "description": "A snap-fit enclosure designed around a specific PCB's mounting holes, connectors and component heights, built for FDM 3D printing.",
-      "coverImage": "assets/images/cover.png",
-      "status": "Completed",
-      "difficulty": "Beginner",
-      "duration": "15 minutes",
-      "software": ["SolidWorks", "3D Printing"],
-      "engineeringProcess": [
-        "PCB Measurement",
-        "3D Modelling",
-        "Fit & Clearance Check",
-        "3D Printing"
-      ],
-      "problem": "Off-the-shelf enclosures rarely line up with a custom PCB's mounting holes, port cutouts and component clearances, leading to a messy final assembly.",
-      "solution": "Modelled the enclosure directly around the PCB's outline, standoffs and connector positions, with wall thickness and snap-fit tabs sized for reliable FDM 3D printing.",
-      "gallery": [
-        "assets/images/pcb-enclosure1.png"
-      ],
-      "downloads": {
-        "image": "assets/images/pcb-enclosure1.png",
-        "cadFile": ""
-      },
-      "tags": ["enclosure", "electronics housing", "3D printing", "product design"],
-      "youtube": "",
-      "github": "",
-      "featured": true
-    }
+  "slug": "pcb-enclosure",
+  "title": "pcb-enclosure",
+  "category": "cad",
+  "subtitle": "custom-fit enclosure for pcb assembly",
+  "description": "I was tasked with designing a custom PCB enclosure. The design was simple, cost-effective, and easy to print",
+  "coverImage": "assets/images/pcb-enclosure-cover.jpg",
+  "status": "Completed",
+  "difficulty": "Intermediate",
+  "duration": "15 minutes",
+  "software": [
+    "SolidWorks"
+  ],
+  "engineeringProcess": [],
+  "problem": "I struggled with optimising weight to ensure an efficient  product was designed",
+  "solution": "I chose to proceed with lighter plastic pvc given its poor electrical conductivity to prevent short-circuit of electrical components",
+  "gallery": [
+    "assets/images/gallery/pcb-enclosure/1.jpg"
+  ],
+  "downloads": {
+    "cadFile": "data/projects/cad/pcb-enclosure/pcbenclosure-solidworksfile"
+  },
+  "tags": [
+    "cad",
+    "pcb"
+  ],
+  "youtube": "https://youtu.be/UVuoKZPkXu0",
+  "github": "",
+  "featured": true
+}
   ],
   "cam": [
     {
