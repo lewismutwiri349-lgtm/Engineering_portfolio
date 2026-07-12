@@ -38,7 +38,7 @@
   "category": "cad",
   "subtitle": "custom-fit enclosure for pcb assembly",
   "description": "I was tasked with designing a custom PCB enclosure. The design was simple, cost-effective, and easy to print",
-  "coverImage": "assets/images/pcb-enclosure-cover.jpg",
+  "coverImage": "assets/images/pcb-enclosure-cover.jpeg",
   "status": "Completed",
   "difficulty": "Intermediate",
   "duration": "15 minutes",
@@ -49,10 +49,10 @@
   "problem": "I struggled with optimising weight to ensure an efficient  product was designed",
   "solution": "I chose to proceed with lighter plastic pvc given its poor electrical conductivity to prevent short-circuit of electrical components",
   "gallery": [
-    "assets/images/gallery/pcb-enclosure/1.jpg"
+    "assets/images/gallery/pcb-enclosure/1.jpeg"
   ],
   "downloads": {
-    "cadFile": "data/projects/cad/pcb-enclosure/pcbenclosure-solidworksfile"
+    "cadFile": "assets/images/cad/pcb-enclosure/pcbenclosure-solidworksfile.SLDPRT"
   },
   "tags": [
     "cad",
