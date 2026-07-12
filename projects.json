@@ -29,6 +29,35 @@
       "youtube": "https://youtu.be/UVuoKZPkXu0",
       "github": "",
       "featured": true
-    }
+    },
+    {
+  "slug": "helical-gear",
+  "title": "Helical Gear",
+  "category": "cad",
+  "subtitle": "Helical gear model",
+  "description": "I was tasked with designing a helical gear. The aim of this project was to demonstrate my skills in chamfering, cut-extrude operations, and my understanding of gear mechanics.",
+  "coverImage": "assets/images/helicalgear20",
+  "status": "Completed",
+  "difficulty": "Intermediate",
+  "duration": "30 min",
+  "software": [
+    "SolidWorks"
+  ],
+  "engineeringProcess": [],
+  "problem": "Determining the appropriate gear ratio relative to the gear size was challenging. A higher tooth-to-size ratio resulted in distorted or damaged gear geometry.",
+  "solution": "I experimented with reducing the number of teeth until the gear geometry was properly formed while maintaining the desired design characteristics.",
+  "gallery": [
+    "assets/images/gallery/helical-gear/1.jpg"
+  ],
+  "downloads": {
+    "cadFile": "projects/cad/helical-gear/Helicalgear20"
+  },
+  "tags": [
+    "cad"
+  ],
+  "youtube": "https://youtu.be/0Xa81lhGexY",
+  "github": "",
+  "featured": false
+}
   ]
 }
