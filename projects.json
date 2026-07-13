@@ -58,6 +58,38 @@
   "youtube": "https://youtu.be/0Xa81lhGexY",
   "github": "",
   "featured": false
+},
+{
+  "slug": "sheet-metal-electronic-enclosure",
+  "title": "Sheet Metal Electronic Enclosure",
+  "category": "cad",
+  "subtitle": "Designed a custom sheet metal enclosure using SolidWorks Sheet Metal tools.",
+  "description": "This project involved designing a custom electronic enclosure from sheet metal using SolidWorks. The objective was to gain practical experience with sheet metal features such as Base Flange, Edge Flange, Hem, Bend Relief, Corner Treatment, and Flat Pattern generation while ensuring the enclosure was suitable for manufacturing and assembly.",
+  "coverImage": "assets/images/sheet-metal-electronic-enclosure-cover.jpg",
+  "status": "Completed",
+  "difficulty": "Intermediate",
+  "duration": "40 minutes",
+  "software": [
+    "SolidWorks"
+  ],
+  "engineeringProcess": [],
+  "problem": "The challenge was to create an enclosure that could securely house electronic components while maintaining proper bend allowances, manufacturability, and an accurate flat pattern for fabrication. Another challenge was ensuring all bends and corners could be produced without interference or material failure during forming.",
+  "solution": "The enclosure was modeled using SolidWorks Sheet Metal tools, beginning with a base flange and progressively adding edge flanges and bends to form the enclosure. Manufacturing considerations such as bend radii, relief cuts, and corner treatments were incorporated throughout the design. A flat pattern was then generated to verify that the enclosure could be fabricated from a single sheet of metal with minimal waste and accurate bend geometry.",
+  "gallery": [
+    "assets/images/gallery/sheet-metal-electronic-enclosure/1.png"
+  ],
+  "downloads": {
+    "drawing": ""
+  },
+  "tags": [
+    "cad",
+    "sheet-metal",
+    "dfm",
+    "manufacturing"
+  ],
+  "youtube": "",
+  "github": "",
+  "featured": true
 }
   ]
 }
