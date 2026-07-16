@@ -50,7 +50,7 @@
     "assets/images/gallery/helical-gear/1.jpg"
   ],
   "downloads": {
-    "cadFile": "projects/cad/helical-gear/Helicalgear20"
+    "cadFile": "projects/cad/helical-gear/Helicalgear20.sldprt"
   },
   "tags": [
     "cad"
@@ -79,7 +79,7 @@
     "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpg"
   ],
   "downloads": {
-    "drawing": ""
+    "drawing": "projects/drawings/sheet-metal-electronic-enclosure/SheetMetalEnclosure.dwg"
   },
   "tags": [
     "cad",
@@ -114,7 +114,7 @@
     "assets/images/gallery/valve-body/4.jpg"
   ],
   "downloads": {
-    "cad-file": "projects/cad/valve-body/valve-body"
+    "cad-file": "projects/cad/valve-body/valve-body.sldprt"
   },
   "tags": [
     "cad",
