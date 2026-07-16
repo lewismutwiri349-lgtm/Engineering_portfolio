@@ -97,7 +97,7 @@
   "category": "cad",
   "subtitle": "valve-body",
   "description": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
-  "coverImage": "assets/images/valve-body-cover.jpg",
+  "coverImage": "assets/images/valve-body-cover.jpeg",
   "status": "In Progress",
   "difficulty": "Advanced",
   "duration": "2 hours",
@@ -108,10 +108,10 @@
   "problem": "While modeling the valve body, I encountered a sketch plane issue that prevented the cut-extrude and hole features from intersecting the model correctly. Troubleshooting and correcting the sketch plane required additional time, preventing completion of the model within the allocated session. The project remains a work in progress.",
   "solution": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
   "gallery": [
-    "assets/images/gallery/valve-body/1.jpg",
-    "assets/images/gallery/valve-body/2.jpg",
-    "assets/images/gallery/valve-body/3.jpg",
-    "assets/images/gallery/valve-body/4.jpg"
+    "assets/images/gallery/valve-body/1.jpeg",
+    "assets/images/gallery/valve-body/2.jpeg",
+    "assets/images/gallery/valve-body/3.jpeg",
+    "assets/images/gallery/valve-body/4.jpeg"
   ],
   "downloads": {
     "cad-file": "projects/cad/valve-body/valvebody.SLDPRT"
