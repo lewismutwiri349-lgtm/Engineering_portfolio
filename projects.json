@@ -124,6 +124,38 @@
   "youtube": "",
   "github": "",
   "featured": true
+},
+{
+  "slug": "globe-valve-seat-large-nozzle",
+  "title": "globe-valve-seat-large-nozzle",
+  "category": "cad",
+  "subtitle": "Precision CAD model of a globe valve seat with engineering tolerances",
+  "description": "This project involved designing a globe valve seat in SolidWorks from an engineering drawing. The model incorporates standard manufacturing features including chamfers, tapered geometry, precision bores, and ISO dimensional tolerances. The objective was to produce a manufacturable component suitable for machining while maintaining dimensional accuracy",
+  "coverImage": "assets/images/globe-valve-seat-large-nozzle-cover.JPG",
+  "status": "In Progress",
+  "difficulty": "Advanced",
+  "duration": "15 minutes",
+  "software": [
+    "SolidWorks"
+  ],
+  "engineeringProcess": [],
+  "problem": "Create an accurate 3D CAD model of a globe valve seat from a technical drawing while correctly interpreting engineering dimensions, chamfers, tapers, and ISO tolerance specifications.",
+  "solution": "A fully constrained SolidWorks model was developed using parametric features. Chamfers, tapered surfaces and precision dimensions were applied according to the engineering drawing.",
+  "gallery": [
+    "assets/images/gallery/globe-valve-seat-large-nozzle/1.JPG",
+    "assets/images/gallery/globe-valve-seat-large-nozzle/2.JPG"
+  ],
+  "downloads": {
+    "drawing": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-drw",
+    "cadFile": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-file"
+  },
+  "tags": [
+    "cad",
+    "dfm"
+  ],
+  "youtube": "",
+  "github": "",
+  "featured": true
 }
   ]
 }
