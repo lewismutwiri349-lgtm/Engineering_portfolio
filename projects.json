@@ -97,7 +97,7 @@
   "category": "cad",
   "subtitle": "valve-body",
   "description": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
-  "coverImage": "assets/images/valvebodycover.jpg",
+  "coverImage": "assets/images/valve-body-cover.jpg",
   "status": "In Progress",
   "difficulty": "Advanced",
   "duration": "2 hours",
