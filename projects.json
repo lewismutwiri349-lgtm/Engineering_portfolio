@@ -20,7 +20,7 @@
         "assets/images/gallery/pcb-enclosure/1.jpg"
       ],
       "downloads": {
-        "cadFile": "assets/images/cad/pcb-enclosure/pcbenclosure-solidworksfile.SLDPRT"
+        "cadFile": "projects/cad/helical-gear/Helicalgear20.SLDPRT"
       },
       "tags": [
         "cad",
