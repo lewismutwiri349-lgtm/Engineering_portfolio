@@ -146,8 +146,8 @@
     "assets/images/gallery/globe-valve-seat-large-nozzle/2.JPG"
   ],
   "downloads": {
-    "drawing": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-drw",
-    "cadFile": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-file"
+    "drawing": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-drw.SLDDRW",
+    "cadFile": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-file.SLDPRT"
   },
   "tags": [
     "cad",
