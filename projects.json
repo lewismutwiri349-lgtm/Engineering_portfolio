@@ -50,7 +50,7 @@
     "assets/images/gallery/helical-gear/1.jpg"
   ],
   "downloads": {
-    "cadFile": "projects/cad/helical-gear/Helicalgear20.sldprt"
+    "cadFile": "projects/cad/helical-gear/Helicalgear20.SLDPRT"
   },
   "tags": [
     "cad"
@@ -114,7 +114,7 @@
     "assets/images/gallery/valve_body/4.jpg"
   ],
   "downloads": {
-    "cad-file": "projects/cad/valve_body/valvebody.sldprt"
+    "cad-file": "projects/cad/valve_body/valvebody.SLDPRT"
   },
   "tags": [
     "cad",
