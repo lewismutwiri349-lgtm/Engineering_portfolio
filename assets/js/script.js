@@ -1,658 +1,128 @@
-/* =========================================================
-   Lewis Mutwiri — Engineering Portfolio
-   Vanilla JS: navigation, theme, JSON-driven project system,
-   search/filter, scroll reveals, contact form handling.
-   No frameworks, no build step — kept dependency-free on
-   purpose so the site stays fast on Cloudflare Pages.
-   ========================================================= */
+/* ==========================================================
+   UI BEHAVIOURS
+   Theme toggle · sticky header · mobile nav · active link
+   · card reveal-on-scroll · smooth scroll
+========================================================== */
 
 (function () {
-  "use strict";
 
-  const DATA_URL = "assets/data/projects.json";
+    /* ------------------------------------------------------
+       THEME TOGGLE
+    ------------------------------------------------------ */
+    const themeButton = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("theme");
 
-  /* ---------------------------------------------------------
-     Engineering Expertise — single source of truth.
-     Add a new skill here (plus a matching icon) and it appears
-     everywhere automatically: the About page expertise grid,
-     the portfolio filter chips, and skill-filtered views.
-     Tag a project with its slug in projects.json and it starts
-     counting toward that skill immediately — no HTML edits.
-     --------------------------------------------------------- */
-  const ICONS = {
-    gear: '<path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V19a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H4a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H10a1.7 1.7 0 0 0 1-1.55V4a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V10a1.7 1.7 0 0 0 1.55 1H20a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.56 1Z"/>',
-    cube: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/>',
-    car: '<path d="M5 17h14M5 17a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm14 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0ZM3 17V11l2-5h10l3 5h3v6"/><path d="M9 11h6"/>',
-    layers: '<path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/>',
-    mold: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/>',
-    wrench: '<path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2 2.8-2.8Z"/>',
-    mesh: '<path d="M3 3h18v18H3z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>',
-    flow: '<path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 16h15a3 3 0 1 1-3 3"/><path d="M3 12h7"/>',
-    chart: '<path d="M3 3v18h18"/><path d="m7 15 4-6 3 4 5-8"/>',
-    thermo: '<path d="M12 14V4a2 2 0 1 0-4 0v10a4 4 0 1 0 4 0Z"/>',
-    robot: '<rect x="5" y="9" width="14" height="10" rx="2"/><path d="M12 9V5M9 5h6"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/><path d="M9 18h6"/>',
-    chip: '<rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/>',
-    sliders: '<path d="M4 6h9M17 6h3M4 18h3M11 18h9"/><circle cx="14" cy="6" r="2"/><circle cx="8" cy="18" r="2"/>',
-    code: '<path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>',
-    fx: '<path d="M5 21c2-6 3-12 5-16h3"/><path d="M6 10h6"/><path d="M14 21l3-7 3 7M15.5 17h3"/>',
-    bulb: '<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/>',
-  };
-
-  function iconSVG(key) {
-    return (
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      (ICONS[key] || ICONS.gear) +
-      "</svg>"
-    );
-  }
-
-  const SKILLS = {
-    "mechanical-design": { name: "Mechanical Design", icon: "gear", desc: "Translating requirements into manufacturable mechanical components and assemblies." },
-    "machine-design": { name: "Machine Design", icon: "gear", desc: "Designing mechanisms, linkages and machine elements for reliable motion and load transfer." },
-    "industrial-design": { name: "Industrial Design", icon: "cube", desc: "Balancing form, ergonomics and manufacturability in product-facing design." },
-    "automotive-design": { name: "Automotive Design", icon: "car", desc: "Component and subsystem design for automotive and vehicle applications." },
-    "sheet-metal": { name: "Sheet Metal Design", icon: "layers", desc: "Flat-pattern design, bend allowances and sheet metal fabrication planning." },
-    "injection-mold-design": { name: "Injection Mold Design", icon: "mold", desc: "Part and mold design for plastic injection molding, including draft and parting lines." },
-    "design-for-manufacturing": { name: "Design for Manufacturing (DFM)", icon: "wrench", desc: "Designing parts and assemblies to minimise cost and complexity in production." },
-    "finite-element-analysis": { name: "Finite Element Analysis (FEA)", icon: "mesh", desc: "Stress, deflection and fatigue simulation to validate designs before they're built." },
-    "cfd": { name: "Computational Fluid Dynamics (CFD)", icon: "flow", desc: "Airflow, heat transfer and fluid flow simulation for thermal and aerodynamic performance." },
-    "numerical-analysis": { name: "Numerical Analysis", icon: "chart", desc: "Numerical methods and computational tools for solving engineering problems." },
-    "thermodynamics": { name: "Thermodynamics", icon: "thermo", desc: "Applying thermodynamic principles to thermal systems and energy analysis." },
-    "robotics": { name: "Robotics", icon: "robot", desc: "Mechanical and control design for robotic and automated systems." },
-    "embedded-systems": { name: "Embedded Systems", icon: "chip", desc: "Microcontroller-based hardware and firmware for sensing, control and connectivity." },
-    "control-engineering": { name: "Control Engineering", icon: "sliders", desc: "Feedback control, PID tuning and system dynamics for stable automated behaviour." },
-    "cpp": { name: "C++", icon: "code", desc: "Systems and application programming in C++." },
-    "matlab": { name: "MATLAB", icon: "fx", desc: "Numerical computing, simulation and data analysis in MATLAB." },
-    "research-development": { name: "Research & Development", icon: "bulb", desc: "Early-stage concept development, prototyping and applied engineering research." },
-  };
-
-  const EXPERTISE_GROUPS = [
-    { title: "Design Engineering", skills: ["mechanical-design", "machine-design", "industrial-design", "automotive-design", "sheet-metal", "injection-mold-design", "design-for-manufacturing"] },
-    { title: "Simulation & Analysis", skills: ["finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
-    { title: "Automation & Robotics", skills: ["robotics", "embedded-systems", "control-engineering"] },
-    { title: "Programming & Engineering Software", skills: ["cpp", "matlab"] },
-    { title: "Innovation", skills: ["research-development"] },
-  ];
-
-  /* ---------------------------------------------------------
-     Theme toggle (persisted in localStorage, respects OS
-     preference on first visit)
-     --------------------------------------------------------- */
-  function initTheme() {
-    const toggle = document.getElementById("themeToggle");
-    const root = document.documentElement;
-    const stored = localStorage.getItem("lm-theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = stored || (prefersDark ? "dark" : "light");
-
-    applyTheme(theme);
-
-    if (!toggle) return;
-    toggle.addEventListener("click", () => {
-      const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      applyTheme(next);
-      localStorage.setItem("lm-theme", next);
-    });
-
-    function applyTheme(t) {
-      if (t === "dark") {
-        root.setAttribute("data-theme", "dark");
-        if (toggle) { toggle.textContent = "☀️"; toggle.setAttribute("aria-pressed", "true"); }
-      } else {
-        root.removeAttribute("data-theme");
-        if (toggle) { toggle.textContent = "🌙"; toggle.setAttribute("aria-pressed", "false"); }
-      }
-    }
-  }
-
-  /* ---------------------------------------------------------
-     Mobile nav: inject a hamburger toggle and manage open state
-     --------------------------------------------------------- */
-  function initMobileNav() {
-    const nav = document.querySelector(".navbar");
-    const links = document.querySelector(".nav-links");
-    if (!nav || !links) return;
-
-    const btn = document.createElement("button");
-    btn.className = "nav-toggle";
-    btn.setAttribute("aria-label", "Toggle navigation menu");
-    btn.setAttribute("aria-expanded", "false");
-    btn.setAttribute("aria-controls", "primaryNav");
-    btn.innerHTML = "☰";
-    links.id = "primaryNav";
-
-    const themeBtn = document.getElementById("themeToggle");
-    nav.insertBefore(btn, themeBtn || null);
-
-    btn.addEventListener("click", () => {
-      const open = links.classList.toggle("open");
-      btn.setAttribute("aria-expanded", String(open));
-      btn.innerHTML = open ? "✕" : "☰";
-    });
-
-    links.querySelectorAll("a").forEach((a) =>
-      a.addEventListener("click", () => {
-        links.classList.remove("open");
-        btn.setAttribute("aria-expanded", "false");
-        btn.innerHTML = "☰";
-      })
-    );
-  }
-
-  /* ---------------------------------------------------------
-     Active nav link (aria-current) based on current filename
-     --------------------------------------------------------- */
-  function markActiveNav() {
-    const path = location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll(".nav-links a").forEach((a) => {
-      const href = a.getAttribute("href");
-      if (href === path) a.setAttribute("aria-current", "page");
-    });
-  }
-
-  /* ---------------------------------------------------------
-     Scroll-reveal via IntersectionObserver (progressive
-     enhancement — content is fully visible without JS/CSS)
-     --------------------------------------------------------- */
-  function initReveals() {
-    const targets = document.querySelectorAll(".section, .hero-content");
-    targets.forEach((el) => el.classList.add("reveal"));
-
-    if (!("IntersectionObserver" in window)) {
-      targets.forEach((el) => el.classList.add("in-view"));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
-    );
-    targets.forEach((el) => io.observe(el));
-  }
-
-  /* ---------------------------------------------------------
-     Data loading (single fetch, cached in-memory for the page)
-     --------------------------------------------------------- */
-  let projectsCache = null;
-  async function loadProjects() {
-    if (projectsCache) return projectsCache;
-    const res = await fetch(DATA_URL);
-    if (!res.ok) throw new Error("Failed to load project data (" + res.status + ")");
-    projectsCache = await res.json();
-    return projectsCache;
-  }
-
-  function skeletons(container, count) {
-    container.innerHTML = "";
-    for (let i = 0; i < count; i++) {
-      const s = document.createElement("div");
-      s.className = "skeleton";
-      container.appendChild(s);
-    }
-  }
-
-  function errorState(container, message) {
-    container.innerHTML =
-      '<div class="empty-state">' + escapeHtml(message) + "</div>";
-  }
-
-  function escapeHtml(str) {
-    const div = document.createElement("div");
-    div.textContent = str;
-    return div.innerHTML;
-  }
-
-  function projectCardHTML(p) {
-    const tags = (p.tags || [])
-      .slice(0, 4)
-      .map((t) => "<span>" + escapeHtml(t) + "</span>")
-      .join("");
-    return (
-      '<a class="card project-card bracket" href="projects.html?id=' +
-      encodeURIComponent(p.id) +
-      '">' +
-      '<div class="thumb"><img src="' +
-      escapeHtml(p.thumbnail || "") +
-      '" alt="" loading="lazy" onerror="this.closest(\'.thumb\').style.display=\'none\'"></div>' +
-      '<div class="meta">' +
-      escapeHtml((p.category || "project").toUpperCase()) +
-      "</div>" +
-      "<h3>" +
-      escapeHtml(p.title) +
-      "</h3>" +
-      "<p>" +
-      escapeHtml(p.summary || "") +
-      "</p>" +
-      '<div class="tags">' +
-      tags +
-      "</div>" +
-      "</a>"
-    );
-  }
-
-  /* ---------------------------------------------------------
-     Home page: featured projects
-     --------------------------------------------------------- */
-  async function renderFeatured() {
-    const el = document.getElementById("featuredProjects");
-    if (!el) return;
-    skeletons(el, 3);
-    try {
-      const projects = await loadProjects();
-      const featured = projects.filter((p) => p.featured).slice(0, 3);
-      el.innerHTML = featured.length
-        ? featured.map(projectCardHTML).join("")
-        : '<div class="empty-state">No featured projects yet.</div>';
-    } catch (e) {
-      errorState(el, "Couldn't load projects right now — " + e.message);
-    }
-  }
-
-  /* ---------------------------------------------------------
-     Category pages: robotics.html / cad-cam-cae.html
-     --------------------------------------------------------- */
-  async function renderCategory(containerId, categories) {
-    const el = document.getElementById(containerId);
-    if (!el) return;
-    skeletons(el, 3);
-    try {
-      const projects = await loadProjects();
-      const filtered = projects.filter((p) => categories.includes(p.category));
-      el.innerHTML = filtered.length
-        ? filtered.map(projectCardHTML).join("")
-        : '<div class="empty-state">No projects in this category yet — check back soon.</div>';
-    } catch (e) {
-      errorState(el, "Couldn't load projects right now — " + e.message);
-    }
-  }
-
-  /* ---------------------------------------------------------
-     Portfolio page: full list with search + category filter
-     + expertise (skill) filter — all instant, client-side
-     --------------------------------------------------------- */
-  async function renderPortfolio() {
-    const el = document.getElementById("portfolioProjects");
-    const searchBox = document.getElementById("searchBox");
-    if (!el) return;
-    skeletons(el, 6);
-
-    let all = [];
-    try {
-      all = await loadProjects();
-    } catch (e) {
-      errorState(el, "Couldn't load projects right now — " + e.message);
-      return;
+    if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
     }
 
-    const categories = Array.from(new Set(all.map((p) => p.category))).sort();
-    // Only offer skill filters for skills that actually have at least one
-    // project tagged — keeps the chip row honest as the JSON grows.
-    const skillsPresent = Array.from(
-      new Set(all.flatMap((p) => p.skills || []))
-    ).sort((a, b) => (SKILLS[a]?.name || a).localeCompare(SKILLS[b]?.name || b));
-
-    const params = new URLSearchParams(location.search);
-    let activeCategory = "all";
-    let activeSkill = params.get("skill") && skillsPresent.includes(params.get("skill"))
-      ? params.get("skill")
-      : null;
-
-    // ---- category filter row ----
-    const categoryBar = document.createElement("div");
-    categoryBar.className = "filter-bar";
-    categoryBar.setAttribute("role", "group");
-    categoryBar.setAttribute("aria-label", "Filter projects by category");
-
-    const allBtn = document.createElement("button");
-    allBtn.textContent = "All";
-    allBtn.setAttribute("aria-pressed", activeCategory === "all" ? "true" : "false");
-    allBtn.addEventListener("click", () => {
-      activeCategory = "all";
-      [...categoryBar.children].forEach((c) => c.setAttribute("aria-pressed", "false"));
-      allBtn.setAttribute("aria-pressed", "true");
-      apply();
-    });
-    categoryBar.appendChild(allBtn);
-
-    const categoryLabel = document.createElement("span");
-    categoryLabel.className = "filter-label";
-    categoryLabel.textContent = "Category";
-    categoryBar.prepend(categoryLabel);
-
-    categories.forEach((cat) => {
-      const b = document.createElement("button");
-      b.textContent = cat.toUpperCase();
-      b.setAttribute("aria-pressed", "false");
-      b.addEventListener("click", () => {
-        activeCategory = cat;
-        [...categoryBar.children].forEach((c) => c.setAttribute("aria-pressed", "false"));
-        b.setAttribute("aria-pressed", "true");
-        apply();
-      });
-      categoryBar.appendChild(b);
-    });
-
-    // ---- expertise (skill) filter row ----
-    const skillBar = document.createElement("div");
-    skillBar.className = "filter-bar filter-bar--skill";
-    skillBar.setAttribute("role", "group");
-    skillBar.setAttribute("aria-label", "Filter projects by expertise");
-
-    const skillAllBtn = document.createElement("button");
-    skillAllBtn.textContent = "All Expertise";
-    skillAllBtn.setAttribute("aria-pressed", activeSkill ? "false" : "true");
-    skillAllBtn.addEventListener("click", () => {
-      activeSkill = null;
-      syncSkillUrl();
-      [...skillBar.children].forEach((c) => c.setAttribute("aria-pressed", "false"));
-      skillAllBtn.setAttribute("aria-pressed", "true");
-      apply();
-    });
-    skillBar.appendChild(skillAllBtn);
-
-    const skillLabel = document.createElement("span");
-    skillLabel.className = "filter-label";
-    skillLabel.textContent = "Expertise";
-    skillBar.prepend(skillLabel);
-
-    skillsPresent.forEach((slug) => {
-      const label = SKILLS[slug]?.name || slug;
-      const b = document.createElement("button");
-      b.textContent = label;
-      b.setAttribute("aria-pressed", activeSkill === slug ? "true" : "false");
-      b.addEventListener("click", () => {
-        activeSkill = slug;
-        syncSkillUrl();
-        [...skillBar.children].forEach((c) => c.setAttribute("aria-pressed", "false"));
-        b.setAttribute("aria-pressed", "true");
-        apply();
-      });
-      skillBar.appendChild(b);
-    });
-
-    if (activeSkill) {
-      [...skillBar.children].forEach((c) =>
-        c.setAttribute("aria-pressed", c.textContent === (SKILLS[activeSkill]?.name || activeSkill) ? "true" : "false")
-      );
+    function syncThemeButton() {
+        if (!themeButton) return;
+        const isLight = document.body.classList.contains("light-mode");
+        themeButton.textContent = isLight ? "☀️" : "🌙";
+        themeButton.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
     }
 
-    function syncSkillUrl() {
-      const url = new URL(location.href);
-      if (activeSkill) url.searchParams.set("skill", activeSkill);
-      else url.searchParams.delete("skill");
-      history.replaceState(null, "", url);
-    }
+    syncThemeButton();
 
-    el.insertAdjacentElement("beforebegin", categoryBar);
-    el.insertAdjacentElement("beforebegin", skillBar);
-
-    function apply() {
-      const q = (searchBox && searchBox.value ? searchBox.value : "").trim().toLowerCase();
-      const filtered = all.filter((p) => {
-        const matchesCategory = activeCategory === "all" || p.category === activeCategory;
-        if (!matchesCategory) return false;
-        const matchesSkill = !activeSkill || (p.skills || []).includes(activeSkill);
-        if (!matchesSkill) return false;
-        if (!q) return true;
-        const haystack = [
-          p.title,
-          p.summary,
-          p.category,
-          ...(p.tags || []),
-          ...(p.software || []),
-        ]
-          .join(" ")
-          .toLowerCase();
-        return haystack.includes(q);
-      });
-
-      if (!filtered.length && activeSkill) {
-        const name = SKILLS[activeSkill]?.name || activeSkill;
-        el.innerHTML =
-          '<div class="empty-state">No projects tagged with <strong>' +
-          escapeHtml(name) +
-          "</strong> yet — new work gets added to <code>projects.json</code> as it's finished, so check back soon.</div>";
-        return;
-      }
-      el.innerHTML = filtered.length
-        ? filtered.map(projectCardHTML).join("")
-        : '<div class="empty-state">No projects match your search. Try a different term.</div>';
-    }
-
-    if (searchBox) {
-      searchBox.addEventListener("input", debounce(apply, 150));
-    }
-    apply();
-  }
-
-  function debounce(fn, wait) {
-    let t;
-    return function (...args) {
-      clearTimeout(t);
-      t = setTimeout(() => fn.apply(this, args), wait);
-    };
-  }
-
-  /* ---------------------------------------------------------
-     Project detail page: projects.html?id=slug
-     --------------------------------------------------------- */
-  async function renderProjectDetail() {
-    const titleEl = document.getElementById("projectTitle");
-    if (!titleEl) return;
-
-    const params = new URLSearchParams(location.search);
-    const id = params.get("id");
-
-    if (!id) {
-      titleEl.textContent = "No project specified";
-      document.getElementById("projectDescription").textContent =
-        "Open this page from a project card in the portfolio to see its details.";
-      return;
-    }
-
-    try {
-      const projects = await loadProjects();
-      const p = projects.find((proj) => proj.id === id);
-      if (!p) {
-        titleEl.textContent = "Project not found";
-        document.getElementById("projectDescription").textContent =
-          "That project doesn't exist or may have moved.";
-        return;
-      }
-
-      document.title = p.title + " | Lewis Mutwiri";
-      titleEl.textContent = p.title;
-      setText("projectDescription", p.summary || "");
-      setImage("projectImage", p.thumbnail, p.title);
-      setTags("projectTags", p.tags);
-      setChips("softwareList", p.software);
-      setChips("engineeringProcess", p.process);
-      setText("problem", p.problem || "Not documented yet.");
-      setText("solution", p.solution || "Not documented yet.");
-      setGallery("projectGallery", p.gallery && p.gallery.length ? p.gallery : [p.thumbnail]);
-      setLinks("downloadButtons", p.downloads, "Download");
-      setLinks("projectLinks", p.links, "View");
-    } catch (e) {
-      titleEl.textContent = "Couldn't load this project";
-      document.getElementById("projectDescription").textContent = e.message;
-    }
-  }
-
-  function setText(id, text) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = text;
-  }
-  function setImage(id, src, alt) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (!src) { el.style.display = "none"; return; }
-    el.src = src;
-    el.alt = alt || "";
-    el.loading = "lazy";
-    el.onerror = () => (el.style.display = "none");
-  }
-  function setTags(id, tags) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.innerHTML = (tags || []).map((t) => "<span>" + escapeHtml(t) + "</span>").join("");
-  }
-  function setChips(id, items) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.innerHTML = (items || []).map((t) => "<span>" + escapeHtml(t) + "</span>").join("");
-  }
-  function setGallery(id, images) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const valid = (images || []).filter(Boolean);
-    el.innerHTML = valid
-      .map(
-        (src) =>
-          '<img src="' + escapeHtml(src) + '" alt="" loading="lazy" onerror="this.remove()">'
-      )
-      .join("");
-  }
-  function setLinks(id, links, verb) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (!links || !links.length) {
-      el.innerHTML = '<p class="empty-inline" style="color:var(--text-soft);font-size:.9rem;">Not available for this project.</p>';
-      return;
-    }
-    el.innerHTML = links
-      .map(
-        (l) =>
-          '<a class="btn-secondary" href="' +
-          escapeHtml(l.url) +
-          '" target="_blank" rel="noopener noreferrer">' +
-          escapeHtml(l.label || verb) +
-          "</a>"
-      )
-      .join("");
-  }
-
-  /* ---------------------------------------------------------
-     Contact form — client-side validation only.
-     There is no backend wired up yet, so this confirms the
-     message locally and hands off to the visitor's email
-     client via mailto rather than silently pretending to send.
-     --------------------------------------------------------- */
-  function initContactForm() {
-    const form = document.querySelector(".contact-form");
-    if (!form) return;
-
-    const status = document.createElement("p");
-    status.className = "form-status";
-    status.setAttribute("role", "status");
-    form.appendChild(status);
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const [name, email, subject, message] = form.querySelectorAll("input, textarea");
-
-      if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
-        status.dataset.state = "error";
-        status.textContent = "Please fill in your name, email and message before sending.";
-        return;
-      }
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email.value.trim())) {
-        status.dataset.state = "error";
-        status.textContent = "That email address doesn't look right — please double-check it.";
-        return;
-      }
-
-      const to = "lewismutwiri349@gmail.com";
-      const subjectLine = encodeURIComponent(subject.value.trim() || "Portfolio enquiry");
-      const body = encodeURIComponent(
-        `${message.value.trim()}\n\n— ${name.value.trim()} (${email.value.trim()})`
-      );
-      window.location.href = `mailto:${to}?subject=${subjectLine}&body=${body}`;
-
-      status.dataset.state = "success";
-      status.textContent = "Opening your email client to send this message to " + to + "…";
-    });
-  }
-
-  /* ---------------------------------------------------------
-     Engineering Expertise grid (About page) — built entirely
-     from EXPERTISE_GROUPS + SKILLS above, with live project
-     counts pulled from projects.json. Each card links to its
-     own filtered view on the portfolio page. Add a project's
-     skills[] tag and its count updates everywhere automatically.
-     --------------------------------------------------------- */
-  async function renderExpertise() {
-    const el = document.getElementById("expertiseGrid");
-    if (!el) return;
-
-    el.innerHTML = EXPERTISE_GROUPS.map(
-      (group) =>
-        '<div class="expertise-group">' +
-        "<h3>" + escapeHtml(group.title) + "</h3>" +
-        '<div class="expertise-cards">' +
-        group.skills
-          .map((slug) => {
-            const s = SKILLS[slug];
-            if (!s) return "";
-            return (
-              '<a class="expertise-card bracket" href="portfolio.html?skill=' +
-              encodeURIComponent(slug) +
-              '" data-skill="' + slug + '">' +
-              '<div class="expertise-icon">' + iconSVG(s.icon) + "</div>" +
-              "<h4>" + escapeHtml(s.name) + "</h4>" +
-              "<p>" + escapeHtml(s.desc) + "</p>" +
-              '<div class="expertise-meta">' +
-              '<span class="expertise-count" data-count-for="' + slug + '">…</span>' +
-              '<span class="expertise-cta">View Projects →</span>' +
-              "</div>" +
-              "</a>"
+    if (themeButton) {
+        themeButton.addEventListener("click", () => {
+            document.body.classList.toggle("light-mode");
+            localStorage.setItem(
+                "theme",
+                document.body.classList.contains("light-mode") ? "light" : "dark"
             );
-          })
-          .join("") +
-        "</div></div>"
-    ).join("");
-
-    try {
-      const projects = await loadProjects();
-      const counts = {};
-      projects.forEach((p) => (p.skills || []).forEach((slug) => (counts[slug] = (counts[slug] || 0) + 1)));
-      el.querySelectorAll("[data-count-for]").forEach((span) => {
-        const n = counts[span.dataset.countFor] || 0;
-        span.textContent = n === 1 ? "1 Project" : n + " Projects";
-      });
-    } catch (e) {
-      el.querySelectorAll("[data-count-for]").forEach((span) => (span.textContent = "—"));
+            syncThemeButton();
+        });
     }
-  }
 
-  /* ---------------------------------------------------------
-     Boot
-     --------------------------------------------------------- */
-  function stampYear() {
-    document.querySelectorAll("[data-year]").forEach((el) => {
-      el.textContent = new Date().getFullYear();
+    /* ------------------------------------------------------
+       MOBILE NAV
+    ------------------------------------------------------ */
+    const navToggle = document.getElementById("navToggle");
+    const navLinksEl = document.getElementById("navLinks");
+
+    if (navToggle && navLinksEl) {
+        navToggle.addEventListener("click", () => {
+            const isOpen = navLinksEl.classList.toggle("is-open");
+            navToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        navLinksEl.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinksEl.classList.remove("is-open");
+                navToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
+
+    /* ------------------------------------------------------
+       STICKY HEADER SHADOW
+    ------------------------------------------------------ */
+    const header = document.querySelector(".site-header");
+
+    function syncHeaderShadow() {
+        if (!header) return;
+        header.classList.toggle("is-scrolled", window.scrollY > 8);
+    }
+
+    syncHeaderShadow();
+    window.addEventListener("scroll", syncHeaderShadow, { passive: true });
+
+    /* ------------------------------------------------------
+       ACTIVE NAVIGATION LINK
+       (matches on pathname so query strings don't break it)
+    ------------------------------------------------------ */
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        const linkPath = link.getAttribute("href").split("/").pop();
+        if (linkPath === currentPath) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+        }
     });
-  }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    initTheme();
-    initMobileNav();
-    markActiveNav();
-    initReveals();
-    initContactForm();
-    stampYear();
+    /* ------------------------------------------------------
+       CARD REVEAL ON SCROLL
+       Exposed globally so dynamically-injected cards
+       (rendered from projects.json) can re-trigger it.
+    ------------------------------------------------------ */
+    let revealObserver;
 
-    renderFeatured();
-    renderCategory("roboticsProjects", ["robotics"]);
-    renderCategory("cadProjects", ["cad", "cam", "cae"]);
-    renderPortfolio();
-    renderProjectDetail();
-    renderExpertise();
-  });
+    function initCardReveal(scope = document) {
+        if (!revealObserver) {
+            revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+        }
+
+        scope.querySelectorAll(".card:not(.show)").forEach(card => revealObserver.observe(card));
+    }
+
+    window.initCardReveal = initCardReveal;
+    initCardReveal();
+
+    /* ------------------------------------------------------
+       SMOOTH SCROLL FOR IN-PAGE ANCHORS
+    ------------------------------------------------------ */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("href");
+            if (targetId.length < 2) return;
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+                target.setAttribute("tabindex", "-1");
+                target.focus({ preventScroll: true });
+            }
+        });
+    });
+
 })();
