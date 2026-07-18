@@ -1,47 +1,83 @@
 # Lewis Mutwiri — Engineering Portfolio
 
-Static, JSON-driven portfolio site. "Drafting Table" design system:
-blueprint linework, vellum type, ISO-style title blocks.
+A static, JSON-driven engineering portfolio built for Cloudflare Pages. No build step, no framework — plain HTML/CSS/JS so it stays fast and easy to maintain.
 
 ## Structure
 
 ```
-index.html            Home
-robotics.html          Robotics & Automation
-cad.html                CAD
-cam.html                CAM
-cae.html                CAE
-portfolio.html         Full searchable/filterable project index
-projects.html          Project case-study template (?id=<slug>)
-about.html             About
-contact.html           Contact form
-404.html                Not-found page
-projects.json           All project data — single source of truth
-assets/css/style.css    Design system
-assets/js/script.js     UI behaviour (theme, nav, reveal animation)
-assets/js/projects.js   Fetches projects.json and renders every grid
-assets/images/          Photos, renders, gallery images
-assets/resumes/         Downloadable CVs
+/
+├── index.html            Home
+├── robotics.html         Robotics & Automation
+├── cad-cam-cae.html      CAD • CAM • CAE
+├── portfolio.html        Full project list (search + filter)
+├── projects.html         Project detail (reads ?id= from the URL)
+├── about.html
+├── contact.html
+├── 404.html
+├── robots.txt
+├── sitemap.xml
+└── assets/
+    ├── css/style.css
+    ├── js/script.js
+    ├── data/projects.json   ← single source of truth for every project
+    ├── images/               (SVG placeholders — see "Placeholder art" below)
+    └── resumes/               (PDFs referenced by download buttons — see note below)
 ```
 
-## Adding a project
+## Linking skills to projects
 
-Add an object to the relevant array in `projects.json` (`cad`, `cam`,
-`cae`, `robotics`, `embedded`, `manufacturing`). Every field maps
-directly to the case-study template in `projects.html` and to the
-compact cards rendered on the home, discipline and portfolio pages.
-No HTML or JS changes are required — this is what keeps the site
-compatible with a future `admin.html` project generator.
+Every skill chip on `about.html` links to `portfolio.html?skill=<slug>` (e.g. `?skill=cfd`), which filters the portfolio grid to projects tagged with that skill. To connect a project to a skill, add a `skills` array to its entry in `projects.json`:
 
-Required fields: `slug`, `title`, `category`, `coverImage`.
-Everything else (`subtitle`, `status`, `difficulty`, `duration`,
-`software`, `engineeringProcess`, `problem`, `solution`, `gallery`,
-`downloads`, `tags`, `youtube`, `github`, `featured`) is optional —
-omitted sections simply don't render.
+```json
+"skills": ["mechanical-design", "machine-design"]
+```
 
-## Notes
+The full list of recognised slugs lives in `SKILLS` at the top of `assets/js/script.js` — add a new skill there (and as a chip in `about.html`) before tagging a project with it. A skill with no projects tagged yet shows a plain "nothing here yet" message rather than an error, so it's safe to link a skill before you've written up the first project for it.
 
-- `sitemap.xml` and `robots.txt` use a placeholder domain
-  (`lewismutwiri.com`) — swap in your real domain once you have one.
-- `assets/images/`, `assets/resumes/` are not included here; keep
-  using your existing folders alongside these files.
+## Adding or editing a project
+
+Every project card and detail page is generated from **`assets/data/projects.json`**. To add a project, add an object to the array:
+
+```json
+{
+  "id": "unique-url-slug",
+  "title": "Project Title",
+  "category": "cad | cam | cae | robotics",
+  "featured": true,
+  "thumbnail": "assets/images/your-image.jpg",
+  "summary": "One or two sentence summary shown on cards.",
+  "tags": ["Tag One", "Tag Two"],
+  "software": ["SolidWorks", "ANSYS"],
+  "process": ["Step One", "Step Two"],
+  "problem": "The engineering problem, in a sentence or two.",
+  "solution": "How you solved it.",
+  "gallery": ["assets/images/img1.jpg", "assets/images/img2.jpg"],
+  "downloads": [{ "label": "Drawing Pack (PDF)", "url": "assets/downloads/file.pdf" }],
+  "links": [{ "label": "View on GitHub", "url": "https://github.com/..." }]
+}
+```
+
+`category` controls which page(s) a project appears on (`robotics.html` shows `robotics`; `cad-cam-cae.html` shows `cad`/`cam`/`cae`). `featured: true` projects appear on the homepage (first three). Everything appears on `portfolio.html`, searchable and filterable.
+
+Project detail pages are reached at `projects.html?id=your-slug` — the link is generated automatically by the card renderer in `assets/js/script.js`.
+
+## Placeholder art
+
+`assets/images/cad1–6.svg` and `robot1–6.svg` are branded placeholder graphics (blueprint-style, generated for this pass) standing in for real project photography/renders. Swap them for real photos or SolidWorks renders by replacing the file at the same path, or updating the path in `projects.json`. `hero-bird.svg` is the hero background artwork — see the design notes in the handoff summary for why it's vector rather than a photograph.
+
+## Resumes
+
+`contact.html`, `index.html`, `cad-cam-cae.html` and `robotics.html` link to `assets/resumes/General_CV.pdf`, `CAD_CAM_CAE_CV.pdf` and `Robotics_CV.pdf`. These files aren't included — add your actual PDFs at those paths (create the `assets/resumes/` folder) so the download buttons work.
+
+## Local preview
+
+Because `script.js` fetches `assets/data/projects.json`, opening the HTML files directly via `file://` will fail (browsers block `fetch` on local files by CORS). Serve the folder instead:
+
+```bash
+python3 -m http.server 8000
+# then visit http://localhost:8000
+```
+
+## Deploying to Cloudflare Pages
+
+Point Cloudflare Pages at this folder as the build output directory with no build command — it's already static.

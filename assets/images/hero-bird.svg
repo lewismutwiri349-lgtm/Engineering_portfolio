@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="heroTitle heroDesc">
+  <title id="heroTitle">A bird flying at dawn carrying twigs</title>
+  <desc id="heroDesc">A single bird glides across an open sky at first light, carrying small twigs toward a distant horizon — a quiet image of hope, perseverance and new beginnings.</desc>
+
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#0B1F33"/>
+      <stop offset="38%" stop-color="#173A5A"/>
+      <stop offset="66%" stop-color="#3E6486"/>
+      <stop offset="86%" stop-color="#B57A4A"/>
+      <stop offset="100%" stop-color="#E8B378"/>
+    </linearGradient>
+
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#FCE3B8" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#E8B378" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#E8B378" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B1F33" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#0B1F33" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sky -->
+  <rect x="0" y="0" width="1920" height="1080" fill="url(#sky)"/>
+
+  <!-- low sun glow near horizon -->
+  <circle cx="1420" cy="840" r="420" fill="url(#sun)"/>
+
+  <!-- faint drifting cloud bands -->
+  <g fill="#F5EFE3" opacity="0.06">
+    <ellipse cx="380" cy="260" rx="420" ry="34"/>
+    <ellipse cx="900" cy="360" rx="520" ry="26"/>
+    <ellipse cx="1500" cy="230" rx="360" ry="22"/>
+    <ellipse cx="260" cy="620" rx="460" ry="30"/>
+  </g>
+  <g fill="#F5EFE3" opacity="0.04">
+    <ellipse cx="1200" cy="150" rx="600" ry="40"/>
+    <ellipse cx="150" cy="480" rx="380" ry="24"/>
+  </g>
+
+  <!-- distant tree line silhouette, suggesting a horizon to build toward -->
+  <g fill="#08141F" opacity="0.55">
+    <path d="M0,980 L60,940 L110,975 L170,930 L230,970 L300,915 L360,965 L430,905 L500,960 L560,920 L640,970 L700,930 L760,975 L840,900 L900,965 L980,915 L1040,970 L1120,905 L1190,960 L1260,910 L1340,970 L1420,925 L1500,975 L1580,905 L1660,965 L1740,915 L1820,970 L1920,930 L1920,1080 L0,1080 Z"/>
+  </g>
+
+  <!-- two small distant birds for depth -->
+  <g stroke="#0B1420" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round">
+    <path d="M1120 300 q14 -16 28 0 q14 -16 28 0"/>
+    <path d="M1230 350 q10 -12 20 0 q10 -12 20 0"/>
+  </g>
+
+  <!-- MAIN BIRD, carrying twigs, gliding toward the light -->
+  <g transform="translate(760,470) rotate(-6)">
+    <!-- twigs held in beak -->
+    <g stroke="#3B2A1E" stroke-width="5" stroke-linecap="round" opacity="0.9">
+      <path d="M-96,18 L-150,2"/>
+      <path d="M-96,22 L-158,26"/>
+      <path d="M-94,26 L-146,46"/>
+    </g>
+
+    <!-- far wing (upstroke), softly behind body -->
+    <path d="M6,4 C -40,-64 -130,-84 -206,-46 C -140,-40 -80,-18 -34,20 C -18,10 -2,4 6,4 Z"
+          fill="#0E1E30" opacity="0.85"/>
+
+    <!-- body / tail -->
+    <path d="M-96,20 C -50,2 6,-4 62,10 C 104,20 132,34 150,34
+             C 128,44 100,46 74,42 C 92,54 100,64 100,64
+             C 66,58 34,44 6,26 C -32,10 -70,10 -96,20 Z"
+          fill="#0B1420"/>
+
+    <!-- head + small beak (holding twigs) -->
+    <path d="M-70,10 C -82,2 -96,4 -104,14 C -96,18 -84,18 -74,16 C -70,14 -68,12 -70,10 Z"
+          fill="#0B1420"/>
+
+    <!-- near wing (downstroke), main silhouette -->
+    <path d="M18,2 C 64,-70 150,-118 246,-108 C 172,-70 118,-24 78,26
+             C 130,10 182,4 224,20 C 168,18 116,32 74,58
+             C 46,42 22,22 18,2 Z"
+          fill="#08141F"/>
+
+    <!-- subtle wing feather detail -->
+    <g stroke="#1A2C40" stroke-width="3" opacity="0.5" fill="none">
+      <path d="M40,-4 C 78,-46 132,-78 190,-92"/>
+      <path d="M50,10 C 90,-14 140,-24 186,-14"/>
+    </g>
+  </g>
+
+  <!-- gentle vignette to help lower-third text contrast even before the CSS overlay -->
+  <rect x="0" y="0" width="1920" height="1080" fill="url(#haze)"/>
+</svg>

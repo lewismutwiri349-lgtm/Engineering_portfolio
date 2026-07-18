@@ -1,178 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CAD • CAM • CAE | Lewis Mutwiri</title>
-<meta name="description" content="CAD, CAM and CAE engineering projects by Lewis Mutwiri — product design, DFM, CNC manufacturing and FEA/CFD simulation.">
-<meta name="theme-color" content="#08131F">
+<meta name="description" content="CAD, CAM and CAE engineering projects by Lewis Mutwiri: SolidWorks modelling, CNC manufacturing planning and finite element analysis.">
+<link rel="canonical" href="https://lewismutwiri.com/cad-cam-cae.html">
+<meta name="theme-color" content="#0B1F33">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CAD • CAM • CAE | Lewis Mutwiri">
+<meta property="og:description" content="Product design, engineering drawings, manufacturing and simulation projects.">
+<meta property="og:image" content="assets/images/hero-bird.svg">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
-<a href="#main" class="skip-link">Skip to content</a>
-
-<header class="site-header">
-    <nav class="navbar" aria-label="Primary">
-        <a href="index.html" class="brand">
-            <span class="brand-mark">LM</span>
-            <span class="brand-text"><strong>Lewis Mutwiri</strong><span>Mechanical Engineer</span></span>
-        </a>
-
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="robotics.html">Robotics</a></li>
-            <li><a href="cad-cam-cae.html">CAD • CAM • CAE</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-
-        <div class="nav-actions">
-            <button id="themeToggle" aria-label="Switch to light mode">🌙</button>
-            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-                <span></span>
-            </button>
-        </div>
-    </nav>
+<header>
+<nav class="navbar">
+<div class="logo" aria-hidden="true">LM</div>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="robotics.html">Robotics</a></li>
+<li><a href="cad-cam-cae.html">CAD • CAM • CAE</a></li>
+<li><a href="portfolio.html">Portfolio</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<button id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+</nav>
 </header>
 
 <main id="main">
 
-<section class="hero" style="min-height:64vh;">
-    <div class="container" style="grid-template-columns:1fr;">
-        <div class="hero-content">
-            <span class="hero-tag"><span class="dot"></span> Design • Manufacturing • Simulation</span>
-            <h1>CAD • CAM • CAE</h1>
-            <h2>From concept sketch to manufacturable part</h2>
-            <p>
-                Design for Manufacturing, technical drafting, finite element analysis,
-                computational fluid dynamics and industrial automation — the full loop
-                from geometry to validated, machinable parts.
-            </p>
-            <div class="buttons">
-                <a href="#engineeringProjects" class="btn-primary">Explore Projects</a>
-                <a href="assets/resumes/CAD_CAM_CAE_CV.pdf" class="btn-secondary" download>Download CAD Résumé</a>
-            </div>
-        </div>
-    </div>
+<section class="hero hero--section">
+<div class="hero-media" role="img" aria-label="A bird glides through a dawn sky carrying twigs — a symbol of building something new."></div>
+<div class="hero-content">
+<p class="eyebrow">Design · Manufacture · Simulate</p>
+<h1>CAD • CAM • CAE</h1>
+<h2>Design · Manufacturing · Simulation</h2>
+<p>Professional engineering designs using SolidWorks, manufacturing planning, and finite element analysis.</p>
+<div class="buttons">
+<a href="#engineeringProjects" class="btn-primary">Explore Projects</a>
+<a href="assets/resumes/CAD_CAM_CAE_CV.pdf" class="btn-secondary" download>Download CAD Resume</a>
+</div>
+</div>
 </section>
 
 <section class="section">
-    <div class="container">
-        <div class="section-eyebrow">Disciplines</div>
-        <h2 class="section-title">Engineering Disciplines</h2>
-        <div class="cards">
-            <div class="card">
-                <h3>CAD</h3>
-                <p>3D modelling, assemblies, sheet metal, weldments, surface modelling and engineering drawings.</p>
-            </div>
-            <div class="card">
-                <h3>CAM</h3>
-                <p>CNC programming, machining simulations, toolpaths and manufacturing workflow.</p>
-            </div>
-            <div class="card">
-                <h3>CAE</h3>
-                <p>Static stress, motion, thermal, fatigue and flow simulations.</p>
-            </div>
-        </div>
-    </div>
+<div class="container">
+<p class="eyebrow">Three disciplines, one workflow</p>
+<h2 class="section-title">Engineering Disciplines</h2>
+<div class="cards">
+<div class="card">
+<h3>CAD</h3>
+<p>3D modelling, assemblies, sheet metal, weldments, surface modelling and engineering drawings.</p>
+</div>
+<div class="card">
+<h3>CAM</h3>
+<p>CNC programming, machining simulations, toolpaths, manufacturing workflow.</p>
+</div>
+<div class="card">
+<h3>CAE</h3>
+<p>Static stress, motion, thermal, fatigue, and flow simulations.</p>
+</div>
+</div>
+</div>
 </section>
 
 <section id="engineeringProjects" class="section">
-    <div class="container">
-        <div class="section-eyebrow">Selected work</div>
-        <h2 class="section-title">Featured Engineering Projects</h2>
-        <div id="cadProjects" class="cards" aria-live="polite"></div>
-    </div>
+<div class="container">
+<p class="eyebrow">Selected work</p>
+<h2 class="section-title">Featured Engineering Projects</h2>
+<div id="cadProjects" class="cards" aria-live="polite"></div>
+</div>
 </section>
 
 <section class="section">
-    <div class="container">
-        <div class="section-eyebrow">Toolset</div>
-        <h2 class="section-title">Software</h2>
-        <div class="tech-grid">
-            <span>SolidWorks</span>
-            <span>SolidWorks CAM</span>
-            <span>SolidWorks Simulation</span>
-            <span>Python</span>
-            <span>C++</span>
-            <span>Fusion 360</span>
-            <span>MATLAB</span>
-            <span>ANSYS</span>
-            <span>GD&T</span>
-            <span>CNC</span>
-            <span>3D Printing</span>
-        </div>
-    </div>
+<div class="container">
+<p class="eyebrow">Toolchain</p>
+<h2 class="section-title">Software</h2>
+<div class="tech-grid">
+<span>SolidWorks</span>
+<span>SolidWorks CAM</span>
+<span>SolidWorks Simulation</span>
+<span>AutoCAD</span>
+<span>Python</span>
+<span>C++</span>
+<span>Fusion 360</span>
+<span>MATLAB</span>
+<span>ANSYS</span>
+<span>GD&amp;T</span>
+<span>CNC</span>
+<span>3D Printing</span>
+</div>
+</div>
 </section>
 
 <section class="section">
-    <div class="container">
-        <div class="section-eyebrow">Gallery</div>
-        <h2 class="section-title">Design Gallery</h2>
-        <div class="gallery">
-            <img src="assets/images/cad1.jpg" alt="CAD render — assembly detail">
-            <img src="assets/images/cad2.jpg" alt="CAD render — machined part">
-            <img src="assets/images/cad3.jpg" alt="CAD render — sheet metal design">
-            <img src="assets/images/cad4.jpg" alt="CAD render — engineering drawing">
-            <img src="assets/images/cad5.jpg" alt="CAD render — simulation result">
-            <img src="assets/images/cad6.jpg" alt="CAD render — final assembly">
-        </div>
-    </div>
+<div class="container">
+<p class="eyebrow">From the drafting table</p>
+<h2 class="section-title">Design Gallery</h2>
+<div class="gallery">
+<img src="assets/images/cad1.svg" alt="Titanium anode assembly drawing shown in SolidWorks" loading="lazy">
+<img src="assets/images/cad2.svg" alt="Motorcycle stabiliser linkage mechanism, isometric view" loading="lazy">
+<img src="assets/images/cad3.svg" alt="Ball peen hammer assembly with cosmetic threads" loading="lazy">
+<img src="assets/images/cad4.svg" alt="Python script driving SolidWorks parametric dimensions" loading="lazy">
+<img src="assets/images/cad5.svg" alt="Pedal-actuated locking lever mechanism concept sketch" loading="lazy">
+<img src="assets/images/cad6.svg" alt="Detailed engineering drawing with GD&T callouts" loading="lazy">
+</div>
+</div>
 </section>
 
 </main>
 
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <span class="brand">
-                    <span class="brand-mark">LM</span>
-                    <span class="brand-text"><strong>Lewis Mutwiri</strong><span>Mechanical Engineer</span></span>
-                </span>
-                <p>Design → Analyse → Automate. Mechanical engineering with a focus on CAD, CAE and embedded robotics.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Site</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="robotics.html">Robotics</a></li>
-                    <li><a href="cad-cam-cae.html">CAD • CAM • CAE</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>About</h4>
-                <ul>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="assets/resumes/CAD_CAM_CAE_CV.pdf" download>Download CAD CV</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <ul>
-                    <li><a href="mailto:lewismutwiri349@gmail.com">lewismutwiri349@gmail.com</a></li>
-                    <li><a href="tel:+254114870566">+254 114 870 566</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-stamp">
-            <span>© 2026 Lewis Mutwiri. All rights reserved.</span>
-            <span class="stamp-fields">
-                <span>Sheet <b>1/1</b></span>
-                <span>Rev <b>A</b></span>
-                <span>Scale <b>N.T.S.</b></span>
-            </span>
-        </div>
-    </div>
+<footer>
+<p>© <span data-year>2026</span> Lewis Mutwiri</p>
 </footer>
 
-<script src="assets/js/projects.js"></script>
 <script src="assets/js/script.js"></script>
 </body>
 </html>
