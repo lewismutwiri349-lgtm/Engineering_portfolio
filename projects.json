@@ -1,20 +1,18 @@
 [
   {
-    "id": "titanium-anode-assembly",
-    "title": "Titanium Anode Assembly Drawings",
+    "id": "pcb-enclosure",
+    "title": "PCB Enclosure Design",
     "category": "cad",
     "featured": true,
-    "thumbnail": "assets/images/cad1.svg",
-    "summary": "Full manufacturing drawing package for a titanium anode assembly, built from revolve and extrude features to GD&T-ready detail.",
+    "thumbnail": "assets/images/pcb-enclosure-cover.jpeg",
+    "summary": "Full manufacturing drawing package for a PCB enclosure, built from revolve and extrude features to GD&T-ready detail.",
     "tags": [
       "SolidWorks",
       "GD&T",
-      "Revolves",
       "Engineering Drawings"
     ],
     "software": [
-      "SolidWorks",
-      "SolidWorks Drawings"
+      "SolidWorks"  
     ],
     "process": [
       "Requirements Review",
@@ -23,13 +21,12 @@
       "Tolerancing",
       "Client Review"
     ],
-    "problem": "A client needed production-ready assembly and detail drawings for a titanium anode used in an electrochemical process, starting only from rough reference sketches with several unresolved dimensional and finish-spec ambiguities.",
-    "solution": "Modelled every component as a combination of revolves and extrudes in SolidWorks, resolved the spec ambiguities directly with the client before detailing, then produced a full drawing package with GD&T callouts, section views and a bill of materials ready for the machine shop.",
+    "problem": "I struggled with optimising weight to ensure an efficient product was designed.",
+    "solution": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components.",
     "gallery": [
-      "assets/images/cad1.svg",
-      "assets/images/cad2.svg"
+      "assets/images/gallery/pcb-enclosure/1.jpeg"
     ],
-    "links": [],
+    "links": ["https://youtu.be/UVuoKZPkXu0"],
     "skills": [
       "mechanical-design",
       "machine-design",
