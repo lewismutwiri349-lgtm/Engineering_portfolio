@@ -1,161 +1,279 @@
-{
-  "cad": [
-    {
-      "slug": "pcb-enclosure",
-      "title": "pcb-enclosure",
-      "category": "cad",
-      "subtitle": "custom-fit enclosure for pcb assembly",
-      "description": "I was tasked with designing a custom PCB enclosure. The design was simple, cost-effective, and easy to print",
-      "coverImage": "assets/images/pcb-enclosure-cover.jpeg",
-      "status": "Completed",
-      "difficulty": "Intermediate",
-      "duration": "15 minutes",
-      "software": [
-        "SolidWorks"
-      ],
-      "engineeringProcess": [],
-      "problem": "I struggled with optimising weight to ensure an efficient product was designed",
-      "solution": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components",
-      "gallery": [
-        "assets/images/gallery/pcb-enclosure/1.jpeg"
-      ],
-      "downloads": {
-        "cadFile": "projects/cad/helical-gear/Helicalgear20.SLDPRT"
-      },
-      "tags": [
-        "cad",
-        "pcb"
-      ],
-      "youtube": "https://youtu.be/UVuoKZPkXu0",
-      "github": "",
-      "featured": true
-    },
-    {
-  "slug": "helical-gear",
-  "title": "Helical Gear",
-  "category": "cad",
-  "subtitle": "Helical gear model",
-  "description": "I was tasked with designing a helical gear. The aim of this project was to demonstrate my skills in chamfering, cut-extrude operations, and my understanding of gear mechanics.",
-  "coverImage": "assets/images/helicalgear20.jpg",
-  "status": "Completed",
-  "difficulty": "Intermediate",
-  "duration": "30 min",
-  "software": [
-    "SolidWorks"
-  ],
-  "engineeringProcess": [],
-  "problem": "Determining the appropriate gear ratio relative to the gear size was challenging. A higher tooth-to-size ratio resulted in distorted or damaged gear geometry.",
-  "solution": "I experimented with reducing the number of teeth until the gear geometry was properly formed while maintaining the desired design characteristics.",
-  "gallery": [
-    "assets/images/gallery/helical-gear/1.jpg"
-  ],
-  "downloads": {
-    "cadFile": "projects/cad/helical-gear/Helicalgear20.SLDPRT"
+[
+  {
+    "id": "titanium-anode-assembly",
+    "title": "Titanium Anode Assembly Drawings",
+    "category": "cad",
+    "featured": true,
+    "thumbnail": "assets/images/cad1.svg",
+    "summary": "Full manufacturing drawing package for a titanium anode assembly, built from revolve and extrude features to GD&T-ready detail.",
+    "tags": [
+      "SolidWorks",
+      "GD&T",
+      "Revolves",
+      "Engineering Drawings"
+    ],
+    "software": [
+      "SolidWorks",
+      "SolidWorks Drawings"
+    ],
+    "process": [
+      "Requirements Review",
+      "Solid Modelling",
+      "Detailing",
+      "Tolerancing",
+      "Client Review"
+    ],
+    "problem": "A client needed production-ready assembly and detail drawings for a titanium anode used in an electrochemical process, starting only from rough reference sketches with several unresolved dimensional and finish-spec ambiguities.",
+    "solution": "Modelled every component as a combination of revolves and extrudes in SolidWorks, resolved the spec ambiguities directly with the client before detailing, then produced a full drawing package with GD&T callouts, section views and a bill of materials ready for the machine shop.",
+    "gallery": [
+      "assets/images/cad1.svg",
+      "assets/images/cad2.svg"
+    ],
+    "links": [],
+    "skills": [
+      "mechanical-design",
+      "machine-design",
+      "design-for-manufacturing"
+    ]
   },
-  "tags": [
-    "cad"
-  ],
-  "youtube": "https://youtu.be/0Xa81lhGexY",
-  "github": "",
-  "featured": false
-},
-{
-  "slug": "sheet-metal-electronic-enclosure",
-  "title": "Sheet Metal Electronic Enclosure",
-  "category": "cad",
-  "subtitle": "Designed a custom sheet metal enclosure using SolidWorks Sheet Metal tools.",
-  "description": "This project involved designing a custom electronic enclosure from sheet metal using SolidWorks. The objective was to gain practical experience with sheet metal features such as Base Flange, Edge Flange, Hem, Bend Relief, Corner Treatment, and Flat Pattern generation while ensuring the enclosure was suitable for manufacturing and assembly.",
-  "coverImage": "assets/images/sheet-metal-electronic-enclosure-cover.jpg",
-  "status": "Completed",
-  "difficulty": "Intermediate",
-  "duration": "40 minutes",
-  "software": [
-    "SolidWorks"
-  ],
-  "engineeringProcess": [],
-  "problem": "The challenge was to create an enclosure that could securely house electronic components while maintaining proper bend allowances, manufacturability, and an accurate flat pattern for fabrication. Another challenge was ensuring all bends and corners could be produced without interference or material failure during forming.",
-  "solution": "The enclosure was modeled using SolidWorks Sheet Metal tools, beginning with a base flange and progressively adding edge flanges and bends to form the enclosure. Manufacturing considerations such as bend radii, relief cuts, and corner treatments were incorporated throughout the design. A flat pattern was then generated to verify that the enclosure could be fabricated from a single sheet of metal with minimal waste and accurate bend geometry.",
-  "gallery": [
-    "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpg"
-  ],
-  "downloads": {
-    "drawing": "projects/drawings/sheet-metal-electronic-enclosure/SheetMetalEnclosure.dwg"
+  {
+    "id": "motorcycle-stabiliser",
+    "title": "Foot-Operated Motorcycle Stabiliser Mechanism",
+    "category": "cad",
+    "featured": true,
+    "thumbnail": "assets/images/cad2.svg",
+    "summary": "Original linkage mechanism design for a foot-actuated stabiliser, from kinematic synthesis through to a manufacturable assembly.",
+    "tags": [
+      "Mechanism Design",
+      "Linkage Synthesis",
+      "SolidWorks",
+      "Motion Study"
+    ],
+    "software": [
+      "SolidWorks",
+      "SolidWorks Motion"
+    ],
+    "process": [
+      "Kinematic Synthesis",
+      "Concept Sketching",
+      "Solid Modelling",
+      "Motion Simulation",
+      "Drawing Package"
+    ],
+    "problem": "Design an original foot-operated locking mechanism that deploys a stabiliser leg on a motorcycle, without any existing reference geometry to copy \u2014 the linkage motion had to be synthesised from scratch to hit the required travel and locking force.",
+    "solution": "Worked through linkage synthesis by hand before modelling, iterated the pivot geometry using SolidWorks Motion to validate travel and locking behaviour, then finalised the assembly and manufacturing drawings.",
+    "gallery": [
+      "assets/images/cad2.svg",
+      "assets/images/cad3.svg"
+    ],
+    "links": [],
+    "skills": [
+      "mechanical-design",
+      "machine-design",
+      "control-engineering"
+    ]
   },
-  "tags": [
-    "cad",
-    "sheet-metal",
-    "dfm",
-    "manufacturing"
-  ],
-  "youtube": "",
-  "github": "",
-  "featured": true
-},
-{
-  "slug": "valve-body",
-  "title": "Valve Body",
-  "category": "cad",
-  "subtitle": "valve-body",
-  "description": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
-  "coverImage": "assets/images/valve-body-cover.jpg",
-  "status": "In Progress",
-  "difficulty": "Advanced",
-  "duration": "2 hours",
-  "software": [
-    "SolidWorks"
-  ],
-  "engineeringProcess": [],
-  "problem": "While modeling the valve body, I encountered a sketch plane issue that prevented the cut-extrude and hole features from intersecting the model correctly. Troubleshooting and correcting the sketch plane required additional time, preventing completion of the model within the allocated session. The project remains a work in progress.",
-  "solution": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
-  "gallery": [
-    "assets/images/gallery/valve-body/1.JPG",
-    "assets/images/gallery/valve-body/2.JPG",
-    "assets/images/gallery/valve-body/3.JPG",
-    "assets/images/gallery/valve-body/4.JPG"
-  ],
-  "downloads": {
-    "cad-file": "projects/cad/valve-body/valvebody.SLDPRT"
+  {
+    "id": "ball-peen-hammer",
+    "title": "Ball Peen Hammer \u2014 Assembly & Threads",
+    "category": "cad",
+    "featured": false,
+    "thumbnail": "assets/images/cad3.svg",
+    "summary": "Classic assembly-modelling exercise: revolved head geometry, cosmetic threads, and a two-part detailed assembly.",
+    "tags": [
+      "SolidWorks",
+      "Assemblies",
+      "Cosmetic Threads"
+    ],
+    "software": [
+      "SolidWorks"
+    ],
+    "process": [
+      "Solid Modelling",
+      "Assembly Mating",
+      "Detailing"
+    ],
+    "problem": "Build a fully detailed hammer assembly to establish a repeatable workflow for revolved parts, cosmetic threads and assembly-level drawings.",
+    "solution": "Modelled the head and handle as separate parts, applied cosmetic threads to the head bore, and mated the assembly with a press-fit relationship before producing a full drawing set.",
+    "gallery": [
+      "assets/images/cad3.svg"
+    ],
+    "links": [],
+    "skills": [
+      "mechanical-design",
+      "machine-design"
+    ]
   },
-  "tags": [
-    "cad",
-    "dfm",
-    "manufacturing"
-  ],
-  "youtube": "",
-  "github": "",
-  "featured": true
-},
-{
-  "slug": "globe-valve-seat-large-nozzle",
-  "title": "globe-valve-seat-large-nozzle",
-  "category": "cad",
-  "subtitle": "Precision CAD model of a globe valve seat with engineering tolerances",
-  "description": "This project involved designing a globe valve seat in SolidWorks from an engineering drawing. The model incorporates standard manufacturing features including chamfers, tapered geometry, precision bores, and ISO dimensional tolerances. The objective was to produce a manufacturable component suitable for machining while maintaining dimensional accuracy",
-  "coverImage": "assets/images/globe-valve-seat-large-nozzle-cover.JPG",
-  "status": "In Progress",
-  "difficulty": "Advanced",
-  "duration": "15 minutes",
-  "software": [
-    "SolidWorks"
-  ],
-  "engineeringProcess": [],
-  "problem": "Create an accurate 3D CAD model of a globe valve seat from a technical drawing while correctly interpreting engineering dimensions, chamfers, tapers, and ISO tolerance specifications.",
-  "solution": "A fully constrained SolidWorks model was developed using parametric features. Chamfers, tapered surfaces and precision dimensions were applied according to the engineering drawing.",
-  "gallery": [
-    "assets/images/gallery/globe-valve-seat-large-nozzle/1.JPG",
-    "assets/images/gallery/globe-valve-seat-large-nozzle/2.JPG"
-  ],
-  "downloads": {
-    "drawing": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-drw.SLDDRW",
-    "cadFile": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-file.SLDPRT"
+  {
+    "id": "solidworks-parametric-automation",
+    "title": "SolidWorks Parametric Automation (Python + COM API)",
+    "category": "cae",
+    "featured": true,
+    "thumbnail": "assets/images/cad4.svg",
+    "summary": "Python scripts driving SolidWorks' COM API to batch-update parametric dimensions across families of parts.",
+    "tags": [
+      "Python",
+      "pywin32",
+      "COM API",
+      "Automation"
+    ],
+    "software": [
+      "SolidWorks",
+      "Python",
+      "pywin32"
+    ],
+    "process": [
+      "API Research",
+      "Environment Setup",
+      "Scripting",
+      "Validation"
+    ],
+    "problem": "Manually updating parametric dimensions across variant parts was slow and error-prone. The goal was to drive SolidWorks directly from Python to make configuration changes repeatable.",
+    "solution": "Used pywin32 to bind to the SolidWorks COM API, working through a series of environment and binding issues to reliably open documents, edit dimensions and rebuild models from a script \u2014 turning a manual, repetitive task into a one-command operation.",
+    "gallery": [
+      "assets/images/cad4.svg"
+    ],
+    "links": [],
+    "skills": [
+      "research-development"
+    ]
   },
-  "tags": [
-    "cad",
-    "dfm"
-  ],
-  "youtube": "",
-  "github": "",
-  "featured": true
-}
-  ]
-}
+  {
+    "id": "neo6m-rocket-recovery",
+    "title": "NEO-6M GPS Rocket Recovery System",
+    "category": "robotics",
+    "featured": true,
+    "thumbnail": "assets/images/robot1.svg",
+    "summary": "Arduino-based GPS recovery beacon for hobby rocketry, transmitting live position after apogee for fast payload recovery.",
+    "tags": [
+      "Arduino",
+      "GPS",
+      "Embedded Systems",
+      "Hobby Rocketry"
+    ],
+    "software": [
+      "Arduino IDE",
+      "C++"
+    ],
+    "process": [
+      "Requirements",
+      "Circuit Design",
+      "Firmware",
+      "Field Testing"
+    ],
+    "problem": "Recovering a rocket airframe after flight is difficult without live location data, especially over open terrain with dense vegetation.",
+    "solution": "Built a lightweight recovery module around a NEO-6M GPS module and Arduino, logging and transmitting position data through descent so the airframe could be tracked and recovered quickly after landing.",
+    "gallery": [
+      "assets/images/robot1.svg",
+      "assets/images/robot2.svg"
+    ],
+    "links": [],
+    "skills": [
+      "embedded-systems",
+      "robotics",
+      "research-development"
+    ]
+  },
+  {
+    "id": "structural-analysis-dashboard",
+    "title": "Structural Analysis Dashboard",
+    "category": "robotics",
+    "featured": true,
+    "thumbnail": "assets/images/robot2.svg",
+    "summary": "A React web app for beam deflection, SFD/BMD, torsion, stress analysis, section properties and a material library.",
+    "tags": [
+      "React",
+      "Engineering Calculation",
+      "Vite",
+      "Web Tooling"
+    ],
+    "software": [
+      "React",
+      "Vite"
+    ],
+    "process": [
+      "Theory Review",
+      "UI Design",
+      "Calculation Engine",
+      "Testing"
+    ],
+    "problem": "Quick structural checks during design iteration usually meant switching to a spreadsheet or hand calculation, breaking flow.",
+    "solution": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library \u2014 combining calculation rigor with fast, visual iteration.",
+    "gallery": [
+      "assets/images/robot2.svg"
+    ],
+    "links": [],
+    "skills": [
+      "numerical-analysis",
+      "research-development"
+    ]
+  },
+  {
+    "id": "pedal-locking-lever",
+    "title": "Pedal-Actuated Locking Lever (Practice Mechanism)",
+    "category": "cad",
+    "featured": false,
+    "thumbnail": "assets/images/cad5.svg",
+    "summary": "A deliberate practice project in original linkage design, built to close a portfolio gap around mechanism synthesis.",
+    "tags": [
+      "Mechanism Design",
+      "SolidWorks",
+      "Motion Study"
+    ],
+    "software": [
+      "SolidWorks",
+      "SolidWorks Motion"
+    ],
+    "process": [
+      "Kinematic Synthesis",
+      "Solid Modelling",
+      "Motion Simulation"
+    ],
+    "problem": "Client-style mechanism design briefs require confident, from-scratch linkage synthesis \u2014 a skill best sharpened outside of billable client time.",
+    "solution": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly.",
+    "gallery": [
+      "assets/images/cad5.svg"
+    ],
+    "links": [],
+    "skills": [
+      "mechanical-design",
+      "machine-design",
+      "control-engineering"
+    ]
+  },
+  {
+    "id": "esp32-iot-automation",
+    "title": "ESP32 IoT Automation Node",
+    "category": "robotics",
+    "featured": false,
+    "thumbnail": "assets/images/robot3.svg",
+    "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
+    "tags": [
+      "ESP32",
+      "IoT",
+      "MQTT",
+      "C++"
+    ],
+    "software": [
+      "Arduino IDE",
+      "C++",
+      "MQTT"
+    ],
+    "process": [
+      "Circuit Design",
+      "Firmware",
+      "Cloud Integration",
+      "Testing"
+    ],
+    "problem": "Needed a compact, reliable node to monitor sensor data and drive an actuator remotely without a dedicated gateway device.",
+    "solution": "Built firmware around the ESP32's built-in Wi-Fi, publishing sensor readings and accepting commands over MQTT for lightweight, low-latency remote control.",
+    "gallery": [
+      "assets/images/robot3.svg"
+    ],
+    "links": [],
+    "skills": [
+      "embedded-systems",
+      "robotics"
+    ]
+  }
+]
