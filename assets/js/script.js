@@ -9,7 +9,7 @@
 (function () {
   "use strict";
 
-  const DATA_URL = "data/projects.json";
+  const DATA_URL = "assets/data/projects.json";
 
   /* ---------------------------------------------------------
      Engineering Expertise — single source of truth.
