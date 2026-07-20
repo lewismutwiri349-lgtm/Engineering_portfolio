@@ -1,4 +1,5 @@
-"cad": [
+{
+  "cad": [
   {
     "id": "pcb-enclosure",
     "title": "PCB Enclosure Design",
@@ -237,7 +238,7 @@
       "machine-design",
       "control-engineering"
     ]
-  },
+  }
 ]
 "robotics": [
   {
@@ -347,3 +348,4 @@
     ]
   }
 ]
+}
