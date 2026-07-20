@@ -1,5 +1,4 @@
-{
-  "cad": [
+ [
   {
     "id": "pcb-enclosure",
     "title": "PCB Enclosure Design",
@@ -238,9 +237,7 @@
       "machine-design",
       "control-engineering"
     ]
-  }
-]
-"robotics": [
+  },
   {
     "id": "esp32-iot-automation",
     "title": "ESP32 IoT Automation Node",
@@ -348,4 +345,3 @@
     ]
   }
 ]
-}
