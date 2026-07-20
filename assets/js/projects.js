@@ -132,7 +132,7 @@ async function loadFeaturedProjects() {
 }
 
 /* ==========================================================
-   CATEGORY GRIDS (cad.html, cam.html, cae.html, robotics.html)
+   CATEGORY GRIDS (cad-cam-cae.html, robotics.html)
 ========================================================== */
 async function loadCategoryGrid(containerId, categories) {
     const el = document.getElementById(containerId);
@@ -361,9 +361,7 @@ async function loadProject() {
 ========================================================== */
 document.addEventListener("DOMContentLoaded", () => {
     loadFeaturedProjects();
-    loadCategoryGrid("cadProjects", ["cad"]);
-    loadCategoryGrid("camProjects", ["cam"]);
-    loadCategoryGrid("caeProjects", ["cae"]);
+    loadCategoryGrid("cadProjects", ["cad", "cam", "cae"]);
     loadCategoryGrid("roboticsProjects", ["robotics", "embedded"]);
     loadPortfolio();
     loadProject();
