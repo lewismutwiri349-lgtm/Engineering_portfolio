@@ -1,4 +1,4 @@
-[
+"cad": [
   {
     "id": "pcb-enclosure",
     "title": "PCB Enclosure Design",
@@ -238,6 +238,79 @@
       "control-engineering"
     ]
   },
+]
+"robotics": [
+  {
+    "id": "esp32-iot-automation",
+    "title": "ESP32 IoT Automation Node",
+    "category": "robotics",
+    "featured": false,
+    "thumbnail": "assets/images/robot3.svg",
+    "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
+    "tags": [
+      "ESP32",
+      "IoT",
+      "MQTT",
+      "C++"
+    ],
+    "software": [
+      "Arduino IDE",
+      "C++",
+      "MQTT"
+    ],
+    "process": [
+      "Circuit Design",
+      "Firmware",
+      "Cloud Integration",
+      "Testing"
+    ],
+    "problem": "Needed a compact, reliable node to monitor sensor data and drive an actuator remotely without a dedicated gateway device.",
+    "solution": "Built firmware around the ESP32's built-in Wi-Fi, publishing sensor readings and accepting commands over MQTT for lightweight, low-latency remote control.",
+    "gallery": [
+      "assets/images/robot3.svg"
+    ],
+    "links": [],
+    "skills": [
+      "embedded-systems",
+      "robotics"
+    ]
+  },
+  {
+    "id": "esp32-iot-automation",
+    "title": "ESP32 IoT Automation Node",
+    "category": "robotics",
+    "featured": false,
+    "thumbnail": "assets/images/robot3.svg",
+    "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
+    "tags": [
+      "ESP32",
+      "IoT",
+      "MQTT",
+      "C++"
+    ],
+    "software": [
+      "Arduino IDE",
+      "C++",
+      "MQTT"
+    ],
+    "process": [
+      "Circuit Design",
+      "Firmware",
+      "Cloud Integration",
+      "Testing"
+    ],
+    "problem": "Needed a compact, reliable node to monitor sensor data and drive an actuator remotely without a dedicated gateway device.",
+    "solution": "Built firmware around the ESP32's built-in Wi-Fi, publishing sensor readings and accepting commands over MQTT for lightweight, low-latency remote control.",
+    "gallery": [
+      "assets/images/robot3.svg"
+    ],
+    "links": [],
+    "skills": [
+      "embedded-systems",
+      "robotics"
+    ]
+  },
+
   {
     "id": "esp32-iot-automation",
     "title": "ESP32 IoT Automation Node",
