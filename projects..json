@@ -19,15 +19,22 @@
       "gallery": [
         "assets/images/gallery/pcb-enclosure/1.jpeg"
       ],
-      "downloads": {
-        "cadFile": "projects/cad/helical-gear/Helicalgear20.SLDPRT"
-      },
+      "downloads": [
+        {
+          "url": "projects/cad/helical-gear/Helicalgear20.SLDPRT",
+          "label": "SOLIDWORKS File"
+        }
+      ],
+      "links": [
+        {
+          "url": "https://youtu.be/UVuoKZPkXu0",
+          "label": "YouTube"
+        }
+      ],
       "tags": [
         "cad",
         "pcb"
       ],
-      "youtube": "https://youtu.be/UVuoKZPkXu0",
-      "github": "",
       "featured": true
     },
     {
@@ -58,8 +65,12 @@
   "tags": [
     "cad"
   ],
-  "youtube": "https://youtu.be/0Xa81lhGexY",
-  "github": "",
+  "links": [
+    {
+      "url": "https://youtu.be/0Xa81lhGexY",
+      "label": "YouTube"
+    }
+  ],
   "featured": true
 },
 {
@@ -81,17 +92,19 @@
   "gallery": [
     "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpg"
   ],
-  "downloads": {
-    "drawing": "projects/drawings/sheet-metal-electronic-enclosure/SheetMetalEnclosure.dwg"
-  },
+  "downloads": [
+    {
+      "url": "projects/drawings/sheet-metal-electronic-enclosure/SheetMetalEnclosure.dwg",
+      "label": "Drawing"
+    }
+  ],
+  "links": [],
   "tags": [
     "cad",
     "sheet-metal",
     "dfm",
     "manufacturing"
   ],
-  "youtube": "",
-  "github": "",
   "featured": true
 },
 {
@@ -116,16 +129,18 @@
     "assets/images/gallery/valve-body/3.JPG",
     "assets/images/gallery/valve-body/4.JPG"
   ],
-  "downloads": {
-    "cad-file": "projects/cad/valve-body/valvebody.SLDPRT"
-  },
+  "downloads": [
+    {
+      "url": "projects/cad/valve-body/valvebody.SLDPRT",
+      "label": "SOLIDWORKS File"
+    }
+  ],
+  "links": [],
   "tags": [
     "cad",
     "dfm",
     "manufacturing"
   ],
-  "youtube": "",
-  "github": "",
   "featured": true
 },
 {
@@ -148,16 +163,21 @@
     "assets/images/gallery/globe-valve-seat-large-nozzle/1.JPG",
     "assets/images/gallery/globe-valve-seat-large-nozzle/2.JPG"
   ],
-  "downloads": {
-    "drawing": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-drw.SLDDRW",
-    "cadFile": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-file.SLDPRT"
-  },
+  "downloads": [
+    {
+      "url": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-drw.SLDDRW",
+      "label": "Drawing"
+    },
+    {
+      "url": "projects/cad/globe-valve-seat-large-nozzle/large-nozzle-file.SLDPRT",
+      "label": "SOLIDWORKS File"
+    }
+  ],
+  "links": [],
   "tags": [
     "cad",
     "dfm"
   ],
-  "youtube": "",
-  "github": "",
   "featured": true
 }
   ]
