@@ -75,13 +75,12 @@
     "id": "sheet-metal-electronic-enclosure",
     "title": "Sheet Metal Electronic Enclosure",
     "category": "cad",
-    "featured": false,
+    "featured": true,
     "thumbnail": "assets/images/sheet-metal-electronic-enclosure-cover.jpg",
-    "summary": "Design and analysis of a sheet metal electronic enclosure for efficient thermal management and electromagnetic shielding.",
+    "summary": "Design and assembly of a sheet metal electronic enclosure for efficient thermal management and electromagnetic shielding.",
     "tags": [
       "SolidWorks",
-      "Assemblies",
-      "Cosmetic Threads"
+      "Sheet Metal"
     ],
     "software": [
       "SolidWorks"
@@ -99,7 +98,7 @@
     "links": [],
     "skills": [
       "mechanical-design",
-      "machine-design"
+      "sheet metal-design"
     ]
   },
   {
