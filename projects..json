@@ -50,7 +50,10 @@
     "assets/images/gallery/helical-gear/1.jpg"
   ],
   "downloads": [
-    {"cadFile": "projects/cad/helical-gear/Helicalgear20.SLDPRT"}
+    {
+      "url": "projects/cad/helical-gear/Helicalgear20.SLDPRT",
+      "label": "SOLIDWORKS File"
+    }
   ],
   "tags": [
     "cad"
