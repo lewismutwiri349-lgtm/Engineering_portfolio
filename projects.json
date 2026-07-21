@@ -57,10 +57,8 @@
       "SolidWorks Motion"
     ],
     "process": [
-      "Kinematic Synthesis",
       "Concept Sketching",
       "Solid Modelling",
-      "Motion Simulation",
       "Drawing Package"
     ],
     "problem": "Design a helical gear system for efficient power transmission, considering factors like load capacity, efficiency, and manufacturability.",
@@ -70,7 +68,7 @@
     ],
     "links": [
       {
-        "url": "https://youtu.be/UVuoKZPkXu0",
+        "url": "https://youtu.be/0Xa81lhGexY",
         "label": "YouTube"
       }
     ],
