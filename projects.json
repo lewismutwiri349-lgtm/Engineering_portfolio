@@ -72,12 +72,12 @@
     }
   },
   {
-    "id": "ball-peen-hammer",
-    "title": "Ball Peen Hammer \u2014 Assembly & Threads",
+    "id": "sheet-metal-electronic-enclosure",
+    "title": "Sheet Metal Electronic Enclosure",
     "category": "cad",
     "featured": false,
-    "thumbnail": "assets/images/cad3.svg",
-    "summary": "Classic assembly-modelling exercise: revolved head geometry, cosmetic threads, and a two-part detailed assembly.",
+    "thumbnail": "assets/images/sheet-metal-electronic-enclosure-cover.jpg",
+    "summary": "Design and analysis of a sheet metal electronic enclosure for efficient thermal management and electromagnetic shielding.",
     "tags": [
       "SolidWorks",
       "Assemblies",
@@ -91,10 +91,10 @@
       "Assembly Mating",
       "Detailing"
     ],
-    "problem": "Build a fully detailed hammer assembly to establish a repeatable workflow for revolved parts, cosmetic threads and assembly-level drawings.",
-    "solution": "Modelled the head and handle as separate parts, applied cosmetic threads to the head bore, and mated the assembly with a press-fit relationship before producing a full drawing set.",
+    "problem": "Design a sheet metal electronic enclosure that provides efficient thermal management and electromagnetic shielding.",
+    "solution": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
     "gallery": [
-      "assets/images/cad3.svg"
+      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpg"
     ],
     "links": [],
     "skills": [
