@@ -34,12 +34,12 @@
     ]
   },
   {
-    "id": "motorcycle-stabiliser",
-    "title": "Foot-Operated Motorcycle Stabiliser Mechanism",
+    "id": "helical-gear",
+    "title": "Helical Gear Design",
     "category": "cad",
     "featured": true,
-    "thumbnail": "assets/images/cad2.svg",
-    "summary": "Original linkage mechanism design for a foot-actuated stabiliser, from kinematic synthesis through to a manufacturable assembly.",
+    "thumbnail": "assets/images/helicalgear20.jpg",
+    "summary": "Design and analysis of a helical gear system for efficient power transmission.",
     "tags": [
       "Mechanism Design",
       "Linkage Synthesis",
@@ -57,17 +57,15 @@
       "Motion Simulation",
       "Drawing Package"
     ],
-    "problem": "Design an original foot-operated locking mechanism that deploys a stabiliser leg on a motorcycle, without any existing reference geometry to copy \u2014 the linkage motion had to be synthesised from scratch to hit the required travel and locking force.",
-    "solution": "Worked through linkage synthesis by hand before modelling, iterated the pivot geometry using SolidWorks Motion to validate travel and locking behaviour, then finalised the assembly and manufacturing drawings.",
+    "problem": "Design a helical gear system for efficient power transmission, considering factors like load capacity, efficiency, and manufacturability.",
+    "solution": "Performed detailed design  using SolidWorks, optimizing the gear geometry for the required torque and speed ratios while ensuring proper meshing and load distribution.",
     "gallery": [
-      "assets/images/cad2.svg",
-      "assets/images/cad3.svg"
+      "assets/images/gallery/helical-gear/1.jpg"
     ],
-    "links": [],
+    "links": ["https://youtu.be/UVuoKZPkXu0"],
     "skills": [
       "mechanical-design",
-      "machine-design",
-      "control-engineering"
+      "machine-design"
     ]
   },
   {
