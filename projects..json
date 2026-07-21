@@ -49,15 +49,15 @@
   "gallery": [
     "assets/images/gallery/helical-gear/1.jpg"
   ],
-  "downloads": {
-    "cadFile": "projects/cad/helical-gear/Helicalgear20.SLDPRT"
-  },
+  "downloads": [
+    {"cadFile": "projects/cad/helical-gear/Helicalgear20.SLDPRT"}
+  ],
   "tags": [
     "cad"
   ],
   "youtube": "https://youtu.be/0Xa81lhGexY",
   "github": "",
-  "featured": false
+  "featured": true
 },
 {
   "slug": "sheet-metal-electronic-enclosure",
