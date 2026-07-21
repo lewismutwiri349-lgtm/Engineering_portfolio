@@ -66,7 +66,10 @@
     "skills": [
       "mechanical-design",
       "machine-design"
-    ]
+    ],
+    "downloads": {
+      "cad file": "projects/cad/helical-gear/Helicalgear20.SLDPRT"
+    }
   },
   {
     "id": "ball-peen-hammer",
