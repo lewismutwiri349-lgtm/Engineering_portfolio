@@ -84,6 +84,38 @@
     ]
   },
   {
+  "id": "valve-body",
+  "title": "valve body",
+  "category": "cad",
+  "featured": true,
+  "thumbnail": "assets/images/valve-body-cover.jpg",
+  "summary": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
+  "tags": [
+    "CAD",
+    "Manufacturing"
+  ],
+  "software": [
+    "SolidWorks"
+  ],
+  "process": [
+    "Concept Sketching",
+    "Solid Modelling"
+  ],
+  "problem": "While modeling the valve body, I encountered a sketch plane issue that prevented the cut-extrude and hole features from intersecting the model correctly. Troubleshooting and correcting the sketch plane required additional time, preventing completion of the model within the allocated session. The project remains a work in progress.",
+  "solution": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
+  "gallery": [
+    "assets/images/gallery/valve-body/1.JPG",
+    "assets/images/gallery/valve-body/2.JPG",
+    "assets/images/gallery/valve-body/3.JPG",
+    "assets/images/gallery/valve-body/4.JPG"
+  ],
+  "links": [],
+  "downloads": [],
+  "skills": [
+    "mechanical-design"
+  ]
+},
+  {
     "id": "sheet-metal-electronic-enclosure",
     "title": "Sheet Metal Electronic Enclosure",
     "category": "cad",
@@ -255,79 +287,6 @@
       "control-engineering"
     ]
   },
-  {
-    "id": "esp32-iot-automation",
-    "title": "ESP32 IoT Automation Node",
-    "category": "robotics",
-    "featured": false,
-    "thumbnail": "assets/images/robot3.svg",
-    "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
-    "tags": [
-      "ESP32",
-      "IoT",
-      "MQTT",
-      "C++"
-    ],
-    "software": [
-      "Arduino IDE",
-      "C++",
-      "MQTT"
-    ],
-    "process": [
-      "Circuit Design",
-      "Firmware",
-      "Cloud Integration",
-      "Testing"
-    ],
-    "problem": "Needed a compact, reliable node to monitor sensor data and drive an actuator remotely without a dedicated gateway device.",
-    "solution": "Built firmware around the ESP32's built-in Wi-Fi, publishing sensor readings and accepting commands over MQTT for lightweight, low-latency remote control.",
-    "gallery": [
-      "assets/images/robot3.svg"
-    ],
-    "links": [],
-    "downloads": [],
-    "skills": [
-      "embedded-systems",
-      "robotics"
-    ]
-  },
-  {
-    "id": "esp32-iot-automation",
-    "title": "ESP32 IoT Automation Node",
-    "category": "robotics",
-    "featured": false,
-    "thumbnail": "assets/images/robot3.svg",
-    "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
-    "tags": [
-      "ESP32",
-      "IoT",
-      "MQTT",
-      "C++"
-    ],
-    "software": [
-      "Arduino IDE",
-      "C++",
-      "MQTT"
-    ],
-    "process": [
-      "Circuit Design",
-      "Firmware",
-      "Cloud Integration",
-      "Testing"
-    ],
-    "problem": "Needed a compact, reliable node to monitor sensor data and drive an actuator remotely without a dedicated gateway device.",
-    "solution": "Built firmware around the ESP32's built-in Wi-Fi, publishing sensor readings and accepting commands over MQTT for lightweight, low-latency remote control.",
-    "gallery": [
-      "assets/images/robot3.svg"
-    ],
-    "links": [],
-    "downloads": [],
-    "skills": [
-      "embedded-systems",
-      "robotics"
-    ]
-  },
-
   {
     "id": "esp32-iot-automation",
     "title": "ESP32 IoT Automation Node",
