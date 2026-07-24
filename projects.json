@@ -288,6 +288,38 @@
     ]
   },
   {
+  "id": "cpu-cooling-fan-design",
+  "title": "CPU Cooling Fan Design",
+  "category": "cad",
+  "featured": true,
+  "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
+  "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
+  "tags": [
+    "CAD"
+  ],
+  "software": [
+    "SolidWorks"
+  ],
+  "process": [
+    "Concept Sketching",
+    "Solid Modelling",
+    "Assembly Mating"
+  ],
+  "problem": "Design a realistic CPU cooling fan assembly that can serve as a foundation for engineering analysis, optimization, and future manufacturing studies.",
+  "solution": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
+  "gallery": [],
+  "links": [
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/posts/lewis-mutwiri-64a305386_mechanicalengineering-solidworks-ansys-ugcPost-7486416020111536129-phJB/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF8V6VoBKqZ7tADfVNJfMqMX0LMbJBcGJKc"
+    }
+  ],
+  "downloads": [],
+  "skills": [
+    "mechanical-design"
+  ]
+},
+  {
     "id": "esp32-iot-automation",
     "title": "ESP32 IoT Automation Node",
     "category": "robotics",
