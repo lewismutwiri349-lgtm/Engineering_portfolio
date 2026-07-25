@@ -1,0 +1,43 @@
+{
+  "achievements": [
+    {
+      "id": "solidworks-certification",
+      "title": "Certified SolidWorks Professional",
+      "category": "Certificate",
+      "organization": "Dassault Systèmes",
+      "date": "2024-09-15",
+      "description": "Completed a professional certification focused on advanced part and assembly modeling workflows.",
+      "skills": ["SolidWorks", "CAD", "Product Design"],
+      "thumbnail": "assets/images/cad/pcb-enclosure/readme.md",
+      "documentUrl": "assets/resumes/General_CV.pdf",
+      "featured": true,
+      "displayOrder": 1
+    },
+    {
+      "id": "robotics-automation-award",
+      "title": "Robotics Automation Innovation Award",
+      "category": "Award",
+      "organization": "Engineering Innovation Forum",
+      "date": "2024-03-01",
+      "description": "Recognized for a compact automation concept that improved repeatability and ease of maintenance.",
+      "skills": ["Robotics", "Automation", "Systems Design"],
+      "thumbnail": "assets/images/robotics/automation/readme.md",
+      "documentUrl": "assets/resumes/Robotics_CV.pdf",
+      "featured": true,
+      "displayOrder": 2
+    },
+    {
+      "id": "design-symposium",
+      "title": "Design for Manufacturing Workshop",
+      "category": "Workshop",
+      "organization": "Manufacturing Excellence Institute",
+      "date": "2023-11-20",
+      "description": "Attended an intensive workshop covering design-for-manufacturing principles and rapid prototyping strategies.",
+      "skills": ["DFM", "Prototyping", "Manufacturing"],
+      "thumbnail": "assets/images/cad/2.5-axis-milling/Part5.txt",
+      "documentUrl": "assets/resumes/CAD_CAM_CAE_CV.pdf",
+      "featured": false,
+      "displayOrder": 3
+    }
+  ]
+}

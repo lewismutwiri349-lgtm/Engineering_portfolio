@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements & Certificates | Lewis Mutwiri</title>
+    <meta name="description" content="A curated archive of achievements, certificates, awards, publications, and workshops.">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header>
+      <div class="navbar">
+        <a class="logo" href="index.html" aria-label="Lewis Mutwiri home">LM</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="achievements.html" aria-current="page">Achievements</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero hero--section">
+        <div class="hero-media"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Achievements & Certificates</p>
+          <h1>Milestones, credentials, and recognitions</h1>
+          <p>Browse the latest awards, certifications, workshops, and leadership milestones in a format that stays aligned with the rest of the portfolio.</p>
+          <div class="buttons">
+            <a class="btn-primary" href="#achievementControls">Explore achievements</a>
+            <a class="btn-secondary" href="admin.html">Manage entries</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="achievementControls">
+        <div class="container">
+          <div class="achievement-shell">
+            <div class="achievement-toolbar">
+              <div class="achievement-toolbar__group">
+                <label class="achievement-toolbar__label" for="achievementSearch">Search</label>
+                <input id="achievementSearch" class="achievement-input" type="search" placeholder="Search by title, issuer or skill">
+              </div>
+              <div class="achievement-toolbar__group">
+                <label class="achievement-toolbar__label" for="achievementCategory">Category</label>
+                <select id="achievementCategory" class="achievement-select">
+                  <option value="All">All categories</option>
+                </select>
+              </div>
+              <div class="achievement-toolbar__group">
+                <label class="achievement-toolbar__label" for="achievementSort">Sort</label>
+                <select id="achievementSort" class="achievement-select">
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
+                </select>
+              </div>
+              <p id="achievementCount" class="achievement-toolbar__count">0 achievements</p>
+            </div>
+
+            <div class="achievement-section">
+              <div class="section-title">
+                <p class="eyebrow">Featured highlights</p>
+              </div>
+              <div id="featuredAchievements" class="achievement-grid"></div>
+            </div>
+
+            <div class="achievement-section">
+              <div class="section-title">
+                <p class="eyebrow">All achievements</p>
+              </div>
+              <div id="achievementsGrid" class="achievement-grid"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/achievements.js"></script>
+  </body>
+</html>
