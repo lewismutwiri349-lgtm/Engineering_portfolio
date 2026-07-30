@@ -8,7 +8,7 @@ A static, JSON-driven engineering portfolio built for Cloudflare Pages. No build
 /
 ├── index.html            Home
 ├── robotics.html         Robotics & Automation
-├── cad-cam-cae.html      CAD • CAM • CAE
+├── cad-cam-cae.html      DFMA • FEA • CFD
 ├── portfolio.html        Full project list (search + filter)
 ├── projects.html         Project detail (reads ?id= from the URL)
 ├── about.html
@@ -42,7 +42,7 @@ Every project card and detail page is generated from **`assets/data/projects.jso
 {
   "id": "unique-url-slug",
   "title": "Project Title",
-  "category": "cad | cam | cae | robotics",
+  "category": "dfma | fea | cfd | robotics",
   "featured": true,
   "thumbnail": "assets/images/your-image.jpg",
   "summary": "One or two sentence summary shown on cards.",
@@ -57,7 +57,7 @@ Every project card and detail page is generated from **`assets/data/projects.jso
 }
 ```
 
-`category` controls which page(s) a project appears on (`robotics.html` shows `robotics`; `cad-cam-cae.html` shows `cad`/`cam`/`cae`). `featured: true` projects appear on the homepage (first three). Everything appears on `portfolio.html`, searchable and filterable.
+`category` controls which page(s) a project appears on (`robotics.html` shows `robotics`; `cad-cam-cae.html` shows `dfma`/`fea`/`cfd`). `featured: true` projects appear on the homepage (first three). Everything appears on `portfolio.html`, searchable and filterable.
 
 Project detail pages are reached at `projects.html?id=your-slug` — the link is generated automatically by the card renderer in `assets/js/script.js`.
 
@@ -67,7 +67,7 @@ Project detail pages are reached at `projects.html?id=your-slug` — the link is
 
 ## Resumes
 
-`contact.html`, `index.html`, `cad-cam-cae.html` and `robotics.html` link to `assets/resumes/General_CV.pdf`, `CAD_CAM_CAE_CV.pdf` and `Robotics_CV.pdf`. These files aren't included — add your actual PDFs at those paths (create the `assets/resumes/` folder) so the download buttons work.
+`contact.html`, `index.html`, `cad-cam-cae.html` and `robotics.html` link to `assets/resumes/General_CV.pdf`, `DFMA_FEA_CFD_CV.pdf` and `Robotics_CV.pdf`. These files aren't included — add your actual PDFs at those paths (create the `assets/resumes/` folder) so the download buttons work.
 
 ## Local preview
 

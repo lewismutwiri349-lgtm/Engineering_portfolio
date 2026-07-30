@@ -3,7 +3,7 @@
     {
       "slug": "pcb-enclosure",
       "title": "pcb-enclosure",
-      "category": "cad",
+      "category": "dfma",
       "subtitle": "custom-fit enclosure for pcb assembly",
       "description": "I was tasked with designing a custom PCB enclosure. The design was simple, cost-effective, and easy to print",
       "coverImage": "assets/images/pcb-enclosure-cover.jpeg",
@@ -40,7 +40,7 @@
     {
   "slug": "helical-gear",
   "title": "Helical Gear",
-  "category": "cad",
+  "category": "dfma",
   "subtitle": "Helical gear model",
   "description": "I was tasked with designing a helical gear. The aim of this project was to demonstrate my skills in chamfering, cut-extrude operations, and my understanding of gear mechanics.",
   "coverImage": "assets/images/helicalgear20.jpg",
@@ -76,7 +76,7 @@
 {
   "slug": "sheet-metal-electronic-enclosure",
   "title": "Sheet Metal Electronic Enclosure",
-  "category": "cad",
+  "category": "dfma",
   "subtitle": "Designed a custom sheet metal enclosure using SolidWorks Sheet Metal tools.",
   "description": "This project involved designing a custom electronic enclosure from sheet metal using SolidWorks. The objective was to gain practical experience with sheet metal features such as Base Flange, Edge Flange, Hem, Bend Relief, Corner Treatment, and Flat Pattern generation while ensuring the enclosure was suitable for manufacturing and assembly.",
   "coverImage": "assets/images/sheet-metal-electronic-enclosure-cover.jpg",
@@ -110,7 +110,7 @@
 {
   "slug": "valve-body",
   "title": "Valve Body",
-  "category": "cad",
+  "category": "dfma",
   "subtitle": "valve-body",
   "description": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
   "coverImage": "assets/images/valve-body-cover.jpg",
@@ -146,8 +146,8 @@
 {
   "slug": "globe-valve-seat-large-nozzle",
   "title": "globe-valve-seat-large-nozzle",
-  "category": "cad",
-  "subtitle": "Precision CAD model of a globe valve seat with engineering tolerances",
+  "category": "dfma",
+  "subtitle": "Precision DFMA model of a globe valve seat with engineering tolerances",
   "description": "This project involved designing a globe valve seat in SolidWorks from an engineering drawing. The model incorporates standard manufacturing features including chamfers, tapered geometry, precision bores, and ISO dimensional tolerances. The objective was to produce a manufacturable component suitable for machining while maintaining dimensional accuracy",
   "coverImage": "assets/images/globe-valve-seat-large-nozzle-cover.JPG",
   "status": "In Progress",
@@ -157,7 +157,7 @@
     "SolidWorks"
   ],
   "engineeringProcess": [],
-  "problem": "Create an accurate 3D CAD model of a globe valve seat from a technical drawing while correctly interpreting engineering dimensions, chamfers, tapers, and ISO tolerance specifications.",
+  "problem": "Create an accurate 3D DFMA model of a globe valve seat from a technical drawing while correctly interpreting engineering dimensions, chamfers, tapers, and ISO tolerance specifications.",
   "solution": "A fully constrained SolidWorks model was developed using parametric features. Chamfers, tapered surfaces and precision dimensions were applied according to the engineering drawing.",
   "gallery": [
     "assets/images/gallery/globe-valve-seat-large-nozzle/1.JPG",

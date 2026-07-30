@@ -7,7 +7,7 @@
       "organization": "Dassault Systèmes",
       "date": "2024-09-15",
       "description": "Completed a professional certification focused on advanced part and assembly modeling workflows.",
-      "skills": ["SolidWorks", "CAD", "Product Design"],
+      "skills": ["SolidWorks", "DFMA", "Product Design"],
       "thumbnail": "assets/images/cad/pcb-enclosure/readme.md",
       "documentUrl": "assets/resumes/General_CV.pdf",
       "featured": true,
@@ -35,7 +35,7 @@
       "description": "Attended an intensive workshop covering design-for-manufacturing principles and rapid prototyping strategies.",
       "skills": ["DFM", "Prototyping", "Manufacturing"],
       "thumbnail": "assets/images/cad/2.5-axis-milling/Part5.txt",
-      "documentUrl": "assets/resumes/CAD_CAM_CAE_CV.pdf",
+      "documentUrl": "assets/resumes/DFMA_FEA_CFD_CV.pdf",
       "featured": false,
       "displayOrder": 3
     },

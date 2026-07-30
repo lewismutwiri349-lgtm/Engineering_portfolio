@@ -650,7 +650,7 @@
 
     renderFeatured();
     renderCategory("roboticsProjects", ["robotics"]);
-    renderCategory("cadProjects", ["cad", "cam", "cae"]);
+    renderCategory("cadProjects", ["dfma", "fea", "cfd"]);
     renderPortfolio();
     renderProjectDetail();
     renderExpertise();

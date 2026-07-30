@@ -2,7 +2,7 @@
   {
     "id": "pcb-enclosure",
     "title": "PCB Enclosure Design",
-    "category": "cad",
+    "category": "dfma",
     "featured": true,
     "thumbnail": "assets/images/pcb-enclosure-cover.jpeg",
     "summary": "Full manufacturing drawing package for a PCB enclosure, built from revolve and extrude features to GD&T-ready detail.",
@@ -42,7 +42,7 @@
   {
     "id": "helical-gear",
     "title": "Helical Gear Design",
-    "category": "cad",
+    "category": "dfma",
     "featured": true,
     "thumbnail": "assets/images/helicalgear20.jpg",
     "summary": "Design and analysis of a helical gear system for efficient power transmission.",
@@ -86,12 +86,12 @@
   {
   "id": "valve-body",
   "title": "valve body",
-  "category": "cad",
+  "category": "dfma",
   "featured": true,
   "thumbnail": "assets/images/valve-body-cover.jpg",
   "summary": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
   "tags": [
-    "CAD",
+    "DFMA",
     "Manufacturing"
   ],
   "software": [
@@ -118,7 +118,7 @@
   {
     "id": "sheet-metal-electronic-enclosure",
     "title": "Sheet Metal Electronic Enclosure",
-    "category": "cad",
+    "category": "dfma",
     "featured": true,
     "thumbnail": "assets/images/sheet-metal-electronic-enclosure-cover.jpg",
     "summary": "Design and assembly of a sheet metal electronic enclosure for efficient thermal management and electromagnetic shielding.",
@@ -149,7 +149,7 @@
   {
     "id": "solidworks-parametric-automation",
     "title": "SolidWorks Parametric Automation (Python + COM API)",
-    "category": "cae",
+    "category": "fea",
     "featured": true,
     "thumbnail": "assets/images/cad4.svg",
     "summary": "Python scripts driving SolidWorks' COM API to batch-update parametric dimensions across families of parts.",
@@ -256,7 +256,7 @@
   {
     "id": "pedal-locking-lever",
     "title": "Pedal-Actuated Locking Lever (Practice Mechanism)",
-    "category": "cad",
+    "category": "dfma",
     "featured": false,
     "thumbnail": "assets/images/cad5.svg",
     "summary": "A deliberate practice project in original linkage design, built to close a portfolio gap around mechanism synthesis.",
@@ -290,12 +290,12 @@
   {
   "id": "cpu-cooling-fan-design",
   "title": "CPU Cooling Fan Design",
-  "category": "cad",
+  "category": "dfma",
   "featured": true,
   "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
   "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
   "tags": [
-    "CAD"
+    "DFMA"
   ],
   "software": [
     "SolidWorks"
