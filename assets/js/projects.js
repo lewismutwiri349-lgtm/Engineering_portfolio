@@ -20,7 +20,7 @@ function escapeHtml(str) {
 
 /**
  * Fetches projects.json and flattens every category array
- * (dfma, fea, cfd, robotics, embedded, manufacturing, ...)
+ * (dfma, fea, cfd, eacg, control-systems, robotics, embedded, manufacturing, ...)
  * into one list of project objects. Each project keeps its
  * own "category" field from the JSON.
  */
@@ -361,8 +361,13 @@ async function loadProject() {
 ========================================================== */
 document.addEventListener("DOMContentLoaded", () => {
     loadFeaturedProjects();
-    loadCategoryGrid("cadProjects", ["dfma", "fea", "cfd"]);
+    loadCategoryGrid("cadProjects", ["cad"]);
     loadCategoryGrid("roboticsProjects", ["robotics", "embedded"]);
+    loadCategoryGrid("dfmaProjects", ["dfma"]);
+    loadCategoryGrid("feaProjects", ["fea"]);
+    loadCategoryGrid("cfdProjects", ["cfd"]);
+    loadCategoryGrid("eacgProjects", ["eacg"]);
+    loadCategoryGrid("controlProjects", ["control-systems", "control"]);
     loadPortfolio();
     loadProject();
 });

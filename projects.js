@@ -20,7 +20,7 @@ function escapeHtml(str) {
 
 /**
  * Fetches projects.json and flattens every category array
- * (cad, cam, cae, robotics, embedded, manufacturing, ...)
+ * (dfma, fea, cfd, eacg, control-systems, robotics, embedded, manufacturing, ...)
  * into one list of project objects. Each project keeps its
  * own "category" field from the JSON.
  */
@@ -132,7 +132,7 @@ async function loadFeaturedProjects() {
 }
 
 /* ==========================================================
-   CATEGORY GRIDS (cad.html, cam.html, cae.html, robotics.html)
+   CATEGORY GRIDS (specialization page, robotics.html)
 ========================================================== */
 async function loadCategoryGrid(containerId, categories) {
     const el = document.getElementById(containerId);
@@ -362,9 +362,12 @@ async function loadProject() {
 document.addEventListener("DOMContentLoaded", () => {
     loadFeaturedProjects();
     loadCategoryGrid("cadProjects", ["cad"]);
-    loadCategoryGrid("camProjects", ["cam"]);
-    loadCategoryGrid("caeProjects", ["cae"]);
     loadCategoryGrid("roboticsProjects", ["robotics", "embedded"]);
+    loadCategoryGrid("dfmaProjects", ["dfma"]);
+    loadCategoryGrid("feaProjects", ["fea"]);
+    loadCategoryGrid("cfdProjects", ["cfd"]);
+    loadCategoryGrid("eacgProjects", ["eacg"]);
+    loadCategoryGrid("controlProjects", ["control-systems", "control"]);
     loadPortfolio();
     loadProject();
 });
