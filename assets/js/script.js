@@ -58,7 +58,6 @@
     "cfd": { name: "Computational Fluid Dynamics (CFD)", icon: "flow", desc: "Airflow, heat transfer and fluid flow simulation for thermal and aerodynamic performance." },
     "numerical-analysis": { name: "Numerical Analysis", icon: "chart", desc: "Numerical methods and computational tools for solving engineering problems." },
     "thermodynamics": { name: "Thermodynamics", icon: "thermo", desc: "Applying thermodynamic principles to thermal systems and energy analysis." },
-    "robotics": { name: "Robotics", icon: "robot", desc: "Mechanical and control design for robotic and automated systems." },
     "embedded-systems": { name: "Embedded Systems", icon: "chip", desc: "Microcontroller-based hardware and firmware for sensing, control and connectivity." },
     "control-engineering": { name: "Control Engineering", icon: "sliders", desc: "Feedback control, PID tuning and system dynamics for stable automated behaviour." },
     "cpp": { name: "C++", icon: "code", desc: "Systems and application programming in C++." },
@@ -69,7 +68,6 @@
   const EXPERTISE_GROUPS = [
     { title: "Design Engineering", skills: ["mechanical-design", "machine-design", "industrial-design", "automotive-design", "sheet-metal", "injection-mold-design", "design-for-manufacturing"] },
     { title: "Simulation & Analysis", skills: ["finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
-    { title: "Automation & Robotics", skills: ["robotics", "embedded-systems", "control-engineering"] },
     { title: "Programming & Engineering Software", skills: ["cpp", "matlab"] },
     { title: "Innovation", skills: ["research-development"] },
   ];
