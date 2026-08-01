@@ -80,21 +80,24 @@
     const toggle = document.getElementById("themeToggle");
     const root = document.documentElement;
     const stored = localStorage.getItem("lm-theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = stored || (prefersDark ? "dark" : "light");
+    const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    // "Cockpit" (dark graphite) is the default mood; "Daylight" is the
+    // explicit light alternate, matched to the person's OS preference
+    // on first visit, then remembered.
+    const theme = stored || (prefersLight ? "light" : "dark");
 
     applyTheme(theme);
 
     if (!toggle) return;
     toggle.addEventListener("click", () => {
-      const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
       applyTheme(next);
       localStorage.setItem("lm-theme", next);
     });
 
     function applyTheme(t) {
-      if (t === "dark") {
-        root.setAttribute("data-theme", "dark");
+      if (t === "light") {
+        root.setAttribute("data-theme", "light");
         if (toggle) { toggle.textContent = "☀️"; toggle.setAttribute("aria-pressed", "true"); }
       } else {
         root.removeAttribute("data-theme");
@@ -104,37 +107,13 @@
   }
 
   /* ---------------------------------------------------------
-     Mobile nav: inject a hamburger toggle and manage open state
+     Mobile nav: no hamburger — the nav stays visible at all
+     times and scrolls horizontally on narrow screens (see
+     style.css). Nothing to inject; this is now a no-op kept
+     only so any stray .nav-toggle markup never shows.
      --------------------------------------------------------- */
   function initMobileNav() {
-    const nav = document.querySelector(".navbar");
-    const links = document.querySelector(".nav-links");
-    if (!nav || !links) return;
-
-    const btn = document.createElement("button");
-    btn.className = "nav-toggle";
-    btn.setAttribute("aria-label", "Toggle navigation menu");
-    btn.setAttribute("aria-expanded", "false");
-    btn.setAttribute("aria-controls", "primaryNav");
-    btn.innerHTML = "☰";
-    links.id = "primaryNav";
-
-    const themeBtn = document.getElementById("themeToggle");
-    nav.insertBefore(btn, themeBtn || null);
-
-    btn.addEventListener("click", () => {
-      const open = links.classList.toggle("open");
-      btn.setAttribute("aria-expanded", String(open));
-      btn.innerHTML = open ? "✕" : "☰";
-    });
-
-    links.querySelectorAll("a").forEach((a) =>
-      a.addEventListener("click", () => {
-        links.classList.remove("open");
-        btn.setAttribute("aria-expanded", "false");
-        btn.innerHTML = "☰";
-      })
-    );
+    document.querySelectorAll(".nav-toggle").forEach((el) => el.remove());
   }
 
   /* ---------------------------------------------------------
@@ -630,6 +609,38 @@
   }
 
   /* ---------------------------------------------------------
+     HUD attitude-ring — the site's signature motif, injected
+     only into the flagship (non-section) hero, i.e. the
+     homepage. Pure decoration: aria-hidden, and inert under
+     prefers-reduced-motion via the global CSS media query.
+     --------------------------------------------------------- */
+  function initHeroHUD() {
+    const hero = document.querySelector(".hero:not(.hero--section)");
+    if (!hero || hero.querySelector(".hud-ring")) return;
+
+    const wrap = document.createElement("div");
+    wrap.className = "hud-ring";
+    wrap.setAttribute("aria-hidden", "true");
+    wrap.innerHTML =
+      '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">' +
+      '<circle cx="200" cy="200" r="180" stroke="rgba(63,208,255,.16)" stroke-width="1"/>' +
+      '<circle cx="200" cy="200" r="140" stroke="rgba(63,208,255,.26)" stroke-width="1"/>' +
+      '<g class="ring-rotate" stroke="rgba(63,208,255,.5)" stroke-width="1.5">' +
+      '<path d="M200 20 L200 45 M200 355 L200 380 M20 200 L45 200 M355 200 L380 200"/>' +
+      '<path d="M85 85 L100 100 M300 300 L315 315 M85 315 L100 300 M300 100 L315 85"/>' +
+      "</g>" +
+      '<g class="ring-rotate-rev" stroke="rgba(255,155,66,.45)" stroke-width="1" stroke-dasharray="2 10">' +
+      '<circle cx="200" cy="200" r="160"/>' +
+      "</g>" +
+      '<g class="horizon-line">' +
+      '<line x1="80" y1="200" x2="320" y2="200" stroke="rgba(255,155,66,.65)" stroke-width="1.5"/>' +
+      '<circle cx="200" cy="200" r="5" fill="none" stroke="#FF9B42" stroke-width="1.5"/>' +
+      '<circle cx="200" cy="200" r="2" fill="#FF9B42"/>' +
+      "</g></svg>";
+    hero.appendChild(wrap);
+  }
+
+  /* ---------------------------------------------------------
      Boot
      --------------------------------------------------------- */
   function stampYear() {
@@ -641,6 +652,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     initTheme();
     initMobileNav();
+    initHeroHUD();
     markActiveNav();
     initReveals();
     initContactForm();

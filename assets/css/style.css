@@ -1,60 +1,75 @@
 /* =========================================================
    Lewis Mutwiri — Engineering Portfolio
-   Design system: "Drafting Table" — blueprint navy + brass,
-   grid hairlines, corner-bracket datum marks as the signature
-   motif tying CAD drawing conventions to the page itself.
+   Design system: "Flight Deck" — cockpit instrumentation as
+   signature motif (mechanical engineer + future pilot): an
+   attitude-ring HUD, engaged-state cyan glow, sunrise amber
+   for calls to action. Two moods, one system: "Cockpit" (dark,
+   default) and "Daylight" (light, clean-lab bright) via the
+   existing theme toggle.
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   /* ---- color tokens ---- */
-  --paper:        #F6F4EC;
-  --paper-dim:    #ECE8DC;
-  --ink:          #16212B;
-  --ink-soft:     #4B5A67;
-  --blueprint:        #1B4A72;
-  --blueprint-deep:   #0B1F33;
-  --blueprint-mid:    #234F76;
-  --brass:        #C08A4E;
-  --brass-bright: #D9A466;
-  --line:         rgba(27, 74, 114, 0.16);
-  --line-strong:  rgba(27, 74, 114, 0.32);
-  --white:        #FFFFFF;
+  --graphite:      #0A0E14;
+  --graphite-2:    #101826;
+  --panel:         #16202F;
+  --silver:        #EDF2F7;
+  --silver-dim:    #93A2B8;
+  --cyan:          #3FD0FF;
+  --cyan-deep:     #2AA9D6;
+  --amber:         #FF9B42;
+  --amber-bright:  #FFB066;
+  --emerald:       #34D399;
+  --line:          rgba(63, 208, 255, 0.14);
+  --line-strong:   rgba(63, 208, 255, 0.32);
+  --white:         #FFFFFF;
 
-  /* ---- surfaces (light theme, default) ---- */
-  --bg:           var(--paper);
-  --bg-alt:       var(--paper-dim);
-  --surface:      #FFFFFF;
-  --text:         var(--ink);
-  --text-soft:    var(--ink-soft);
+  /* ---- surfaces (Cockpit theme, default) ---- */
+  --bg:           var(--graphite);
+  --bg-alt:       var(--graphite-2);
+  --surface:      var(--panel);
+  --text:         var(--silver);
+  --text-soft:    var(--silver-dim);
   --border:       var(--line);
-  --nav-bg:       rgba(246, 244, 236, 0.86);
+  --nav-bg:       rgba(10, 14, 20, 0.82);
+
+  /* aliases kept for legacy selectors referencing brass/blueprint */
+  --brass:         var(--amber);
+  --brass-bright:  var(--amber-bright);
+  --blueprint:     var(--cyan);
+  --blueprint-deep: var(--graphite);
+  --blueprint-mid: var(--cyan-deep);
 
   /* ---- type ---- */
   --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
   --font-body:    'Inter', 'Segoe UI', sans-serif;
-  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
 
   /* ---- layout ---- */
   --maxw: 1180px;
   --radius: 6px;
   --radius-lg: 14px;
-  --shadow-sm: 0 1px 2px rgba(11, 31, 51, 0.06), 0 1px 1px rgba(11,31,51,0.04);
-  --shadow-md: 0 10px 30px rgba(11, 31, 51, 0.10);
-  --shadow-lg: 0 24px 60px rgba(11, 31, 51, 0.18);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.25), 0 1px 1px rgba(0,0,0,0.15);
+  --shadow-md: 0 10px 34px rgba(0,0,0,0.38);
+  --shadow-lg: 0 26px 64px rgba(0,0,0,0.5);
+  --glow-cyan: 0 0 24px rgba(63,208,255,0.25);
   --ease: cubic-bezier(.22,.9,.32,1);
 }
 
-[data-theme="dark"] {
-  --bg:        var(--blueprint-deep);
-  --bg-alt:    #0F2740;
-  --surface:   #122A44;
-  --text:      #EDEFF2;
-  --text-soft: #A9BAC9;
-  --border:    rgba(200, 216, 232, 0.14);
-  --nav-bg:    rgba(11, 31, 51, 0.86);
-  --shadow-md: 0 10px 30px rgba(0,0,0,0.35);
+/* Daylight — light, bright, "clean laboratory" mood */
+[data-theme="light"] {
+  --bg:        #F4F7FA;
+  --bg-alt:    #E7EDF3;
+  --surface:   #FFFFFF;
+  --text:      #0A0E14;
+  --text-soft: #48566B;
+  --border:    rgba(10, 30, 50, 0.12);
+  --nav-bg:    rgba(244, 247, 250, 0.86);
+  --shadow-md: 0 10px 30px rgba(11, 31, 51, 0.10);
+  --shadow-lg: 0 24px 60px rgba(11, 31, 51, 0.16);
+  --cyan-deep: #1B87B0;
 }
 
 /* ---------------------------------------------------------
@@ -192,14 +207,16 @@ header {
 .logo {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   width: 40px; height: 40px;
   display: flex; align-items: center; justify-content: center;
-  border: 1.5px solid var(--brass);
-  border-radius: 4px;
-  color: var(--blueprint);
+  border: 1.5px solid var(--cyan);
+  border-radius: 50%;
+  color: var(--cyan);
+  box-shadow: var(--glow-cyan);
+  transition: box-shadow .3s var(--ease);
 }
-[data-theme="dark"] .logo { color: var(--brass-bright); }
+[data-theme="light"] .logo { color: var(--cyan-deep); border-color: var(--cyan-deep); box-shadow: none; }
 
 .nav-links {
   display: flex;
@@ -248,38 +265,62 @@ header {
 .nav-toggle { display: none; }
 
 /* ---------------------------------------------------------
-   Hero — full-bleed image, dark overlay, drafting frame
+   Hero — graphite cockpit atmosphere + HUD attitude-ring
    --------------------------------------------------------- */
 .hero {
   position: relative;
-  min-height: 86vh;
+  min-height: 92vh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding: 0;
   overflow: hidden;
-  color: #F7F5EF;
+  color: var(--silver);
   isolation: isolate;
+  background: var(--graphite);
 }
-.hero.hero--section { min-height: 56vh; align-items: center; }
+.hero.hero--section { min-height: 52vh; align-items: center; }
 
 .hero-media {
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: -3;
   background-image: url('../images/hero-bird.svg');
   background-size: cover;
   background-position: center 62%;
   background-repeat: no-repeat;
+  opacity: .22;
+  filter: saturate(.6) brightness(.9);
 }
-/* subtle dark overlay so text stays highly legible over the sky/bird art */
+/* atmospheric glow — sunrise amber upper-right, cyan lower-left, graphite base */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   background:
-    linear-gradient(180deg, rgba(8,17,26,.55) 0%, rgba(8,17,26,.30) 38%, rgba(8,17,26,.72) 100%);
+    radial-gradient(ellipse 65% 55% at 82% 18%, rgba(255,155,66,.16), transparent 60%),
+    radial-gradient(ellipse 60% 65% at 12% 85%, rgba(63,208,255,.14), transparent 60%),
+    linear-gradient(180deg, rgba(10,14,20,.72) 0%, rgba(10,14,20,.4) 40%, rgba(10,14,20,.85) 100%);
 }
+
+/* optional signature element — attitude-ring HUD, markup added on key hero sections */
+.hud-ring {
+  position: absolute;
+  right: -10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(680px, 65vw);
+  height: min(680px, 65vw);
+  z-index: -1;
+  opacity: .85;
+  pointer-events: none;
+}
+.hud-ring svg { width: 100%; height: 100%; display: block; }
+.ring-rotate { animation: hudSpin 70s linear infinite; transform-origin: 200px 200px; }
+.ring-rotate-rev { animation: hudSpin 100s linear infinite reverse; transform-origin: 200px 200px; }
+@keyframes hudSpin { to { transform: rotate(360deg); } }
+.horizon-line { animation: hudDrift 5s ease-in-out infinite; }
+@keyframes hudDrift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 
 .hero-content {
   position: relative;
@@ -288,7 +329,8 @@ header {
   padding: 120px 24px 88px;
   width: 100%;
 }
-.hero-content .eyebrow { color: var(--brass-bright); }
+.hero:not(.hero--section) .hero-content { max-width: 640px; margin: 0; padding-left: max(24px, calc((100vw - var(--maxw)) / 2 + 24px)); }
+.hero-content .eyebrow { color: var(--amber-bright); }
 .hero-content h1 {
   animation: rise .8s var(--ease) both;
 }
@@ -297,13 +339,13 @@ header {
   font-weight: 400;
   font-size: clamp(1rem, 1.6vw, 1.25rem);
   letter-spacing: .03em;
-  color: #E7DFCF;
+  color: var(--silver-dim);
   text-transform: none;
   animation: rise .8s .1s var(--ease) both;
 }
 .hero-content p {
   max-width: 640px;
-  color: #D8DEE4;
+  color: var(--silver-dim);
   font-size: 1.05rem;
   animation: rise .8s .18s var(--ease) both;
 }
@@ -321,25 +363,25 @@ header {
   align-items: center;
   gap: .5em;
   padding: 13px 26px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-weight: 600;
   font-size: .95rem;
-  transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease), filter .2s var(--ease);
   border: 1.5px solid transparent;
   cursor: pointer;
 }
 .btn-primary {
-  background: var(--brass);
-  color: #1B1204;
+  background: linear-gradient(135deg, var(--amber), #E8823A);
+  color: #2B1200;
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); background: var(--brass-bright); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,155,66,.3); filter: brightness(1.06); }
 
 .btn-secondary {
-  border-color: rgba(247,245,239,.5);
-  color: #F7F5EF;
-  background: rgba(247,245,239,.06);
+  border-color: rgba(237,242,247,.4);
+  color: var(--silver);
+  background: rgba(237,242,247,.05);
 }
-.btn-secondary:hover { transform: translateY(-2px); border-color: #F7F5EF; background: rgba(247,245,239,.14); }
+.btn-secondary:hover { transform: translateY(-2px); border-color: var(--silver); background: rgba(237,242,247,.12); }
 
 /* on light, non-hero contexts (e.g. buttons inside cards) */
 .section .btn-secondary {
@@ -473,10 +515,10 @@ a.card { display: block; }
   font-size: .82rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--blueprint);
+  color: var(--cyan);
   margin-bottom: 20px;
 }
-[data-theme="dark"] .expertise-group h3 { color: var(--brass-bright); }
+[data-theme="light"] .expertise-group h3 { color: var(--cyan-deep); }
 
 .expertise-cards {
   display: grid;
@@ -506,11 +548,11 @@ a.card { display: block; }
   justify-content: center;
   border-radius: 10px;
   background: var(--bg-alt);
-  color: var(--blueprint);
+  color: var(--cyan);
   margin-bottom: 18px;
   transition: background .28s var(--ease), color .28s var(--ease), transform .28s var(--ease);
 }
-[data-theme="dark"] .expertise-icon { color: var(--brass-bright); }
+[data-theme="light"] .expertise-icon { color: var(--cyan-deep); }
 .expertise-icon svg { width: 24px; height: 24px; }
 .expertise-card:hover .expertise-icon {
   background: var(--brass);
@@ -632,13 +674,13 @@ a.card { display: block; }
   cursor: pointer;
   transition: all .2s var(--ease);
 }
-.filter-bar button:hover { border-color: var(--brass); color: var(--text); }
+.filter-bar button:hover { border-color: var(--amber); color: var(--text); }
 .filter-bar button[aria-pressed="true"] {
-  background: var(--blueprint);
-  border-color: var(--blueprint);
-  color: #fff;
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #05131C;
 }
-[data-theme="dark"] .filter-bar button[aria-pressed="true"] { background: var(--brass); border-color: var(--brass); color: #1B1204; }
+[data-theme="light"] .filter-bar button[aria-pressed="true"] { background: var(--cyan-deep); border-color: var(--cyan-deep); color: #fff; }
 
 .empty-state {
   font-family: var(--font-mono);
@@ -743,23 +785,23 @@ footer p { color: #C7D2DB; margin: 0; }
    Responsive
    --------------------------------------------------------- */
 @media (max-width: 860px) {
+  /* the menu never hides — it scrolls horizontally instead of collapsing
+     behind a hamburger, so navigation stays reachable at all times */
+  .navbar { padding: 12px 0 12px 20px; gap: 12px; }
   .nav-links {
-    position: fixed;
-    top: 73px; left: 0; right: 0;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    flex-direction: column;
-    gap: 0;
-    padding: 8px 24px 18px;
-    transform: translateY(-8px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .2s var(--ease), transform .2s var(--ease);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 22px;
+    padding-right: 20px;
+    mask-image: linear-gradient(90deg, #000 88%, transparent 100%);
   }
-  .nav-links.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
-  .nav-links li { border-top: 1px solid var(--border); }
-  .nav-links a { display: block; padding: 14px 2px; }
-  .nav-toggle { display: flex; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links li { flex-shrink: 0; }
+  .nav-links a { display: block; padding: 8px 2px; white-space: nowrap; }
+  .nav-toggle { display: none; }
+  #themeToggle { flex-shrink: 0; margin-right: 16px; }
 }
 
 @media (max-width: 600px) {
@@ -767,6 +809,7 @@ footer p { color: #C7D2DB; margin: 0; }
   .hero-content { padding: 96px 20px 56px; }
   .hero-media { background-position: 68% center; }
   .section { padding: 60px 0; }
+  .hud-ring { width: 80vw; height: 80vw; right: -30%; opacity: .5; }
 }
 
 /* print: keep it simple & ink-friendly */

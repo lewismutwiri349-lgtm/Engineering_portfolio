@@ -6,7 +6,7 @@
 <title>Control Systems Engineering | Lewis Mutwiri</title>
 <meta name="description" content="Mechanical control systems engineering by Lewis Mutwiri: PID control, mechatronics, motion control and industrial automation — mechanical focus, not electrical.">
 <link rel="canonical" href="https://lewismutwiri.com/control-systems.html">
-<meta name="theme-color" content="#0B1F33">
+<meta name="theme-color" content="#0A0E14">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Control Systems Engineering | Lewis Mutwiri">
 <meta property="og:description" content="Mechanical control systems engineering by Lewis Mutwiri: PID control, mechatronics, motion control and industrial automation — mechanical focus, not electrical.">
@@ -74,8 +74,11 @@
   <rect x="270" y="105" width="70" height="40" rx="4"/><text x="305" y="129" font-size="9" fill="var(--spec-accent)" stroke="none" text-anchor="middle" font-family="monospace">SENSOR</text>
   <rect x="165" y="40" width="70" height="40" rx="4"/><text x="200" y="64" font-size="9" fill="var(--spec-accent)" stroke="none" text-anchor="middle" font-family="monospace">CONTROL</text>
   <path d="M130 125 H165 M235 60 H270" stroke-dasharray="4 4"/>
-  <path class="spec-control-loop" d="M305 145 C305 200, 95 200, 95 145" stroke-dasharray="6 8"/>
+  <path id="controlLoopPath" class="spec-control-loop" d="M305 145 C305 200, 95 200, 95 145" stroke-dasharray="6 8"/>
   <path d="M95 145 l-6 -10 M95 145 l10 -4" />
+  <circle r="4" fill="var(--spec-accent)" stroke="none">
+    <animateMotion dur="3.2s" repeatCount="indefinite" path="M305 145 C305 200, 95 200, 95 145"/>
+  </circle>
 </svg>
 </div>
 </div>
