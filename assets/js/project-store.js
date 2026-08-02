@@ -105,13 +105,40 @@
     await window.GitHubSync.deleteFile(path, `Delete project: ${projectId || path}`);
   }
 
+  function mergeProjects(existingProjects, remoteProjects) {
+    const merged = [];
+    const byId = new Map();
+
+    const addProject = (project, source) => {
+      const id = String(project?.id || project?.title || "").trim().toLowerCase();
+      if (!id) return;
+      if (byId.has(id)) {
+        const existingIndex = merged.findIndex((entry) => String(entry.id || entry.title || "").trim().toLowerCase() === id);
+        if (existingIndex !== -1) {
+          merged[existingIndex] = { ...merged[existingIndex], ...project };
+        }
+        return;
+      }
+      byId.set(id, merged.length);
+      merged.push(project);
+    };
+
+    (existingProjects || []).forEach((project) => addProject(project, "local"));
+    (remoteProjects || []).forEach((entry) => addProject(entry.project || entry, "remote"));
+
+    return merged;
+  }
+
   /**
    * Regenerates and commits projects.json from the full in-memory
-   * project list, so the live site (which reads that one file)
-   * reflects whatever's currently in the per-project files.
+   * project list, merged with whatever is already stored in GitHub,
+   * so the live site (which reads that one file) reflects the full
+   * set of per-project files rather than only the current local list.
    */
   async function rebuildIndex(allProjects) {
-    const clean = allProjects.map(stripInternal);
+    const remoteResult = await loadAllFromGitHub();
+    const combined = mergeProjects(allProjects, remoteResult.projects || []);
+    const clean = combined.map(stripInternal);
     await window.GitHubSync.commitFile(
       INDEX_PATH,
       JSON.stringify(clean, null, 2),
@@ -121,7 +148,7 @@
   }
 
   /**
-   * Recursively reads every project file under data/projects/ from
+   * Recursively reads every project file under asset/projects/ from
    * GitHub and returns them as { project, path } pairs, ready to
    * drop into the admin's in-memory list. Returns [] if the
    * directory doesn't exist yet (first run, nothing saved there).
