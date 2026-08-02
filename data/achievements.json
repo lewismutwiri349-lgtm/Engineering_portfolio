@@ -27,6 +27,30 @@
       "displayOrder": 2
     },
     {
+      "id": "achievement-1785662406854",
+      "title": "ChatGPT ANSYS Fluent CFD Bootcamp – Participation",
+      "category": "Certificate",
+      "organization": "OpenAI (ChatGPT)",
+      "date": "2026-08-01",
+      "description": "Certificate of participation awarded after completing an intensive ANSYS Fluent CFD learning bootcamp guided by ChatGPT, with hands-on engineering simulations and practical exercises.",
+      "skills": [
+        "ANSYS Fluent",
+        "Computational Fluid Dynamics (CFD)",
+        "Fluid Mechanics",
+        "Meshing",
+        "Boundary Conditions",
+        "Solver Setup",
+        "Post-Processing",
+        "Engineering Simulation",
+        "CAE",
+        "Numerical Analysis"
+      ],
+      "thumbnail": "asset/images/achievements/chatgpt-fluent-bootcamp.jpg",
+      "documentUrl": "https://chatgpt.com/s/m_6a6e578480048191b614f0d5f586febc",
+      "featured": true,
+      "displayOrder": 1
+    },
+    {
       "id": "design-symposium",
       "title": "Design for Manufacturing Workshop",
       "category": "Workshop",
