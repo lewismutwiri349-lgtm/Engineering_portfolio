@@ -22,7 +22,7 @@
 (function () {
   "use strict";
 
-  const BASE_DIR = "data/projects";
+  const BASE_DIR = "assets/projects";
   const INDEX_PATH = "projects.json";
 
   function slugify(text) {
