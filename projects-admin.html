@@ -54,9 +54,14 @@
               <button id="projectsPasteLoad" type="button" class="btn-secondary" hidden>Load pasted JSON</button>
             </div>
 
+            <div id="ghSyncSettings"></div>
+
             <div class="achievement-admin-toolbar">
-              <button id="projectAddButton" type="button" class="btn-primary">Add Project</button>
-              <button id="projectSaveButton" type="button" class="btn-secondary">Save All (download projects.json)</button>
+              <button id="projectAddButton" type="button" class="btn-primary">+ New Project</button>
+              <label class="btn-secondary" for="projectImportInput">+ Import Project JSON</label>
+              <input type="file" id="projectImportInput" accept="application/json,.json" multiple class="visually-hidden">
+              <button id="projectSaveButton" type="button" class="btn-secondary">Export All (download projects.json)</button>
+              <button id="projectPushButton" type="button" class="btn-accent">Save &amp; Push to GitHub</button>
               <span id="projectCount" class="achievement-admin-status" style="align-self:center;"></span>
             </div>
             <p id="projectAdminStatus" class="achievement-admin-status"></p>
@@ -71,6 +76,7 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/github-sync.js"></script>
     <script src="assets/js/projects-admin.js"></script>
   </body>
 </html>

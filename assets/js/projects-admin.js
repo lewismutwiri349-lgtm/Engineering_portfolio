@@ -85,6 +85,92 @@
     return (arr || []).map((item) => `${item.label || ""} | ${item.url || ""}`).join("\n");
   }
 
+  function slugify(text) {
+    return (text || "")
+      .toString()
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  /* ---------------------------------------------------------
+     Import — pick one or more .json files (each holding a
+     single project object or an array of them). A project
+     whose id matches one already in the list replaces it;
+     otherwise it's appended. Simple, predictable, no modal.
+     --------------------------------------------------------- */
+  function initImport() {
+    const input = document.getElementById("projectImportInput");
+    if (!input) return;
+
+    input.addEventListener("change", async () => {
+      const files = Array.from(input.files || []);
+      if (!files.length) return;
+
+      const status = document.getElementById("projectAdminStatus");
+      let added = 0, replaced = 0, failed = [];
+
+      for (const file of files) {
+        let text;
+        try {
+          text = await file.text();
+        } catch (e) {
+          failed.push(`${file.name}: couldn't read file`);
+          continue;
+        }
+
+        let parsed;
+        try {
+          parsed = JSON.parse(text);
+        } catch (e) {
+          failed.push(`${file.name}: invalid JSON (${e.message})`);
+          continue;
+        }
+
+        const incoming = Array.isArray(parsed) ? parsed : [parsed];
+
+        for (const raw of incoming) {
+          if (!raw || typeof raw !== "object") {
+            failed.push(`${file.name}: skipped an entry that isn't a project object`);
+            continue;
+          }
+          if (!raw.title && !raw.id) {
+            failed.push(`${file.name}: skipped an entry with no title or id`);
+            continue;
+          }
+
+          const project = Object.assign(blankProject(), raw);
+          project.id = raw.id ? String(raw.id) : slugify(raw.title);
+          project._key = uid();
+
+          const existingIndex = projects.findIndex((p) => p.id && p.id.toLowerCase() === project.id.toLowerCase());
+          if (existingIndex !== -1) {
+            project._key = projects[existingIndex]._key;
+            projects[existingIndex] = project;
+            replaced++;
+          } else {
+            projects.push(project);
+            added++;
+          }
+        }
+      }
+
+      renderList();
+      input.value = "";
+
+      const parts = [];
+      if (added) parts.push(`${added} added`);
+      if (replaced) parts.push(`${replaced} replaced (matching ID)`);
+      if (failed.length) parts.push(`${failed.length} skipped`);
+
+      status.dataset.state = failed.length ? "error" : "success";
+      status.textContent = parts.length
+        ? `Import done: ${parts.join(", ")}.${failed.length ? " Issues: " + failed.join("; ") : ""}`
+        : "Nothing importable was found in that file.";
+    });
+  }
+
   /* ---------------------------------------------------------
      Loading — try fetch first (works when the site is hosted),
      fall back to a file picker or paste box (works from file://
@@ -368,11 +454,41 @@
       status.dataset.state = "success";
       status.textContent = `Downloaded projects.json with ${payload.length} project${payload.length === 1 ? "" : "s"}. Replace the copy in your site folder with this one.`;
     });
+
+    document.getElementById("projectPushButton").addEventListener("click", async () => {
+      const status = document.getElementById("projectAdminStatus");
+      const missingIds = projects.filter((p) => !p.id.trim());
+      if (missingIds.length) {
+        status.dataset.state = "error";
+        status.textContent = `${missingIds.length} project${missingIds.length === 1 ? "" : "s"} still need an ID/slug before saving.`;
+        return;
+      }
+
+      const payload = exportProjects();
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(payload));
+
+      status.dataset.state = "";
+      status.textContent = "Pushing to GitHub…";
+      try {
+        await window.GitHubSync.commitFile(
+          "projects.json",
+          JSON.stringify(payload, null, 2),
+          `Update projects.json (${payload.length} project${payload.length === 1 ? "" : "s"})`
+        );
+        status.dataset.state = "success";
+        status.textContent = `Pushed projects.json (${payload.length} project${payload.length === 1 ? "" : "s"}) to GitHub. Your site will redeploy shortly.`;
+      } catch (err) {
+        status.dataset.state = "error";
+        status.textContent = err.message;
+      }
+    });
   }
 
   document.addEventListener("DOMContentLoaded", () => {
     if (!document.getElementById("projectAdminList")) return;
+    if (window.GitHubSync) window.GitHubSync.initSyncSettings(document.getElementById("ghSyncSettings"));
     initLoadPanel();
+    initImport();
     initListEvents();
     initSave();
     loadFromFetch();

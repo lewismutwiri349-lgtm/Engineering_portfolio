@@ -35,9 +35,11 @@ async function getProjects() {
 
     const data = await res.json();
 
-    projectsCache = Object.values(data)
-        .filter(Array.isArray)
-        .flat();
+    // projects.json is a flat array of project objects. (Also accepts the
+    // older category-grouped-object shape, for safety.)
+    projectsCache = Array.isArray(data)
+        ? data
+        : Object.values(data).filter(Array.isArray).flat();
 
     return projectsCache;
 }

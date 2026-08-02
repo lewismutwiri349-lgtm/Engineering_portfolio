@@ -232,24 +232,6 @@
   }
 
   /* ---------------------------------------------------------
-     Category pages: robotics.html / cad-cam-cae.html
-     --------------------------------------------------------- */
-  async function renderCategory(containerId, categories) {
-    const el = document.getElementById(containerId);
-    if (!el) return;
-    skeletons(el, 3);
-    try {
-      const projects = await loadProjects();
-      const filtered = projects.filter((p) => categories.includes(p.category));
-      el.innerHTML = filtered.length
-        ? filtered.map(projectCardHTML).join("")
-        : '<div class="empty-state">No projects in this category yet — check back soon.</div>';
-    } catch (e) {
-      errorState(el, "Couldn't load projects right now — " + e.message);
-    }
-  }
-
-  /* ---------------------------------------------------------
      Portfolio page: full list with search + category filter
      + expertise (skill) filter — all instant, client-side
      --------------------------------------------------------- */
@@ -659,8 +641,11 @@
     stampYear();
 
     renderFeatured();
-    renderCategory("roboticsProjects", ["robotics"]);
-    renderCategory("cadProjects", ["dfma", "fea", "cfd"]);
+    // Per-discipline project grids (#cadProjects, #dfmaProjects, #feaProjects,
+    // #cfdProjects, #eacgProjects, #controlProjects, #roboticsProjects) are
+    // owned entirely by projects.js on the pages that load it — script.js
+    // only handles the homepage's featured strip, the full portfolio grid,
+    // and the single-project detail page below.
     renderPortfolio();
     renderProjectDetail();
     renderExpertise();
