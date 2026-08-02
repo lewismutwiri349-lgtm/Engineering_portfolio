@@ -46,35 +46,43 @@ async function getProjects() {
 
 /**
  * Builds a single project card. Works for both the compact
- * grid view and the featured view.
+ * grid view and the featured view. Uses the same field names
+ * (id/thumbnail/summary/tags) and the same styled markup
+ * (.thumb/.meta/.tags under .project-card) as the cards
+ * rendered on the homepage/portfolio, so cards here actually
+ * pick up the site's existing card styling.
  */
 function renderProjectCard(project) {
-    const meta = [
-        project.status,
-        project.difficulty,
-        project.duration
-    ].filter(Boolean);
+    const tags = (project.tags || []).slice(0, 4);
 
     return `
-        <a class="card project-card" href="projects.html?id=${encodeURIComponent(project.slug)}">
-            <div class="pc-media">
-                ${project.status ? `<span class="pc-status">${escapeHtml(project.status)}</span>` : ""}
+        <a class="card project-card" href="projects.html?id=${encodeURIComponent(project.id)}">
+            <div class="thumb">
                 <img
-                    src="${project.coverImage}"
+                    src="${project.thumbnail || ""}"
                     alt="${escapeHtml(project.title)}"
                     loading="lazy"
-                    onerror="this.parentElement.style.display='none'">
+                    onerror="this.closest('.thumb').style.display='none'">
             </div>
-            <div class="pc-body">
-                <span class="pc-eyebrow">${escapeHtml((project.category || "").toUpperCase())}</span>
-                <h3>${escapeHtml(project.title)}</h3>
-                <p>${escapeHtml(project.subtitle || project.description || "")}</p>
-                <div class="pc-meta">
-                    ${meta.map(m => `<span>${escapeHtml(m)}</span>`).join("")}
-                </div>
+            <div class="meta">${escapeHtml((project.category || "").toUpperCase())}</div>
+            <h3>${escapeHtml(project.title)}</h3>
+            <p>${escapeHtml(project.summary || "")}</p>
+            <div class="tags">
+                ${tags.map(t => `<span>${escapeHtml(t)}</span>`).join("")}
             </div>
         </a>
     `;
+}
+
+/**
+ * Normalizes a category string for comparison so "control
+ * systems", "Control-Systems" and "control-systems" are all
+ * treated as the same category. Matching categories by exact
+ * string equality is what silently broke grids whenever the
+ * stored value didn't byte-for-byte match the code's list.
+ */
+function normalizeCategory(cat) {
+    return String(cat || "").trim().toLowerCase().replace(/[\s_]+/g, "-");
 }
 
 function renderEmptyState(message, hint) {
@@ -87,7 +95,7 @@ function renderEmptyState(message, hint) {
 }
 
 function renderSkeletons(count = 3) {
-    return Array.from({ length: count }, () => `<div class="skeleton-card"></div>`).join("");
+    return Array.from({ length: count }, () => `<div class="skeleton"></div>`).join("");
 }
 
 /**
@@ -144,7 +152,8 @@ async function loadCategoryGrid(containerId, categories) {
 
     try {
         const projects = await getProjects();
-        const filtered = projects.filter(p => categories.includes(p.category));
+        const wanted = categories.map(normalizeCategory);
+        const filtered = projects.filter(p => wanted.includes(normalizeCategory(p.category)));
         renderGrid(containerId, filtered, "No projects in this discipline yet");
     } catch (err) {
         el.innerHTML = renderEmptyState("Couldn't load projects", err.message);
@@ -192,14 +201,14 @@ async function loadPortfolio() {
         const query = (searchBox?.value || "").trim().toLowerCase();
 
         const filtered = allProjects.filter(p => {
-            const matchesCategory = activeCategory === "all" || p.category === activeCategory;
+            const matchesCategory = activeCategory === "all" || normalizeCategory(p.category) === normalizeCategory(activeCategory);
             if (!matchesCategory) return false;
 
             if (!query) return true;
 
             const haystack = [
                 p.title,
-                p.subtitle,
+                p.summary,
                 p.category,
                 ...(p.software || []),
                 ...(p.tags || [])
@@ -258,7 +267,7 @@ async function loadProject() {
         return;
     }
 
-    const project = projects.find(p => p.slug === slug);
+    const project = projects.find(p => p.id === slug);
 
     if (!project) {
         title.innerText = "Project not found";
@@ -271,7 +280,7 @@ async function loadProject() {
     title.innerText = project.title;
 
     const description = document.getElementById("projectDescription");
-    if (description) description.innerText = project.description || "";
+    if (description) description.innerText = project.summary || project.description || "";
 
     /* meta bar: status / difficulty / duration */
     const metaBar = document.getElementById("projectMetaBar");
@@ -282,7 +291,7 @@ async function loadProject() {
 
     const image = document.getElementById("projectImage");
     if (image) {
-        image.src = project.coverImage;
+        image.src = project.thumbnail;
         image.alt = project.title;
         image.decoding = "async";
         image.fetchPriority = "high";
@@ -301,7 +310,7 @@ async function loadProject() {
 
     const process = document.getElementById("engineeringProcess");
     if (process) {
-        process.innerHTML = (project.engineeringProcess || []).map(step => `<span>${escapeHtml(step)}</span>`).join("");
+        process.innerHTML = (project.process || []).map(step => `<span>${escapeHtml(step)}</span>`).join("");
     }
 
     const problem = document.getElementById("problem");
@@ -324,11 +333,11 @@ async function loadProject() {
 
     const downloads = document.getElementById("downloadButtons");
     if (downloads) {
-        const entries = Object.entries(project.downloads || {}).filter(([, file]) => file && file.trim() !== "");
+        const entries = (project.downloads || []).filter(d => d && d.url && d.url.trim() !== "");
         downloads.innerHTML = entries.length
-            ? entries.map(([name, file]) => `
-                <a class="btn-primary" href="${file}" target="_blank" rel="noopener noreferrer">
-                    ${escapeHtml(name.toUpperCase())}
+            ? entries.map(d => `
+                <a class="btn-primary" href="${d.url}" target="_blank" rel="noopener noreferrer">
+                    ${escapeHtml((d.label || "Download").toUpperCase())}
                 </a>
             `).join("")
             : `<p>No downloadable files for this project yet.</p>`;
@@ -336,25 +345,14 @@ async function loadProject() {
 
     const links = document.getElementById("projectLinks");
     if (links) {
-        let html = "";
-
-        if (project.youtube && project.youtube.trim() !== "") {
-            html += `
-                <a href="${project.youtube}" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                    ▶ Watch on YouTube
+        const entries = (project.links || []).filter(l => l && l.url && l.url.trim() !== "");
+        links.innerHTML = entries.length
+            ? entries.map(l => `
+                <a href="${l.url}" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                    ${escapeHtml(l.label || "View")}
                 </a>
-            `;
-        }
-
-        if (project.github && project.github.trim() !== "") {
-            html += `
-                <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-                    💻 GitHub repository
-                </a>
-            `;
-        }
-
-        links.innerHTML = html || `<p>No external links for this project yet.</p>`;
+            `).join("")
+            : `<p>No external links for this project yet.</p>`;
     }
 }
 
