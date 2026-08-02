@@ -1064,6 +1064,33 @@ footer p { color: #C7D2DB; margin: 0; }
   font-size: .8rem;
   color: var(--text-soft);
 }
+.achievement-admin-status[data-state="error"] { color: var(--amber); }
+.achievement-admin-status[data-state="success"] { color: var(--emerald); }
+
+.project-admin-load {
+  display: grid;
+  gap: 14px;
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.project-admin-load__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.project-admin-load__actions label.btn-secondary {
+  cursor: pointer;
+}
+.project-admin-paste {
+  width: 100%;
+  min-height: 140px;
+  font-family: var(--font-mono);
+  font-size: .8rem;
+}
 .achievement-admin-list {
   display: grid;
   gap: 18px;
