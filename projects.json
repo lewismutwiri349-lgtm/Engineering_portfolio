@@ -43,7 +43,7 @@
     "id": "helical-gear",
     "title": "Helical Gear Design",
     "category": "cad",
-    "featured": true,
+    "featured": false,
     "thumbnail": "assets/images/helicalgear20.jpg",
     "summary": "Design and analysis of a helical gear system for efficient power transmission.",
     "tags": [
@@ -150,7 +150,7 @@
     "id": "solidworks-parametric-automation",
     "title": "SolidWorks Parametric Automation (Python + COM API)",
     "category": "cae",
-    "featured": true,
+    "featured": false,
     "thumbnail": "assets/images/cad4.svg",
     "summary": "Python scripts driving SolidWorks' COM API to batch-update parametric dimensions across families of parts.",
     "tags": [
