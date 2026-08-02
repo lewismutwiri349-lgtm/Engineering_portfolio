@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ansys-fluent-fluid-flow",
+    "title": "ANSYS Fluent – Fluid Flow & Streamline Simulation",
+    "category": "cfd",
+    "featured": true,
+    "thumbnail": "assets/images/projects/Ansys/fluent/cfd/fluent-fluid-flow/fluid-flow.jpg",
+    "summary": "A CFD simulation demonstrating internal fluid flow using ANSYS Fluent. The project focuses on analysing velocity contours, streamlines, and pressure distribution to understand flow behaviour and verify proper simulation setup.\n",
+    "tags": [
+      "ANSYS Fluent",
+      "CFD",
+      "Fluid Flow",
+      "Streamlines",
+      "Velocity Contours",
+      "Pressure Distribution",
+      "Finite Volume Method"
+    ],
+    "software": [
+      "SolidWorks",
+      "ANSYS Fluent",
+      "ANSYS SpaceClaim"
+    ],
+    "process": [
+      "Geometry Preparation",
+      "Mesh Generation",
+      "Boundary Condition Setup",
+      "Solver Configuration",
+      "Simulation",
+      "Post Processing",
+      "Result Analysis"
+    ],
+    "problem": "Predict the behavior of fluid flowing through a computational domain and visualize important flow characteristics such as velocity, pressure, and streamlines.\n",
+    "solution": "Created the geometry, generated a computational mesh, applied inlet and outlet boundary conditions, solved the flow field using ANSYS Fluent, and analyzed velocity contours and streamlines to evaluate flow performance.\n",
+    "gallery": [
+      "assets/images/projects/Ansys/cfd/fluent-fluid-flow/streamlines.JPG",
+      "assets/images/projects/Ansys/cfd/fluent-fluid-flow/velocity-contours.JPG",
+      "assets/images/projects/Ansys/cfd/fluent-fluid-flow/fluid-flow.JPG"
+    ],
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/posts/lewis-mutwiri-64a305386_mechanicalengineering-cfd-ansysfluent-ugcPost-7489604490170404864-XtQe/"
+      }
+    ],
+    "downloads": [],
+    "skills": [
+      "cfd",
+      "numerical-analysis",
+      "thermodynamics"
+    ]
+  }
+]
