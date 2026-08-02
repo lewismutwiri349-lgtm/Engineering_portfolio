@@ -32,9 +32,9 @@
     "problem": "Predict the behavior of fluid flowing through a computational domain and visualize important flow characteristics such as velocity, pressure, and streamlines.\n",
     "solution": "Created the geometry, generated a computational mesh, applied inlet and outlet boundary conditions, solved the flow field using ANSYS Fluent, and analyzed velocity contours and streamlines to evaluate flow performance.\n",
     "gallery": [
-      "assets/images/projects/Ansys/cfd/fluent-fluid-flow/streamlines.jpg",
-      "assets/images/projects/Ansys/cfd/fluent-fluid-flow/velocity-contours.jpg",
-      "assets/images/projects/Ansys/cfd/fluent-fluid-flow/fluid-flow.jpg"
+      "assets/images/projects/Ansys/cfd/fluent-fluid-flow/streamlines.JPG",
+      "assets/images/projects/Ansys/cfd/fluent-fluid-flow/velocity-contours.JPG",
+      "assets/images/projects/Ansys/cfd/fluent-fluid-flow/fluid-flow.JPG"
     ],
     "links": [
       {
