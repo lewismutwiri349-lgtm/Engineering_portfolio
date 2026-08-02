@@ -1,4 +1,4 @@
- [
+[
   {
     "id": "pcb-enclosure",
     "title": "PCB Enclosure Design",
@@ -12,7 +12,7 @@
       "Engineering Drawings"
     ],
     "software": [
-      "SolidWorks"  
+      "SolidWorks"
     ],
     "process": [
       "Requirements Review",
@@ -84,37 +84,37 @@
     ]
   },
   {
-  "id": "valve-body",
-  "title": "valve body",
-  "category": "cad",
-  "featured": true,
-  "thumbnail": "assets/images/valve-body-cover.jpg",
-  "summary": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
-  "tags": [
-    "DFMA",
-    "Manufacturing"
-  ],
-  "software": [
-    "SolidWorks"
-  ],
-  "process": [
-    "Concept Sketching",
-    "Solid Modelling"
-  ],
-  "problem": "While modeling the valve body, I encountered a sketch plane issue that prevented the cut-extrude and hole features from intersecting the model correctly. Troubleshooting and correcting the sketch plane required additional time, preventing completion of the model within the allocated session. The project remains a work in progress.",
-  "solution": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
-  "gallery": [
-    "assets/images/gallery/valve-body/1.jpg",
-    "assets/images/gallery/valve-body/2.jpg",
-    "assets/images/gallery/valve-body/3.jpg",
-    "assets/images/gallery/valve-body/4.jpg"
-  ],
-  "links": [],
-  "downloads": [],
-  "skills": [
-    "mechanical-design"
-  ]
-},
+    "id": "valve-body",
+    "title": "valve body",
+    "category": "cad",
+    "featured": true,
+    "thumbnail": "assets/images/valve-body-cover.jpg",
+    "summary": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
+    "tags": [
+      "DFMA",
+      "Manufacturing"
+    ],
+    "software": [
+      "SolidWorks"
+    ],
+    "process": [
+      "Concept Sketching",
+      "Solid Modelling"
+    ],
+    "problem": "While modeling the valve body, I encountered a sketch plane issue that prevented the cut-extrude and hole features from intersecting the model correctly. Troubleshooting and correcting the sketch plane required additional time, preventing completion of the model within the allocated session. The project remains a work in progress.",
+    "solution": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
+    "gallery": [
+      "assets/images/gallery/valve-body/1.jpg",
+      "assets/images/gallery/valve-body/2.jpg",
+      "assets/images/gallery/valve-body/3.jpg",
+      "assets/images/gallery/valve-body/4.jpg"
+    ],
+    "links": [],
+    "downloads": [],
+    "skills": [
+      "mechanical-design"
+    ]
+  },
   {
     "id": "sheet-metal-electronic-enclosure",
     "title": "Sheet Metal Electronic Enclosure",
@@ -184,7 +184,7 @@
   {
     "id": "neo6m-rocket-recovery",
     "title": "NEO-6M GPS Rocket Recovery System",
-    "category": "control systems",
+    "category": "control-systems",
     "featured": true,
     "thumbnail": "assets/images/robot1.svg",
     "summary": "Arduino-based GPS recovery beacon for hobby rocketry, transmitting live position after apogee for fast payload recovery.",
@@ -288,63 +288,63 @@
     ]
   },
   {
-  "id": "cpu-cooling-fan-design",
-  "title": "CPU Cooling Fan Design",
-  "category": "cad",
-  "featured": true,
-  "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
-  "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
-  "tags": [
-    "DFMA"
-  ],
-  "software": [
-    "SolidWorks"
-  ],
-  "process": [
-    "Concept Sketching",
-    "Solid Modelling",
-    "Assembly Mating"
-  ],
-  "problem": "Design a realistic CPU cooling fan assembly that can serve as a foundation for engineering analysis, optimization, and future manufacturing studies.",
-  "solution": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
-  "gallery": [],
-  "links": [
-    {
-      "label": "LinkedIn",
-      "url": "https://www.linkedin.com/posts/lewis-mutwiri-64a305386_mechanicalengineering-solidworks-ansys-ugcPost-7486416020111536129-phJB/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF8V6VoBKqZ7tADfVNJfMqMX0LMbJBcGJKc"
-    }
-  ],
-  "downloads": [],
-  "skills": [
-    "mechanical-design"
-  ]
-},
-{
-  "id": "product-design-and-development-course-certification",
-  "title": "Product Design and Development Course Certification",
-  "issuer": "SKILL LYNC",
-  "date": "2026-06",
-  "thumbnail": "assets/images/achievements/product-design-and-development-course-certification.JPG",
-  "description": "Completed a Product Design and Development course focused on the end-to-end product development process, including concept generation, design methodology, material selection, prototyping, design for manufacturing (DFM), product testing, and product lifecycle management. Developed the ability to transform engineering concepts into practical, manufacturable solutions.",
-  "skills": [
-    "mechanical-design",
-    "machine-design",
-    "design-for-manufacturing",
-    "sheet-metal-design",
-    "GD&T"
-  ],
-  "links": [],
-  "downloads": [
-    {
-      "label": "Certificate PDF",
-      "url": "assets/certificates/product-design-and-development-course-certification.pdf"
-    }
-  ]
-},
+    "id": "cpu-cooling-fan-design",
+    "title": "CPU Cooling Fan Design",
+    "category": "cad",
+    "featured": true,
+    "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
+    "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
+    "tags": [
+      "DFMA"
+    ],
+    "software": [
+      "SolidWorks"
+    ],
+    "process": [
+      "Concept Sketching",
+      "Solid Modelling",
+      "Assembly Mating"
+    ],
+    "problem": "Design a realistic CPU cooling fan assembly that can serve as a foundation for engineering analysis, optimization, and future manufacturing studies.",
+    "solution": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
+    "gallery": [],
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/posts/lewis-mutwiri-64a305386_mechanicalengineering-solidworks-ansys-ugcPost-7486416020111536129-phJB/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF8V6VoBKqZ7tADfVNJfMqMX0LMbJBcGJKc"
+      }
+    ],
+    "downloads": [],
+    "skills": [
+      "mechanical-design"
+    ]
+  },
+  {
+    "id": "product-design-and-development-course-certification",
+    "title": "Product Design and Development Course Certification",
+    "issuer": "SKILL LYNC",
+    "date": "2026-06",
+    "thumbnail": "assets/images/achievements/product-design-and-development-course-certification.JPG",
+    "description": "Completed a Product Design and Development course focused on the end-to-end product development process, including concept generation, design methodology, material selection, prototyping, design for manufacturing (DFM), product testing, and product lifecycle management. Developed the ability to transform engineering concepts into practical, manufacturable solutions.",
+    "skills": [
+      "mechanical-design",
+      "machine-design",
+      "design-for-manufacturing",
+      "sheet-metal-design",
+      "GD&T"
+    ],
+    "links": [],
+    "downloads": [
+      {
+        "label": "Certificate PDF",
+        "url": "assets/certificates/product-design-and-development-course-certification.pdf"
+      }
+    ]
+  },
   {
     "id": "esp32-iot-automation",
     "title": "ESP32 IoT Automation Node",
-    "category": "control systems",
+    "category": "control-systems",
     "featured": false,
     "thumbnail": "assets/images/robot3.svg",
     "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
