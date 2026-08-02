@@ -536,7 +536,7 @@
     try {
       await window.ProjectStore.deleteProject(project._path, project.id);
       projects.splice(index, 1);
-      const count = await window.ProjectStore.rebuildIndex(projects);
+      const count = await window.ProjectStore.rebuildIndex(projects, [project.id]);
       renderList();
       const status = document.getElementById("projectAdminStatus");
       status.dataset.state = "success";

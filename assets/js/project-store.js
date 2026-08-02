@@ -105,6 +105,23 @@
     await window.GitHubSync.deleteFile(path, `Delete project: ${projectId || path}`);
   }
 
+  /**
+   * Fetches and parses the currently-live projects.json from GitHub
+   * (the root index, not a per-project file). Returns [] if it
+   * doesn't exist yet or fails to parse — this is a safety net, not
+   * a hard requirement.
+   */
+  async function loadCurrentIndex() {
+    try {
+      const file = await window.GitHubSync.getFile(INDEX_PATH);
+      if (!file) return [];
+      const parsed = JSON.parse(file.content);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
   function mergeProjects(existingProjects, remoteProjects) {
     const merged = [];
     const byId = new Map();
@@ -135,10 +152,24 @@
    * so the live site (which reads that one file) reflects the full
    * set of per-project files rather than only the current local list.
    */
-  async function rebuildIndex(allProjects) {
+  async function rebuildIndex(allProjects, deletedIds) {
+    const excluded = new Set((deletedIds || []).map((id) => String(id).trim().toLowerCase()));
     const remoteResult = await loadAllFromGitHub();
-    const combined = mergeProjects(allProjects, remoteResult.projects || []);
-    const clean = combined.map(stripInternal);
+    const currentIndex = await loadCurrentIndex();
+
+    // Priority, lowest to highest: the index currently live on GitHub
+    // (catches anything not yet split into its own file, or not
+    // currently loaded into the admin's working list) < individually
+    // saved per-project files < the admin's current working list
+    // (your most recent edits). This means a rebuild can never lose a
+    // project just because it wasn't loaded locally at the time.
+    let combined = mergeProjects(currentIndex, remoteResult.projects || []);
+    combined = mergeProjects(combined, allProjects);
+
+    const clean = combined
+      .filter((p) => !excluded.has(String(p?.id || p?.title || "").trim().toLowerCase()))
+      .map(stripInternal);
+
     await window.GitHubSync.commitFile(
       INDEX_PATH,
       JSON.stringify(clean, null, 2),
