@@ -91,6 +91,41 @@
     return putRes.json();
   }
 
+  async function commitBinaryFile(path, file, message) {
+    const { apiUrl, headers, branch } = requestContext(path);
+
+    let sha;
+    const getRes = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, { headers });
+    if (getRes.ok) {
+      const existing = await getRes.json();
+      sha = existing.sha;
+    } else if (getRes.status !== 404) {
+      const err = await getRes.json().catch(() => ({}));
+      throw new Error(`Couldn't check the existing file (${getRes.status}): ${err.message || err.statusText}`);
+    }
+
+    const arrayBuffer = await file.arrayBuffer();
+    const content = b64EncodeBytes(arrayBuffer);
+
+    const putRes = await fetch(apiUrl, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify({
+        message: message || `Upload ${path}`,
+        content,
+        branch,
+        ...(sha ? { sha } : {})
+      })
+    });
+
+    if (!putRes.ok) {
+      const err = await putRes.json().catch(() => ({}));
+      throw new Error(`GitHub rejected the upload (${putRes.status}): ${err.message || putRes.statusText}`);
+    }
+
+    return putRes.json();
+  }
+
   /**
    * Deletes `path` from the repo. No-ops (returns null) if the file
    * doesn't exist rather than throwing, since "already gone" is a fine
