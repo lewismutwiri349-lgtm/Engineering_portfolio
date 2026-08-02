@@ -43,9 +43,11 @@
   function blankProject() {
     return {
       _key: uid(),
+      _path: null,
       id: "",
       title: "",
       category: "dfma",
+      subcategory: "",
       featured: false,
       thumbnail: "",
       summary: "",
@@ -264,6 +266,13 @@
 
   function renderItem(project, index) {
     const label = project.title || project.id || `Project ${index + 1}`;
+    const path = window.ProjectStore ? window.ProjectStore.pathFor(project) : "";
+    const pathNote = project._path
+      ? (project._path === path
+          ? `Saved at <code>${escapeHtml(project._path)}</code>`
+          : `Currently at <code>${escapeHtml(project._path)}</code> — will move to <code>${escapeHtml(path)}</code> on next save`)
+      : `Not yet saved to GitHub — will be created at <code>${escapeHtml(path)}</code>`;
+
     return `
       <div class="achievement-admin-item ${project.featured ? "achievement-admin-item--featured" : ""}" data-key="${project._key}">
         <div class="achievement-admin-item__header">
@@ -272,9 +281,10 @@
             <button type="button" class="btn-secondary" data-action="up" ${index === 0 ? "disabled" : ""}>↑</button>
             <button type="button" class="btn-secondary" data-action="down" ${index === projects.length - 1 ? "disabled" : ""}>↓</button>
             <button type="button" class="btn-secondary" data-action="duplicate">Duplicate</button>
-            <button type="button" class="btn-secondary" data-action="delete">Delete</button>
+            <button type="button" class="btn-secondary" data-action="delete">Remove from list</button>
           </div>
         </div>
+        <p class="project-admin-path">${pathNote}</p>
         <div class="achievement-form-grid">
           <label>ID / slug
             <input class="achievement-input" data-field="id" value="${escapeHtml(project.id)}" placeholder="pcb-enclosure">
@@ -284,6 +294,9 @@
           </label>
           <label>Category
             <select class="achievement-select" data-field="category">${categorySelect(project)}</select>
+          </label>
+          <label>Subcategory (becomes a subfolder)
+            <input class="achievement-input" data-field="subcategory" value="${escapeHtml(project.subcategory || "")}" placeholder="internal-flow">
           </label>
           <label class="achievement-checkbox">
             <input type="checkbox" data-field="featured" ${project.featured ? "checked" : ""}> Featured
@@ -322,6 +335,11 @@
             <span style="display:block;font-family:var(--font-mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--cyan);margin-bottom:8px;">Skills</span>
             <div style="display:flex;flex-wrap:wrap;gap:10px;">${skillCheckboxes(project)}</div>
           </div>
+        </div>
+        <div class="achievement-item-footer-actions">
+          <button type="button" class="btn-accent" data-action="save-remote">Save this project to GitHub</button>
+          <button type="button" class="btn-secondary" data-action="delete-remote">Delete this project's file from GitHub</button>
+          <span class="achievement-admin-status project-admin-item-status" data-item-status></span>
         </div>
       </div>
     `;
@@ -398,18 +416,101 @@
 
       const action = btn.dataset.action;
       if (action === "delete") {
-        if (!confirm("Delete this project? This can't be undone (unless you reload the JSON).")) return;
+        if (!confirm("Remove this project from the list? This only affects your working copy here — if it was already saved to GitHub, use \"Delete this project's file from GitHub\" first if you want it gone from the repo too.")) return;
         projects.splice(index, 1);
+        renderList();
+        return;
       } else if (action === "duplicate") {
-        const copy = Object.assign({}, projects[index], { _key: uid(), id: projects[index].id + "-copy" });
+        const copy = Object.assign({}, projects[index], { _key: uid(), _path: null, id: projects[index].id + "-copy" });
         projects.splice(index + 1, 0, copy);
+        renderList();
+        return;
       } else if (action === "up" && index > 0) {
         [projects[index - 1], projects[index]] = [projects[index], projects[index - 1]];
+        renderList();
+        return;
       } else if (action === "down" && index < projects.length - 1) {
         [projects[index + 1], projects[index]] = [projects[index], projects[index + 1]];
+        renderList();
+        return;
+      } else if (action === "save-remote") {
+        saveOneToGitHub(projects[index], item.querySelector("[data-item-status]"));
+        return;
+      } else if (action === "delete-remote") {
+        deleteOneFromGitHub(projects[index], index, item.querySelector("[data-item-status]"));
+        return;
       }
-      renderList();
     });
+  }
+
+  function requireGitHubModules(statusEl) {
+    if (!window.GitHubSync || !window.ProjectStore) {
+      const missing = !window.GitHubSync ? "assets/js/github-sync.js" : "assets/js/project-store.js";
+      const msg = `GitHub sync isn't available: ${missing} didn't load. Check it's present in your assets/js/ folder and that <script src="${missing}"> is in this page, before assets/js/projects-admin.js.`;
+      if (statusEl) { statusEl.dataset.state = "error"; statusEl.textContent = msg; }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Saves exactly one project as its own file (create, update, or
+   * move if its category/subcategory/id changed), then regenerates
+   * projects.json so the live site picks up the change too.
+   */
+  async function saveOneToGitHub(project, statusEl) {
+    if (!requireGitHubModules(statusEl)) return;
+    if (!project.id.trim()) {
+      statusEl.dataset.state = "error";
+      statusEl.textContent = "This project needs an ID/slug before it can be saved.";
+      return;
+    }
+    statusEl.dataset.state = "";
+    statusEl.textContent = "Saving to GitHub…";
+    try {
+      const newPath = await window.ProjectStore.saveProject(project, project._path);
+      project._path = newPath;
+      statusEl.dataset.state = "success";
+      statusEl.textContent = `Saved to ${newPath}.`;
+
+      statusEl.textContent += " Rebuilding projects.json…";
+      const count = await window.ProjectStore.rebuildIndex(projects);
+      statusEl.textContent = `Saved to ${newPath}. projects.json rebuilt (${count} projects). Your site will redeploy shortly.`;
+      renderList();
+    } catch (err) {
+      statusEl.dataset.state = "error";
+      statusEl.textContent = `Save failed — your edits are still here, nothing was lost. ${err.message}`;
+    }
+  }
+
+  /**
+   * Deletes a project's file from GitHub and removes it from the
+   * working list, then rebuilds projects.json so the live site
+   * stops listing it too.
+   */
+  async function deleteOneFromGitHub(project, index, statusEl) {
+    if (!requireGitHubModules(statusEl)) return;
+    if (!project._path) {
+      statusEl.dataset.state = "error";
+      statusEl.textContent = "This project hasn't been saved to GitHub yet, so there's no file to delete there.";
+      return;
+    }
+    if (!confirm(`Delete ${project._path} from GitHub? This can't be undone from here (though it stays in your git history).`)) return;
+
+    statusEl.dataset.state = "";
+    statusEl.textContent = "Deleting from GitHub…";
+    try {
+      await window.ProjectStore.deleteProject(project._path, project.id);
+      projects.splice(index, 1);
+      const count = await window.ProjectStore.rebuildIndex(projects);
+      renderList();
+      const status = document.getElementById("projectAdminStatus");
+      status.dataset.state = "success";
+      status.textContent = `Deleted from GitHub. projects.json rebuilt (${count} projects).`;
+    } catch (err) {
+      statusEl.dataset.state = "error";
+      statusEl.textContent = `Delete failed — the project is still in your working list. ${err.message}`;
+    }
   }
 
   /* ---------------------------------------------------------
@@ -457,6 +558,8 @@
 
     document.getElementById("projectPushButton").addEventListener("click", async () => {
       const status = document.getElementById("projectAdminStatus");
+      if (!requireGitHubModules(status)) return;
+
       const missingIds = projects.filter((p) => !p.id.trim());
       if (missingIds.length) {
         status.dataset.state = "error";
@@ -464,19 +567,49 @@
         return;
       }
 
-      const payload = exportProjects();
-      localStorage.setItem(DRAFT_KEY, JSON.stringify(payload));
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(exportProjects()));
 
-      status.dataset.state = "";
-      status.textContent = "Pushing to GitHub…";
+      let saved = 0, failed = [];
+      for (const project of projects) {
+        status.dataset.state = "";
+        status.textContent = `Pushing ${saved + failed.length + 1} of ${projects.length}: ${project.id}…`;
+        try {
+          project._path = await window.ProjectStore.saveProject(project, project._path);
+          saved++;
+        } catch (err) {
+          failed.push(`${project.id}: ${err.message}`);
+        }
+      }
+
+      status.textContent = "Rebuilding projects.json…";
       try {
-        await window.GitHubSync.commitFile(
-          "projects.json",
-          JSON.stringify(payload, null, 2),
-          `Update projects.json (${payload.length} project${payload.length === 1 ? "" : "s"})`
-        );
-        status.dataset.state = "success";
-        status.textContent = `Pushed projects.json (${payload.length} project${payload.length === 1 ? "" : "s"}) to GitHub. Your site will redeploy shortly.`;
+        const count = await window.ProjectStore.rebuildIndex(projects);
+        status.dataset.state = failed.length ? "error" : "success";
+        status.textContent = `Pushed ${saved} project file${saved === 1 ? "" : "s"} individually and rebuilt projects.json (${count} projects).` +
+          (failed.length ? ` ${failed.length} failed: ${failed.join("; ")}` : " Your site will redeploy shortly.");
+        renderList();
+      } catch (err) {
+        status.dataset.state = "error";
+        status.textContent = `Saved ${saved} project file${saved === 1 ? "" : "s"}, but rebuilding projects.json failed: ${err.message}. Your per-project files are safe — retry the push to rebuild the index.`;
+      }
+    });
+
+    document.getElementById("projectLoadGitHubButton")?.addEventListener("click", async () => {
+      const status = document.getElementById("projectsLoadStatus");
+      if (!requireGitHubModules(status)) return;
+
+      status.textContent = "Reading data/projects/ from GitHub…";
+      try {
+        const { projects: loaded, errors } = await window.ProjectStore.loadAllFromGitHub();
+        if (!loaded.length && !errors.length) {
+          status.textContent = "No project files found yet at data/projects/ — nothing to load. Use \"Save this project to GitHub\" on a project to create the first one.";
+          return;
+        }
+        projects = loaded.map(({ project, path }) => Object.assign(blankProject(), project, { _key: uid(), _path: path }));
+        renderList();
+        status.dataset.state = errors.length ? "error" : "success";
+        status.textContent = `Loaded ${loaded.length} project${loaded.length === 1 ? "" : "s"} from GitHub.` +
+          (errors.length ? ` ${errors.length} file(s) had problems: ${errors.join("; ")}` : "");
       } catch (err) {
         status.dataset.state = "error";
         status.textContent = err.message;
@@ -486,7 +619,11 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     if (!document.getElementById("projectAdminList")) return;
+
+    if (!window.GitHubSync) console.error("[projects-admin] window.GitHubSync is undefined — assets/js/github-sync.js did not load. Check the <script> tag and that the file exists.");
+    if (!window.ProjectStore) console.error("[projects-admin] window.ProjectStore is undefined — assets/js/project-store.js did not load. Check the <script> tag and that the file exists.");
     if (window.GitHubSync) window.GitHubSync.initSyncSettings(document.getElementById("ghSyncSettings"));
+
     initLoadPanel();
     initImport();
     initListEvents();

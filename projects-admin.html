@@ -35,14 +35,15 @@
               <h2>Projects</h2>
             </div>
             <p class="achievement-admin-intro">
-              Add, edit, and reorder project entries, then download a fresh <code>projects.json</code>.
-              This page can't write to your server directly — it edits a copy in your browser and
-              hands you a file to drop back into your project folder (or commit to your repo).
+              Every project is saved as its own JSON file under <code>data/projects/&lt;category&gt;/&lt;subcategory&gt;/&lt;slug&gt;.json</code>
+              — editing one project only ever touches its own file. <code>projects.json</code> at the root is
+              a generated index (rebuilt automatically on every save) that your live site actually reads.
             </p>
 
             <div id="projectsLoadPanel" class="project-admin-load">
               <p id="projectsLoadStatus" class="achievement-admin-status">Loading projects.json…</p>
               <div class="project-admin-load__actions">
+                <button id="projectLoadGitHubButton" type="button" class="btn-secondary">Load projects from GitHub</button>
                 <label class="btn-secondary" for="projectsFileInput">
                   Load a projects.json file
                   <input id="projectsFileInput" type="file" accept="application/json" class="visually-hidden">
@@ -61,7 +62,7 @@
               <label class="btn-secondary" for="projectImportInput">+ Import Project JSON</label>
               <input type="file" id="projectImportInput" accept="application/json,.json" multiple class="visually-hidden">
               <button id="projectSaveButton" type="button" class="btn-secondary">Export All (download projects.json)</button>
-              <button id="projectPushButton" type="button" class="btn-accent">Save &amp; Push to GitHub</button>
+              <button id="projectPushButton" type="button" class="btn-accent">Push All Projects to GitHub (one file each)</button>
               <span id="projectCount" class="achievement-admin-status" style="align-self:center;"></span>
             </div>
             <p id="projectAdminStatus" class="achievement-admin-status"></p>
@@ -77,6 +78,7 @@
 
     <script src="assets/js/script.js"></script>
     <script src="assets/js/github-sync.js"></script>
+    <script src="assets/js/project-store.js"></script>
     <script src="assets/js/projects-admin.js"></script>
   </body>
 </html>
