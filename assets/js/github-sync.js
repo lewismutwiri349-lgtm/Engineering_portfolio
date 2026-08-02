@@ -186,6 +186,16 @@
     return decodeURIComponent(escape(atob(b64.replace(/\n/g, ""))));
   }
 
+  function b64EncodeBytes(bytes) {
+    const array = new Uint8Array(bytes);
+    let binary = "";
+    const chunk = 0x8000;
+    for (let i = 0; i < array.length; i += chunk) {
+      binary += String.fromCharCode(...array.subarray(i, i + chunk));
+    }
+    return btoa(binary);
+  }
+
   /**
    * Renders a small settings panel into `containerEl` for entering
    * repo owner/name/branch/token, and wires up its Save/Clear buttons.
@@ -247,7 +257,7 @@
 
   window.GitHubSync = {
     getConfig, saveConfig, clearConfig,
-    commitFile, getFile, deleteFile, listFilesRecursive,
+    commitFile, commitBinaryFile, getFile, deleteFile, listFilesRecursive,
     initSyncSettings
   };
 

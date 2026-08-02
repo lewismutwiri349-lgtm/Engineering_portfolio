@@ -325,6 +325,14 @@
           <label class="achievement-form-grid__full">Gallery image paths (one per line)
             <textarea class="achievement-textarea" data-field="gallery" rows="3">${escapeHtml((project.gallery || []).join("\n"))}</textarea>
           </label>
+          <label class="achievement-form-grid__full">
+            Upload image assets to GitHub
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:6px;">
+              <label class="btn-secondary" for="asset-upload-${escapeHtml(project._key)}">Choose image files</label>
+              <input id="asset-upload-${escapeHtml(project._key)}" type="file" accept="image/*" multiple class="visually-hidden" data-field="asset-upload">
+              <span class="achievement-admin-status" data-asset-hint></span>
+            </div>
+          </label>
           <label class="achievement-form-grid__full">Links — one per line, format: Label | https://url
             <textarea class="achievement-textarea" data-field="links" rows="2">${escapeHtml(arrayToPairs(project.links))}</textarea>
           </label>
@@ -401,6 +409,13 @@
         const box = item.querySelectorAll('input[data-field="skills"]:checked');
         project.skills = Array.from(box).map((b) => b.value);
       }
+      if (e.target.dataset.field === "asset-upload") {
+        const hint = item.querySelector('[data-asset-hint]');
+        const files = Array.from(e.target.files || []);
+        if (hint) {
+          hint.textContent = files.length ? `${files.length} file${files.length === 1 ? "" : "s"} selected` : "";
+        }
+      }
       if (e.target.dataset.field === "category" || e.target.dataset.field === "title") {
         renderList();
       }
@@ -434,7 +449,7 @@
         renderList();
         return;
       } else if (action === "save-remote") {
-        saveOneToGitHub(projects[index], item.querySelector("[data-item-status]"));
+        saveOneToGitHub(projects[index], item.querySelector("[data-item-status]"), item);
         return;
       } else if (action === "delete-remote") {
         deleteOneFromGitHub(projects[index], index, item.querySelector("[data-item-status]"));
@@ -458,7 +473,7 @@
    * move if its category/subcategory/id changed), then regenerates
    * projects.json so the live site picks up the change too.
    */
-  async function saveOneToGitHub(project, statusEl) {
+  async function saveOneToGitHub(project, statusEl, item) {
     if (!requireGitHubModules(statusEl)) return;
     if (!project.id.trim()) {
       statusEl.dataset.state = "error";
@@ -468,6 +483,25 @@
     statusEl.dataset.state = "";
     statusEl.textContent = "Saving to GitHub…";
     try {
+      const assetInput = item?.querySelector('input[data-field="asset-upload"]');
+      const assetFiles = Array.from(assetInput?.files || []);
+      if (assetFiles.length) {
+        statusEl.textContent = `Saving to GitHub and uploading ${assetFiles.length} asset${assetFiles.length === 1 ? "" : "s"}…`;
+        for (const file of assetFiles) {
+          const assetPath = window.ProjectStore.assetPathFor(project, file.name);
+          await window.GitHubSync.commitBinaryFile(assetPath, file, `Upload project asset: ${project.id}/${file.name}`);
+          if (!project.thumbnail) {
+            project.thumbnail = assetPath;
+          }
+          if (!Array.isArray(project.gallery)) {
+            project.gallery = [];
+          }
+          if (!project.gallery.includes(assetPath)) {
+            project.gallery.push(assetPath);
+          }
+        }
+      }
+
       const newPath = await window.ProjectStore.saveProject(project, project._path);
       project._path = newPath;
       statusEl.dataset.state = "success";
@@ -574,6 +608,24 @@
         status.dataset.state = "";
         status.textContent = `Pushing ${saved + failed.length + 1} of ${projects.length}: ${project.id}…`;
         try {
+          const item = document.querySelector(`.achievement-admin-item[data-key="${project._key}"]`);
+          const assetInput = item?.querySelector('input[data-field="asset-upload"]');
+          const assetFiles = Array.from(assetInput?.files || []);
+          if (assetFiles.length) {
+            for (const file of assetFiles) {
+              const assetPath = window.ProjectStore.assetPathFor(project, file.name);
+              await window.GitHubSync.commitBinaryFile(assetPath, file, `Upload project asset: ${project.id}/${file.name}`);
+              if (!project.thumbnail) {
+                project.thumbnail = assetPath;
+              }
+              if (!Array.isArray(project.gallery)) {
+                project.gallery = [];
+              }
+              if (!project.gallery.includes(assetPath)) {
+                project.gallery.push(assetPath);
+              }
+            }
+          }
           project._path = await window.ProjectStore.saveProject(project, project._path);
           saved++;
         } catch (err) {

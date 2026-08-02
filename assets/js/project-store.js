@@ -47,6 +47,30 @@
     return `${BASE_DIR}/${category}/${subcategory}/${slug}.json`;
   }
 
+  function assetRootFor(project) {
+    const category = slugify(project.category || "general");
+    const slug = slugify(project.id || project.title || "project");
+    const software = (project.software || []).map((item) => String(item || "").toLowerCase());
+    let family = "general";
+
+    if (software.some((item) => item.includes("ansys") || item.includes("fluent"))) {
+      family = "Ansys";
+    } else if (software.some((item) => item.includes("solidworks"))) {
+      family = "SolidWorks";
+    } else if (["cfd", "fea", "eacg"].includes(category)) {
+      family = "Ansys";
+    } else if (["cad", "dfma"].includes(category)) {
+      family = "SolidWorks";
+    }
+
+    return `assets/images/projects/general/${family}/${slug}`;
+  }
+
+  function assetPathFor(project, fileName) {
+    const safeName = String(fileName || "asset").replace(/[\\/]+/g, "_");
+    return `${assetRootFor(project)}/${safeName}`;
+  }
+
   function stripInternal(project) {
     const clean = Object.assign({}, project);
     delete clean._key;
@@ -125,6 +149,8 @@
     BASE_DIR,
     INDEX_PATH,
     pathFor,
+    assetRootFor,
+    assetPathFor,
     saveProject,
     deleteProject,
     rebuildIndex,
