@@ -42,7 +42,7 @@
   {
     "id": "helical-gear",
     "title": "Helical Gear Design",
-    "category": "dfma",
+    "category": "cad",
     "featured": true,
     "thumbnail": "assets/images/helicalgear20.jpg",
     "summary": "Design and analysis of a helical gear system for efficient power transmission.",
@@ -86,7 +86,7 @@
   {
   "id": "valve-body",
   "title": "valve body",
-  "category": "dfma",
+  "category": "cad",
   "featured": true,
   "thumbnail": "assets/images/valve-body-cover.jpg",
   "summary": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
@@ -149,7 +149,7 @@
   {
     "id": "solidworks-parametric-automation",
     "title": "SolidWorks Parametric Automation (Python + COM API)",
-    "category": "fea",
+    "category": "automation",
     "featured": true,
     "thumbnail": "assets/images/cad4.svg",
     "summary": "Python scripts driving SolidWorks' COM API to batch-update parametric dimensions across families of parts.",
@@ -184,7 +184,7 @@
   {
     "id": "neo6m-rocket-recovery",
     "title": "NEO-6M GPS Rocket Recovery System",
-    "category": "robotics",
+    "category": "control systems",
     "featured": true,
     "thumbnail": "assets/images/robot1.svg",
     "summary": "Arduino-based GPS recovery beacon for hobby rocketry, transmitting live position after apogee for fast payload recovery.",
@@ -221,7 +221,7 @@
   {
     "id": "structural-analysis-dashboard",
     "title": "Structural Analysis Dashboard",
-    "category": "robotics",
+    "category": "automation",
     "featured": true,
     "thumbnail": "assets/images/robot2.svg",
     "summary": "A React web app for beam deflection, SFD/BMD, torsion, stress analysis, section properties and a material library.",
@@ -256,7 +256,7 @@
   {
     "id": "pedal-locking-lever",
     "title": "Pedal-Actuated Locking Lever (Practice Mechanism)",
-    "category": "dfma",
+    "category": "cad",
     "featured": false,
     "thumbnail": "assets/images/cad5.svg",
     "summary": "A deliberate practice project in original linkage design, built to close a portfolio gap around mechanism synthesis.",
@@ -290,7 +290,7 @@
   {
   "id": "cpu-cooling-fan-design",
   "title": "CPU Cooling Fan Design",
-  "category": "dfma",
+  "category": "cad",
   "featured": true,
   "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
   "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
