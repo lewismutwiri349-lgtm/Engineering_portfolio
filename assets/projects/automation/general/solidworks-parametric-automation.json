@@ -1,0 +1,35 @@
+{
+  "id": "solidworks-parametric-automation",
+  "title": "SolidWorks Parametric Automation (Python + COM API)",
+  "category": "automation",
+  "featured": true,
+  "thumbnail": "assets/images/cad4.svg",
+  "summary": "Python scripts driving SolidWorks' COM API to batch-update parametric dimensions across families of parts.",
+  "tags": [
+    "Python",
+    "pywin32",
+    "COM API",
+    "Automation"
+  ],
+  "software": [
+    "SolidWorks",
+    "Python",
+    "pywin32"
+  ],
+  "process": [
+    "API Research",
+    "Environment Setup",
+    "Scripting",
+    "Validation"
+  ],
+  "problem": "Manually updating parametric dimensions across variant parts was slow and error-prone. The goal was to drive SolidWorks directly from Python to make configuration changes repeatable.",
+  "solution": "Used pywin32 to bind to the SolidWorks COM API, working through a series of environment and binding issues to reliably open documents, edit dimensions and rebuild models from a script — turning a manual, repetitive task into a one-command operation.",
+  "gallery": [
+    "assets/images/cad4.svg"
+  ],
+  "links": [],
+  "downloads": [],
+  "skills": [
+    "research-development"
+  ]
+}

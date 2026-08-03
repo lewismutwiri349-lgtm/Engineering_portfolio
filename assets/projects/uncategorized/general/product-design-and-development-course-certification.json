@@ -1,0 +1,22 @@
+{
+  "id": "product-design-and-development-course-certification",
+  "title": "Product Design and Development Course Certification",
+  "issuer": "SKILL LYNC",
+  "date": "2026-06",
+  "thumbnail": "assets/images/achievements/product-design-and-development-course-certification.JPG",
+  "description": "Completed a Product Design and Development course focused on the end-to-end product development process, including concept generation, design methodology, material selection, prototyping, design for manufacturing (DFM), product testing, and product lifecycle management. Developed the ability to transform engineering concepts into practical, manufacturable solutions.",
+  "skills": [
+    "mechanical-design",
+    "machine-design",
+    "design-for-manufacturing",
+    "sheet-metal-design",
+    "GD&T"
+  ],
+  "links": [],
+  "downloads": [
+    {
+      "label": "Certificate PDF",
+      "url": "assets/certificates/product-design-and-development-course-certification.pdf"
+    }
+  ]
+}

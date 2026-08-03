@@ -1,4 +1,4 @@
- [
+[
   {
     "id": "pcb-enclosure",
     "title": "PCB Enclosure Design",
@@ -12,7 +12,7 @@
       "Engineering Drawings"
     ],
     "software": [
-      "SolidWorks"  
+      "SolidWorks"
     ],
     "process": [
       "Requirements Review",
@@ -37,7 +37,8 @@
       "mechanical-design",
       "machine-design",
       "design-for-manufacturing"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "helical-gear",
@@ -81,40 +82,42 @@
     "skills": [
       "mechanical-design",
       "machine-design"
-    ]
+    ],
+    "subcategory": ""
   },
   {
-  "id": "valve-body",
-  "title": "valve body",
-  "category": "cad",
-  "featured": true,
-  "thumbnail": "assets/images/valve-body-cover.jpg",
-  "summary": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
-  "tags": [
-    "DFMA",
-    "Manufacturing"
-  ],
-  "software": [
-    "SolidWorks"
-  ],
-  "process": [
-    "Concept Sketching",
-    "Solid Modelling"
-  ],
-  "problem": "While modeling the valve body, I encountered a sketch plane issue that prevented the cut-extrude and hole features from intersecting the model correctly. Troubleshooting and correcting the sketch plane required additional time, preventing completion of the model within the allocated session. The project remains a work in progress.",
-  "solution": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
-  "gallery": [
-    "assets/images/gallery/valve-body/1.jpg",
-    "assets/images/gallery/valve-body/2.jpg",
-    "assets/images/gallery/valve-body/3.jpg",
-    "assets/images/gallery/valve-body/4.jpg"
-  ],
-  "links": [],
-  "downloads": [],
-  "skills": [
-    "mechanical-design"
-  ]
-},
+    "id": "valve-body",
+    "title": "valve body",
+    "category": "cad",
+    "featured": true,
+    "thumbnail": "assets/images/valve-body-cover.jpg",
+    "summary": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
+    "tags": [
+      "DFMA",
+      "Manufacturing"
+    ],
+    "software": [
+      "SolidWorks"
+    ],
+    "process": [
+      "Concept Sketching",
+      "Solid Modelling"
+    ],
+    "problem": "While modeling the valve body, I encountered a sketch plane issue that prevented the cut-extrude and hole features from intersecting the model correctly. Troubleshooting and correcting the sketch plane required additional time, preventing completion of the model within the allocated session. The project remains a work in progress.",
+    "solution": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
+    "gallery": [
+      "assets/images/gallery/valve-body/1.jpg",
+      "assets/images/gallery/valve-body/2.jpg",
+      "assets/images/gallery/valve-body/3.jpg",
+      "assets/images/gallery/valve-body/4.jpg"
+    ],
+    "links": [],
+    "downloads": [],
+    "skills": [
+      "mechanical-design"
+    ],
+    "subcategory": ""
+  },
   {
     "id": "sheet-metal-electronic-enclosure",
     "title": "Sheet Metal Electronic Enclosure",
@@ -144,7 +147,8 @@
     "skills": [
       "mechanical-design",
       "sheet metal-design"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "solidworks-parametric-automation",
@@ -171,7 +175,7 @@
       "Validation"
     ],
     "problem": "Manually updating parametric dimensions across variant parts was slow and error-prone. The goal was to drive SolidWorks directly from Python to make configuration changes repeatable.",
-    "solution": "Used pywin32 to bind to the SolidWorks COM API, working through a series of environment and binding issues to reliably open documents, edit dimensions and rebuild models from a script \u2014 turning a manual, repetitive task into a one-command operation.",
+    "solution": "Used pywin32 to bind to the SolidWorks COM API, working through a series of environment and binding issues to reliably open documents, edit dimensions and rebuild models from a script — turning a manual, repetitive task into a one-command operation.",
     "gallery": [
       "assets/images/cad4.svg"
     ],
@@ -179,7 +183,8 @@
     "downloads": [],
     "skills": [
       "research-development"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "neo6m-rocket-recovery",
@@ -216,7 +221,8 @@
       "embedded-systems",
       "robotics",
       "research-development"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "structural-analysis-dashboard",
@@ -242,7 +248,7 @@
       "Testing"
     ],
     "problem": "Quick structural checks during design iteration usually meant switching to a spreadsheet or hand calculation, breaking flow.",
-    "solution": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library \u2014 combining calculation rigor with fast, visual iteration.",
+    "solution": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library — combining calculation rigor with fast, visual iteration.",
     "gallery": [
       "assets/images/robot2.svg"
     ],
@@ -251,7 +257,8 @@
     "skills": [
       "numerical-analysis",
       "research-development"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "pedal-locking-lever",
@@ -274,7 +281,7 @@
       "Solid Modelling",
       "Motion Simulation"
     ],
-    "problem": "Client-style mechanism design briefs require confident, from-scratch linkage synthesis \u2014 a skill best sharpened outside of billable client time.",
+    "problem": "Client-style mechanism design briefs require confident, from-scratch linkage synthesis — a skill best sharpened outside of billable client time.",
     "solution": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly.",
     "gallery": [
       "assets/images/cad5.svg"
@@ -285,62 +292,74 @@
       "mechanical-design",
       "machine-design",
       "control-engineering"
-    ]
+    ],
+    "subcategory": ""
   },
   {
-  "id": "cpu-cooling-fan-design",
-  "title": "CPU Cooling Fan Design",
-  "category": "cad",
-  "featured": true,
-  "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
-  "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
-  "tags": [
-    "DFMA"
-  ],
-  "software": [
-    "SolidWorks"
-  ],
-  "process": [
-    "Concept Sketching",
-    "Solid Modelling",
-    "Assembly Mating"
-  ],
-  "problem": "Design a realistic CPU cooling fan assembly that can serve as a foundation for engineering analysis, optimization, and future manufacturing studies.",
-  "solution": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
-  "gallery": [],
-  "links": [
-    {
-      "label": "LinkedIn",
-      "url": "https://www.linkedin.com/posts/lewis-mutwiri-64a305386_mechanicalengineering-solidworks-ansys-ugcPost-7486416020111536129-phJB/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF8V6VoBKqZ7tADfVNJfMqMX0LMbJBcGJKc"
-    }
-  ],
-  "downloads": [],
-  "skills": [
-    "mechanical-design"
-  ]
-},
-{
-  "id": "product-design-and-development-course-certification",
-  "title": "Product Design and Development Course Certification",
-  "issuer": "SKILL LYNC",
-  "date": "2026-06",
-  "thumbnail": "assets/images/achievements/product-design-and-development-course-certification.JPG",
-  "description": "Completed a Product Design and Development course focused on the end-to-end product development process, including concept generation, design methodology, material selection, prototyping, design for manufacturing (DFM), product testing, and product lifecycle management. Developed the ability to transform engineering concepts into practical, manufacturable solutions.",
-  "skills": [
-    "mechanical-design",
-    "machine-design",
-    "design-for-manufacturing",
-    "sheet-metal-design",
-    "GD&T"
-  ],
-  "links": [],
-  "downloads": [
-    {
-      "label": "Certificate PDF",
-      "url": "assets/certificates/product-design-and-development-course-certification.pdf"
-    }
-  ]
-},
+    "id": "cpu-cooling-fan-design",
+    "title": "CPU Cooling Fan Design",
+    "category": "cad",
+    "featured": true,
+    "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
+    "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
+    "tags": [
+      "DFMA"
+    ],
+    "software": [
+      "SolidWorks"
+    ],
+    "process": [
+      "Concept Sketching",
+      "Solid Modelling",
+      "Assembly Mating"
+    ],
+    "problem": "Design a realistic CPU cooling fan assembly that can serve as a foundation for engineering analysis, optimization, and future manufacturing studies.",
+    "solution": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
+    "gallery": [],
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/posts/lewis-mutwiri-64a305386_mechanicalengineering-solidworks-ansys-ugcPost-7486416020111536129-phJB/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF8V6VoBKqZ7tADfVNJfMqMX0LMbJBcGJKc"
+      }
+    ],
+    "downloads": [],
+    "skills": [
+      "mechanical-design"
+    ],
+    "subcategory": ""
+  },
+  {
+    "id": "product-design-and-development-course-certification",
+    "title": "Product Design and Development Course Certification",
+    "issuer": "SKILL LYNC",
+    "date": "2026-06",
+    "thumbnail": "assets/images/achievements/product-design-and-development-course-certification.JPG",
+    "description": "Completed a Product Design and Development course focused on the end-to-end product development process, including concept generation, design methodology, material selection, prototyping, design for manufacturing (DFM), product testing, and product lifecycle management. Developed the ability to transform engineering concepts into practical, manufacturable solutions.",
+    "skills": [
+      "mechanical-design",
+      "machine-design",
+      "design-for-manufacturing",
+      "sheet-metal-design",
+      "GD&T"
+    ],
+    "links": [],
+    "downloads": [
+      {
+        "label": "Certificate PDF",
+        "url": "assets/certificates/product-design-and-development-course-certification.pdf"
+      }
+    ],
+    "category": "dfma",
+    "subcategory": "",
+    "featured": false,
+    "summary": "",
+    "tags": [],
+    "software": [],
+    "process": [],
+    "problem": "",
+    "solution": "",
+    "gallery": []
+  },
   {
     "id": "esp32-iot-automation",
     "title": "ESP32 IoT Automation Node",
@@ -375,6 +394,58 @@
     "skills": [
       "embedded-systems",
       "robotics"
-    ]
+    ],
+    "subcategory": ""
+  },
+  {
+    "id": "ansys-fluent-fluid-flow",
+    "title": "ANSYS Fluent – Fluid Flow & Streamline Simulation",
+    "category": "cfd",
+    "featured": false,
+    "thumbnail": "assets/projects/cfd/general/fluent-fluid-flow/fluid-flow.jpg",
+    "summary": "A CFD simulation demonstrating internal fluid flow using ANSYS Fluent. The project focuses on analysing velocity contours, streamlines, and pressure distribution to understand flow behaviour and verify proper simulation setup.\n",
+    "tags": [
+      "ANSYS Fluent",
+      "CFD",
+      "Fluid Flow",
+      "Streamlines",
+      "Velocity Contours",
+      "Pressure Distribution",
+      "Finite Volume Method"
+    ],
+    "software": [
+      "SolidWorks",
+      "ANSYS Fluent",
+      "ANSYS SpaceClaim"
+    ],
+    "process": [
+      "Geometry Preparation",
+      "Mesh Generation",
+      "Boundary Condition Setup",
+      "Solver Configuration",
+      "Simulation",
+      "Post Processing",
+      "Result Analysis"
+    ],
+    "problem": "Predict the behavior of fluid flowing through a computational domain and visualize important flow characteristics such as velocity, pressure, and streamlines.\n",
+    "solution": "Created the geometry, generated a computational mesh, applied inlet and outlet boundary conditions, solved the flow field using ANSYS Fluent, and analyzed velocity contours and streamlines to evaluate flow performance.\n",
+    "gallery": [
+      "assets/projects/cfd/internal-flow/fluent-fluid-flow/streamlines.JPG",
+      "assets/projects/cfd/internal-flow/fluent-fluid-flow/velocity-contours.JPG",
+      "assets/projects/cfd/internal-flow/fluent-fluid-flow/fluid-flow.JPG"
+    ],
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/posts/lewis-mutwiri-64a305386_mechanicalengineering-cfd-ansysfluent-ugcPost-7489604490170404864-XtQe/"
+      }
+    ],
+    "downloads": [],
+    "skills": [
+      "cfd",
+      "numerical-analysis",
+      "thermodynamics"
+    ],
+    "subcategory": "internal-flow"
   }
 ]

@@ -1,0 +1,44 @@
+{
+  "id": "helical-gear",
+  "title": "Helical Gear Design",
+  "category": "cad",
+  "featured": true,
+  "thumbnail": "assets/images/helicalgear20.jpg",
+  "summary": "Design and analysis of a helical gear system for efficient power transmission.",
+  "tags": [
+    "Mechanism Design",
+    "Linkage Synthesis",
+    "SolidWorks",
+    "Motion Study"
+  ],
+  "software": [
+    "SolidWorks",
+    "SolidWorks Motion"
+  ],
+  "process": [
+    "Concept Sketching",
+    "Solid Modelling",
+    "Drawing Package"
+  ],
+  "problem": "Design a helical gear system for efficient power transmission, considering factors like load capacity, efficiency, and manufacturability.",
+  "solution": "Performed detailed design  using SolidWorks, optimizing the gear geometry for the required torque and speed ratios while ensuring proper meshing and load distribution.",
+  "gallery": [
+    "assets/images/gallery/helical-gear/1.jpg"
+  ],
+  "links": [
+    {
+      "url": "https://youtu.be/0Xa81lhGexY",
+      "label": "YouTube"
+    }
+  ],
+  "downloads": [
+    {
+      "url": "projects/cad/helical-gear/Helicalgear20.SLDPRT",
+      "label": "SOLIDWORKS File"
+    }
+  ],
+  "skills": [
+    "mechanical-design",
+    "machine-design"
+  ]
+}
