@@ -37,7 +37,8 @@
       "mechanical-design",
       "machine-design",
       "design-for-manufacturing"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "helical-gear",
@@ -81,7 +82,8 @@
     "skills": [
       "mechanical-design",
       "machine-design"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "valve-body",
@@ -113,7 +115,8 @@
     "downloads": [],
     "skills": [
       "mechanical-design"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "sheet-metal-electronic-enclosure",
@@ -144,7 +147,8 @@
     "skills": [
       "mechanical-design",
       "sheet metal-design"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "solidworks-parametric-automation",
@@ -179,7 +183,8 @@
     "downloads": [],
     "skills": [
       "research-development"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "neo6m-rocket-recovery",
@@ -216,7 +221,8 @@
       "embedded-systems",
       "robotics",
       "research-development"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "structural-analysis-dashboard",
@@ -251,7 +257,8 @@
     "skills": [
       "numerical-analysis",
       "research-development"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "pedal-locking-lever",
@@ -285,7 +292,8 @@
       "mechanical-design",
       "machine-design",
       "control-engineering"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "cpu-cooling-fan-design",
@@ -317,7 +325,8 @@
     "downloads": [],
     "skills": [
       "mechanical-design"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "product-design-and-development-course-certification",
@@ -339,7 +348,17 @@
         "label": "Certificate PDF",
         "url": "assets/certificates/product-design-and-development-course-certification.pdf"
       }
-    ]
+    ],
+    "category": "dfma",
+    "subcategory": "",
+    "featured": false,
+    "summary": "",
+    "tags": [],
+    "software": [],
+    "process": [],
+    "problem": "",
+    "solution": "",
+    "gallery": []
   },
   {
     "id": "esp32-iot-automation",
@@ -375,7 +394,8 @@
     "skills": [
       "embedded-systems",
       "robotics"
-    ]
+    ],
+    "subcategory": ""
   },
   {
     "id": "ansys-fluent-fluid-flow",
@@ -410,9 +430,9 @@
     "problem": "Predict the behavior of fluid flowing through a computational domain and visualize important flow characteristics such as velocity, pressure, and streamlines.\n",
     "solution": "Created the geometry, generated a computational mesh, applied inlet and outlet boundary conditions, solved the flow field using ANSYS Fluent, and analyzed velocity contours and streamlines to evaluate flow performance.\n",
     "gallery": [
-      "assets/projects/cfd/general/fluent-fluid-flow/streamlines.JPG",
-      "assets/projects/cfd/general/fluent-fluid-flow/velocity-contours.JPG",
-      "assets/projects/cfd/general/fluent-fluid-flow/fluid-flow.JPG"
+      "assets/projects/cfd/internal-flow/fluent-fluid-flow/streamlines.JPG",
+      "assets/projects/cfd/internal-flow/fluent-fluid-flow/velocity-contours.JPG",
+      "assets/projects/cfd/internal-flow/fluent-fluid-flow/fluid-flow.JPG"
     ],
     "links": [
       {
