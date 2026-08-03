@@ -2,7 +2,7 @@
   {
     "id": "pcb-enclosure",
     "title": "PCB Enclosure Design",
-    "category": "dfma",
+    "category": "cad",
     "featured": true,
     "thumbnail": "assets/images/pcb-enclosure-cover.jpeg",
     "summary": "Full manufacturing drawing package for a PCB enclosure, built from revolve and extrude features to GD&T-ready detail.",
