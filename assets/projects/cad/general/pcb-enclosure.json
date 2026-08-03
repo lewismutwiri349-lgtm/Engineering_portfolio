@@ -1,0 +1,40 @@
+{
+  "id": "pcb-enclosure",
+  "title": "PCB Enclosure Design",
+  "category": "cad",
+  "featured": true,
+  "thumbnail": "assets/images/pcb-enclosure-cover.jpeg",
+  "summary": "Full manufacturing drawing package for a PCB enclosure, built from revolve and extrude features to GD&T-ready detail.",
+  "tags": [
+    "SolidWorks",
+    "GD&T",
+    "Engineering Drawings"
+  ],
+  "software": [
+    "SolidWorks"
+  ],
+  "process": [
+    "Requirements Review",
+    "Solid Modelling",
+    "Detailing",
+    "Tolerancing",
+    "Client Review"
+  ],
+  "problem": "I struggled with optimising weight to ensure an efficient product was designed.",
+  "solution": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components.",
+  "gallery": [
+    "assets/images/gallery/pcb-enclosure/1.jpeg"
+  ],
+  "links": [
+    {
+      "url": "https://youtu.be/UVuoKZPkXu0",
+      "label": "YouTube"
+    }
+  ],
+  "downloads": [],
+  "skills": [
+    "mechanical-design",
+    "machine-design",
+    "design-for-manufacturing"
+  ]
+}
