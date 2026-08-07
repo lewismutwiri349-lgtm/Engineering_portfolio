@@ -539,6 +539,59 @@
     });
   }
 
+  function buildAboutSectionHTML() {
+    return (
+      '<section class="hero hero--section">' +
+      '<div class="hero-media" role="img" aria-label="A bird glides through a dawn sky carrying twigs — a symbol of building something new."></div>' +
+      '<div class="hero-content">' +
+      '<p class="eyebrow">The person behind the drawings</p>' +
+      '<h1>About My Specialization</h1>' +
+      '<h2>Mechanical Engineer specializing in DFMA, FEA, CFD, and Control Systems</h2>' +
+      '<p>I am a Mechanical Engineering student focused on Design for Manufacturing &amp; Assembly (DFMA), Finite Element Analysis (FEA), Computational Fluid Dynamics (CFD), Control Systems, and end-to-end product development from concept to validated design.</p>' +
+      '</div>' +
+      '</section>' +
+      '<section class="section">' +
+      '<div class="container">' +
+      '<p class="eyebrow">Academics</p>' +
+      '<h2 class="section-title">Education</h2>' +
+      '<div class="cards">' +
+      '<div class="card">' +
+      '<h3>BSc Mechanical Engineering</h3>' +
+      '<p>South Eastern Kenya University — R&amp;D track, third year.</p>' +
+      '</div>' +
+      '</div>' +
+      '</div>' +
+      '</section>' +
+      '<section class="section">' +
+      '<div class="container">' +
+      '<p class="eyebrow">Specialization tools</p>' +
+      '<h2 class="section-title">Software</h2>' +
+      '<div class="tech-grid">' +
+      '<span>SolidWorks</span>' +
+      '<span>DFMA</span>' +
+      '<span>FEA</span>' +
+      '<span>CFD</span>' +
+      '<span>Control Systems</span>' +
+      '<span>ANSYS</span>' +
+      '<span>Python</span>' +
+      '<span>C++</span>' +
+      '<span>Arduino IDE</span>' +
+      '<span>MATLAB</span>' +
+      '<span>Git</span>' +
+      '</div>' +
+      '</div>' +
+      '</section>' +
+      '<section class="section">' +
+      '<div class="container">' +
+      '<p class="eyebrow">Where my focus goes</p>' +
+      '<h2 class="section-title">Engineering Expertise</h2>' +
+      '<p style="max-width:640px;">Every area below is its own growing category — click through to see the projects tagged to it. New work gets added continuously.</p>' +
+      '<div id="expertiseGrid" class="expertise-grid" aria-live="polite"></div>' +
+      '</div>' +
+      '</section>'
+    );
+  }
+
   /* ---------------------------------------------------------
      Engineering Expertise grid (About page) — built entirely
      from EXPERTISE_GROUPS + SKILLS above, with live project
@@ -546,8 +599,7 @@
      own filtered view on the portfolio page. Add a project's
      skills[] tag and its count updates everywhere automatically.
      --------------------------------------------------------- */
-  async function renderExpertise() {
-    const el = document.getElementById("expertiseGrid");
+  async function renderExpertise(el = document.getElementById("expertiseGrid")) {
     if (!el) return;
 
     el.innerHTML = EXPERTISE_GROUPS.map(
@@ -588,6 +640,20 @@
     } catch (e) {
       el.querySelectorAll("[data-count-for]").forEach((span) => (span.textContent = "—"));
     }
+  }
+
+  async function renderSharedAbout() {
+    const containers = [
+      document.getElementById("aboutPageContent"),
+      document.getElementById("homeAboutContent")
+    ];
+
+    await Promise.all(
+      containers.filter(Boolean).map(async (container) => {
+        container.innerHTML = buildAboutSectionHTML();
+        await renderExpertise(container.querySelector("#expertiseGrid"));
+      })
+    );
   }
 
   /* ---------------------------------------------------------
@@ -648,6 +714,6 @@
     // and the single-project detail page below.
     renderPortfolio();
     renderProjectDetail();
-    renderExpertise();
+    renderSharedAbout();
   });
 })();
