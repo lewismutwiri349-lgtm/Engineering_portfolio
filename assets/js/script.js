@@ -590,7 +590,7 @@
       '</section>' +
       '<section class="section">' +
       '<div class="container">' +
-      '<p class="eyebrow">Specialization tools</p>' +
+      '<p class="eyebrow">Tools I use across robotics work</p>' +
       '<h2 class="section-title">Software</h2>' +
       '<div class="tech-grid">' +
       '<span>SolidWorks</span>' +

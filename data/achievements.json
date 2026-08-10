@@ -8,7 +8,7 @@
       "date": "2024-09-15",
       "description": "Completed a professional certification focused on advanced part and assembly modeling workflows.",
       "skills": ["SolidWorks", "DFMA", "Product Design"],
-      "thumbnail": "assets/images/cad/pcb-enclosure/readme.md",
+      "thumbnail": "",
       "documentUrl": "assets/resumes/General_CV.pdf",
       "featured": true,
       "displayOrder": 1
@@ -21,7 +21,7 @@
       "date": "2024-03-01",
       "description": "Recognized for a compact automation concept that improved repeatability and ease of maintenance.",
       "skills": ["Robotics", "Automation", "Systems Design"],
-      "thumbnail": "assets/images/robotics/automation/readme.md",
+      "thumbnail": "",
       "documentUrl": "assets/resumes/Robotics_CV.pdf",
       "featured": true,
       "displayOrder": 2
@@ -58,7 +58,7 @@
       "date": "2023-11-20",
       "description": "Attended an intensive workshop covering design-for-manufacturing principles and rapid prototyping strategies.",
       "skills": ["DFM", "Prototyping", "Manufacturing"],
-      "thumbnail": "assets/images/cad/2.5-axis-milling/Part5.txt",
+      "thumbnail": "",
       "documentUrl": "assets/resumes/DFMA_FEA_CFD_CV.pdf",
       "featured": false,
       "displayOrder": 3
