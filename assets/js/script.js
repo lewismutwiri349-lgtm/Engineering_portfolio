@@ -47,7 +47,7 @@
   }
 
   const SKILLS = {
-    "mechanical-design": { name: "Mechanical Design", icon: "gear", desc: "Translating requirements into manufacturable mechanical components and assemblies." },
+    "mechanical-design": { name: "Design & Drafting", icon: "gear", desc: "Translating requirements into manufacturable CAD models, assemblies and engineering drawings." },
     "machine-design": { name: "Machine Design", icon: "gear", desc: "Designing mechanisms, linkages and machine elements for reliable motion and load transfer." },
     "industrial-design": { name: "Industrial Design", icon: "cube", desc: "Balancing form, ergonomics and manufacturability in product-facing design." },
     "automotive-design": { name: "Automotive Design", icon: "car", desc: "Component and subsystem design for automotive and vehicle applications." },
@@ -66,6 +66,7 @@
   };
 
   const EXPERTISE_GROUPS = [
+    { title: "Engineering Design", skills: ["mechanical-design"] },
     { title: "Engineering Analysis", skills: ["finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
     { title: "Controls & Mechatronics", skills: ["control-engineering", "embedded-systems", "cpp", "matlab"] },
     { title: "Direction", skills: ["research-development"] },
