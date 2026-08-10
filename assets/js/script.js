@@ -527,7 +527,7 @@
         return;
       }
 
-      const to = "lewismutwiri349@gmail.com";
+      const to = "lewismutwiri@hotmail.com";
       const subjectLine = encodeURIComponent(subject.value.trim() || "Portfolio enquiry");
       const body = encodeURIComponent(
         `${message.value.trim()}\n\n— ${name.value.trim()} (${email.value.trim()})`
