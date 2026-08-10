@@ -38,7 +38,8 @@
       "machine-design",
       "design-for-manufacturing"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "helical-gear",
@@ -83,7 +84,8 @@
       "mechanical-design",
       "machine-design"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "valve-body",
@@ -116,7 +118,8 @@
     "skills": [
       "mechanical-design"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "sheet-metal-electronic-enclosure",
@@ -148,7 +151,8 @@
       "mechanical-design",
       "sheet metal-design"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "solidworks-parametric-automation",
@@ -175,7 +179,7 @@
       "Validation"
     ],
     "problem": "Manually updating parametric dimensions across variant parts was slow and error-prone. The goal was to drive SolidWorks directly from Python to make configuration changes repeatable.",
-    "solution": "Used pywin32 to bind to the SolidWorks COM API, working through a series of environment and binding issues to reliably open documents, edit dimensions and rebuild models from a script — turning a manual, repetitive task into a one-command operation.",
+    "solution": "Used pywin32 to bind to the SolidWorks COM API, working through a series of environment and binding issues to reliably open documents, edit dimensions and rebuild models from a script \u2014 turning a manual, repetitive task into a one-command operation.",
     "gallery": [
       "assets/images/cad4.svg"
     ],
@@ -184,7 +188,8 @@
     "skills": [
       "research-development"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "neo6m-rocket-recovery",
@@ -222,7 +227,8 @@
       "robotics",
       "research-development"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": true
   },
   {
     "id": "structural-analysis-dashboard",
@@ -248,7 +254,7 @@
       "Testing"
     ],
     "problem": "Quick structural checks during design iteration usually meant switching to a spreadsheet or hand calculation, breaking flow.",
-    "solution": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library — combining calculation rigor with fast, visual iteration.",
+    "solution": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library \u2014 combining calculation rigor with fast, visual iteration.",
     "gallery": [
       "assets/images/robot2.svg"
     ],
@@ -258,7 +264,8 @@
       "numerical-analysis",
       "research-development"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "pedal-locking-lever",
@@ -281,7 +288,7 @@
       "Solid Modelling",
       "Motion Simulation"
     ],
-    "problem": "Client-style mechanism design briefs require confident, from-scratch linkage synthesis — a skill best sharpened outside of billable client time.",
+    "problem": "Client-style mechanism design briefs require confident, from-scratch linkage synthesis \u2014 a skill best sharpened outside of billable client time.",
     "solution": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly.",
     "gallery": [
       "assets/images/cad5.svg"
@@ -293,7 +300,8 @@
       "machine-design",
       "control-engineering"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "cpu-cooling-fan-design",
@@ -326,7 +334,8 @@
     "skills": [
       "mechanical-design"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "product-design-and-development-course-certification",
@@ -395,11 +404,12 @@
       "embedded-systems",
       "robotics"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": true
   },
   {
     "id": "ansys-fluent-fluid-flow",
-    "title": "ANSYS Fluent – Fluid Flow & Streamline Simulation",
+    "title": "ANSYS Fluent \u2013 Fluid Flow & Streamline Simulation",
     "category": "cfd",
     "featured": false,
     "thumbnail": "assets/projects/cfd/general/fluent-fluid-flow/fluid-flow.jpg",
@@ -446,6 +456,7 @@
       "numerical-analysis",
       "thermodynamics"
     ],
-    "subcategory": "internal-flow"
+    "subcategory": "internal-flow",
+    "robotics": false
   }
 ]

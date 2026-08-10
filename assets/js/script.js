@@ -66,10 +66,10 @@
   };
 
   const EXPERTISE_GROUPS = [
-    { title: "Design Engineering", skills: ["mechanical-design", "machine-design", "industrial-design", "automotive-design", "sheet-metal", "injection-mold-design", "design-for-manufacturing"] },
-    { title: "Simulation & Analysis", skills: ["finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
-    { title: "Programming & Engineering Software", skills: ["cpp", "matlab"] },
-    { title: "Innovation", skills: ["research-development"] },
+    { title: "Mechanical Design", skills: ["mechanical-design", "machine-design", "industrial-design", "automotive-design", "sheet-metal", "injection-mold-design", "design-for-manufacturing"] },
+    { title: "Engineering Analysis", skills: ["finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
+    { title: "Controls & Mechatronics", skills: ["control-engineering", "embedded-systems", "cpp", "matlab"] },
+    { title: "Direction", skills: ["research-development"] },
   ];
 
   /* ---------------------------------------------------------
@@ -213,19 +213,45 @@
     );
   }
 
+  /* Filters out anything in projects.json that isn't actually a
+     project — e.g. a certificate/achievement entry (has an "issuer"
+     field) that shouldn't be there but is, so it doesn't render as
+     a broken-looking project card. */
+  function isRealProject(p) {
+    return p && !p.issuer;
+  }
+
   /* ---------------------------------------------------------
-     Home page: featured projects
+     Home page: Robotics projects (the lead showcase) and a
+     quiet preview of the Engineering Design Archive. Split is
+     driven by each project's explicit "robotics" boolean in
+     projects.json, not guessed from category strings.
      --------------------------------------------------------- */
-  async function renderFeatured() {
-    const el = document.getElementById("featuredProjects");
+  async function renderRoboticsProjects() {
+    const el = document.getElementById("roboticsProjects");
     if (!el) return;
     skeletons(el, 3);
     try {
-      const projects = await loadProjects();
-      const featured = projects.filter((p) => p.featured).slice(0, 3);
-      el.innerHTML = featured.length
-        ? featured.map(projectCardHTML).join("")
-        : '<div class="empty-state">No featured projects yet.</div>';
+      const projects = (await loadProjects()).filter(isRealProject);
+      const robotics = projects.filter((p) => p.robotics);
+      el.innerHTML = robotics.length
+        ? robotics.map(projectCardHTML).join("")
+        : '<div class="empty-state">Robotics-specific project write-ups are on the way — the skill set above is the current evidence.</div>';
+    } catch (e) {
+      errorState(el, "Couldn't load projects right now — " + e.message);
+    }
+  }
+
+  async function renderArchivePreview() {
+    const el = document.getElementById("archivePreview");
+    if (!el) return;
+    skeletons(el, 3);
+    try {
+      const projects = (await loadProjects()).filter(isRealProject);
+      const archive = projects.filter((p) => !p.robotics).slice(0, 3);
+      el.innerHTML = archive.length
+        ? archive.map(projectCardHTML).join("")
+        : '<div class="empty-state">Nothing here yet.</div>';
     } catch (e) {
       errorState(el, "Couldn't load projects right now — " + e.message);
     }
@@ -545,9 +571,9 @@
       '<div class="hero-media" role="img" aria-label="A bird glides through a dawn sky carrying twigs — a symbol of building something new."></div>' +
       '<div class="hero-content">' +
       '<p class="eyebrow">The person behind the drawings</p>' +
-      '<h1>About My Specialization</h1>' +
-      '<h2>Mechanical Engineer specializing in DFMA, FEA, CFD, and Control Systems</h2>' +
-      '<p>I am a Mechanical Engineering student focused on Design for Manufacturing &amp; Assembly (DFMA), Finite Element Analysis (FEA), Computational Fluid Dynamics (CFD), Control Systems, and end-to-end product development from concept to validated design.</p>' +
+      '<h1>About Me</h1>' +
+      '<h2>Robotics Design Engineer</h2>' +
+      '<p>I\'m a Mechanical Engineering student working toward designing robotic and autonomous systems. My foundation is mechanical design, engineering analysis (FEA/CFD), and control systems — I\'m building on that toward mechatronics and autonomous system design.</p>' +
       '</div>' +
       '</section>' +
       '<section class="section">' +
@@ -584,8 +610,8 @@
       '<section class="section">' +
       '<div class="container">' +
       '<p class="eyebrow">Where my focus goes</p>' +
-      '<h2 class="section-title">Engineering Expertise</h2>' +
-      '<p style="max-width:640px;">Every area below is its own growing category — click through to see the projects tagged to it. New work gets added continuously.</p>' +
+      '<h2 class="section-title">Robotics Engineering Skill Set</h2>' +
+      '<p style="max-width:640px;">These aren\'t separate specialties — they\'re the parts that come together in robotics: designing the mechanism, analyzing whether it holds up, and controlling how it moves. Click through to see the projects behind each one.</p>' +
       '<div id="expertiseGrid" class="expertise-grid" aria-live="polite"></div>' +
       '</div>' +
       '</section>'
@@ -643,17 +669,16 @@
   }
 
   async function renderSharedAbout() {
-    const containers = [
-      document.getElementById("aboutPageContent"),
-      document.getElementById("homeAboutContent")
-    ];
-
-    await Promise.all(
-      containers.filter(Boolean).map(async (container) => {
-        container.innerHTML = buildAboutSectionHTML();
-        await renderExpertise(container.querySelector("#expertiseGrid"));
-      })
-    );
+    const container = document.getElementById("aboutPageContent");
+    if (container) {
+      container.innerHTML = buildAboutSectionHTML();
+      await renderExpertise(container.querySelector("#expertiseGrid"));
+    }
+    // Homepage gets its own lean #expertiseGrid (see index.html) instead
+    // of the full About block, so it doesn't duplicate Education/Software.
+    if (document.getElementById("expertiseGrid") && !container?.contains(document.getElementById("expertiseGrid"))) {
+      await renderExpertise();
+    }
   }
 
   /* ---------------------------------------------------------
@@ -706,7 +731,8 @@
     initContactForm();
     stampYear();
 
-    renderFeatured();
+    renderRoboticsProjects();
+    renderArchivePreview();
     // Per-discipline project grids (#cadProjects, #dfmaProjects, #feaProjects,
     // #cfdProjects, #eacgProjects, #controlProjects, #roboticsProjects) are
     // owned entirely by projects.js on the pages that load it — script.js

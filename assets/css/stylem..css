@@ -469,14 +469,6 @@ a.card { display: block; }
 .card p { margin: 0; font-size: .95rem; }
 
 /* project cards (rendered by JS) reuse .card + add meta row */
-/* Archive preview on the homepage — same card component, deliberately
-   quieter (smaller thumbnails, slightly reduced opacity until hovered)
-   so it doesn't compete with the Robotics section above it. */
-#archivePreview.cards { gap: 16px; }
-#archivePreview .project-card { opacity: .82; transition: opacity .25s var(--ease), transform .25s var(--ease); }
-#archivePreview .project-card:hover { opacity: 1; }
-#archivePreview .project-card .thumb { aspect-ratio: 16 / 10; }
-
 .project-card .thumb {
   aspect-ratio: 16/10;
   border-radius: 8px;
