@@ -66,7 +66,6 @@
   };
 
   const EXPERTISE_GROUPS = [
-    { title: "Mechanical Design", skills: ["mechanical-design", "machine-design", "industrial-design", "automotive-design", "sheet-metal", "injection-mold-design", "design-for-manufacturing"] },
     { title: "Engineering Analysis", skills: ["finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
     { title: "Controls & Mechatronics", skills: ["control-engineering", "embedded-systems", "cpp", "matlab"] },
     { title: "Direction", skills: ["research-development"] },
