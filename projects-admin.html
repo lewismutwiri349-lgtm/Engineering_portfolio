@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Projects</title>
+    <meta name="description" content="Manage engineering projects for the portfolio site.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header>
+      <div class="navbar">
+        <a class="logo" href="index.html" aria-label="Lewis Mutwiri home">LM</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="achievements.html">Achievements</a></li>
+          <li><a href="admin.html">Achievements Admin</a></li>
+          <li><a href="projects-admin.html" aria-current="page">Projects Admin</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="container">
+          <div class="achievement-admin-shell">
+            <div class="section-title">
+              <p class="eyebrow">Admin panel</p>
+              <h2>Projects</h2>
+            </div>
+            <p class="achievement-admin-intro">
+              Every project is saved as its own JSON file under <code>assets/projects/&lt;category&gt;/&lt;subcategory&gt;/&lt;slug&gt;.json</code>
+              — editing one project only ever touches its own file. <code>projects.json</code> at the root is
+              a generated index (rebuilt automatically on every save) that your live site actually reads.
+            </p>
+
+            <div id="projectsLoadPanel" class="project-admin-load">
+              <p id="projectsLoadStatus" class="achievement-admin-status">Loading projects.json…</p>
+              <div class="project-admin-load__actions">
+                <button id="projectLoadGitHubButton" type="button" class="btn-secondary">Load projects from GitHub</button>
+                <label class="btn-secondary" for="projectsFileInput">
+                  Load a projects.json file
+                  <input id="projectsFileInput" type="file" accept="application/json" class="visually-hidden">
+                </label>
+                <button id="projectsPasteToggle" type="button" class="btn-secondary">Paste JSON instead</button>
+              </div>
+              <textarea id="projectsPasteArea" class="achievement-textarea project-admin-paste" hidden
+                placeholder="Paste the contents of projects.json here, then click Load pasted JSON"></textarea>
+              <button id="projectsPasteLoad" type="button" class="btn-secondary" hidden>Load pasted JSON</button>
+            </div>
+
+            <div id="ghSyncSettings"></div>
+
+            <div class="achievement-admin-toolbar">
+              <button id="projectAddButton" type="button" class="btn-primary">+ New Project</button>
+              <label class="btn-secondary" for="projectImportInput">+ Import Project JSON</label>
+              <input type="file" id="projectImportInput" accept="application/json,.json" multiple class="visually-hidden">
+              <button id="projectSaveButton" type="button" class="btn-secondary">Export All (download projects.json)</button>
+              <button id="projectPushButton" type="button" class="btn-accent">Push All Projects to GitHub (one file each)</button>
+              <span id="projectCount" class="achievement-admin-status" style="align-self:center;"></span>
+            </div>
+            <p id="projectAdminStatus" class="achievement-admin-status"></p>
+            <div id="projectAdminList" class="achievement-admin-list"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span data-year>2026</span> Lewis Mutwiri</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/github-sync.js"></script>
+    <script src="assets/js/project-store.js"></script>
+    <script src="assets/js/projects-admin.js"></script>
+  </body>
+</html>
