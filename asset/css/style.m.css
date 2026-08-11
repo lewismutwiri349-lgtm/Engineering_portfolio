@@ -322,33 +322,31 @@ header {
 .horizon-line { animation: hudDrift 5s ease-in-out infinite; }
 @keyframes hudDrift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 
-/* portrait — sits beside the HUD ring, framed like an instrument readout */
-.hero-portrait {
-  position: absolute;
-  right: 32%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 250px;
-  height: 250px;
-  z-index: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--cyan);
-  box-shadow: var(--glow-cyan), 0 20px 50px rgba(0,0,0,.45);
+/* Homepage flagship hero — the portrait IS the background, not a
+   separate card. Reuses the same "one url() to swap" replaceable-
+   image pattern already used for the atmospheric backdrop above:
+   .hero--photo only overrides what .hero-media points at, position,
+   and strength — everything else (position:absolute, inset:0,
+   background-size:cover, z-index) is inherited from .hero-media.
+   Falls back cleanly if the image is missing: .hero already has a
+   solid --graphite background-color, and .hero::after's gradient
+   overlay below doesn't depend on the photo loading — so a missing
+   file just leaves the graphite/gradient backdrop, not a broken box. */
+.hero--photo .hero-media {
+  background-image: url('../images/lewis-portrait.jpg');
+  background-position: center 22%;
+  opacity: .58;
+  filter: grayscale(.15) contrast(1.08) saturate(1.05) brightness(.82);
 }
-.hero-portrait::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 1px rgba(237,242,247,.15);
-}
-.hero-portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(.1) contrast(1.05) saturate(1.05);
+/* stronger, more uniform scrim than the decorative-only bird backdrop —
+   text now sits over the full width of the photo, not a clear side
+   panel, so readability can't depend on where the face happens to be */
+.hero--photo::after {
+  background:
+    radial-gradient(ellipse 60% 50% at 85% 15%, rgba(255,155,66,.14), transparent 60%),
+    radial-gradient(ellipse 55% 60% at 10% 90%, rgba(63,208,255,.12), transparent 60%),
+    linear-gradient(100deg, rgba(10,14,20,.92) 0%, rgba(10,14,20,.72) 42%, rgba(10,14,20,.5) 68%, rgba(10,14,20,.8) 100%),
+    linear-gradient(180deg, rgba(10,14,20,.35) 0%, transparent 30%, rgba(10,14,20,.65) 100%);
 }
 
 .hero-content {
@@ -358,7 +356,6 @@ header {
   padding: 120px 24px 88px;
   width: 100%;
 }
-.hero:not(.hero--section) .hero-content { max-width: 640px; margin: 0; padding-left: max(24px, calc((100vw - var(--maxw)) / 2 + 24px)); }
 .hero-content .eyebrow { color: var(--amber-bright); }
 .hero-content h1 {
   animation: rise .8s var(--ease) both;
@@ -469,6 +466,14 @@ a.card { display: block; }
 .card p { margin: 0; font-size: .95rem; }
 
 /* project cards (rendered by JS) reuse .card + add meta row */
+/* Archive preview on the homepage — same card component, deliberately
+   quieter (smaller thumbnails, slightly reduced opacity until hovered)
+   so it doesn't compete with the Robotics section above it. */
+#archivePreview.cards { gap: 16px; }
+#archivePreview .project-card { opacity: .82; transition: opacity .25s var(--ease), transform .25s var(--ease); }
+#archivePreview .project-card:hover { opacity: 1; }
+#archivePreview .project-card .thumb { aspect-ratio: 16 / 10; }
+
 .project-card .thumb {
   aspect-ratio: 16/10;
   border-radius: 8px;
@@ -836,15 +841,14 @@ footer p { color: #C7D2DB; margin: 0; }
 @media (max-width: 600px) {
   .hero { min-height: 78vh; flex-direction: column; justify-content: center; }
   .hero-content { padding: 32px 20px 56px; }
-  .hero:not(.hero--section) .hero-content { padding-left: 20px; }
   .hero-media { background-position: 68% center; }
+  .hero--photo .hero-media { background-position: center 14%; }
   .section { padding: 60px 0; }
   .hud-ring { width: 80vw; height: 80vw; right: -30%; opacity: .5; }
-  .hero-portrait { position: static; transform: none; width: 140px; height: 140px; margin: 96px 0 0; }
 }
 
 @media (max-width: 960px) and (min-width: 601px) {
-  .hero-portrait { right: 6%; width: 190px; height: 190px; }
+  .hero--photo .hero-media { background-position: center 18%; }
 }
 
 /* print: keep it simple & ink-friendly */
