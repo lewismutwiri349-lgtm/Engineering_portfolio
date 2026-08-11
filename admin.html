@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Achievements</title>
+    <meta name="description" content="Manage achievements and certificates for the portfolio site.">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header>
+      <div class="navbar">
+        <a class="logo" href="index.html" aria-label="Lewis Mutwiri home">LM</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="achievements.html">Achievements</a></li>
+          <li><a href="projects-admin.html">Projects Admin</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="container">
+          <div class="achievement-admin-shell">
+            <div class="section-title">
+              <p class="eyebrow">Admin panel</p>
+              <h2>Achievements</h2>
+            </div>
+            <p class="achievement-admin-intro">Add, edit, and save achievement cards independently from the existing projects system. The public achievements page reads the JSON in the data folder.</p>
+            <div class="achievement-admin-toolbar">
+              <button id="achievementAddButton" type="button" class="btn-primary">Add Achievement</button>
+              <button id="achievementSaveButton" type="button" class="btn-secondary">Save All</button>
+            </div>
+            <p id="achievementAdminStatus" class="achievement-admin-status">Loading achievements…</p>
+            <div id="achievementAdminList" class="achievement-admin-list"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/achievements.js"></script>
+  </body>
+</html>
