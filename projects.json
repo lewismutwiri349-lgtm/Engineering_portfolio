@@ -47,10 +47,10 @@
     "thumbnail": "assets/images/helicalgear20.jpg",
     "summary": "Design and analysis of a helical gear system for efficient power transmission.",
     "tags": [
-      "Mechanism Design",
-      "Linkage Synthesis",
-      "SolidWorks",
-      "Motion Study"
+      "",
+      "",
+      "",
+      ""
     ],
     "software": [
       "SolidWorks",
@@ -79,7 +79,7 @@
       }
     ],
     "skills": [
-      "mechanical-design"
+      ""
     ],
     "subcategory": "",
     "robotics": false
@@ -145,7 +145,7 @@
     "links": [],
     "downloads": [],
     "skills": [
-      "mechanical-design"
+      ""
     ],
     "subcategory": "",
     "robotics": false
@@ -161,7 +161,7 @@
       "Python",
       "pywin32",
       "COM API",
-      "Automation"
+      ""
     ],
     "software": [
       "SolidWorks",
@@ -182,7 +182,7 @@
     "links": [],
     "downloads": [],
     "skills": [
-      "research-development"
+      ""
     ],
     "subcategory": "",
     "robotics": false
