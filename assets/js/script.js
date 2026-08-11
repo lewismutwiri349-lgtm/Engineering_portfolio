@@ -564,10 +564,10 @@
       '<section class="hero hero--section">' +
       '<div class="hero-media" role="img" aria-label="A bird glides through a dawn sky carrying twigs — a symbol of building something new."></div>' +
       '<div class="hero-content">' +
-      '<p class="eyebrow">The person behind the drawings</p>' +
+      '<p class="eyebrow">The engineer behind the systems</p>' +
       '<h1>About Me</h1>' +
       '<h2>Robotics Design Engineer</h2>' +
-      '<p>I\'m a Mechanical Engineering student working toward designing robotic and autonomous systems. My foundation is mechanical design, engineering analysis (FEA/CFD), and control systems — I\'m building on that toward mechatronics and autonomous system design.</p>' +
+      '<p>I\'m a Mechanical Engineering student shaping robotic and autonomous systems through mechanical design, engineering analysis, and control systems. My work bridges CAD-driven mechanical design with practical mechatronics and system reliability.</p>' +
       '</div>' +
       '</section>' +
       '<section class="section">' +

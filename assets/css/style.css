@@ -284,12 +284,13 @@ header {
   position: absolute;
   inset: 0;
   z-index: -3;
-  background-image: url('../images/hero-bird.svg');
+  background-color: var(--graphite);
+  background-image: var(--hero-background, url('../images/hero-bird.svg'));
   background-size: cover;
-  background-position: center 62%;
+  background-position: 42% center;
   background-repeat: no-repeat;
-  opacity: .22;
-  filter: saturate(.6) brightness(.9);
+  opacity: .96;
+  filter: saturate(.92) brightness(.94);
 }
 /* atmospheric glow — sunrise amber upper-right, cyan lower-left, graphite base */
 .hero::after {
@@ -322,54 +323,25 @@ header {
 .horizon-line { animation: hudDrift 5s ease-in-out infinite; }
 @keyframes hudDrift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 
-/* split-screen hero layout (homepage only) — photo occupies ~50% of
-   the hero, content the other ~50%. .hero-media/.hero::after keep
-   providing the atmospheric backdrop behind both columns. */
+/* homepage hero layout — full-width background image with centered hero content. */
 .hero-split {
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: clamp(28px, 5vw, 64px);
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 100px 24px 88px;
+  padding: 120px 24px 88px;
   width: 100%;
-}
-.hero-photo {
-  flex: 1 1 50%;
-  max-width: 50%;
-  align-self: stretch;
-  position: relative;
-  border-radius: var(--radius-lg, 14px);
-  overflow: hidden;
-  border: 1px solid rgba(237,242,247,.14);
-  box-shadow: var(--glow-cyan), 0 30px 60px rgba(0,0,0,.5);
-  animation: rise .8s var(--ease) both;
-}
-.hero-photo img {
-  width: 100%;
-  height: 100%;
-  min-height: 360px;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(.08) contrast(1.05) saturate(1.05);
-}
-.hero-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(200deg, rgba(63,208,255,.1), transparent 55%),
-              linear-gradient(0deg, rgba(10,14,20,.35), transparent 35%);
-  pointer-events: none;
 }
 .hero-split .hero-content {
-  flex: 1 1 50%;
-  max-width: 50%;
-  margin: 0;
+  flex: 1 1 100%;
+  max-width: 720px;
+  margin: 0 auto;
   padding: 0;
-  width: auto;
+  width: 100%;
 }
 
 .hero-content {
@@ -862,14 +834,13 @@ footer p { color: #C7D2DB; margin: 0; }
 }
 
 @media (max-width: 600px) {
-  .hero { min-height: 78vh; flex-direction: column; justify-content: center; }
+  .hero { min-height: 72vh; flex-direction: column; justify-content: center; }
   .hero-content { padding: 32px 20px 56px; }
-  .hero-media { background-position: 68% center; }
+  .hero-media { background-position: 42% 20%; }
   .section { padding: 60px 0; }
   .hud-ring { width: 80vw; height: 80vw; right: -30%; opacity: .5; }
   .hero-split { flex-direction: column; padding: 40px 20px 48px; gap: 28px; min-height: auto; }
-  .hero-photo, .hero-split .hero-content { max-width: 100%; }
-  .hero-photo img { min-height: 0; aspect-ratio: 4 / 3; }
+  .hero-split .hero-content { max-width: 100%; }
 }
 
 @media (max-width: 960px) and (min-width: 601px) {
