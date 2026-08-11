@@ -284,13 +284,12 @@ header {
   position: absolute;
   inset: 0;
   z-index: -3;
-  background-color: var(--graphite);
-  background-image: var(--hero-background, url('../images/hero-bird.svg'));
+  background-image: url('../images/hero-bird.svg');
   background-size: cover;
-  background-position: 42% center;
+  background-position: center 62%;
   background-repeat: no-repeat;
-  opacity: .96;
-  filter: saturate(.92) brightness(.94);
+  opacity: .22;
+  filter: saturate(.6) brightness(.9);
 }
 /* atmospheric glow — sunrise amber upper-right, cyan lower-left, graphite base */
 .hero::after {
@@ -323,25 +322,31 @@ header {
 .horizon-line { animation: hudDrift 5s ease-in-out infinite; }
 @keyframes hudDrift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 
-/* homepage hero layout — full-width background image with centered hero content. */
-.hero-split {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(28px, 5vw, 64px);
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 120px 24px 88px;
-  width: 100%;
+/* Homepage flagship hero — the portrait IS the background, not a
+   separate card. Reuses the same "one url() to swap" replaceable-
+   image pattern already used for the atmospheric backdrop above:
+   .hero--photo only overrides what .hero-media points at, position,
+   and strength — everything else (position:absolute, inset:0,
+   background-size:cover, z-index) is inherited from .hero-media.
+   Falls back cleanly if the image is missing: .hero already has a
+   solid --graphite background-color, and .hero::after's gradient
+   overlay below doesn't depend on the photo loading — so a missing
+   file just leaves the graphite/gradient backdrop, not a broken box. */
+.hero--photo .hero-media {
+  background-image: url('../images/lewis-portrait.jpg');
+  background-position: center 22%;
+  opacity: .58;
+  filter: grayscale(.15) contrast(1.08) saturate(1.05) brightness(.82);
 }
-.hero-split .hero-content {
-  flex: 1 1 100%;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0;
-  width: 100%;
+/* stronger, more uniform scrim than the decorative-only bird backdrop —
+   text now sits over the full width of the photo, not a clear side
+   panel, so readability can't depend on where the face happens to be */
+.hero--photo::after {
+  background:
+    radial-gradient(ellipse 60% 50% at 85% 15%, rgba(255,155,66,.14), transparent 60%),
+    radial-gradient(ellipse 55% 60% at 10% 90%, rgba(63,208,255,.12), transparent 60%),
+    linear-gradient(100deg, rgba(10,14,20,.92) 0%, rgba(10,14,20,.72) 42%, rgba(10,14,20,.5) 68%, rgba(10,14,20,.8) 100%),
+    linear-gradient(180deg, rgba(10,14,20,.35) 0%, transparent 30%, rgba(10,14,20,.65) 100%);
 }
 
 .hero-content {
@@ -834,18 +839,16 @@ footer p { color: #C7D2DB; margin: 0; }
 }
 
 @media (max-width: 600px) {
-  .hero { min-height: 72vh; flex-direction: column; justify-content: center; }
+  .hero { min-height: 78vh; flex-direction: column; justify-content: center; }
   .hero-content { padding: 32px 20px 56px; }
-  .hero-media { background-position: 42% 20%; }
+  .hero-media { background-position: 68% center; }
+  .hero--photo .hero-media { background-position: center 14%; }
   .section { padding: 60px 0; }
   .hud-ring { width: 80vw; height: 80vw; right: -30%; opacity: .5; }
-  .hero-split { flex-direction: column; padding: 40px 20px 48px; gap: 28px; min-height: auto; }
-  .hero-split .hero-content { max-width: 100%; }
 }
 
 @media (max-width: 960px) and (min-width: 601px) {
-  .hero-split { gap: 32px; }
-  .hero-photo img { min-height: 320px; }
+  .hero--photo .hero-media { background-position: center 18%; }
 }
 
 /* print: keep it simple & ink-friendly */
