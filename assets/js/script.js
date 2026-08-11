@@ -48,12 +48,6 @@
 
   const SKILLS = {
     "mechanical-design": { name: "Design & Drafting", icon: "gear", desc: "Translating requirements into manufacturable CAD models, assemblies and engineering drawings." },
-    "machine-design": { name: "Machine Design", icon: "gear", desc: "Designing mechanisms, linkages and machine elements for reliable motion and load transfer." },
-    "industrial-design": { name: "Industrial Design", icon: "cube", desc: "Balancing form, ergonomics and manufacturability in product-facing design." },
-    "automotive-design": { name: "Automotive Design", icon: "car", desc: "Component and subsystem design for automotive and vehicle applications." },
-    "sheet-metal": { name: "Sheet Metal Design", icon: "layers", desc: "Flat-pattern design, bend allowances and sheet metal fabrication planning." },
-    "injection-mold-design": { name: "Injection Mold Design", icon: "mold", desc: "Part and mold design for plastic injection molding, including draft and parting lines." },
-    "design-for-manufacturing": { name: "Design for Manufacturing (DFM)", icon: "wrench", desc: "Designing parts and assemblies to minimise cost and complexity in production." },
     "finite-element-analysis": { name: "Finite Element Analysis (FEA)", icon: "mesh", desc: "Stress, deflection and fatigue simulation to validate designs before they're built." },
     "cfd": { name: "Computational Fluid Dynamics (CFD)", icon: "flow", desc: "Airflow, heat transfer and fluid flow simulation for thermal and aerodynamic performance." },
     "numerical-analysis": { name: "Numerical Analysis", icon: "chart", desc: "Numerical methods and computational tools for solving engineering problems." },

@@ -23,8 +23,7 @@
   ];
 
   const SKILL_OPTIONS = [
-    "mechanical-design", "machine-design", "industrial-design", "automotive-design",
-    "sheet-metal", "injection-mold-design", "design-for-manufacturing",
+    "mechanical-design",
     "finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics",
     "embedded-systems", "control-engineering", "cpp", "matlab", "research-development"
   ];
