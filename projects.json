@@ -34,11 +34,10 @@
     ],
     "downloads": [],
     "skills": [
-      "mechanical-design",
-      "machine-design",
-      "design-for-manufacturing"
+      "mechanical-design"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "helical-gear",
@@ -48,10 +47,10 @@
     "thumbnail": "assets/images/helicalgear20.jpg",
     "summary": "Design and analysis of a helical gear system for efficient power transmission.",
     "tags": [
-      "Mechanism Design",
-      "Linkage Synthesis",
-      "SolidWorks",
-      "Motion Study"
+      "",
+      "",
+      "",
+      ""
     ],
     "software": [
       "SolidWorks",
@@ -80,10 +79,10 @@
       }
     ],
     "skills": [
-      "mechanical-design",
-      "machine-design"
+      ""
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "valve-body",
@@ -116,7 +115,8 @@
     "skills": [
       "mechanical-design"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "sheet-metal-electronic-enclosure",
@@ -145,10 +145,10 @@
     "links": [],
     "downloads": [],
     "skills": [
-      "mechanical-design",
-      "sheet metal-design"
+      ""
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "solidworks-parametric-automation",
@@ -161,7 +161,7 @@
       "Python",
       "pywin32",
       "COM API",
-      "Automation"
+      ""
     ],
     "software": [
       "SolidWorks",
@@ -182,9 +182,10 @@
     "links": [],
     "downloads": [],
     "skills": [
-      "research-development"
+      ""
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "neo6m-rocket-recovery",
@@ -222,7 +223,8 @@
       "robotics",
       "research-development"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": true
   },
   {
     "id": "structural-analysis-dashboard",
@@ -258,7 +260,8 @@
       "numerical-analysis",
       "research-development"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "pedal-locking-lever",
@@ -290,10 +293,10 @@
     "downloads": [],
     "skills": [
       "mechanical-design",
-      "machine-design",
       "control-engineering"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "cpu-cooling-fan-design",
@@ -303,7 +306,7 @@
     "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
     "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
     "tags": [
-      "DFMA"
+      ""
     ],
     "software": [
       "SolidWorks"
@@ -326,7 +329,8 @@
     "skills": [
       "mechanical-design"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": false
   },
   {
     "id": "product-design-and-development-course-certification",
@@ -337,9 +341,6 @@
     "description": "Completed a Product Design and Development course focused on the end-to-end product development process, including concept generation, design methodology, material selection, prototyping, design for manufacturing (DFM), product testing, and product lifecycle management. Developed the ability to transform engineering concepts into practical, manufacturable solutions.",
     "skills": [
       "mechanical-design",
-      "machine-design",
-      "design-for-manufacturing",
-      "sheet-metal-design",
       "GD&T"
     ],
     "links": [],
@@ -393,15 +394,17 @@
     "downloads": [],
     "skills": [
       "embedded-systems",
-      "robotics"
+      "robotics",
+      "Controls & Mechatronics"
     ],
-    "subcategory": ""
+    "subcategory": "",
+    "robotics": true
   },
   {
     "id": "ansys-fluent-fluid-flow",
     "title": "ANSYS Fluent – Fluid Flow & Streamline Simulation",
     "category": "cfd",
-    "featured": false,
+    "featured": true,
     "thumbnail": "assets/projects/cfd/general/fluent-fluid-flow/fluid-flow.jpg",
     "summary": "A CFD simulation demonstrating internal fluid flow using ANSYS Fluent. The project focuses on analysing velocity contours, streamlines, and pressure distribution to understand flow behaviour and verify proper simulation setup.\n",
     "tags": [
@@ -446,6 +449,7 @@
       "numerical-analysis",
       "thermodynamics"
     ],
-    "subcategory": "internal-flow"
+    "subcategory": "internal-flow",
+    "robotics": false
   }
 ]

@@ -47,13 +47,7 @@
   }
 
   const SKILLS = {
-    "mechanical-design": { name: "Mechanical Design", icon: "gear", desc: "Translating requirements into manufacturable mechanical components and assemblies." },
-    "machine-design": { name: "Machine Design", icon: "gear", desc: "Designing mechanisms, linkages and machine elements for reliable motion and load transfer." },
-    "industrial-design": { name: "Industrial Design", icon: "cube", desc: "Balancing form, ergonomics and manufacturability in product-facing design." },
-    "automotive-design": { name: "Automotive Design", icon: "car", desc: "Component and subsystem design for automotive and vehicle applications." },
-    "sheet-metal": { name: "Sheet Metal Design", icon: "layers", desc: "Flat-pattern design, bend allowances and sheet metal fabrication planning." },
-    "injection-mold-design": { name: "Injection Mold Design", icon: "mold", desc: "Part and mold design for plastic injection molding, including draft and parting lines." },
-    "design-for-manufacturing": { name: "Design for Manufacturing (DFM)", icon: "wrench", desc: "Designing parts and assemblies to minimise cost and complexity in production." },
+    "mechanical-design": { name: "Design & Drafting", icon: "gear", desc: "Translating requirements into manufacturable CAD models, assemblies and engineering drawings." },
     "finite-element-analysis": { name: "Finite Element Analysis (FEA)", icon: "mesh", desc: "Stress, deflection and fatigue simulation to validate designs before they're built." },
     "cfd": { name: "Computational Fluid Dynamics (CFD)", icon: "flow", desc: "Airflow, heat transfer and fluid flow simulation for thermal and aerodynamic performance." },
     "numerical-analysis": { name: "Numerical Analysis", icon: "chart", desc: "Numerical methods and computational tools for solving engineering problems." },
@@ -66,10 +60,10 @@
   };
 
   const EXPERTISE_GROUPS = [
-    { title: "Design Engineering", skills: ["mechanical-design", "machine-design", "industrial-design", "automotive-design", "sheet-metal", "injection-mold-design", "design-for-manufacturing"] },
-    { title: "Simulation & Analysis", skills: ["finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
-    { title: "Programming & Engineering Software", skills: ["cpp", "matlab"] },
-    { title: "Innovation", skills: ["research-development"] },
+    { title: "Engineering Design", skills: ["mechanical-design"] },
+    { title: "Engineering Analysis", skills: ["finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
+    { title: "Controls & Mechatronics", skills: ["control-engineering", "embedded-systems", "cpp", "matlab"] },
+    { title: "Direction", skills: ["research-development"] },
   ];
 
   /* ---------------------------------------------------------
@@ -213,19 +207,45 @@
     );
   }
 
+  /* Filters out anything in projects.json that isn't actually a
+     project — e.g. a certificate/achievement entry (has an "issuer"
+     field) that shouldn't be there but is, so it doesn't render as
+     a broken-looking project card. */
+  function isRealProject(p) {
+    return p && !p.issuer;
+  }
+
   /* ---------------------------------------------------------
-     Home page: featured projects
+     Home page: Robotics projects (the lead showcase) and a
+     quiet preview of the Engineering Design Archive. Split is
+     driven by each project's explicit "robotics" boolean in
+     projects.json, not guessed from category strings.
      --------------------------------------------------------- */
-  async function renderFeatured() {
-    const el = document.getElementById("featuredProjects");
+  async function renderRoboticsProjects() {
+    const el = document.getElementById("roboticsProjects");
     if (!el) return;
     skeletons(el, 3);
     try {
-      const projects = await loadProjects();
-      const featured = projects.filter((p) => p.featured).slice(0, 3);
-      el.innerHTML = featured.length
-        ? featured.map(projectCardHTML).join("")
-        : '<div class="empty-state">No featured projects yet.</div>';
+      const projects = (await loadProjects()).filter(isRealProject);
+      const robotics = projects.filter((p) => p.robotics);
+      el.innerHTML = robotics.length
+        ? robotics.map(projectCardHTML).join("")
+        : '<div class="empty-state">Robotics-specific project write-ups are on the way — the skill set above is the current evidence.</div>';
+    } catch (e) {
+      errorState(el, "Couldn't load projects right now — " + e.message);
+    }
+  }
+
+  async function renderArchivePreview() {
+    const el = document.getElementById("archivePreview");
+    if (!el) return;
+    skeletons(el, 3);
+    try {
+      const projects = (await loadProjects()).filter(isRealProject);
+      const archive = projects.filter((p) => !p.robotics).slice(0, 3);
+      el.innerHTML = archive.length
+        ? archive.map(projectCardHTML).join("")
+        : '<div class="empty-state">Nothing here yet.</div>';
     } catch (e) {
       errorState(el, "Couldn't load projects right now — " + e.message);
     }
@@ -544,10 +564,10 @@
       '<section class="hero hero--section">' +
       '<div class="hero-media" role="img" aria-label="A bird glides through a dawn sky carrying twigs — a symbol of building something new."></div>' +
       '<div class="hero-content">' +
-      '<p class="eyebrow">The person behind the drawings</p>' +
-      '<h1>About My Specialization</h1>' +
-      '<h2>Mechanical Engineer specializing in DFMA, FEA, CFD, and Control Systems</h2>' +
-      '<p>I am a Mechanical Engineering student focused on Design for Manufacturing &amp; Assembly (DFMA), Finite Element Analysis (FEA), Computational Fluid Dynamics (CFD), Control Systems, and end-to-end product development from concept to validated design.</p>' +
+      '<p class="eyebrow">The engineer behind the systems</p>' +
+      '<h1>About Me</h1>' +
+      '<h2>Robotics Design Engineer</h2>' +
+      '<p>I\'m a Mechanical Engineering student shaping robotic and autonomous systems through mechanical design, engineering analysis, and control systems. My work bridges CAD-driven mechanical design with practical mechatronics and system reliability.</p>' +
       '</div>' +
       '</section>' +
       '<section class="section">' +
@@ -564,7 +584,7 @@
       '</section>' +
       '<section class="section">' +
       '<div class="container">' +
-      '<p class="eyebrow">Specialization tools</p>' +
+      '<p class="eyebrow">Tools I use across robotics work</p>' +
       '<h2 class="section-title">Software</h2>' +
       '<div class="tech-grid">' +
       '<span>SolidWorks</span>' +
@@ -584,8 +604,8 @@
       '<section class="section">' +
       '<div class="container">' +
       '<p class="eyebrow">Where my focus goes</p>' +
-      '<h2 class="section-title">Engineering Expertise</h2>' +
-      '<p style="max-width:640px;">Every area below is its own growing category — click through to see the projects tagged to it. New work gets added continuously.</p>' +
+      '<h2 class="section-title">Robotics Engineering Skill Set</h2>' +
+      '<p style="max-width:640px;">These aren\'t separate specialties — they\'re the parts that come together in robotics: designing the mechanism, analyzing whether it holds up, and controlling how it moves. Click through to see the projects behind each one.</p>' +
       '<div id="expertiseGrid" class="expertise-grid" aria-live="polite"></div>' +
       '</div>' +
       '</section>'
@@ -643,17 +663,16 @@
   }
 
   async function renderSharedAbout() {
-    const containers = [
-      document.getElementById("aboutPageContent"),
-      document.getElementById("homeAboutContent")
-    ];
-
-    await Promise.all(
-      containers.filter(Boolean).map(async (container) => {
-        container.innerHTML = buildAboutSectionHTML();
-        await renderExpertise(container.querySelector("#expertiseGrid"));
-      })
-    );
+    const container = document.getElementById("aboutPageContent");
+    if (container) {
+      container.innerHTML = buildAboutSectionHTML();
+      await renderExpertise(container.querySelector("#expertiseGrid"));
+    }
+    // Homepage gets its own lean #expertiseGrid (see index.html) instead
+    // of the full About block, so it doesn't duplicate Education/Software.
+    if (document.getElementById("expertiseGrid") && !container?.contains(document.getElementById("expertiseGrid"))) {
+      await renderExpertise();
+    }
   }
 
   /* ---------------------------------------------------------
@@ -706,7 +725,8 @@
     initContactForm();
     stampYear();
 
-    renderFeatured();
+    renderRoboticsProjects();
+    renderArchivePreview();
     // Per-discipline project grids (#cadProjects, #dfmaProjects, #feaProjects,
     // #cfdProjects, #eacgProjects, #controlProjects, #roboticsProjects) are
     // owned entirely by projects.js on the pages that load it — script.js

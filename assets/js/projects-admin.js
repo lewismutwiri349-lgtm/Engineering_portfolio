@@ -18,15 +18,33 @@
   const DRAFT_KEY = "portfolio-projects-draft";
 
   const CATEGORY_OPTIONS = [
+    "industrial-robotics", "automotive-robotics", "robotic-systems-design",
     "cad", "dfma", "fea", "cfd", "eacg", "control-systems", "robotics", "embedded"
   ];
 
   const SKILL_OPTIONS = [
-    "mechanical-design", "machine-design", "industrial-design", "automotive-design",
-    "sheet-metal", "injection-mold-design", "design-for-manufacturing",
+    "mechanical-design",
     "finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics",
     "embedded-systems", "control-engineering", "cpp", "matlab", "research-development"
   ];
+
+  // Skills retired when the site repositioned around Robotics only.
+  // Kept here (not just dropped from SKILL_OPTIONS) so that uploading,
+  // importing, or loading a project that still carries one of these —
+  // from an older projects.json, a saved draft, or an imported file —
+  // strips it automatically instead of silently reintroducing it.
+  // Includes known variant spellings found in past project data.
+  const OBSOLETE_SKILLS = [
+    "machine-design", "industrial-design", "automotive-design",
+    "sheet-metal", "injection-mold-design", "design-for-manufacturing",
+    "sheet-metal-design", "sheet metal-design"
+  ];
+
+  function sanitizeSkills(skills) {
+    return (Array.isArray(skills) ? skills : []).filter(
+      (s) => !OBSOLETE_SKILLS.includes(String(s || "").trim())
+    );
+  }
 
   let projects = [];
 
@@ -144,6 +162,7 @@
 
           const project = Object.assign(blankProject(), raw);
           project.id = raw.id ? String(raw.id) : slugify(raw.title);
+          project.skills = sanitizeSkills(project.skills);
           project._key = uid();
 
           const existingIndex = projects.findIndex((p) => p.id && p.id.toLowerCase() === project.id.toLowerCase());
@@ -201,7 +220,7 @@
 
   function setProjects(data) {
     const arr = Array.isArray(data) ? data : [];
-    projects = arr.map((p) => Object.assign({ _key: uid() }, p));
+    projects = arr.map((p) => Object.assign({ _key: uid() }, p, { skills: sanitizeSkills(p.skills) }));
     renderList();
   }
 
@@ -657,7 +676,11 @@
           status.textContent = "No project files found yet at data/projects/ — nothing to load. Use \"Save this project to GitHub\" on a project to create the first one.";
           return;
         }
-        projects = loaded.map(({ project, path }) => Object.assign(blankProject(), project, { _key: uid(), _path: path }));
+        projects = loaded.map(({ project, path }) => Object.assign(blankProject(), project, {
+          _key: uid(),
+          _path: path,
+          skills: sanitizeSkills(project.skills)
+        }));
         renderList();
         status.dataset.state = errors.length ? "error" : "success";
         status.textContent = `Loaded ${loaded.length} project${loaded.length === 1 ? "" : "s"} from GitHub.` +
