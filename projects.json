@@ -374,7 +374,7 @@
     "title": "ESP32 IoT Automation Node",
     "category": "robotics",
     "featured": false,
-    "thumbnail": "assets/projects/robotic-systems-design/robot3.svg",
+    "thumbnail": "assets/projects/robotic-systems-design/general/robot3.svg",
     "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
     "tags": [
       "ESP32",
@@ -465,7 +465,7 @@
     "category": "robotic-systems-design",
     "subcategory": "",
     "featured": true,
-    "thumbnail": "assets/projects/robotic-systems-design/general/vacuum-mobile-cleaner.jpg",
+    "thumbnail": "assets/projects/robotic-systems-design/vacuum-mobile-cleaner/vacuum-mobile-cleaner.jpg",
     "summary": "",
     "tags": [
       "SolidWorks",
