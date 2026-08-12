@@ -321,7 +321,7 @@
             <input type="checkbox" data-field="featured" ${project.featured ? "checked" : ""}> Featured
           </label>
           <label>Thumbnail path
-            <input class="achievement-input" data-field="thumbnail" value="${escapeHtml(project.thumbnail)}" placeholder="assets/images/example-cover.jpg">
+            <input class="achievement-input" data-field="thumbnail" value="${escapeHtml(project.thumbnail)}" placeholder="assets/images/example-cover.webp">
           </label>
           <label>Tags (comma or one per line)
             <input class="achievement-input" data-field="tags" value="${escapeHtml((project.tags || []).join(", "))}" placeholder="SolidWorks, GD&T">
@@ -348,7 +348,7 @@
             Upload image assets to GitHub
             <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:6px;">
               <label class="btn-secondary" for="asset-upload-${escapeHtml(project._key)}">Choose image files</label>
-              <input id="asset-upload-${escapeHtml(project._key)}" type="file" accept="image/*" multiple class="visually-hidden" data-field="asset-upload">
+              <input id="asset-upload-${escapeHtml(project._key)}" type="file" accept=".webp,image/webp" multiple class="visually-hidden" data-field="asset-upload">
               <span class="achievement-admin-status" data-asset-hint></span>
             </div>
           </label>
@@ -424,6 +424,18 @@
       const project = findProject(item.dataset.key);
       if (!project) return;
 
+      if (e.target.dataset.field === "thumbnail") {
+        const withExt = withDefaultWebpExt(e.target.value);
+        if (withExt !== e.target.value) {
+          e.target.value = withExt;
+          project.thumbnail = withExt;
+        }
+      }
+      if (e.target.dataset.field === "gallery") {
+        const lines = linesToArray(e.target.value).map(withDefaultWebpExt);
+        e.target.value = lines.join("\n");
+        project.gallery = lines;
+      }
       if (e.target.dataset.field === "skills") {
         const box = item.querySelectorAll('input[data-field="skills"]:checked');
         project.skills = Array.from(box).map((b) => b.value);
@@ -431,6 +443,14 @@
       if (e.target.dataset.field === "asset-upload") {
         const hint = item.querySelector('[data-asset-hint]');
         const files = Array.from(e.target.files || []);
+        const invalid = files.filter((f) => !isWebpFile(f));
+        if (invalid.length) {
+          e.target.value = "";
+          if (hint) {
+            hint.textContent = "Only WebP (.webp) images are supported. Please reselect using WebP files only.";
+          }
+          return;
+        }
         if (hint) {
           hint.textContent = files.length ? `${files.length} file${files.length === 1 ? "" : "s"} selected` : "";
         }
@@ -477,6 +497,24 @@
     });
   }
 
+  function isWebpFile(file) {
+    return file.type === "image/webp" || /\.webp$/i.test(file.name || "");
+  }
+
+  /**
+   * If a path's last segment has no file extension, append ".webp".
+   * Leaves paths that already have any extension (svg, jpg, etc.)
+   * untouched, so this only fills in what people typically forget
+   * to type: the extension itself.
+   */
+  function withDefaultWebpExt(pathStr) {
+    const trimmed = (pathStr || "").trim();
+    if (!trimmed) return trimmed;
+    const lastSegment = trimmed.split("/").pop();
+    if (/\.[^./]+$/.test(lastSegment)) return trimmed;
+    return trimmed + ".webp";
+  }
+
   function requireGitHubModules(statusEl) {
     if (!window.GitHubSync || !window.ProjectStore) {
       const missing = !window.GitHubSync ? "assets/js/github-sync.js" : "assets/js/project-store.js";
@@ -503,7 +541,7 @@
     statusEl.textContent = "Saving to GitHub…";
     try {
       const assetInput = item?.querySelector('input[data-field="asset-upload"]');
-      const assetFiles = Array.from(assetInput?.files || []);
+      const assetFiles = Array.from(assetInput?.files || []).filter(isWebpFile);
       if (assetFiles.length) {
         statusEl.textContent = `Saving to GitHub and uploading ${assetFiles.length} asset${assetFiles.length === 1 ? "" : "s"}…`;
         for (const file of assetFiles) {
@@ -629,7 +667,7 @@
         try {
           const item = document.querySelector(`.achievement-admin-item[data-key="${project._key}"]`);
           const assetInput = item?.querySelector('input[data-field="asset-upload"]');
-          const assetFiles = Array.from(assetInput?.files || []);
+          const assetFiles = Array.from(assetInput?.files || []).filter(isWebpFile);
           if (assetFiles.length) {
             for (const file of assetFiles) {
               const assetPath = window.ProjectStore.assetPathFor(project, file.name);
