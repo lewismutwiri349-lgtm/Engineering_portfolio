@@ -478,7 +478,12 @@
     "problem": "",
     "solution": "",
     "gallery": [],
-    "links": [],
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://lnkd.in/p/dAMx9QfT"
+      }
+    ],
     "downloads": [],
     "skills": [
       "mechanical-design"
