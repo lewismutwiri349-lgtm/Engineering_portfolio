@@ -412,7 +412,7 @@
     "title": "ANSYS Fluent – Fluid Flow & Streamline Simulation",
     "category": "cfd",
     "featured": true,
-    "thumbnail": "assets/projects/cfd/general/fluent-fluid-flow/fluid-flow.jpg",
+    "thumbnail": "assets/projects/cfd/internal-flow/ansys-fluent-fluid-flow/fluid-flow.JPG",
     "summary": "A CFD simulation demonstrating internal fluid flow using ANSYS Fluent. The project focuses on analysing velocity contours, streamlines, and pressure distribution to understand flow behaviour and verify proper simulation setup.\n",
     "tags": [
       "ANSYS Fluent",
