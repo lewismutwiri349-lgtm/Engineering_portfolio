@@ -34,7 +34,9 @@
     ],
     "downloads": [],
     "skills": [
-      "mechanical-design"
+      "mechanical-design",
+      "machine-design",
+      "design-for-manufacturing"
     ],
     "subcategory": "",
     "robotics": false
@@ -47,10 +49,10 @@
     "thumbnail": "assets/images/helicalgear20.jpg",
     "summary": "Design and analysis of a helical gear system for efficient power transmission.",
     "tags": [
-      "",
-      "",
-      "",
-      ""
+      "Mechanism Design",
+      "Linkage Synthesis",
+      "SolidWorks",
+      "Motion Study"
     ],
     "software": [
       "SolidWorks",
@@ -79,7 +81,8 @@
       }
     ],
     "skills": [
-      ""
+      "mechanical-design",
+      "machine-design"
     ],
     "subcategory": "",
     "robotics": false
@@ -145,7 +148,8 @@
     "links": [],
     "downloads": [],
     "skills": [
-      ""
+      "mechanical-design",
+      "sheet metal-design"
     ],
     "subcategory": "",
     "robotics": false
@@ -161,7 +165,7 @@
       "Python",
       "pywin32",
       "COM API",
-      ""
+      "Automation"
     ],
     "software": [
       "SolidWorks",
@@ -182,7 +186,7 @@
     "links": [],
     "downloads": [],
     "skills": [
-      ""
+      "research-development"
     ],
     "subcategory": "",
     "robotics": false
@@ -293,6 +297,7 @@
     "downloads": [],
     "skills": [
       "mechanical-design",
+      "machine-design",
       "control-engineering"
     ],
     "subcategory": "",
@@ -306,7 +311,7 @@
     "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
     "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
     "tags": [
-      ""
+      "DFMA"
     ],
     "software": [
       "SolidWorks"
@@ -341,6 +346,9 @@
     "description": "Completed a Product Design and Development course focused on the end-to-end product development process, including concept generation, design methodology, material selection, prototyping, design for manufacturing (DFM), product testing, and product lifecycle management. Developed the ability to transform engineering concepts into practical, manufacturable solutions.",
     "skills": [
       "mechanical-design",
+      "machine-design",
+      "design-for-manufacturing",
+      "sheet-metal-design",
       "GD&T"
     ],
     "links": [],
@@ -394,8 +402,7 @@
     "downloads": [],
     "skills": [
       "embedded-systems",
-      "robotics",
-      "Controls & Mechatronics"
+      "robotics"
     ],
     "subcategory": "",
     "robotics": true
@@ -451,5 +458,30 @@
     ],
     "subcategory": "internal-flow",
     "robotics": false
+  },
+  {
+    "id": "vacuum-mobile-cleaner",
+    "title": "conceptual vacuum mobile cleaner",
+    "category": "robotic-systems-design",
+    "subcategory": "",
+    "featured": true,
+    "thumbnail": "asset/images/cad/vacuum-mobile-cleaner",
+    "summary": "",
+    "tags": [
+      "SolidWorks",
+      "robotic design"
+    ],
+    "software": [
+      "SolidWorks"
+    ],
+    "process": [],
+    "problem": "",
+    "solution": "",
+    "gallery": [],
+    "links": [],
+    "downloads": [],
+    "skills": [
+      "mechanical-design"
+    ]
   }
 ]
