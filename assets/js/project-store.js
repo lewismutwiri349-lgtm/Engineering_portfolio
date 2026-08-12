@@ -47,23 +47,17 @@
     return `${BASE_DIR}/${category}/${subcategory}/${slug}.json`;
   }
 
+  /**
+   * Where an uploaded image lives, mirroring pathFor()'s own layout:
+   * one folder per category (cad, robotics, cfd, ...), one
+   * subfolder per project. No shared "general" bucket, no
+   * software-based grouping — a project's images live next to
+   * every other project in the same category, full stop.
+   */
   function assetRootFor(project) {
-    const category = slugify(project.category || "general");
+    const category = slugify(project.category || "uncategorized");
     const slug = slugify(project.id || project.title || "project");
-    const software = (project.software || []).map((item) => String(item || "").toLowerCase());
-    let family = "general";
-
-    if (software.some((item) => item.includes("ansys") || item.includes("fluent"))) {
-      family = "Ansys";
-    } else if (software.some((item) => item.includes("solidworks"))) {
-      family = "SolidWorks";
-    } else if (["cfd", "fea", "eacg"].includes(category)) {
-      family = "Ansys";
-    } else if (["cad", "dfma"].includes(category)) {
-      family = "SolidWorks";
-    }
-
-    return `assets/images/projects/general/${family}/${slug}`;
+    return `assets/images/projects/${category}/${slug}`;
   }
 
   function assetPathFor(project, fileName) {
