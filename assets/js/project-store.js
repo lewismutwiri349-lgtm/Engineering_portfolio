@@ -48,16 +48,16 @@
   }
 
   /**
-   * Where an uploaded image lives, mirroring pathFor()'s own layout:
-   * one folder per category (cad, robotics, cfd, ...), one
-   * subfolder per project. No shared "general" bucket, no
-   * software-based grouping — a project's images live next to
-   * every other project in the same category, full stop.
+   * Where an uploaded image lives — same BASE_DIR as the per-project
+   * JSON files (assets/projects/...), just without the "images"
+   * segment, since that's not actually part of the repo's real
+   * folder layout. One folder per category (cad, robotics, cfd,
+   * ...), one subfolder per project.
    */
   function assetRootFor(project) {
     const category = slugify(project.category || "uncategorized");
     const slug = slugify(project.id || project.title || "project");
-    return `assets/images/projects/${category}/${slug}`;
+    return `${BASE_DIR}/${category}/${slug}`;
   }
 
   function assetPathFor(project, fileName) {
