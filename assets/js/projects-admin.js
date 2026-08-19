@@ -19,7 +19,12 @@
 
   const CATEGORY_OPTIONS = [
     "mechanical-design", "dfma", "fea", "cfd",
-    "control-systems", "product-development", "mechatronics", "other"
+    "control-systems", "product-development", "mechatronics", "automation", "other"
+  ];
+
+  const STATUS_OPTIONS = [
+    "Upcoming", "Planned", "In Progress", "Research", "Design",
+    "Simulation", "Prototyping", "Completed", "Archived"
   ];
 
   const SKILL_OPTIONS = [
@@ -52,6 +57,8 @@
       title: "",
       category: "dfma",
       subcategory: "",
+      status: "Planned",
+      date: "",
       featured: false,
       thumbnail: "",
       summary: "",
@@ -59,7 +66,12 @@
       software: [],
       process: [],
       problem: "",
-      solution: "",
+      requirements: "",
+      approach: "",
+      analysis: "",
+      simulation: "",
+      results: "",
+      conclusion: "",
       gallery: [],
       links: [],
       downloads: [],
@@ -149,6 +161,8 @@
           const project = Object.assign(blankProject(), raw);
           project.id = raw.id ? String(raw.id) : slugify(raw.title);
           project.skills = sanitizeSkills(project.skills);
+          project.status = project.status || "Planned";
+          project.approach = project.approach || project.solution || "";
           project._key = uid();
 
           const existingIndex = projects.findIndex((p) => p.id && p.id.toLowerCase() === project.id.toLowerCase());
@@ -206,7 +220,7 @@
 
   function setProjects(data) {
     const arr = Array.isArray(data) ? data : [];
-    projects = arr.map((p) => Object.assign({ _key: uid() }, p, { skills: sanitizeSkills(p.skills) }));
+    projects = arr.map((p) => Object.assign({ _key: uid(), status: "Planned", requirements: "", approach: "", analysis: "", simulation: "", results: "", conclusion: "" }, p, { skills: sanitizeSkills(p.skills), status: p.status || "Planned", approach: p.approach || p.solution || "" }));
     renderList();
   }
 
@@ -252,6 +266,10 @@
   /* ---------------------------------------------------------
      Rendering — one form block per project
      --------------------------------------------------------- */
+  function statusSelect(project) {
+    return STATUS_OPTIONS.map((s) => `<option value="${s}" ${project.status === s ? "selected" : ""}>${s}</option>`).join("");
+  }
+
   function categorySelect(project) {
     return CATEGORY_OPTIONS
       .map((c) => `<option value="${c}" ${project.category === c ? "selected" : ""}>${c}</option>`)
@@ -303,6 +321,12 @@
           <label>Subcategory (becomes a subfolder)
             <input class="achievement-input" data-field="subcategory" value="${escapeHtml(project.subcategory || "")}" placeholder="internal-flow">
           </label>
+          <label>Lifecycle status
+            <select class="achievement-select" data-field="status">${statusSelect(project)}</select>
+          </label>
+          <label>Date
+            <input class="achievement-input" data-field="date" type="date" value="${escapeHtml(project.date || "")}">
+          </label>
           <label class="achievement-checkbox">
             <input type="checkbox" data-field="featured" ${project.featured ? "checked" : ""}> Featured
           </label>
@@ -321,11 +345,26 @@
           <label class="achievement-form-grid__full">Summary
             <textarea class="achievement-textarea" data-field="summary" rows="2">${escapeHtml(project.summary)}</textarea>
           </label>
-          <label class="achievement-form-grid__full">Problem
-            <textarea class="achievement-textarea" data-field="problem">${escapeHtml(project.problem)}</textarea>
+          <label class="achievement-form-grid__full">Engineering problem
+            <textarea class="achievement-textarea" data-field="problem" rows="4">${escapeHtml(project.problem)}</textarea>
           </label>
-          <label class="achievement-form-grid__full">Solution
-            <textarea class="achievement-textarea" data-field="solution">${escapeHtml(project.solution)}</textarea>
+          <label class="achievement-form-grid__full">Requirements / design constraints
+            <textarea class="achievement-textarea" data-field="requirements" rows="3">${escapeHtml(project.requirements)}</textarea>
+          </label>
+          <label class="achievement-form-grid__full">Design approach
+            <textarea class="achievement-textarea" data-field="approach" rows="4">${escapeHtml(project.approach || project.solution)}</textarea>
+          </label>
+          <label class="achievement-form-grid__full">Analysis / methodology
+            <textarea class="achievement-textarea" data-field="analysis" rows="4">${escapeHtml(project.analysis)}</textarea>
+          </label>
+          <label class="achievement-form-grid__full">Simulation setup
+            <textarea class="achievement-textarea" data-field="simulation" rows="4" placeholder="Geometry, material, mesh, boundary conditions, loads, solver setup…">${escapeHtml(project.simulation)}</textarea>
+          </label>
+          <label class="achievement-form-grid__full">Results / engineering interpretation
+            <textarea class="achievement-textarea" data-field="results" rows="4">${escapeHtml(project.results)}</textarea>
+          </label>
+          <label class="achievement-form-grid__full">Conclusion / next iteration
+            <textarea class="achievement-textarea" data-field="conclusion" rows="3">${escapeHtml(project.conclusion)}</textarea>
           </label>
           <label class="achievement-form-grid__full">Gallery image paths (one per line)
             <textarea class="achievement-textarea" data-field="gallery" rows="3">${escapeHtml((project.gallery || []).join("\n"))}</textarea>
@@ -703,7 +742,9 @@
         projects = loaded.map(({ project, path }) => Object.assign(blankProject(), project, {
           _key: uid(),
           _path: path,
-          skills: sanitizeSkills(project.skills)
+          skills: sanitizeSkills(project.skills),
+          status: project.status || "Planned",
+          approach: project.approach || project.solution || ""
         }));
         renderList();
         status.dataset.state = errors.length ? "error" : "success";

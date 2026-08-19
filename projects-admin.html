@@ -1,83 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Projects</title>
-    <meta name="description" content="Manage engineering projects for the portfolio site.">
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="assets/css/style.css">
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header>
-      <div class="navbar">
-        <a class="logo" href="index.html" aria-label="Lewis Mutwiri home">LM</a>
-        <ul class="nav-links"><li><a href="index.html">Home</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="portfolio.html">Projects</a></li>
-<li><a href="news.html">News</a></li>
-<li><a href="events.html">Events</a></li>
-<li><a href="achievements.html">Achievements</a></li>
-<li><a href="contact.html">Contact</a></li></ul>
-        <button id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
-      </div>
-    </header>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Portfolio | Master Admin</title>
+<meta name="description" content="Private content management workspace for the Engineering Portfolio.">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body class="admin-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="admin-header">
+  <div class="navbar">
+    <a class="logo" href="index.html" aria-label="Lewis Mutwiri home">LM</a>
+    <div class="admin-brand"><span class="eyebrow">Private workspace</span><strong>Engineering Portfolio Admin</strong></div>
+    <div class="admin-header-actions">
+      <a class="btn-secondary" href="index.html">View site ↗</a>
+      <button id="themeToggle" type="button" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </div>
+</header>
 
-    <main id="main">
-      <section class="section">
-        <div class="container">
-          <div class="achievement-admin-shell">
-            <div class="section-title">
-              <p class="eyebrow">Admin panel</p>
-              <h2>Projects</h2>
-            </div>
-            <p class="achievement-admin-intro">
-              Every project is saved as its own JSON file under <code>assets/projects/&lt;category&gt;/&lt;subcategory&gt;/&lt;slug&gt;.json</code>
-              — editing one project only ever touches its own file. <code>projects.json</code> at the root is
-              a generated index (rebuilt automatically on every save) that your live site actually reads.
-            </p>
+<main id="main">
+<section class="admin-hero">
+  <div class="container admin-hero__inner">
+    <div>
+      <p class="eyebrow">MASTER CONTENT CONTROL</p>
+      <h1>Engineering Portfolio <span>Admin</span></h1>
+      <p>Manage projects, engineering news, events and achievements from one workspace. Changes can be exported locally or committed directly to GitHub.</p>
+    </div>
+    <div class="admin-status-card">
+      <span class="admin-status-dot" id="adminConnectionDot"></span>
+      <div><strong id="adminConnectionStatus">Checking GitHub connection…</strong><small id="adminLastAction">No changes made in this session.</small></div>
+    </div>
+  </div>
+</section>
 
-            <div id="projectsLoadPanel" class="project-admin-load">
-              <p id="projectsLoadStatus" class="achievement-admin-status">Loading projects.json…</p>
-              <div class="project-admin-load__actions">
-                <button id="projectLoadGitHubButton" type="button" class="btn-secondary">Load projects from GitHub</button>
-                <label class="btn-secondary" for="projectsFileInput">
-                  Load a projects.json file
-                  <input id="projectsFileInput" type="file" accept="application/json" class="visually-hidden">
-                </label>
-                <button id="projectsPasteToggle" type="button" class="btn-secondary">Paste JSON instead</button>
-              </div>
-              <textarea id="projectsPasteArea" class="achievement-textarea project-admin-paste" hidden
-                placeholder="Paste the contents of projects.json here, then click Load pasted JSON"></textarea>
-              <button id="projectsPasteLoad" type="button" class="btn-secondary" hidden>Load pasted JSON</button>
-            </div>
+<section class="section admin-dashboard">
+<div class="container">
+  <div class="admin-stat-grid" aria-label="Content overview">
+    <button class="admin-stat-card is-active" data-admin-tab="projects"><span>Projects</span><strong id="statProjects">—</strong><small>Design · FEA · CFD · Control</small></button>
+    <button class="admin-stat-card" data-admin-tab="news"><span>News</span><strong id="statNews">—</strong><small>Updates · articles · milestones</small></button>
+    <button class="admin-stat-card" data-admin-tab="events"><span>Events</span><strong id="statEvents">—</strong><small>Upcoming · past · workshops</small></button>
+    <button class="admin-stat-card" data-admin-tab="achievements"><span>Achievements</span><strong id="statAchievements">—</strong><small>Certificates · awards · training</small></button>
+  </div>
 
-            <div id="ghSyncSettings"></div>
+  <div class="admin-layout">
+    <aside class="admin-sidebar" aria-label="Admin sections">
+      <p class="admin-sidebar__label">CONTENT</p>
+      <button class="admin-nav-item is-active" data-admin-tab="projects"><span>▣</span> Projects <em id="navProjectsCount">—</em></button>
+      <button class="admin-nav-item" data-admin-tab="news"><span>◈</span> News <em id="navNewsCount">—</em></button>
+      <button class="admin-nav-item" data-admin-tab="events"><span>◇</span> Events <em id="navEventsCount">—</em></button>
+      <button class="admin-nav-item" data-admin-tab="achievements"><span>✦</span> Achievements <em id="navAchievementsCount">—</em></button>
+      <div class="admin-sidebar__divider"></div>
+      <p class="admin-sidebar__label">TOOLS</p>
+      <button class="admin-nav-item" data-admin-tab="sync"><span>↗</span> GitHub Sync</button>
+      <button class="admin-nav-item" data-admin-tab="help"><span>?</span> Workflow Guide</button>
+    </aside>
 
-            <div class="achievement-admin-toolbar">
-              <button id="projectAddButton" type="button" class="btn-primary">+ New Project</button>
-              <label class="btn-secondary" for="projectImportInput">+ Import Project JSON</label>
-              <input type="file" id="projectImportInput" accept="application/json,.json" multiple class="visually-hidden">
-              <button id="projectSaveButton" type="button" class="btn-secondary">Export All (download projects.json)</button>
-              <button id="projectPushButton" type="button" class="btn-accent">Push All Projects to GitHub (one file each)</button>
-              <span id="projectCount" class="achievement-admin-status" style="align-self:center;"></span>
-            </div>
-            <p id="projectAdminStatus" class="achievement-admin-status"></p>
-            <div id="projectAdminList" class="achievement-admin-list"></div>
+    <div class="admin-content">
+      <!-- PROJECTS -->
+      <section class="admin-tab-panel is-active" data-admin-panel="projects">
+        <div class="admin-panel-heading"><div><p class="eyebrow">ENGINEERING WORK</p><h2>Projects</h2><p>Master project editor with lifecycle status, engineering case-study fields, media, software, skills and GitHub publishing.</p></div><span class="admin-panel-badge">PRIMARY</span></div>
+        <div class="achievement-admin-shell admin-embedded-projects">
+          <div class="project-admin-toolbar admin-toolbar-top">
+            <button id="projectAddButton" type="button" class="btn-primary">+ New Project</button>
+            <label class="btn-secondary" for="projectImportInput">Import JSON</label><input type="file" id="projectImportInput" accept="application/json,.json" multiple class="visually-hidden">
+            <button id="projectSaveButton" type="button" class="btn-secondary">Export Index</button>
+            <button id="projectPushButton" type="button" class="btn-accent">Publish All to GitHub</button>
+            <span id="projectCount" class="achievement-admin-status"></span>
           </div>
+          <div id="projectsLoadPanel" class="project-admin-load">
+            <p id="projectsLoadStatus" class="achievement-admin-status">Loading projects.json…</p>
+            <div class="project-admin-load__actions">
+              <button id="projectLoadGitHubButton" type="button" class="btn-secondary">Load project files from GitHub</button>
+              <label class="btn-secondary" for="projectsFileInput">Load index<input id="projectsFileInput" type="file" accept="application/json" class="visually-hidden"></label>
+              <button id="projectsPasteToggle" type="button" class="btn-secondary">Paste JSON</button>
+            </div>
+            <textarea id="projectsPasteArea" class="achievement-textarea project-admin-paste" hidden placeholder="Paste projects.json here…"></textarea>
+            <button id="projectsPasteLoad" type="button" class="btn-secondary" hidden>Load pasted JSON</button>
+          </div>
+          <p id="projectAdminStatus" class="achievement-admin-status"></p>
+          <div id="projectAdminList" class="achievement-admin-list"></div>
         </div>
       </section>
-    </main>
 
-    <footer>
-      <p>© <span data-year>2026</span> Lewis Mutwiri</p>
-    </footer>
+      <!-- NEWS -->
+      <section class="admin-tab-panel" data-admin-panel="news">
+        <div class="admin-panel-heading"><div><p class="eyebrow">PUBLICATION</p><h2>News Manager</h2><p>Create technical updates, project milestones, certification announcements and engineering articles.</p></div><button class="btn-primary" data-content-add="news">+ New News Item</button></div>
+        <div id="newsAdminStatus" class="admin-message"></div>
+        <div class="admin-toolbar"><button class="btn-secondary" data-content-load="news">Reload</button><button class="btn-secondary" data-content-export="news">Export JSON</button><button class="btn-accent" data-content-push="news">Publish News</button><span id="newsAdminCount" class="achievement-admin-status"></span></div>
+        <div id="newsAdminList" class="admin-editor-list"></div>
+      </section>
 
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/github-sync.js"></script>
-    <script src="assets/js/project-store.js"></script>
-    <script src="assets/js/projects-admin.js"></script>
-  </body>
+      <!-- EVENTS -->
+      <section class="admin-tab-panel" data-admin-panel="events">
+        <div class="admin-panel-heading"><div><p class="eyebrow">ENGINEERING CALENDAR</p><h2>Events Manager</h2><p>Maintain upcoming and past conferences, workshops, competitions, presentations and exhibitions.</p></div><button class="btn-primary" data-content-add="events">+ New Event</button></div>
+        <div id="eventsAdminStatus" class="admin-message"></div>
+        <div class="admin-toolbar"><button class="btn-secondary" data-content-load="events">Reload</button><button class="btn-secondary" data-content-export="events">Export JSON</button><button class="btn-accent" data-content-push="events">Publish Events</button><span id="eventsAdminCount" class="achievement-admin-status"></span></div>
+        <div id="eventsAdminList" class="admin-editor-list"></div>
+      </section>
+
+      <!-- ACHIEVEMENTS -->
+      <section class="admin-tab-panel" data-admin-panel="achievements">
+        <div class="admin-panel-heading"><div><p class="eyebrow">PROFESSIONAL RECORD</p><h2>Achievements & Certificates</h2><p>Maintain certificates, awards, workshops, publications and other verified professional milestones.</p></div><button class="btn-primary" data-content-add="achievements">+ New Achievement</button></div>
+        <div id="achievementsAdminStatus" class="admin-message"></div>
+        <div class="admin-toolbar"><button class="btn-secondary" data-content-load="achievements">Reload</button><button class="btn-secondary" data-content-export="achievements">Export JSON</button><button class="btn-accent" data-content-push="achievements">Publish Achievements</button><span id="achievementsAdminCount" class="achievement-admin-status"></span></div>
+        <div id="achievementsAdminList" class="admin-editor-list"></div>
+      </section>
+
+      <!-- SYNC -->
+      <section class="admin-tab-panel" data-admin-panel="sync">
+        <div class="admin-panel-heading"><div><p class="eyebrow">DEPLOYMENT</p><h2>GitHub Sync</h2><p>Configure the repository used by the admin workspace to publish static content.</p></div></div>
+        <div id="ghSyncSettings" class="admin-sync-host"></div>
+        <div class="admin-warning"><strong>Security note</strong><p>The GitHub token is stored in this browser's local storage and sent directly to GitHub. Use a fine-grained token restricted to this repository and Contents read/write permissions. Never paste a token into project content or commit it to the repository.</p></div>
+      </section>
+
+      <!-- HELP -->
+      <section class="admin-tab-panel" data-admin-panel="help">
+        <div class="admin-panel-heading"><div><p class="eyebrow">WORKFLOW</p><h2>How to use the master admin</h2><p>A simple publishing workflow for keeping the portfolio current without editing HTML by hand.</p></div></div>
+        <div class="admin-guide-grid">
+          <article class="admin-guide-card"><span>01</span><h3>Build the project</h3><p>Create the engineering project first. Set its category, status, summary, problem, solution, tools and documented analysis.</p></article>
+          <article class="admin-guide-card"><span>02</span><h3>Add evidence</h3><p>Attach genuine CAD renders, FEA/CFD plots, drawings, screenshots or downloadable engineering files. Never fabricate numerical results.</p></article>
+          <article class="admin-guide-card"><span>03</span><h3>Publish</h3><p>Save the individual project to GitHub. The project index is rebuilt automatically so the public portfolio can discover it.</p></article>
+          <article class="admin-guide-card"><span>04</span><h3>Keep the story alive</h3><p>Use News for progress and technical updates. Use Events for calendar items. Use Achievements for verified credentials and milestones.</p></article>
+        </div>
+        <div class="admin-warning"><strong>Content integrity</strong><p>This admin is intentionally data-driven. Do not use it to claim employment, certifications, client work, simulation results, awards or professional qualifications that are not supported by your actual records.</p></div>
+      </section>
+    </div>
+  </div>
+</div>
+</section>
+</main>
+<footer><p>© <span data-year>2026</span> Lewis Mutwiri · Private Admin</p></footer>
+
+<script src="assets/js/script.js"></script>
+<script src="assets/js/github-sync.js"></script>
+<script src="assets/js/project-store.js"></script>
+<script src="assets/js/projects-admin.js"></script>
+<script src="assets/js/admin-content.js"></script>
+</body>
 </html>
