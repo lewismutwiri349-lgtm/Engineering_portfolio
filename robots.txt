@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /projects-admin.html
+Sitemap: https://lewismutwiri.com/sitemap.xml

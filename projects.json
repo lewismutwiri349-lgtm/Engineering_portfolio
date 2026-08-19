@@ -2,7 +2,7 @@
   {
     "id": "pcb-enclosure",
     "title": "PCB Enclosure Design",
-    "category": "cad",
+    "category": "mechanical-design",
     "featured": true,
     "thumbnail": "assets/images/pcb-enclosure-cover.jpeg",
     "summary": "Full manufacturing drawing package for a PCB enclosure, built from revolve and extrude features to GD&T-ready detail.",
@@ -39,12 +39,13 @@
       "design-for-manufacturing"
     ],
     "subcategory": "",
-    "robotics": false
+    "robotics": false,
+    "status": "Completed"
   },
   {
     "id": "helical-gear",
     "title": "Helical Gear Design",
-    "category": "cad",
+    "category": "mechanical-design",
     "featured": true,
     "thumbnail": "assets/images/helicalgear20.jpg",
     "summary": "Design and analysis of a helical gear system for efficient power transmission.",
@@ -85,12 +86,13 @@
       "machine-design"
     ],
     "subcategory": "",
-    "robotics": false
+    "robotics": false,
+    "status": "Completed"
   },
   {
     "id": "valve-body",
     "title": "valve body",
-    "category": "cad",
+    "category": "mechanical-design",
     "featured": true,
     "thumbnail": "assets/images/valve-body-cover.jpg",
     "summary": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
@@ -119,7 +121,8 @@
       "mechanical-design"
     ],
     "subcategory": "",
-    "robotics": false
+    "robotics": false,
+    "status": "In Progress"
   },
   {
     "id": "sheet-metal-electronic-enclosure",
@@ -143,7 +146,7 @@
     "problem": "Design a sheet metal electronic enclosure that provides efficient thermal management and electromagnetic shielding.",
     "solution": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
     "gallery": [
-      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpg"
+      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpeg"
     ],
     "links": [],
     "downloads": [],
@@ -152,12 +155,13 @@
       "sheet metal-design"
     ],
     "subcategory": "",
-    "robotics": false
+    "robotics": false,
+    "status": "Completed"
   },
   {
     "id": "solidworks-parametric-automation",
     "title": "SolidWorks Parametric Automation (Python + COM API)",
-    "category": "automation",
+    "category": "engineering-analysis",
     "featured": true,
     "thumbnail": "assets/images/cad4.svg",
     "summary": "Python scripts driving SolidWorks' COM API to batch-update parametric dimensions across families of parts.",
@@ -189,12 +193,13 @@
       "research-development"
     ],
     "subcategory": "",
-    "robotics": false
+    "robotics": false,
+    "status": "Completed"
   },
   {
     "id": "neo6m-rocket-recovery",
     "title": "NEO-6M GPS Rocket Recovery System",
-    "category": "control systems",
+    "category": "control-systems",
     "featured": true,
     "thumbnail": "assets/images/robot1.svg",
     "summary": "Arduino-based GPS recovery beacon for hobby rocketry, transmitting live position after apogee for fast payload recovery.",
@@ -228,12 +233,13 @@
       "research-development"
     ],
     "subcategory": "",
-    "robotics": true
+    "robotics": true,
+    "status": "Completed"
   },
   {
     "id": "structural-analysis-dashboard",
     "title": "Structural Analysis Dashboard",
-    "category": "automation",
+    "category": "engineering-analysis",
     "featured": true,
     "thumbnail": "assets/images/robot2.svg",
     "summary": "A React web app for beam deflection, SFD/BMD, torsion, stress analysis, section properties and a material library.",
@@ -265,12 +271,13 @@
       "research-development"
     ],
     "subcategory": "",
-    "robotics": false
+    "robotics": false,
+    "status": "Completed"
   },
   {
     "id": "pedal-locking-lever",
     "title": "Pedal-Actuated Locking Lever (Practice Mechanism)",
-    "category": "cad",
+    "category": "mechanical-design",
     "featured": false,
     "thumbnail": "assets/images/cad5.svg",
     "summary": "A deliberate practice project in original linkage design, built to close a portfolio gap around mechanism synthesis.",
@@ -301,12 +308,13 @@
       "control-engineering"
     ],
     "subcategory": "",
-    "robotics": false
+    "robotics": false,
+    "status": "Completed"
   },
   {
     "id": "cpu-cooling-fan-design",
     "title": "CPU Cooling Fan Design",
-    "category": "cad",
+    "category": "mechanical-design",
     "featured": true,
     "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
     "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
@@ -335,7 +343,8 @@
       "mechanical-design"
     ],
     "subcategory": "",
-    "robotics": false
+    "robotics": false,
+    "status": "Design"
   },
   {
     "id": "product-design-and-development-course-certification",
@@ -367,14 +376,15 @@
     "process": [],
     "problem": "",
     "solution": "",
-    "gallery": []
+    "gallery": [],
+    "status": "Completed"
   },
   {
     "id": "esp32-iot-automation",
     "title": "ESP32 IoT Automation Node",
-    "category": "robotics",
+    "category": "control-systems",
     "featured": false,
-    "thumbnail": "assets/projects/robotic-systems-design/general/robot3.svg",
+    "thumbnail": "assets/images/robot3.svg",
     "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
     "tags": [
       "ESP32",
@@ -405,7 +415,8 @@
       "robotics"
     ],
     "subcategory": "",
-    "robotics": true
+    "robotics": true,
+    "status": "Completed"
   },
   {
     "id": "ansys-fluent-fluid-flow",
@@ -440,9 +451,9 @@
     "problem": "Predict the behavior of fluid flowing through a computational domain and visualize important flow characteristics such as velocity, pressure, and streamlines.\n",
     "solution": "Created the geometry, generated a computational mesh, applied inlet and outlet boundary conditions, solved the flow field using ANSYS Fluent, and analyzed velocity contours and streamlines to evaluate flow performance.\n",
     "gallery": [
-      "assets/projects/cfd/internal-flow/fluent-fluid-flow/streamlines.JPG",
-      "assets/projects/cfd/internal-flow/fluent-fluid-flow/velocity-contours.JPG",
-      "assets/projects/cfd/internal-flow/fluent-fluid-flow/fluid-flow.JPG"
+      "assets/projects/cfd/internal-flow/ansys-fluent-fluid-flow/streamlines.JPG",
+      "assets/projects/cfd/internal-flow/ansys-fluent-fluid-flow/velocity-contours.JPG",
+      "assets/projects/cfd/internal-flow/ansys-fluent-fluid-flow/fluid-flow.JPG"
     ],
     "links": [
       {
@@ -457,12 +468,13 @@
       "thermodynamics"
     ],
     "subcategory": "internal-flow",
-    "robotics": false
+    "robotics": false,
+    "status": "Simulation"
   },
   {
     "id": "vacuum-mobile-cleaner",
     "title": "conceptual vacuum mobile cleaner",
-    "category": "robotic-systems-design",
+    "category": "mechanical-design",
     "subcategory": "",
     "featured": true,
     "thumbnail": "assets/projects/robotic-systems-design/vacuum-mobile-cleaner/vacuum-mobile-cleaner.jpg",
@@ -488,6 +500,7 @@
     "downloads": [],
     "skills": [
       "mechanical-design"
-    ]
+    ],
+    "status": "Research"
   }
 ]

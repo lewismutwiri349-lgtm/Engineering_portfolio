@@ -18,8 +18,8 @@
   const DRAFT_KEY = "portfolio-projects-draft";
 
   const CATEGORY_OPTIONS = [
-    "industrial-robotics", "automotive-robotics", "robotic-systems-design",
-    "cad", "dfma", "fea", "cfd", "eacg", "control-systems", "robotics", "embedded"
+    "mechanical-design", "dfma", "fea", "cfd",
+    "control-systems", "product-development", "mechatronics", "other"
   ];
 
   const SKILL_OPTIONS = [
@@ -28,22 +28,8 @@
     "embedded-systems", "control-engineering", "cpp", "matlab", "research-development"
   ];
 
-  // Skills retired when the site repositioned around Robotics only.
-  // Kept here (not just dropped from SKILL_OPTIONS) so that uploading,
-  // importing, or loading a project that still carries one of these —
-  // from an older projects.json, a saved draft, or an imported file —
-  // strips it automatically instead of silently reintroducing it.
-  // Includes known variant spellings found in past project data.
-  const OBSOLETE_SKILLS = [
-    "machine-design", "industrial-design", "automotive-design",
-    "sheet-metal", "injection-mold-design", "design-for-manufacturing",
-    "sheet-metal-design", "sheet metal-design"
-  ];
-
   function sanitizeSkills(skills) {
-    return (Array.isArray(skills) ? skills : []).filter(
-      (s) => !OBSOLETE_SKILLS.includes(String(s || "").trim())
-    );
+    return Array.isArray(skills) ? skills : [];
   }
 
   let projects = [];

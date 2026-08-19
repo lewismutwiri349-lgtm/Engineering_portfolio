@@ -79,10 +79,10 @@
           <p class="achievement-card__meta">${escapeHtml(item.date || "Date not listed")}</p>
           <p class="achievement-card__description">${escapeHtml(item.description || "")}</p>
           <div class="achievement-tags">${renderSkillTags(item.skills)}</div>
-          <div class="achievement-actions">
-            <a class="btn-secondary" href="${escapeHtml(docUrl || "#")}" target="_blank" rel="noopener noreferrer">View Certificate</a>
-            <a class="btn-primary" href="${escapeHtml(docUrl || "#")}" download="${escapeHtml((item.title || "certificate").toLowerCase().replace(/\s+/g, "-") + ".pdf")}" rel="noopener noreferrer">Download Certificate</a>
-          </div>
+          ${docUrl ? `<div class="achievement-actions">
+            <a class="btn-secondary" href="${escapeHtml(docUrl)}" target="_blank" rel="noopener noreferrer">View Certificate</a>
+            <a class="btn-primary" href="${escapeHtml(docUrl)}" download="${escapeHtml((item.title || "certificate").toLowerCase().replace(/\s+/g, "-") + ".pdf")}" rel="noopener noreferrer">Download Certificate</a>
+          </div>` : '<p class="empty-inline" style="color:var(--text-soft);font-size:.9rem;">Certificate document not published in this repository.</p>'}
         </div>
       </article>
     `;

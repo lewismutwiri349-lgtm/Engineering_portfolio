@@ -20,7 +20,7 @@
   "problem": "Design a sheet metal electronic enclosure that provides efficient thermal management and electromagnetic shielding.",
   "solution": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
   "gallery": [
-    "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpg"
+    "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpeg"
   ],
   "links": [],
   "downloads": [],

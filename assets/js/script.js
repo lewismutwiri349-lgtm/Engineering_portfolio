@@ -107,7 +107,27 @@
      only so any stray .nav-toggle markup never shows.
      --------------------------------------------------------- */
   function initMobileNav() {
-    document.querySelectorAll(".nav-toggle").forEach((el) => el.remove());
+    document.querySelectorAll(".navbar").forEach((nav) => {
+      const links = nav.querySelector(".nav-links");
+      if (!links || nav.querySelector(".nav-toggle")) return;
+      const button = document.createElement("button");
+      button.className = "nav-toggle";
+      button.type = "button";
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-controls", "site-navigation");
+      button.setAttribute("aria-label", "Open navigation");
+      button.innerHTML = "<span></span><span></span><span></span>";
+      links.id = "site-navigation";
+      nav.insertBefore(button, links);
+      button.addEventListener("click", () => {
+        const open = nav.classList.toggle("nav-open");
+        button.setAttribute("aria-expanded", String(open));
+        button.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+      });
+      links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+        nav.classList.remove("nav-open"); button.setAttribute("aria-expanded", "false"); button.setAttribute("aria-label", "Open navigation");
+      }));
+    });
   }
 
   /* ---------------------------------------------------------
@@ -184,25 +204,19 @@
       .slice(0, 4)
       .map((t) => "<span>" + escapeHtml(t) + "</span>")
       .join("");
+    const status = p.status ? '<span class="project-status project-status--' +
+      escapeHtml(String(p.status).toLowerCase().replace(/\s+/g, "-")) + '">' +
+      escapeHtml(p.status) + "</span>" : "";
     return (
       '<a class="card project-card bracket" href="projects.html?id=' +
-      encodeURIComponent(p.id) +
-      '">' +
-      '<div class="thumb"><img src="' +
-      escapeHtml(p.thumbnail || "") +
+      encodeURIComponent(p.id) + '">' +
+      '<div class="thumb"><img src="' + escapeHtml(p.thumbnail || "") +
       '" alt="" loading="lazy" onerror="this.closest(\'.thumb\').style.display=\'none\'"></div>' +
-      '<div class="meta">' +
-      escapeHtml((p.category || "project").toUpperCase()) +
-      "</div>" +
-      "<h3>" +
-      escapeHtml(p.title) +
-      "</h3>" +
-      "<p>" +
-      escapeHtml(p.summary || "") +
-      "</p>" +
-      '<div class="tags">' +
-      tags +
-      "</div>" +
+      '<div class="project-card-head"><div class="meta">' +
+      escapeHtml((p.category || "project").toUpperCase()) + "</div>" + status + "</div>" +
+      "<h3>" + escapeHtml(p.title) + "</h3>" +
+      "<p>" + escapeHtml(p.summary || "") + "</p>" +
+      '<div class="tags">' + tags + "</div>" +
       "</a>"
     );
   }
@@ -216,38 +230,147 @@
   }
 
   /* ---------------------------------------------------------
-     Home page: Robotics projects (the lead showcase) and a
-     quiet preview of the Engineering Design Archive. Split is
-     driven by each project's explicit "robotics" boolean in
-     projects.json, not guessed from category strings.
+     Homepage project showcase — unified engineering work.
+     Project lifecycle is driven by the status property in
+     projects.json; robotics is no longer a primary grouping.
      --------------------------------------------------------- */
-  async function renderRoboticsProjects() {
-    const el = document.getElementById("roboticsProjects");
+  async function renderHomeProjects() {
+    const el = document.getElementById("homeProjects");
     if (!el) return;
     skeletons(el, 3);
     try {
       const projects = (await loadProjects()).filter(isRealProject);
-      const robotics = projects.filter((p) => p.robotics);
-      el.innerHTML = robotics.length
-        ? robotics.map(projectCardHTML).join("")
-        : '<div class="empty-state">Robotics-specific project write-ups are on the way — the skill set above is the current evidence.</div>';
+      const featured = projects.filter((p) => p.featured).slice(0, 6);
+      el.innerHTML = featured.length
+        ? featured.map(projectCardHTML).join("")
+        : '<div class="empty-state">No featured projects have been published yet.</div>';
     } catch (e) {
       errorState(el, "Couldn't load projects right now — " + e.message);
     }
   }
 
-  async function renderArchivePreview() {
-    const el = document.getElementById("archivePreview");
-    if (!el) return;
-    skeletons(el, 3);
+  function formatDate(value) {
+    if (!value) return "";
+    const d = new Date(value.length === 7 ? value + "-01" : value);
+    if (Number.isNaN(d.getTime())) return value;
+    return new Intl.DateTimeFormat("en", { year: "numeric", month: "short", day: "numeric" }).format(d);
+  }
+
+  function renderNewsCard(item) {
+    return '<article class="card content-card" data-featured="' + (item.featured ? "true" : "false") + '">' +
+      (item.image ? '<div class="thumb"><img src="' + escapeHtml(item.image) + '" alt="' + escapeHtml(item.title || "") + '" loading="lazy"></div>' : '') +
+      '<div class="content-card-meta"><span class="meta">' + escapeHtml(item.category || "News") + '</span>' +
+      (item.featured ? '<span class="content-badge">Featured</span>' : '') + '</div>' +
+      '<div class="meta">' + escapeHtml(formatDate(item.date)) + '</div>' +
+      '<h3>' + escapeHtml(item.title || "Untitled update") + '</h3>' +
+      '<p>' + escapeHtml(item.summary || "") + '</p>' +
+      (item.content ? '<details class="content-details"><summary>Read full update</summary><div><p>' + escapeHtml(item.content) + '</p></div></details>' : '') +
+      '</article>';
+  }
+
+  function eventState(item) {
+    const raw = String(item.status || "").toLowerCase();
+    if (raw) return raw;
+    if (!item.date) return "unscheduled";
+    const d = new Date(item.date);
+    if (Number.isNaN(d.getTime())) return "scheduled";
+    const end = item.endDate ? new Date(item.endDate) : d;
+    return end >= new Date() ? "upcoming" : "past";
+  }
+
+  function renderEventCard(item) {
+    const state = eventState(item);
+    return '<article class="card content-card event-card" data-event-state="' + escapeHtml(state) + '">' +
+      '<div class="content-card-meta"><span class="meta">' + escapeHtml(item.eventType || "Event") + '</span>' +
+      '<span class="project-status project-status--' + escapeHtml(state.replace(/\s+/g, "-")) + '">' + escapeHtml(state) + '</span></div>' +
+      '<div class="meta">' + escapeHtml(formatDate(item.date)) + (item.time ? ' · ' + escapeHtml(item.time) : '') + '</div>' +
+      '<h3>' + escapeHtml(item.title || "Untitled event") + '</h3>' +
+      '<p>' + escapeHtml(item.description || "") + '</p>' +
+      (item.location ? '<p class="event-location"><strong>Location:</strong> ' + escapeHtml(item.location) + '</p>' : '') +
+      (item.url ? '<a class="btn-secondary" href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener noreferrer">Event details →</a>' : '') +
+      '</article>';
+  }
+
+  async function renderNewsEvents() {
+    const newsTargets = [document.getElementById("newsGrid"), document.getElementById("homeNews")].filter(Boolean);
+    const eventTargets = [document.getElementById("eventsGrid"), document.getElementById("homeEvents")].filter(Boolean);
+    if (!newsTargets.length && !eventTargets.length) return;
+
+    let news = [], events = [];
     try {
-      const projects = (await loadProjects()).filter(isRealProject);
-      const archive = projects.filter((p) => !p.robotics).slice(0, 3);
-      el.innerHTML = archive.length
-        ? archive.map(projectCardHTML).join("")
-        : '<div class="empty-state">Nothing here yet.</div>';
+      const [newsRes, eventsRes] = await Promise.all([fetch("data/news.json"), fetch("data/events.json")]);
+      if (!newsRes.ok || !eventsRes.ok) throw new Error("content data could not be loaded");
+      news = await newsRes.json();
+      events = await eventsRes.json();
     } catch (e) {
-      errorState(el, "Couldn't load projects right now — " + e.message);
+      newsTargets.forEach((el) => errorState(el, "Couldn't load updates right now."));
+      eventTargets.forEach((el) => errorState(el, "Couldn't load events right now."));
+      return;
+    }
+
+    news = Array.isArray(news) ? [...news].sort((a,b) => String(b.date || "").localeCompare(String(a.date || ""))) : [];
+    events = Array.isArray(events) ? [...events].sort((a,b) => String(a.date || "").localeCompare(String(b.date || ""))) : [];
+
+    newsTargets.forEach((el) => {
+      const limit = el.id === "homeNews" ? news.filter(n => n.featured).slice(0, 2) : news;
+      const fallback = el.id === "homeNews" ? news.slice(0, 2) : news;
+      el.innerHTML = (limit.length ? limit : fallback).map(renderNewsCard).join("") || '<div class="empty-state">No news items published yet.</div>';
+    });
+
+    eventTargets.forEach((el) => {
+      const upcoming = events.filter(e => eventState(e) === "upcoming");
+      const limit = el.id === "homeEvents" ? upcoming.slice(0, 2) : events;
+      el.innerHTML = limit.map(renderEventCard).join("") || '<div class="empty-state">No events published yet.</div>';
+    });
+
+    const empty = document.getElementById("eventsEmpty");
+    if (empty) empty.style.display = events.length ? "none" : "block";
+    initContentFilters(news, events);
+  }
+
+  function initContentFilters(news, events) {
+    const newsGrid = document.getElementById("newsGrid");
+    const eventsGrid = document.getElementById("eventsGrid");
+    if (newsGrid && !document.getElementById("newsFilterBar")) {
+      const bar = document.createElement("div");
+      bar.id = "newsFilterBar";
+      bar.className = "filter-bar content-filter-bar";
+      bar.setAttribute("role", "group");
+      bar.setAttribute("aria-label", "Filter news");
+      const categories = ["all", ...new Set(news.map(n => n.category).filter(Boolean))];
+      categories.forEach((cat, i) => {
+        const b = document.createElement("button");
+        b.textContent = cat === "all" ? "All" : cat;
+        b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+        b.addEventListener("click", () => {
+          [...bar.querySelectorAll("button")].forEach(x => x.setAttribute("aria-pressed", "false"));
+          b.setAttribute("aria-pressed", "true");
+          const filtered = cat === "all" ? news : news.filter(n => n.category === cat);
+          newsGrid.innerHTML = filtered.map(renderNewsCard).join("") || '<div class="empty-state">No news items in this category yet.</div>';
+        });
+        bar.appendChild(b);
+      });
+      newsGrid.parentElement.insertBefore(bar, newsGrid);
+    }
+    if (eventsGrid && !document.getElementById("eventFilterBar")) {
+      const bar = document.createElement("div");
+      bar.id = "eventFilterBar";
+      bar.className = "filter-bar content-filter-bar";
+      bar.setAttribute("role", "group");
+      bar.setAttribute("aria-label", "Filter events");
+      ["all", "upcoming", "past"].forEach((state, i) => {
+        const b = document.createElement("button");
+        b.textContent = state[0].toUpperCase() + state.slice(1);
+        b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+        b.addEventListener("click", () => {
+          [...bar.querySelectorAll("button")].forEach(x => x.setAttribute("aria-pressed", "false"));
+          b.setAttribute("aria-pressed", "true");
+          const filtered = state === "all" ? events : events.filter(e => eventState(e) === state);
+          eventsGrid.innerHTML = filtered.map(renderEventCard).join("") || '<div class="empty-state">No ' + state + ' events published yet.</div>';
+        });
+        bar.appendChild(b);
+      });
+      eventsGrid.parentElement.insertBefore(bar, eventsGrid);
     }
   }
 
@@ -262,151 +385,60 @@
     skeletons(el, 6);
 
     let all = [];
-    try {
-      all = await loadProjects();
-    } catch (e) {
-      errorState(el, "Couldn't load projects right now — " + e.message);
-      return;
-    }
+    try { all = (await loadProjects()).filter(isRealProject); }
+    catch (e) { errorState(el, "Couldn't load projects right now — " + e.message); return; }
 
-    const categories = Array.from(new Set(all.map((p) => p.category))).sort();
-    // Only offer skill filters for skills that actually have at least one
-    // project tagged — keeps the chip row honest as the JSON grows.
-    const skillsPresent = Array.from(
-      new Set(all.flatMap((p) => p.skills || []))
-    ).sort((a, b) => (SKILLS[a]?.name || a).localeCompare(SKILLS[b]?.name || b));
-
+    const categories = Array.from(new Set(all.map(p => p.category).filter(Boolean))).sort();
+    const statuses = Array.from(new Set(all.map(p => p.status).filter(Boolean))).sort();
+    const skillsPresent = Array.from(new Set(all.flatMap(p => p.skills || [])))
+      .sort((a,b) => (SKILLS[a]?.name || a).localeCompare(SKILLS[b]?.name || b));
     const params = new URLSearchParams(location.search);
-    let activeCategory = "all";
-    let activeSkill = params.get("skill") && skillsPresent.includes(params.get("skill"))
-      ? params.get("skill")
-      : null;
+    let activeCategory = "all", activeStatus = "all";
+    let activeSkill = params.get("skill") && skillsPresent.includes(params.get("skill")) ? params.get("skill") : null;
 
-    // ---- category filter row ----
-    const categoryBar = document.createElement("div");
-    categoryBar.className = "filter-bar";
-    categoryBar.setAttribute("role", "group");
-    categoryBar.setAttribute("aria-label", "Filter projects by category");
-
-    const allBtn = document.createElement("button");
-    allBtn.textContent = "All";
-    allBtn.setAttribute("aria-pressed", activeCategory === "all" ? "true" : "false");
-    allBtn.addEventListener("click", () => {
-      activeCategory = "all";
-      [...categoryBar.children].forEach((c) => c.setAttribute("aria-pressed", "false"));
-      allBtn.setAttribute("aria-pressed", "true");
-      apply();
-    });
-    categoryBar.appendChild(allBtn);
-
-    const categoryLabel = document.createElement("span");
-    categoryLabel.className = "filter-label";
-    categoryLabel.textContent = "Category";
-    categoryBar.prepend(categoryLabel);
-
-    categories.forEach((cat) => {
-      const b = document.createElement("button");
-      b.textContent = cat.toUpperCase();
-      b.setAttribute("aria-pressed", "false");
-      b.addEventListener("click", () => {
-        activeCategory = cat;
-        [...categoryBar.children].forEach((c) => c.setAttribute("aria-pressed", "false"));
-        b.setAttribute("aria-pressed", "true");
-        apply();
+    function makeFilterBar(label, values, active, formatter, onChange) {
+      const bar = document.createElement("div");
+      bar.className = "filter-bar";
+      bar.setAttribute("role", "group");
+      bar.setAttribute("aria-label", "Filter projects by " + label.toLowerCase());
+      const labelEl = document.createElement("span"); labelEl.className = "filter-label"; labelEl.textContent = label; bar.appendChild(labelEl);
+      ["all", ...values].forEach((value, index) => {
+        const b = document.createElement("button");
+        b.textContent = value === "all" ? "All" : formatter(value);
+        b.setAttribute("aria-pressed", (active === value) ? "true" : (active === "all" && index === 0 ? "true" : "false"));
+        b.addEventListener("click", () => {
+          [...bar.querySelectorAll("button")].forEach(x => x.setAttribute("aria-pressed", "false"));
+          b.setAttribute("aria-pressed", "true"); onChange(value); apply();
+        });
+        bar.appendChild(b);
       });
-      categoryBar.appendChild(b);
-    });
-
-    // ---- expertise (skill) filter row ----
-    const skillBar = document.createElement("div");
-    skillBar.className = "filter-bar filter-bar--skill";
-    skillBar.setAttribute("role", "group");
-    skillBar.setAttribute("aria-label", "Filter projects by expertise");
-
-    const skillAllBtn = document.createElement("button");
-    skillAllBtn.textContent = "All Expertise";
-    skillAllBtn.setAttribute("aria-pressed", activeSkill ? "false" : "true");
-    skillAllBtn.addEventListener("click", () => {
-      activeSkill = null;
-      syncSkillUrl();
-      [...skillBar.children].forEach((c) => c.setAttribute("aria-pressed", "false"));
-      skillAllBtn.setAttribute("aria-pressed", "true");
-      apply();
-    });
-    skillBar.appendChild(skillAllBtn);
-
-    const skillLabel = document.createElement("span");
-    skillLabel.className = "filter-label";
-    skillLabel.textContent = "Expertise";
-    skillBar.prepend(skillLabel);
-
-    skillsPresent.forEach((slug) => {
-      const label = SKILLS[slug]?.name || slug;
-      const b = document.createElement("button");
-      b.textContent = label;
-      b.setAttribute("aria-pressed", activeSkill === slug ? "true" : "false");
-      b.addEventListener("click", () => {
-        activeSkill = slug;
-        syncSkillUrl();
-        [...skillBar.children].forEach((c) => c.setAttribute("aria-pressed", "false"));
-        b.setAttribute("aria-pressed", "true");
-        apply();
-      });
-      skillBar.appendChild(b);
-    });
-
-    if (activeSkill) {
-      [...skillBar.children].forEach((c) =>
-        c.setAttribute("aria-pressed", c.textContent === (SKILLS[activeSkill]?.name || activeSkill) ? "true" : "false")
-      );
+      return bar;
     }
+
+    const categoryBar = makeFilterBar("Category", categories, activeCategory, v => v.toUpperCase(), v => activeCategory = v);
+    const statusBar = makeFilterBar("Status", statuses, activeStatus, v => v.replace(/\b\w/g, c => c.toUpperCase()), v => activeStatus = v);
+    const skillBar = makeFilterBar("Expertise", skillsPresent, activeSkill || "all", v => SKILLS[v]?.name || v, v => { activeSkill = v === "all" ? null : v; syncSkillUrl(); });
+    el.insertAdjacentElement("beforebegin", categoryBar);
+    el.insertAdjacentElement("beforebegin", statusBar);
+    el.insertAdjacentElement("beforebegin", skillBar);
 
     function syncSkillUrl() {
       const url = new URL(location.href);
-      if (activeSkill) url.searchParams.set("skill", activeSkill);
-      else url.searchParams.delete("skill");
+      if (activeSkill) url.searchParams.set("skill", activeSkill); else url.searchParams.delete("skill");
       history.replaceState(null, "", url);
     }
-
-    el.insertAdjacentElement("beforebegin", categoryBar);
-    el.insertAdjacentElement("beforebegin", skillBar);
-
     function apply() {
-      const q = (searchBox && searchBox.value ? searchBox.value : "").trim().toLowerCase();
-      const filtered = all.filter((p) => {
-        const matchesCategory = activeCategory === "all" || p.category === activeCategory;
-        if (!matchesCategory) return false;
-        const matchesSkill = !activeSkill || (p.skills || []).includes(activeSkill);
-        if (!matchesSkill) return false;
+      const q = (searchBox?.value || "").trim().toLowerCase();
+      const filtered = all.filter(p => {
+        if (activeCategory !== "all" && p.category !== activeCategory) return false;
+        if (activeStatus !== "all" && p.status !== activeStatus) return false;
+        if (activeSkill && !(p.skills || []).includes(activeSkill)) return false;
         if (!q) return true;
-        const haystack = [
-          p.title,
-          p.summary,
-          p.category,
-          ...(p.tags || []),
-          ...(p.software || []),
-        ]
-          .join(" ")
-          .toLowerCase();
-        return haystack.includes(q);
+        return [p.title,p.summary,p.category,p.status,...(p.tags||[]),...(p.software||[]),...(p.skills||[])].join(" ").toLowerCase().includes(q);
       });
-
-      if (!filtered.length && activeSkill) {
-        const name = SKILLS[activeSkill]?.name || activeSkill;
-        el.innerHTML =
-          '<div class="empty-state">No projects tagged with <strong>' +
-          escapeHtml(name) +
-          "</strong> yet — new work gets added to <code>projects.json</code> as it's finished, so check back soon.</div>";
-        return;
-      }
-      el.innerHTML = filtered.length
-        ? filtered.map(projectCardHTML).join("")
-        : '<div class="empty-state">No projects match your search. Try a different term.</div>';
+      el.innerHTML = filtered.length ? filtered.map(projectCardHTML).join("") : '<div class="empty-state"><strong>No projects match those filters.</strong><p>Try clearing one of the filters or changing the search term.</p></div>';
     }
-
-    if (searchBox) {
-      searchBox.addEventListener("input", debounce(apply, 150));
-    }
+    if (searchBox) searchBox.addEventListener("input", debounce(apply, 150));
     apply();
   }
 
@@ -446,14 +478,30 @@
       }
 
       document.title = p.title + " | Lewis Mutwiri";
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) metaDescription.setAttribute("content", (p.summary || "Engineering project") + " — Lewis Mutwiri.");
       titleEl.textContent = p.title;
       setText("projectDescription", p.summary || "");
+      const metaEl = document.getElementById("projectMeta");
+      if (metaEl) {
+        const parts = [p.category, p.date].filter(Boolean);
+        metaEl.textContent = parts.join(" · ");
+      }
+      const statusEl = document.getElementById("projectStatus");
+      if (statusEl) {
+        statusEl.textContent = p.status || "Status not documented";
+        statusEl.className = "project-status project-status--" + String(p.status || "documented").toLowerCase().replace(/\s+/g, "-");
+      }
       setImage("projectImage", p.thumbnail, p.title);
       setTags("projectTags", p.tags);
       setChips("softwareList", p.software);
       setChips("engineeringProcess", p.process);
       setText("problem", p.problem || "Not documented yet.");
       setText("solution", p.solution || "Not documented yet.");
+      setOptionalCaseStudy("requirements", "requirementsSection", p.requirements);
+      setOptionalCaseStudy("analysis", "analysisSection", p.analysis);
+      setOptionalCaseStudy("results", "resultsSection", p.results);
+      setOptionalCaseStudy("conclusion", "conclusionSection", p.conclusion);
       setGallery("projectGallery", p.gallery && p.gallery.length ? p.gallery : [p.thumbnail]);
       setLinks("downloadButtons", p.downloads, "Download");
       setLinks("projectLinks", p.links, "View");
@@ -461,6 +509,14 @@
       titleEl.textContent = "Couldn't load this project";
       document.getElementById("projectDescription").textContent = e.message;
     }
+  }
+
+  function setOptionalCaseStudy(textId, sectionId, value) {
+    const section = document.getElementById(sectionId);
+    const text = document.getElementById(textId);
+    if (!section || !text) return;
+    if (value) { text.textContent = value; section.hidden = false; }
+    else { section.hidden = true; }
   }
 
   function setText(id, text) {
@@ -562,53 +618,26 @@
   function buildAboutSectionHTML() {
     return (
       '<section class="hero hero--section">' +
-      '<div class="hero-media" role="img" aria-label="A bird glides through a dawn sky carrying twigs — a symbol of building something new."></div>' +
+      '<div class="hero-media" role="img" aria-label="Lewis Mutwiri in an engineering environment."></div>' +
       '<div class="hero-content">' +
-      '<p class="eyebrow">The engineer behind the systems</p>' +
+      '<p class="eyebrow">The engineer behind the work</p>' +
       '<h1>About Me</h1>' +
-      '<h2>Robotics Design Engineer</h2>' +
-      '<p>I\'m a Mechanical Engineering student shaping robotic and autonomous systems through mechanical design, engineering analysis, and control systems. My work bridges CAD-driven mechanical design with practical mechatronics and system reliability.</p>' +
-      '</div>' +
-      '</section>' +
-      '<section class="section">' +
-      '<div class="container">' +
-      '<p class="eyebrow">Academics</p>' +
-      '<h2 class="section-title">Education</h2>' +
-      '<div class="cards">' +
-      '<div class="card">' +
-      '<h3>BSc Mechanical Engineering</h3>' +
-      '<p>South Eastern Kenya University — R&amp;D track, third year.</p>' +
-      '</div>' +
-      '</div>' +
-      '</div>' +
-      '</section>' +
-      '<section class="section">' +
-      '<div class="container">' +
-      '<p class="eyebrow">Tools I use across robotics work</p>' +
-      '<h2 class="section-title">Software</h2>' +
-      '<div class="tech-grid">' +
-      '<span>SolidWorks</span>' +
-      '<span>DFMA</span>' +
-      '<span>FEA</span>' +
-      '<span>CFD</span>' +
-      '<span>Control Systems</span>' +
-      '<span>ANSYS</span>' +
-      '<span>Python</span>' +
-      '<span>C++</span>' +
-      '<span>Arduino IDE</span>' +
-      '<span>MATLAB</span>' +
-      '<span>Git</span>' +
-      '</div>' +
-      '</div>' +
-      '</section>' +
-      '<section class="section">' +
-      '<div class="container">' +
-      '<p class="eyebrow">Where my focus goes</p>' +
-      '<h2 class="section-title">Robotics Engineering Skill Set</h2>' +
-      '<p style="max-width:640px;">These aren\'t separate specialties — they\'re the parts that come together in robotics: designing the mechanism, analyzing whether it holds up, and controlling how it moves. Click through to see the projects behind each one.</p>' +
+      '<h2>Mechanical Design &amp; Simulation | Applied Control Systems</h2>' +
+      '<p>I am a Mechanical Engineering student developing practical capability in mechanical design, engineering simulation and applied control systems. My work combines CAD-driven design, analysis and manufacturability with selected mechatronic and control applications.</p>' +
+      '</div></section>' +
+      '<section class="section"><div class="container">' +
+      '<p class="eyebrow">Academics</p><h2 class="section-title">Education</h2>' +
+      '<div class="cards"><div class="card"><h3>BSc Mechanical Engineering</h3><p>South Eastern Kenya University — third year.</p></div></div>' +
+      '</div></section>' +
+      '<section class="section"><div class="container">' +
+      '<p class="eyebrow">Core direction</p><h2 class="section-title">Engineering Capabilities</h2>' +
+      '<p style="max-width:760px;">The portfolio is organized around mechanical design and engineering analysis first, with applied control systems and mechatronics where they support the engineering problem.</p>' +
       '<div id="expertiseGrid" class="expertise-grid" aria-live="polite"></div>' +
-      '</div>' +
-      '</section>'
+      '</div></section>' +
+      '<section class="section"><div class="container">' +
+      '<p class="eyebrow">Software &amp; methods</p><h2 class="section-title">Technical Stack</h2>' +
+      '<div class="tech-grid"><span>SolidWorks</span><span>ANSYS Mechanical</span><span>ANSYS Fluent</span><span>MATLAB</span><span>Simulink</span><span>AutoCAD</span><span>GD&amp;T</span><span>DFMA</span><span>Python</span><span>C/C++</span><span>Arduino</span><span>ESP32</span></div>' +
+      '</div></section>'
     );
   }
 
@@ -725,8 +754,8 @@
     initContactForm();
     stampYear();
 
-    renderRoboticsProjects();
-    renderArchivePreview();
+    renderHomeProjects();
+    renderNewsEvents();
     // Per-discipline project grids (#cadProjects, #dfmaProjects, #feaProjects,
     // #cfdProjects, #eacgProjects, #controlProjects, #roboticsProjects) are
     // owned entirely by projects.js on the pages that load it — script.js

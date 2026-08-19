@@ -15,14 +15,13 @@
 <header>
 <nav class="navbar">
 <div class="logo" aria-hidden="true">LM</div>
-<ul class="nav-links">
-<li><a href="index.html">Home</a></li>
-
-<li><a href="portfolio.html">Portfolio</a></li>
+<ul class="nav-links"><li><a href="index.html">Home</a></li>
 <li><a href="about.html">About</a></li>
+<li><a href="portfolio.html">Projects</a></li>
+<li><a href="news.html">News</a></li>
+<li><a href="events.html">Events</a></li>
 <li><a href="achievements.html">Achievements</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+<li><a href="contact.html">Contact</a></li></ul>
 <button id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
 </nav>
 </header>
@@ -34,7 +33,7 @@
 <div class="hero-content">
 <p class="eyebrow"><a href="portfolio.html" style="color:inherit;">← Back to Portfolio</a></p>
 <h1 id="projectTitle">Loading…</h1>
-<p id="projectDescription">Loading project…</p>
+<p id="projectDescription">Loading project…</p><div id="projectMeta" class="project-detail-meta" aria-live="polite"></div><div id="projectStatus" class="project-status project-status--loading" style="margin-top:1rem;">Loading status…</div>
 </div>
 </section>
 
@@ -82,6 +81,19 @@
 <h2 class="section-title">Solution</h2>
 <p id="solution"></p>
 </div>
+</section>
+
+<section class="section optional-case-study" id="requirementsSection" hidden>
+<div class="container"><p class="eyebrow">Requirements</p><h2 class="section-title">Design Requirements</h2><p id="requirements"></p></div>
+</section>
+<section class="section optional-case-study" id="analysisSection" hidden>
+<div class="container"><p class="eyebrow">Engineering analysis</p><h2 class="section-title">Analysis &amp; Validation</h2><p id="analysis"></p></div>
+</section>
+<section class="section optional-case-study" id="resultsSection" hidden>
+<div class="container"><p class="eyebrow">Evidence</p><h2 class="section-title">Results</h2><p id="results"></p></div>
+</section>
+<section class="section optional-case-study" id="conclusionSection" hidden>
+<div class="container"><p class="eyebrow">Engineering interpretation</p><h2 class="section-title">Conclusion</h2><p id="conclusion"></p></div>
 </section>
 
 <section class="section">

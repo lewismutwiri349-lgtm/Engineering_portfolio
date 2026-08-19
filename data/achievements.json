@@ -7,9 +7,12 @@
       "organization": "Dassault Systèmes",
       "date": "2024-09-15",
       "description": "Completed a professional certification focused on advanced part and assembly modeling workflows.",
-      "skills": ["SolidWorks", "DFMA", "Product Design"],
+      "skills": [
+        "SolidWorks",
+        "DFMA",
+        "Product Design"
+      ],
       "thumbnail": "",
-      "documentUrl": "assets/resumes/General_CV.pdf",
       "featured": true,
       "displayOrder": 1
     },
@@ -20,9 +23,12 @@
       "organization": "Engineering Innovation Forum",
       "date": "2024-03-01",
       "description": "Recognized for a compact automation concept that improved repeatability and ease of maintenance.",
-      "skills": ["Robotics", "Automation", "Systems Design"],
+      "skills": [
+        "Robotics",
+        "Automation",
+        "Systems Design"
+      ],
       "thumbnail": "",
-      "documentUrl": "assets/resumes/Robotics_CV.pdf",
       "featured": true,
       "displayOrder": 2
     },
@@ -45,7 +51,7 @@
         "CAE",
         "Numerical Analysis"
       ],
-      "thumbnail": "asset/images/achievements/chatgpt-fluent-bootcamp.jpg",
+      "thumbnail": "assets/images/achievements/chatgpt-fluent-bootcamp.jpg",
       "documentUrl": "https://chatgpt.com/s/m_6a6e578480048191b614f0d5f586febc",
       "featured": true,
       "displayOrder": 1
@@ -57,9 +63,12 @@
       "organization": "Manufacturing Excellence Institute",
       "date": "2023-11-20",
       "description": "Attended an intensive workshop covering design-for-manufacturing principles and rapid prototyping strategies.",
-      "skills": ["DFM", "Prototyping", "Manufacturing"],
+      "skills": [
+        "DFM",
+        "Prototyping",
+        "Manufacturing"
+      ],
       "thumbnail": "",
-      "documentUrl": "assets/resumes/DFMA_FEA_CFD_CV.pdf",
       "featured": false,
       "displayOrder": 3
     },
