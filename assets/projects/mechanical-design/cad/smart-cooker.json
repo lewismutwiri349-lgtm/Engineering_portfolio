@@ -26,7 +26,12 @@
   "results": "",
   "conclusion": "",
   "gallery": [],
-  "links": [],
+  "links": [
+    {
+      "label": "LinkedIn",
+      "url": "https://lnkd.in/p/dhpiZUG8"
+    }
+  ],
   "downloads": [],
   "skills": [
     "mechanical-design",
