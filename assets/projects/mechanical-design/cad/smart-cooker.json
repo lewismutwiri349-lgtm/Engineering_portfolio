@@ -1,0 +1,35 @@
+{
+  "id": "Smart Cooker",
+  "title": "Smart cooker",
+  "category": "mechanical-design",
+  "subcategory": "cad",
+  "status": "Completed",
+  "date": "2026-08-20",
+  "featured": true,
+  "thumbnail": "assets/projects/mechanical-design/cad/smart-cooker.jpg",
+  "summary": "From an idea in my head to a SolidWorks model.\n\nI had this random idea for a smart cooker where the bowl can tilt itself using a motor-controlled shaft.\n\nSo I decided to model the concept and see what it would look like.\n\nThe basic idea is that the motor controls the shaft, allowing the bowl to change its angle. It could potentially be used for automated mixing, stirring, pouring, or other cooking operations.\n\nIt's still just a concept, but that's one thing I enjoy about engineering — taking a random idea and turning it into something you can actually see and start analysing.\n",
+  "tags": [
+    "SolidWorks",
+    "cad",
+    "product-development",
+    "consumer-product"
+  ],
+  "software": [
+    "SolidWorks"
+  ],
+  "process": [],
+  "problem": "",
+  "requirements": "",
+  "approach": "",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
+  "gallery": [],
+  "links": [],
+  "downloads": [],
+  "skills": [
+    "mechanical-design",
+    "research-development"
+  ]
+}

@@ -2,7 +2,7 @@
   {
     "id": "pcb-enclosure",
     "title": "PCB Enclosure Design",
-    "category": "mechanical-design",
+    "category": "cad",
     "featured": true,
     "thumbnail": "assets/images/pcb-enclosure-cover.jpeg",
     "summary": "Full manufacturing drawing package for a PCB enclosure, built from revolve and extrude features to GD&T-ready detail.",
@@ -40,12 +40,18 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Completed"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components.",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "helical-gear",
     "title": "Helical Gear Design",
-    "category": "mechanical-design",
+    "category": "cad",
     "featured": true,
     "thumbnail": "assets/images/helicalgear20.jpg",
     "summary": "Design and analysis of a helical gear system for efficient power transmission.",
@@ -87,12 +93,18 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Completed"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "Performed detailed design  using SolidWorks, optimizing the gear geometry for the required torque and speed ratios while ensuring proper meshing and load distribution.",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "valve-body",
     "title": "valve body",
-    "category": "mechanical-design",
+    "category": "cad",
     "featured": true,
     "thumbnail": "assets/images/valve-body-cover.jpg",
     "summary": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
@@ -122,7 +134,13 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "In Progress"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "sheet-metal-electronic-enclosure",
@@ -146,7 +164,7 @@
     "problem": "Design a sheet metal electronic enclosure that provides efficient thermal management and electromagnetic shielding.",
     "solution": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
     "gallery": [
-      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpeg"
+      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpg"
     ],
     "links": [],
     "downloads": [],
@@ -156,12 +174,18 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Completed"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "solidworks-parametric-automation",
     "title": "SolidWorks Parametric Automation (Python + COM API)",
-    "category": "engineering-analysis",
+    "category": "automation",
     "featured": true,
     "thumbnail": "assets/images/cad4.svg",
     "summary": "Python scripts driving SolidWorks' COM API to batch-update parametric dimensions across families of parts.",
@@ -194,12 +218,18 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Completed"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "Used pywin32 to bind to the SolidWorks COM API, working through a series of environment and binding issues to reliably open documents, edit dimensions and rebuild models from a script — turning a manual, repetitive task into a one-command operation.",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "neo6m-rocket-recovery",
     "title": "NEO-6M GPS Rocket Recovery System",
-    "category": "control-systems",
+    "category": "control systems",
     "featured": true,
     "thumbnail": "assets/images/robot1.svg",
     "summary": "Arduino-based GPS recovery beacon for hobby rocketry, transmitting live position after apogee for fast payload recovery.",
@@ -234,12 +264,18 @@
     ],
     "subcategory": "",
     "robotics": true,
-    "status": "Completed"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "Built a lightweight recovery module around a NEO-6M GPS module and Arduino, logging and transmitting position data through descent so the airframe could be tracked and recovered quickly after landing.",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "structural-analysis-dashboard",
     "title": "Structural Analysis Dashboard",
-    "category": "engineering-analysis",
+    "category": "automation",
     "featured": true,
     "thumbnail": "assets/images/robot2.svg",
     "summary": "A React web app for beam deflection, SFD/BMD, torsion, stress analysis, section properties and a material library.",
@@ -272,12 +308,18 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Completed"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library — combining calculation rigor with fast, visual iteration.",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "pedal-locking-lever",
     "title": "Pedal-Actuated Locking Lever (Practice Mechanism)",
-    "category": "mechanical-design",
+    "category": "cad",
     "featured": false,
     "thumbnail": "assets/images/cad5.svg",
     "summary": "A deliberate practice project in original linkage design, built to close a portfolio gap around mechanism synthesis.",
@@ -309,12 +351,18 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Completed"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly.",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "cpu-cooling-fan-design",
     "title": "CPU Cooling Fan Design",
-    "category": "mechanical-design",
+    "category": "cad",
     "featured": true,
     "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
     "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
@@ -344,7 +392,13 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Design"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "product-design-and-development-course-certification",
@@ -377,12 +431,18 @@
     "problem": "",
     "solution": "",
     "gallery": [],
-    "status": "Completed"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "esp32-iot-automation",
     "title": "ESP32 IoT Automation Node",
-    "category": "control-systems",
+    "category": "robotics",
     "featured": false,
     "thumbnail": "assets/images/robot3.svg",
     "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
@@ -416,7 +476,13 @@
     ],
     "subcategory": "",
     "robotics": true,
-    "status": "Completed"
+    "status": "Planned",
+    "requirements": "",
+    "approach": "Built firmware around the ESP32's built-in Wi-Fi, publishing sensor readings and accepting commands over MQTT for lightweight, low-latency remote control.",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "ansys-fluent-fluid-flow",
@@ -474,15 +540,14 @@
   {
     "id": "vacuum-mobile-cleaner",
     "title": "conceptual vacuum mobile cleaner",
-    "category": "mechanical-design",
+    "category": "robotic-systems-design",
     "subcategory": "",
     "featured": true,
-    "thumbnail": "assets/projects/robotic-systems-design/vacuum-mobile-cleaner/vacuum-mobile-cleaner.jpg",
+    "thumbnail": "asset/images/cad/vacuum-mobile-cleaner",
     "summary": "",
     "tags": [
       "SolidWorks",
-      "robotic design",
-      "Sheet Metal"
+      "robotic design"
     ],
     "software": [
       "SolidWorks"
@@ -502,5 +567,40 @@
       "mechanical-design"
     ],
     "status": "Research"
+  },
+  {
+    "id": "Smart Cooker",
+    "title": "Smart cooker",
+    "category": "mechanical-design",
+    "subcategory": "cad",
+    "status": "Completed",
+    "date": "2026-08-20",
+    "featured": true,
+    "thumbnail": "assets/projects/mechanical-design/cad/smart-cooker.jpg",
+    "summary": "From an idea in my head to a SolidWorks model.\n\nI had this random idea for a smart cooker where the bowl can tilt itself using a motor-controlled shaft.\n\nSo I decided to model the concept and see what it would look like.\n\nThe basic idea is that the motor controls the shaft, allowing the bowl to change its angle. It could potentially be used for automated mixing, stirring, pouring, or other cooking operations.\n\nIt's still just a concept, but that's one thing I enjoy about engineering — taking a random idea and turning it into something you can actually see and start analysing.\n",
+    "tags": [
+      "SolidWorks",
+      "cad",
+      "product-development",
+      "consumer-product"
+    ],
+    "software": [
+      "SolidWorks"
+    ],
+    "process": [],
+    "problem": "",
+    "requirements": "",
+    "approach": "",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": "",
+    "gallery": [],
+    "links": [],
+    "downloads": [],
+    "skills": [
+      "mechanical-design",
+      "research-development"
+    ]
   }
 ]
