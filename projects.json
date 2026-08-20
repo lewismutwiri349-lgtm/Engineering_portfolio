@@ -558,7 +558,7 @@
     "id": "vacuum-mobile-cleaner",
     "title": "conceptual vacuum mobile cleaner",
     "category": "robotic-systems-design",
-    "subcategory": "",
+    "subcategory": "vacuum-mobile-cleaner",
     "featured": true,
     "thumbnail": "assets/projects/robotic-systems-design/vacuum-mobile-cleaner/vacuum-mobile-cleaner.JPG",
     "summary": "",
