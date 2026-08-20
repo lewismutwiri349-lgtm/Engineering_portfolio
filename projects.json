@@ -46,7 +46,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "date": ""
   },
   {
     "id": "helical-gear",
@@ -99,7 +100,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "date": ""
   },
   {
     "id": "valve-body",
@@ -140,7 +142,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "date": ""
   },
   {
     "id": "sheet-metal-electronic-enclosure",
@@ -164,7 +167,7 @@
     "problem": "Design a sheet metal electronic enclosure that provides efficient thermal management and electromagnetic shielding.",
     "solution": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
     "gallery": [
-      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpg"
+      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpeg"
     ],
     "links": [],
     "downloads": [],
@@ -180,7 +183,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "date": ""
   },
   {
     "id": "solidworks-parametric-automation",
@@ -224,7 +228,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "date": ""
   },
   {
     "id": "neo6m-rocket-recovery",
@@ -270,7 +275,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "date": ""
   },
   {
     "id": "structural-analysis-dashboard",
@@ -314,7 +320,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "date": ""
   },
   {
     "id": "pedal-locking-lever",
@@ -357,7 +364,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "date": ""
   },
   {
     "id": "cpu-cooling-fan-design",
@@ -398,7 +406,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "date": ""
   },
   {
     "id": "product-design-and-development-course-certification",
@@ -482,7 +491,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "date": ""
   },
   {
     "id": "ansys-fluent-fluid-flow",
@@ -535,7 +545,14 @@
     ],
     "subcategory": "internal-flow",
     "robotics": false,
-    "status": "Simulation"
+    "status": "Planned",
+    "date": "",
+    "requirements": "",
+    "approach": "Created the geometry, generated a computational mesh, applied inlet and outlet boundary conditions, solved the flow field using ANSYS Fluent, and analyzed velocity contours and streamlines to evaluate flow performance.\n",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "vacuum-mobile-cleaner",
@@ -543,7 +560,7 @@
     "category": "robotic-systems-design",
     "subcategory": "",
     "featured": true,
-    "thumbnail": "asset/images/cad/vacuum-mobile-cleaner",
+    "thumbnail": "assets/projects/robotic-systems-design/vacuum-mobile-cleaner/vacuum-mobile-cleaner.JPG",
     "summary": "",
     "tags": [
       "SolidWorks",
@@ -564,9 +581,17 @@
     ],
     "downloads": [],
     "skills": [
-      "mechanical-design"
+      "mechanical-design",
+      "research-development"
     ],
-    "status": "Research"
+    "status": "Planned",
+    "date": "",
+    "requirements": "",
+    "approach": "",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": ""
   },
   {
     "id": "Smart Cooker",
@@ -576,7 +601,7 @@
     "status": "Completed",
     "date": "2026-08-20",
     "featured": true,
-    "thumbnail": "assets/projects/mechanical-design/cad/smart-cooker.jpg",
+    "thumbnail": "assets/projects/mechanical-design/cad/smart-cooker.JPG",
     "summary": "From an idea in my head to a SolidWorks model.\n\nI had this random idea for a smart cooker where the bowl can tilt itself using a motor-controlled shaft.\n\nSo I decided to model the concept and see what it would look like.\n\nThe basic idea is that the motor controls the shaft, allowing the bowl to change its angle. It could potentially be used for automated mixing, stirring, pouring, or other cooking operations.\n\nIt's still just a concept, but that's one thing I enjoy about engineering — taking a random idea and turning it into something you can actually see and start analysing.\n",
     "tags": [
       "SolidWorks",
