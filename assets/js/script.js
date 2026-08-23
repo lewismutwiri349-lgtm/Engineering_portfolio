@@ -1,5 +1,5 @@
 /* =========================================================
-   Lewis Mutwiri — Engineering Portfolio
+   Lewis Mutwiri M'itumitu — Engineering Portfolio
    Vanilla JS: navigation, theme, JSON-driven project system,
    search/filter, scroll reveals, contact form handling.
    No frameworks, no build step — kept dependency-free on
