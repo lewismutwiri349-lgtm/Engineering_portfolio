@@ -622,8 +622,8 @@
       '<div class="hero-content">' +
       '<p class="eyebrow">The engineer behind the work</p>' +
       '<h1>About Me</h1>' +
-      '<h2>Industrial Machine Design | Engineering Analysis | Applied Control Systems</h2>' +
-      '<p>My engineering practice focuses on industrial machine design, engineering analysis and applied control systems. I combine CAD-driven design, manufacturability, simulation and analysis with selected mechatronic and control applications.</p>' +
+      '<h2>Mechanical Design &amp; Simulation | Applied Control Systems</h2>' +
+      '<p>I am a Mechanical Engineering student developing practical capability in mechanical design, engineering simulation and applied control systems. My work combines CAD-driven design, analysis and manufacturability with selected mechatronic and control applications.</p>' +
       '</div></section>' +
       '<section class="section"><div class="container">' +
       '<p class="eyebrow">Academics</p><h2 class="section-title">Education</h2>' +
@@ -631,7 +631,7 @@
       '</div></section>' +
       '<section class="section"><div class="container">' +
       '<p class="eyebrow">Core direction</p><h2 class="section-title">Engineering Capabilities</h2>' +
-      '<p style="max-width:760px;">The portfolio is organized around industrial machine design and engineering analysis first, with applied control systems and mechatronics where they support the engineering problem.</p>' +
+      '<p style="max-width:760px;">The portfolio is organized around mechanical design and engineering analysis first, with applied control systems and mechatronics where they support the engineering problem.</p>' +
       '<div id="expertiseGrid" class="expertise-grid" aria-live="polite"></div>' +
       '</div></section>' +
       '<section class="section"><div class="container">' +
