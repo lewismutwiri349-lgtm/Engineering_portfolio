@@ -622,7 +622,7 @@
       '<div class="hero-content">' +
       '<p class="eyebrow">The engineer behind the work</p>' +
       '<h1>About Me</h1>' +
-      '<h2>Mechanical Design &amp; Simulation | Applied Control Systems</h2>' +
+      '<h2>Machine Design &amp; analysis | Applied Control Systems</h2>' +
       '<p>I am a Mechanical Engineering student developing practical capability in mechanical design, engineering simulation and applied control systems. My work combines CAD-driven design, analysis and manufacturability with selected mechatronic and control applications.</p>' +
       '</div></section>' +
       '<section class="section"><div class="container">' +
