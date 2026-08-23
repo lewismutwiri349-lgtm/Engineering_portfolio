@@ -618,7 +618,7 @@
   function buildAboutSectionHTML() {
     return (
       '<section class="hero hero--section">' +
-      '<div class="hero-media" role="img" aria-label="Lewis Mutwiri M'itumitu in an engineering environment."></div>' +
+      '<div class="hero-media" role="img" aria-label="Lewis Mutwiri in an engineering environment."></div>' +
       '<div class="hero-content">' +
       '<p class="eyebrow">The engineer behind the work</p>' +
       '<h1>About Me</h1>' +
