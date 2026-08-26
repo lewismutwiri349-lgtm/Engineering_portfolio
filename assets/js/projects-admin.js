@@ -18,7 +18,7 @@
   const DRAFT_KEY = "portfolio-projects-draft";
 
   const CATEGORY_OPTIONS = [
-    "mechanical-design", "dfma", "fea", "cfd",
+    "machine-design", "dfma", "fea", "cfd",
     "control-systems", "product-development", "mechatronics", "automation", "other"
   ];
 
@@ -28,7 +28,7 @@
   ];
 
   const SKILL_OPTIONS = [
-    "mechanical-design",
+    "machine-design",
     "finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics",
     "embedded-systems", "control-engineering", "cpp", "matlab", "research-development"
   ];
