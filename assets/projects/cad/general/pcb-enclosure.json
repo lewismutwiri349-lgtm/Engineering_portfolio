@@ -1,4 +1,11 @@
 {
+  "status": "Planned",
+  "requirements": "",
+  "approach": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components.",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "id": "pcb-enclosure",
   "title": "PCB Enclosure Design",
   "category": "cad",
@@ -36,5 +43,6 @@
     "mechanical-design",
     "machine-design",
     "design-for-manufacturing"
-  ]
+  ],
+  "applicationDomain": "old-projects"
 }
