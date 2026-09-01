@@ -48,7 +48,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "old-projects"
   },
   {
     "id": "helical-gear",
@@ -103,7 +103,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "old-projects"
   },
   {
     "id": "valve-body",
@@ -134,11 +134,11 @@
     "links": [],
     "downloads": [],
     "skills": [
-      "machine-design"
+      "mechanical-design"
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Archived",
+    "status": "Planned",
     "requirements": "",
     "approach": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
     "analysis": "",
@@ -170,7 +170,7 @@
     "problem": "Design a sheet metal electronic enclosure that provides efficient thermal management and electromagnetic shielding.",
     "solution": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
     "gallery": [
-      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpeg"
+      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpg"
     ],
     "links": [],
     "downloads": [],
@@ -180,7 +180,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Archived",
+    "status": "Planned",
     "requirements": "",
     "approach": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
     "analysis": "",
@@ -226,7 +226,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Simulation",
+    "status": "Planned",
     "requirements": "",
     "approach": "Used pywin32 to bind to the SolidWorks COM API, working through a series of environment and binding issues to reliably open documents, edit dimensions and rebuild models from a script — turning a manual, repetitive task into a one-command operation.",
     "analysis": "",
@@ -234,7 +234,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "hobbies"
+    "applicationDomain": "old-projects"
   },
   {
     "id": "neo6m-rocket-recovery",
@@ -269,12 +269,12 @@
     "downloads": [],
     "skills": [
       "embedded-systems",
-      "control-engineering",
+      "robotics",
       "research-development"
     ],
     "subcategory": "",
     "robotics": true,
-    "status": "Prototyping",
+    "status": "Completed",
     "requirements": "",
     "approach": "Built a lightweight recovery module around a NEO-6M GPS module and Arduino, logging and transmitting position data through descent so the airframe could be tracked and recovered quickly after landing.",
     "analysis": "",
@@ -320,7 +320,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Simulation",
+    "status": "Completed",
     "requirements": "",
     "approach": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library — combining calculation rigor with fast, visual iteration.",
     "analysis": "",
@@ -365,7 +365,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Archived",
+    "status": "Completed",
     "requirements": "",
     "approach": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly.",
     "analysis": "",
@@ -373,7 +373,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "hobbies"
+    "applicationDomain": "old-projects"
   },
   {
     "id": "cpu-cooling-fan-design",
@@ -399,7 +399,7 @@
     "links": [
       {
         "label": "LinkedIn",
-        "url": "https://www.linkedin.com/posts/lewis-mutwiri-64a305386"
+        "url": "https://www.linkedin.com/posts/lewis-mutwiri-64a305386_mechanicalengineering-solidworks-ansys-ugcPost-7486416020111536129-phJB/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF8V6VoBKqZ7tADfVNJfMqMX0LMbJBcGJKc"
       }
     ],
     "downloads": [],
@@ -408,7 +408,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Archived",
+    "status": "Completed",
     "requirements": "",
     "approach": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
     "analysis": "",
@@ -416,7 +416,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "hobbies"
   },
   {
     "id": "product-design-and-development-course-certification",
@@ -441,7 +441,7 @@
     ],
     "category": "dfma",
     "subcategory": "",
-    "featured": false,
+    "featured": true,
     "summary": "",
     "tags": [],
     "software": [],
@@ -449,20 +449,20 @@
     "problem": "",
     "solution": "",
     "gallery": [],
-    "status": "Planned",
+    "status": "Research",
     "requirements": "",
     "approach": "",
     "analysis": "",
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "marine"
   },
   {
     "id": "esp32-iot-automation",
     "title": "ESP32 IoT Automation Node",
     "category": "robotics",
-    "featured": false,
+    "featured": true,
     "thumbnail": "assets/images/robot3.svg",
     "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
     "tags": [
@@ -495,7 +495,7 @@
     ],
     "subcategory": "",
     "robotics": true,
-    "status": "Planned",
+    "status": "Completed",
     "requirements": "",
     "approach": "Built firmware around the ESP32's built-in Wi-Fi, publishing sensor readings and accepting commands over MQTT for lightweight, low-latency remote control.",
     "analysis": "",
@@ -503,7 +503,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "hobbies"
   },
   {
     "id": "ansys-fluent-fluid-flow",

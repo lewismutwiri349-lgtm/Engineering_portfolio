@@ -1,11 +1,14 @@
 {
+  "status": "Planned",
+  "requirements": "",
+  "approach": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "id": "valve-body",
   "title": "valve body",
   "category": "cad",
-  "subcategory": "",
-  "applicationDomain": "old-projects",
-  "status": "Archived",
-  "date": "",
   "featured": true,
   "thumbnail": "assets/images/valve-body-cover.jpg",
   "summary": "This project involves recreating a valve body from a detailed engineering drawing using SolidWorks. The model features flanged connections, intersecting flow passages, bolt-hole patterns, fillets, and complex curved geometry. The objective is to strengthen engineering drawing interpretation, feature-based modeling, and the design of manufacturable mechanical components.",
@@ -21,12 +24,7 @@
     "Solid Modelling"
   ],
   "problem": "While modeling the valve body, I encountered a sketch plane issue that prevented the cut-extrude and hole features from intersecting the model correctly. Troubleshooting and correcting the sketch plane required additional time, preventing completion of the model within the allocated session. The project remains a work in progress.",
-  "requirements": "",
-  "approach": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
-  "analysis": "",
-  "simulation": "",
-  "results": "",
-  "conclusion": "",
+  "solution": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
   "gallery": [
     "assets/images/gallery/valve-body/1.jpg",
     "assets/images/gallery/valve-body/2.jpg",
@@ -36,7 +34,7 @@
   "links": [],
   "downloads": [],
   "skills": [
-    "machine-design"
+    "mechanical-design"
   ],
-  "solution": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features"
+  "applicationDomain": "old-projects"
 }

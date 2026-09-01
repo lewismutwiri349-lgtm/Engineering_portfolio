@@ -1,4 +1,11 @@
 {
+  "status": "Planned",
+  "requirements": "",
+  "approach": "Performed detailed design  using SolidWorks, optimizing the gear geometry for the required torque and speed ratios while ensuring proper meshing and load distribution.",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "id": "helical-gear",
   "title": "Helical Gear Design",
   "category": "cad",
@@ -40,5 +47,6 @@
   "skills": [
     "mechanical-design",
     "machine-design"
-  ]
+  ],
+  "applicationDomain": "old-projects"
 }
