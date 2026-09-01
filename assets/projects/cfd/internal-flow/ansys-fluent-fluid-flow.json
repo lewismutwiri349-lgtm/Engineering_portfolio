@@ -3,6 +3,9 @@
   "title": "ANSYS Fluent – Fluid Flow & Streamline Simulation",
   "category": "cfd",
   "subcategory": "internal-flow",
+  "applicationDomain": "aerospace",
+  "status": "Simulation",
+  "date": "",
   "featured": true,
   "thumbnail": "assets/projects/cfd/internal-flow/ansys-fluent-fluid-flow/fluid-flow.JPG",
   "summary": "A CFD simulation demonstrating internal fluid flow using ANSYS Fluent. The project focuses on analysing velocity contours, streamlines, and pressure distribution to understand flow behaviour and verify proper simulation setup.\n",
@@ -30,7 +33,12 @@
     "Result Analysis"
   ],
   "problem": "Predict the behavior of fluid flowing through a computational domain and visualize important flow characteristics such as velocity, pressure, and streamlines.\n",
-  "solution": "Created the geometry, generated a computational mesh, applied inlet and outlet boundary conditions, solved the flow field using ANSYS Fluent, and analyzed velocity contours and streamlines to evaluate flow performance.\n",
+  "requirements": "",
+  "approach": "Created the geometry, generated a computational mesh, applied inlet and outlet boundary conditions, solved the flow field using ANSYS Fluent, and analyzed velocity contours and streamlines to evaluate flow performance.\n",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "gallery": [
     "assets/projects/cfd/internal-flow/ansys-fluent-fluid-flow/streamlines.JPG",
     "assets/projects/cfd/internal-flow/ansys-fluent-fluid-flow/velocity-contours.JPG",
@@ -47,5 +55,6 @@
     "cfd",
     "numerical-analysis",
     "thermodynamics"
-  ]
+  ],
+  "solution": "Created the geometry, generated a computational mesh, applied inlet and outlet boundary conditions, solved the flow field using ANSYS Fluent, and analyzed velocity contours and streamlines to evaluate flow performance.\n"
 }
