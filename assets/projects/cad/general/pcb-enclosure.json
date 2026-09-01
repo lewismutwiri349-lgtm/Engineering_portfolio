@@ -1,15 +1,12 @@
 {
-  "status": "Planned",
-  "requirements": "",
-  "approach": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components.",
-  "analysis": "",
-  "simulation": "",
-  "results": "",
-  "conclusion": "",
   "id": "pcb-enclosure",
   "title": "PCB Enclosure Design",
   "category": "cad",
-  "featured": true,
+  "subcategory": "",
+  "applicationDomain": "old-projects",
+  "status": "Completed",
+  "date": "",
+  "featured": false,
   "thumbnail": "assets/images/pcb-enclosure-cover.jpeg",
   "summary": "Full manufacturing drawing package for a PCB enclosure, built from revolve and extrude features to GD&T-ready detail.",
   "tags": [
@@ -28,7 +25,12 @@
     "Client Review"
   ],
   "problem": "I struggled with optimising weight to ensure an efficient product was designed.",
-  "solution": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components.",
+  "requirements": "",
+  "approach": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components.",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "gallery": [
     "assets/images/gallery/pcb-enclosure/1.jpeg"
   ],
@@ -44,5 +46,5 @@
     "machine-design",
     "design-for-manufacturing"
   ],
-  "applicationDomain": "old-projects"
+  "solution": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components."
 }
