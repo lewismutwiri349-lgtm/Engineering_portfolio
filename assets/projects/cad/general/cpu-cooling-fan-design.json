@@ -1,15 +1,12 @@
 {
-  "status": "Completed",
-  "requirements": "",
-  "approach": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
-  "analysis": "",
-  "simulation": "",
-  "results": "",
-  "conclusion": "",
   "id": "cpu-cooling-fan-design",
   "title": "CPU Cooling Fan Design",
   "category": "cad",
-  "featured": true,
+  "subcategory": "",
+  "applicationDomain": "hobbies",
+  "status": "Completed",
+  "date": "",
+  "featured": false,
   "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
   "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
   "tags": [
@@ -24,7 +21,12 @@
     "Assembly Mating"
   ],
   "problem": "Design a realistic CPU cooling fan assembly that can serve as a foundation for engineering analysis, optimization, and future manufacturing studies.",
-  "solution": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
+  "requirements": "",
+  "approach": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "gallery": [],
   "links": [
     {
@@ -36,5 +38,5 @@
   "skills": [
     "mechanical-design"
   ],
-  "applicationDomain": "hobbies"
+  "solution": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis."
 }

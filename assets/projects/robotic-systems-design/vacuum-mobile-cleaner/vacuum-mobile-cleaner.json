@@ -3,9 +3,10 @@
   "title": "conceptual vacuum mobile cleaner",
   "category": "robotic-systems-design",
   "subcategory": "vacuum-mobile-cleaner",
+  "applicationDomain": "mechanical-machine-design",
   "status": "Planned",
   "date": "",
-  "featured": true,
+  "featured": false,
   "thumbnail": "assets/projects/robotic-systems-design/vacuum-mobile-cleaner/vacuum-mobile-cleaner.jpg",
   "summary": "",
   "tags": [
