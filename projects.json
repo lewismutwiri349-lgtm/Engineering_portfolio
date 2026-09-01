@@ -138,7 +138,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Planned",
+    "status": "Archived",
     "requirements": "",
     "approach": "The sketch plane issue was identified as the root cause of the failed cut operations. The model will be updated by reassigning the sketches to the correct faces, verifying feature directions, and completing the remaining hole patterns and finishing features",
     "analysis": "",
@@ -334,7 +334,7 @@
     "id": "pedal-locking-lever",
     "title": "Pedal-Actuated Locking Lever (Practice Mechanism)",
     "category": "cad",
-    "featured": false,
+    "featured": true,
     "thumbnail": "assets/images/cad5.svg",
     "summary": "A deliberate practice project in original linkage design, built to close a portfolio gap around mechanism synthesis.",
     "tags": [
@@ -365,7 +365,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Planned",
+    "status": "Archived",
     "requirements": "",
     "approach": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly.",
     "analysis": "",
@@ -373,7 +373,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "hobbies"
   },
   {
     "id": "cpu-cooling-fan-design",
