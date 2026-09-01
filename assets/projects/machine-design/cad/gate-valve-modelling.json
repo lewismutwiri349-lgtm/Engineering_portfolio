@@ -1,0 +1,52 @@
+{
+  "id": "Gate valve modelling",
+  "title": "Gate valve assembly",
+  "category": "machine-design",
+  "subcategory": "cad",
+  "status": "Completed",
+  "date": "2026-08-26",
+  "featured": true,
+  "thumbnail": "assets/projects/machine-design/cad/assem3.JPG",
+  "summary": "3D modeling of a gate valve assembly in SolidWorks, focusing on component geometry, assembly relationships, and overall mechanical construction.",
+  "tags": [
+    "SolidWorks",
+    "manufacturing design",
+    "machine design",
+    "gate valve",
+    "valve assembly",
+    "mechanical design",
+    "CAD",
+    "3D modeling"
+  ],
+  "software": [
+    "solidworks"
+  ],
+  "process": [
+    "Reference study",
+    "Component modeling",
+    "Part detailing",
+    "Assembly modeling Component positioning Assembly",
+    "verification",
+    "Final CAD visualization"
+  ],
+  "problem": "Develop a 3D CAD representation of a gate valve assembly from a reference design while maintaining realistic component geometry and proper assembly relationships.",
+  "requirements": "Model the major valve components\nMaintain realistic mechanical proportions\nCreate an assembled representation of the valve\nEnsure components are positioned correctly\nProduce a clean CAD model suitable for engineering documentation and portfolio presentation",
+  "approach": "The valve was modeled as a collection of individual mechanical components before being assembled in SolidWorks. The design focused on the valve body, bonnet, stem, handwheel, and other visible components, with assembly relationships used to position the parts correctly.",
+  "analysis": "CAD-based geometric and assembly verification was performed. The project focused on design interpretation, component modeling, assembly structure, and visual inspection rather than numerical engineering analysis.",
+  "simulation": "No FEA or CFD simulation was performed for this project. The scope was limited to CAD modeling and assembly development.",
+  "results": "A complete 3D gate valve assembly was developed in SolidWorks. The project provided practical experience in modeling mechanical components, understanding valve construction, and organizing individual parts into a functional assembly.",
+  "conclusion": "A complete 3D gate valve assembly was developed in SolidWorks. The project provided practical experience in modeling mechanical components, understanding valve construction, and organizing individual parts into a functional assembly.",
+  "gallery": [],
+  "links": [
+    {
+      "label": "LINKEDIN",
+      "url": "https://lnkd.in/p/dbQx77e5"
+    }
+  ],
+  "downloads": [],
+  "skills": [
+    "machine-design",
+    "research-development"
+  ],
+  "asset-upload": "C:\\fakepath\\asse4.JPG"
+}
