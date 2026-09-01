@@ -767,13 +767,21 @@
     }
 
     await loadSpecializationPanels(all);
+
+    // Aerospace and Marine are focused, low-volume application pages —
+    // the Category/Status/Expertise filter chips add clutter without
+    // adding value there, so only build them for the full library
+    // (portfolio.html, no domainFilter) and the Old Projects archive.
+    const FILTERABLE_DOMAINS = new Set([null, "old-projects"]);
+    const showFilterBars = FILTERABLE_DOMAINS.has(domainFilter);
+
     const categories = Array.from(new Set(all.map(p => p.category).filter(Boolean))).sort();
     const statuses = Array.from(new Set(all.map(p => p.status).filter(Boolean))).sort();
     const skillsPresent = Array.from(new Set(all.flatMap(p => p.skills || [])))
       .sort((a,b) => (SKILLS[a]?.name || a).localeCompare(SKILLS[b]?.name || b));
     const params = new URLSearchParams(location.search);
     let activeCategory = "all", activeStatus = "all";
-    let activeSkill = params.get("skill") && skillsPresent.includes(params.get("skill")) ? params.get("skill") : null;
+    let activeSkill = showFilterBars && params.get("skill") && skillsPresent.includes(params.get("skill")) ? params.get("skill") : null;
 
     function makeFilterBar(label, values, active, formatter, onChange) {
       const bar = document.createElement("div");
@@ -794,12 +802,14 @@
       return bar;
     }
 
-    const categoryBar = makeFilterBar("Category", categories, activeCategory, v => v.toUpperCase(), v => activeCategory = v);
-    const statusBar = makeFilterBar("Status", statuses, activeStatus, v => v.replace(/\b\w/g, c => c.toUpperCase()), v => activeStatus = v);
-    const skillBar = makeFilterBar("Expertise", skillsPresent, activeSkill || "all", v => SKILLS[v]?.name || v, v => { activeSkill = v === "all" ? null : v; syncSkillUrl(); });
-    el.insertAdjacentElement("beforebegin", categoryBar);
-    el.insertAdjacentElement("beforebegin", statusBar);
-    el.insertAdjacentElement("beforebegin", skillBar);
+    if (showFilterBars) {
+      const categoryBar = makeFilterBar("Category", categories, activeCategory, v => v.toUpperCase(), v => activeCategory = v);
+      const statusBar = makeFilterBar("Status", statuses, activeStatus, v => v.replace(/\b\w/g, c => c.toUpperCase()), v => activeStatus = v);
+      const skillBar = makeFilterBar("Expertise", skillsPresent, activeSkill || "all", v => SKILLS[v]?.name || v, v => { activeSkill = v === "all" ? null : v; syncSkillUrl(); });
+      el.insertAdjacentElement("beforebegin", categoryBar);
+      el.insertAdjacentElement("beforebegin", statusBar);
+      el.insertAdjacentElement("beforebegin", skillBar);
+    }
 
     function syncSkillUrl() {
       const url = new URL(location.href);
