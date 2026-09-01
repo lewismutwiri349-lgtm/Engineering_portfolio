@@ -3,7 +3,7 @@
     "id": "pcb-enclosure",
     "title": "PCB Enclosure Design",
     "category": "cad",
-    "featured": true,
+    "featured": false,
     "thumbnail": "assets/images/pcb-enclosure-cover.jpeg",
     "summary": "Full manufacturing drawing package for a PCB enclosure, built from revolve and extrude features to GD&T-ready detail.",
     "tags": [
@@ -40,7 +40,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Planned",
+    "status": "Completed",
     "requirements": "",
     "approach": "I chose to proceed with lighter plastic PVC given its poor electrical conductivity to prevent short-circuit of electrical components.",
     "analysis": "",
@@ -54,7 +54,7 @@
     "id": "helical-gear",
     "title": "Helical Gear Design",
     "category": "cad",
-    "featured": true,
+    "featured": false,
     "thumbnail": "assets/images/helicalgear20.jpg",
     "summary": "Design and analysis of a helical gear system for efficient power transmission.",
     "tags": [
@@ -95,7 +95,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Planned",
+    "status": "Completed",
     "requirements": "",
     "approach": "Performed detailed design  using SolidWorks, optimizing the gear geometry for the required torque and speed ratios while ensuring proper meshing and load distribution.",
     "analysis": "",
@@ -194,7 +194,7 @@
     "id": "solidworks-parametric-automation",
     "title": "SolidWorks Parametric Automation (Python + COM API)",
     "category": "automation",
-    "featured": true,
+    "featured": false,
     "thumbnail": "assets/images/cad4.svg",
     "summary": "Python scripts driving SolidWorks' COM API to batch-update parametric dimensions across families of parts.",
     "tags": [
@@ -288,7 +288,7 @@
     "id": "structural-analysis-dashboard",
     "title": "Structural Analysis Dashboard",
     "category": "automation",
-    "featured": true,
+    "featured": false,
     "thumbnail": "assets/images/robot2.svg",
     "summary": "A React web app for beam deflection, SFD/BMD, torsion, stress analysis, section properties and a material library.",
     "tags": [
@@ -379,7 +379,7 @@
     "id": "cpu-cooling-fan-design",
     "title": "CPU Cooling Fan Design",
     "category": "cad",
-    "featured": true,
+    "featured": false,
     "thumbnail": "assets/images/cpu-cooling-fan-design-cover.JPG",
     "summary": "Designed and assembled a parametric CPU cooling fan in SolidWorks, focusing on accurate component modeling, assembly, and design for future engineering analysis",
     "tags": [
