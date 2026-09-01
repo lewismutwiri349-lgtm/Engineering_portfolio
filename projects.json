@@ -234,7 +234,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "hobbies"
+    "applicationDomain": "old-projects"
   },
   {
     "id": "neo6m-rocket-recovery",
@@ -274,7 +274,7 @@
     ],
     "subcategory": "",
     "robotics": true,
-    "status": "Planned",
+    "status": "Completed",
     "requirements": "",
     "approach": "Built a lightweight recovery module around a NEO-6M GPS module and Arduino, logging and transmitting position data through descent so the airframe could be tracked and recovered quickly after landing.",
     "analysis": "",
@@ -320,7 +320,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Planned",
+    "status": "Completed",
     "requirements": "",
     "approach": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library — combining calculation rigor with fast, visual iteration.",
     "analysis": "",
@@ -334,7 +334,7 @@
     "id": "pedal-locking-lever",
     "title": "Pedal-Actuated Locking Lever (Practice Mechanism)",
     "category": "cad",
-    "featured": false,
+    "featured": true,
     "thumbnail": "assets/images/cad5.svg",
     "summary": "A deliberate practice project in original linkage design, built to close a portfolio gap around mechanism synthesis.",
     "tags": [
@@ -365,7 +365,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Planned",
+    "status": "Completed",
     "requirements": "",
     "approach": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly.",
     "analysis": "",
@@ -408,7 +408,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Planned",
+    "status": "Completed",
     "requirements": "",
     "approach": "Created a complete 3D model of the CPU cooling fan in SolidWorks, including individual components and assembly mates. The design follows a parametric approach, making it easy to modify dimensions and prepare the model for future CFD and structural analysis.",
     "analysis": "",
@@ -416,7 +416,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "hobbies"
   },
   {
     "id": "product-design-and-development-course-certification",
