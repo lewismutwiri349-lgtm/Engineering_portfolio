@@ -1,4 +1,11 @@
 {
+  "status": "Research",
+  "requirements": "",
+  "approach": "",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "id": "product-design-and-development-course-certification",
   "title": "Product Design and Development Course Certification",
   "issuer": "SKILL LYNC",
@@ -18,5 +25,7 @@
       "label": "Certificate PDF",
       "url": "assets/certificates/product-design-and-development-course-certification.pdf"
     }
-  ]
+  ],
+  "featured": true,
+  "applicationDomain": "marine"
 }
