@@ -441,7 +441,7 @@
     ],
     "category": "dfma",
     "subcategory": "",
-    "featured": false,
+    "featured": true,
     "summary": "",
     "tags": [],
     "software": [],
@@ -449,20 +449,20 @@
     "problem": "",
     "solution": "",
     "gallery": [],
-    "status": "Planned",
+    "status": "Research",
     "requirements": "",
     "approach": "",
     "analysis": "",
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "marine"
   },
   {
     "id": "esp32-iot-automation",
     "title": "ESP32 IoT Automation Node",
     "category": "robotics",
-    "featured": false,
+    "featured": true,
     "thumbnail": "assets/images/robot3.svg",
     "summary": "A Wi-Fi connected sensor/actuator node built around the ESP32 for remote monitoring and control.",
     "tags": [
@@ -495,7 +495,7 @@
     ],
     "subcategory": "",
     "robotics": true,
-    "status": "Planned",
+    "status": "Completed",
     "requirements": "",
     "approach": "Built firmware around the ESP32's built-in Wi-Fi, publishing sensor readings and accepting commands over MQTT for lightweight, low-latency remote control.",
     "analysis": "",
@@ -503,7 +503,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "hobbies"
   },
   {
     "id": "ansys-fluent-fluid-flow",
