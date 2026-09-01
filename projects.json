@@ -146,7 +146,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "old-projects"
   },
   {
     "id": "sheet-metal-electronic-enclosure",
@@ -180,7 +180,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Planned",
+    "status": "Archived",
     "requirements": "",
     "approach": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
     "analysis": "",
@@ -188,7 +188,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "old-projects"
   },
   {
     "id": "solidworks-parametric-automation",
@@ -655,7 +655,7 @@
     "status": "Completed",
     "date": "2026-08-26",
     "featured": true,
-    "thumbnail": "assets/projects/gate/assem3.JPG",
+    "thumbnail": "assets/projects/machine-design/cad/assem3.JPG",
     "summary": "3D modeling of a gate valve assembly in SolidWorks, focusing on component geometry, assembly relationships, and overall mechanical construction.",
     "tags": [
       "SolidWorks",
