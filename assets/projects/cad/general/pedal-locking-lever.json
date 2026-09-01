@@ -1,11 +1,14 @@
 {
+  "status": "Completed",
+  "requirements": "",
+  "approach": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly.",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "id": "pedal-locking-lever",
   "title": "Pedal-Actuated Locking Lever (Practice Mechanism)",
   "category": "cad",
-  "subcategory": "",
-  "applicationDomain": "old-projects",
-  "status": "Archived",
-  "date": "",
   "featured": true,
   "thumbnail": "assets/images/cad5.svg",
   "summary": "A deliberate practice project in original linkage design, built to close a portfolio gap around mechanism synthesis.",
@@ -24,12 +27,7 @@
     "Motion Simulation"
   ],
   "problem": "Client-style mechanism design briefs require confident, from-scratch linkage synthesis — a skill best sharpened outside of billable client time.",
-  "requirements": "",
-  "approach": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly.",
-  "analysis": "",
-  "simulation": "",
-  "results": "",
-  "conclusion": "",
+  "solution": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly.",
   "gallery": [
     "assets/images/cad5.svg"
   ],
@@ -40,5 +38,5 @@
     "machine-design",
     "control-engineering"
   ],
-  "solution": "Designed a foot-pedal-actuated locking lever from first principles, validating the motion path and locking geometry in SolidWorks Motion before detailing the final assembly."
+  "applicationDomain": "old-projects"
 }
