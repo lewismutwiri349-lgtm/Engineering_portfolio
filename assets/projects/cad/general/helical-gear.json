@@ -1,15 +1,12 @@
 {
-  "status": "Planned",
-  "requirements": "",
-  "approach": "Performed detailed design  using SolidWorks, optimizing the gear geometry for the required torque and speed ratios while ensuring proper meshing and load distribution.",
-  "analysis": "",
-  "simulation": "",
-  "results": "",
-  "conclusion": "",
   "id": "helical-gear",
   "title": "Helical Gear Design",
   "category": "cad",
-  "featured": true,
+  "subcategory": "",
+  "applicationDomain": "old-projects",
+  "status": "Completed",
+  "date": "",
+  "featured": false,
   "thumbnail": "assets/images/helicalgear20.jpg",
   "summary": "Design and analysis of a helical gear system for efficient power transmission.",
   "tags": [
@@ -28,7 +25,12 @@
     "Drawing Package"
   ],
   "problem": "Design a helical gear system for efficient power transmission, considering factors like load capacity, efficiency, and manufacturability.",
-  "solution": "Performed detailed design  using SolidWorks, optimizing the gear geometry for the required torque and speed ratios while ensuring proper meshing and load distribution.",
+  "requirements": "",
+  "approach": "Performed detailed design  using SolidWorks, optimizing the gear geometry for the required torque and speed ratios while ensuring proper meshing and load distribution.",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "gallery": [
     "assets/images/gallery/helical-gear/1.jpg"
   ],
@@ -48,5 +50,5 @@
     "mechanical-design",
     "machine-design"
   ],
-  "applicationDomain": "old-projects"
+  "solution": "Performed detailed design  using SolidWorks, optimizing the gear geometry for the required torque and speed ratios while ensuring proper meshing and load distribution."
 }
