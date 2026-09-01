@@ -47,7 +47,8 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "date": ""
+    "date": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "helical-gear",
@@ -101,7 +102,8 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "date": ""
+    "date": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "valve-body",
@@ -143,7 +145,8 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "date": ""
+    "date": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "sheet-metal-electronic-enclosure",
@@ -184,7 +187,8 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "date": ""
+    "date": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "solidworks-parametric-automation",
@@ -229,7 +233,8 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "date": ""
+    "date": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "neo6m-rocket-recovery",
@@ -276,7 +281,8 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "date": ""
+    "date": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "structural-analysis-dashboard",
@@ -321,7 +327,8 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "date": ""
+    "date": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "pedal-locking-lever",
@@ -365,7 +372,8 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "date": ""
+    "date": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "cpu-cooling-fan-design",
@@ -407,7 +415,8 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "date": ""
+    "date": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "product-design-and-development-course-certification",
@@ -446,7 +455,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "esp32-iot-automation",
@@ -492,7 +502,8 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "date": ""
+    "date": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "ansys-fluent-fluid-flow",
@@ -552,7 +563,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "vacuum-mobile-cleaner",
@@ -591,7 +603,8 @@
     "analysis": "",
     "simulation": "",
     "results": "",
-    "conclusion": ""
+    "conclusion": "",
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "Smart Cooker",
@@ -631,7 +644,8 @@
     "skills": [
       "mechanical-design",
       "research-development"
-    ]
+    ],
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "Gate valve modelling",
@@ -682,6 +696,7 @@
     "skills": [
       "machine-design"
     ],
-    "asset-upload": "C:\\fakepath\\asse4.JPG"
+    "asset-upload": "C:\\fakepath\\asse4.JPG",
+    "applicationDomain": "mechanical-machine-design"
   }
 ]

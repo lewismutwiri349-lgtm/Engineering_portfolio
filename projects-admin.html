@@ -29,7 +29,7 @@
     <div>
       <p class="eyebrow">MASTER CONTENT CONTROL</p>
       <h1>Engineering Portfolio <span>Admin</span></h1>
-      <p>Manage projects, engineering news, events and achievements from one workspace. Changes can be exported locally or committed directly to GitHub.</p>
+      <p>Manage the engineering portfolio around its core expertise — Mechanical & Machine Design — with Aerospace and Marine as application areas, plus Old Projects and Hobbies.</p>
     </div>
     <div class="admin-status-card">
       <span class="admin-status-dot" id="adminConnectionDot"></span>
@@ -41,7 +41,7 @@
 <section class="section admin-dashboard">
 <div class="container">
   <div class="admin-stat-grid" aria-label="Content overview">
-    <button class="admin-stat-card is-active" data-admin-tab="projects"><span>Projects</span><strong id="statProjects">—</strong><small>Design · FEA · CFD · Control</small></button>
+    <button class="admin-stat-card is-active" data-admin-tab="projects"><span>Projects</span><strong id="statProjects">—</strong><small>Mechanical & Machine Design · Aerospace · Marine</small></button>
     <button class="admin-stat-card" data-admin-tab="news"><span>News</span><strong id="statNews">—</strong><small>Updates · articles · milestones</small></button>
     <button class="admin-stat-card" data-admin-tab="events"><span>Events</span><strong id="statEvents">—</strong><small>Upcoming · past · workshops</small></button>
     <button class="admin-stat-card" data-admin-tab="achievements"><span>Achievements</span><strong id="statAchievements">—</strong><small>Certificates · awards · training</small></button>
@@ -49,7 +49,7 @@
 
   <div class="admin-layout">
     <aside class="admin-sidebar" aria-label="Admin sections">
-      <p class="admin-sidebar__label">CONTENT</p>
+      <p class="admin-sidebar__label">ENGINEERING PORTFOLIO</p>
       <button class="admin-nav-item is-active" data-admin-tab="projects"><span>▣</span> Projects <em id="navProjectsCount">—</em></button>
       <button class="admin-nav-item" data-admin-tab="news"><span>◈</span> News <em id="navNewsCount">—</em></button>
       <button class="admin-nav-item" data-admin-tab="events"><span>◇</span> Events <em id="navEventsCount">—</em></button>
@@ -63,17 +63,18 @@
     <div class="admin-content">
       <!-- PROJECTS -->
       <section class="admin-tab-panel is-active" data-admin-panel="projects">
-        <div class="admin-panel-heading"><div><p class="eyebrow">ENGINEERING WORK</p><h2>Projects</h2><p>Master project editor with lifecycle status, engineering case-study fields, media, software, skills and GitHub publishing.</p></div><span class="admin-panel-badge">PRIMARY</span></div>
+        <div class="admin-panel-heading"><div><p class="eyebrow">CORE + APPLICATION AREAS</p><h2>Engineering Projects</h2><p>Manage projects under the core Mechanical & Machine Design discipline, with Aerospace and Marine as application areas. Keep Old Projects and Hobbies separate from the professional focus.</p></div><span class="admin-panel-badge">PRIMARY</span></div>
         <div class="achievement-admin-shell admin-embedded-projects">
           <div class="project-admin-toolbar admin-toolbar-top">
             <button id="projectAddButton" type="button" class="btn-primary">+ New Project</button>
+            <button id="projectPresentationButton" type="button" class="btn-secondary">Download Presentation</button>
             <label class="btn-secondary" for="projectImportInput">Import JSON</label><input type="file" id="projectImportInput" accept="application/json,.json" multiple class="visually-hidden">
             <button id="projectSaveButton" type="button" class="btn-secondary">Export Index</button>
             <button id="projectPushButton" type="button" class="btn-accent">Publish All to GitHub</button>
             <span id="projectCount" class="achievement-admin-status"></span>
           </div>
           <div id="projectsLoadPanel" class="project-admin-load">
-            <p id="projectsLoadStatus" class="achievement-admin-status">Loading projects.json…</p>
+            <p id="projectsLoadStatus" class="achievement-admin-status">Loading projects.json… Core expertise: Mechanical & Machine Design.</p>
             <div class="project-admin-load__actions">
               <button id="projectLoadGitHubButton" type="button" class="btn-secondary">Load project files from GitHub</button>
               <label class="btn-secondary" for="projectsFileInput">Load index<input id="projectsFileInput" type="file" accept="application/json" class="visually-hidden"></label>
@@ -81,6 +82,13 @@
             </div>
             <textarea id="projectsPasteArea" class="achievement-textarea project-admin-paste" hidden placeholder="Paste projects.json here…"></textarea>
             <button id="projectsPasteLoad" type="button" class="btn-secondary" hidden>Load pasted JSON</button>
+          </div>
+          <div class="admin-project-taxonomy" aria-label="Project classification">
+            <div><strong>Core expertise</strong><span>Mechanical & Machine Design</span></div>
+            <div><strong>Application area</strong><span>Aerospace Engineering</span></div>
+            <div><strong>Application area</strong><span>Marine Engineering</span></div>
+            <div><strong>Archive</strong><span>Old Projects</span></div>
+            <div><strong>Personal</strong><span>Hobbies</span></div>
           </div>
           <p id="projectAdminStatus" class="achievement-admin-status"></p>
           <div id="projectAdminList" class="achievement-admin-list"></div>
@@ -122,10 +130,10 @@
       <section class="admin-tab-panel" data-admin-panel="help">
         <div class="admin-panel-heading"><div><p class="eyebrow">WORKFLOW</p><h2>How to use the master admin</h2><p>A simple publishing workflow for keeping the portfolio current without editing HTML by hand.</p></div></div>
         <div class="admin-guide-grid">
-          <article class="admin-guide-card"><span>01</span><h3>Build the project</h3><p>Create the engineering project first. Set its category, status, summary, problem, solution, tools and documented analysis.</p></article>
+          <article class="admin-guide-card"><span>01</span><h3>Classify the project</h3><p>Keep Mechanical & Machine Design as the core expertise. Assign Aerospace or Marine only as the application area when the project genuinely belongs there. Use Old Projects or Hobbies where appropriate.</p></article>
           <article class="admin-guide-card"><span>02</span><h3>Add evidence</h3><p>Attach genuine CAD renders, FEA/CFD plots, drawings, screenshots or downloadable engineering files. Never fabricate numerical results.</p></article>
-          <article class="admin-guide-card"><span>03</span><h3>Publish</h3><p>Save the individual project to GitHub. The project index is rebuilt automatically so the public portfolio can discover it.</p></article>
-          <article class="admin-guide-card"><span>04</span><h3>Keep the story alive</h3><p>Use News for progress and technical updates. Use Events for calendar items. Use Achievements for verified credentials and milestones.</p></article>
+          <article class="admin-guide-card"><span>03</span><h3>Publish</h3><p>Save the individual project to GitHub. The project index should keep the newest projects first so new engineering work is immediately visible.</p></article>
+          <article class="admin-guide-card"><span>04</span><h3>Prepare for interviews</h3><p>Generate specialization-specific presentations so Aerospace and Marine interview portfolios remain separate while both retain Mechanical & Machine Design as the underlying core.</p></article>
         </div>
         <div class="admin-warning"><strong>Content integrity</strong><p>This admin is intentionally data-driven. Do not use it to claim employment, certifications, client work, simulation results, awards or professional qualifications that are not supported by your actual records.</p></div>
       </section>

@@ -378,6 +378,347 @@
      Portfolio page: full list with search + category filter
      + expertise (skill) filter — all instant, client-side
      --------------------------------------------------------- */
+
+  /* ---------------------------------------------------------
+     Portfolio ordering + specialization presentation export
+     Core discipline is intentionally fixed across application
+     domains: Mechanical & Machine Design.
+     --------------------------------------------------------- */
+  const CORE_DISCIPLINE = "Mechanical & Machine Design";
+
+  const APPLICATION_DOMAINS = {
+    aerospace: {
+      key: "aerospace",
+      title: "Aerospace Engineering",
+      subtitle: "Mechanical Engineering applied to Aerospace",
+      description: "Aerospace application work built on the core discipline of Mechanical & Machine Design.",
+      filename: "Aerospace_Engineering_Portfolio.pptx",
+      kicker: "AEROSPACE APPLICATION DOMAIN"
+    },
+    marine: {
+      key: "marine",
+      title: "Marine Engineering",
+      subtitle: "Mechanical Engineering applied to Marine",
+      description: "Marine application work built on the core discipline of Mechanical & Machine Design.",
+      filename: "Marine_Engineering_Portfolio.pptx",
+      kicker: "MARINE APPLICATION DOMAIN"
+    },
+    "mechanical-machine-design": {
+      key: "mechanical-machine-design",
+      title: CORE_DISCIPLINE,
+      subtitle: "Core Engineering Expertise",
+      description: "Core mechanical and machine design work: CAD, DFMA, mechanisms, analysis and manufacturing.",
+      filename: "Mechanical_Machine_Design_Portfolio.pptx",
+      kicker: "CORE ENGINEERING EXPERTISE"
+    }
+  };
+
+  function parseProjectDate(value) {
+    if (!value) return null;
+    const d = new Date(String(value).trim());
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+
+  function sortProjectsNewestFirst(items) {
+    return [...items].sort((a, b) => {
+      const da = parseProjectDate(a.date);
+      const db = parseProjectDate(b.date);
+      if (da && db) return db - da;
+      if (db) return 1;
+      if (da) return -1;
+      return 0; // preserve existing order when neither project has a usable date
+    });
+  }
+
+  function projectBelongsToDomain(project, domainKey) {
+    if (domainKey === "mechanical-machine-design") {
+      return (project.applicationDomain || "mechanical-machine-design") === "mechanical-machine-design";
+    }
+    return project.applicationDomain === domainKey;
+  }
+
+  function specializationCard(domain, count) {
+    const hasProjects = count > 0;
+    const buttonLabel = hasProjects ? "DOWNLOAD PRESENTATION" : "NO PROJECTS YET";
+    return `
+      <article class="card specialization-card">
+        <div class="meta">${escapeHTMLSafe(domain.kicker)}</div>
+        <h3>${escapeHTMLSafe(domain.title)}</h3>
+        <p><strong>${escapeHTMLSafe(CORE_DISCIPLINE)}</strong></p>
+        <p>${escapeHTMLSafe(domain.description)}</p>
+        <div class="tags">
+          <span>${count} project${count === 1 ? "" : "s"}</span>
+          <span>Latest first</span>
+        </div>
+        <div class="project-buttons specialization-actions">
+          <button type="button"
+                  class="btn-primary specialization-download"
+                  data-domain="${escapeHTMLSafe(domain.key)}"
+                  ${hasProjects ? "" : "disabled"}>
+            ${buttonLabel}
+          </button>
+        </div>
+      </article>
+    `;
+  }
+
+  // Local escape helper for strings used before the older renderer's helper is in scope.
+  function escapeHTMLSafe(value) {
+    return String(value ?? "").replace(/[&<>"']/g, ch => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[ch]));
+  }
+
+  async function loadSpecializationPanels(allProjects) {
+    const wrap = document.getElementById("specializationGrid");
+    if (!wrap) return;
+
+    const domains = Object.values(APPLICATION_DOMAINS);
+    wrap.innerHTML = domains.map(domain => {
+      const count = allProjects.filter(p => projectBelongsToDomain(p, domain.key)).length;
+      return specializationCard(domain, count);
+    }).join("");
+
+    wrap.querySelectorAll(".specialization-download").forEach(button => {
+      button.addEventListener("click", async () => {
+        const domain = APPLICATION_DOMAINS[button.dataset.domain];
+        const selected = sortProjectsNewestFirst(
+          allProjects.filter(p => projectBelongsToDomain(p, domain.key))
+        );
+        if (!selected.length) return;
+        const original = button.textContent;
+        button.disabled = true;
+        button.textContent = "GENERATING…";
+        try {
+          await generatePortfolioPresentation(domain, selected);
+        } catch (error) {
+          console.error(error);
+          alert("The PowerPoint could not be generated. Please try again.");
+        } finally {
+          button.disabled = false;
+          button.textContent = original;
+        }
+      });
+    });
+  }
+
+  function pptxSafeText(value, fallback = "") {
+    return String(value ?? fallback).trim();
+  }
+
+  async function imageUrlToDataUri(url) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) return null;
+      const blob = await response.blob();
+      return await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function addPptxFooter(slide, index, total) {
+    slide.addText("LEWIS MUTWIRI  /  MECHANICAL ENGINEERING", {
+      x: 0.55, y: 7.05, w: 8.3, h: 0.18,
+      fontFace: "Aptos", fontSize: 7, color: "8A96A3",
+      margin: 0, bold: true, charSpacing: 0.7
+    });
+    slide.addText(`${String(index).padStart(2,"0")} / ${String(total).padStart(2,"0")}`, {
+      x: 11.75, y: 7.02, w: 1.0, h: 0.2,
+      fontFace: "Aptos", fontSize: 7, color: "8A96A3",
+      margin: 0, align: "right"
+    });
+  }
+
+  function addPptxTitle(slide, kicker, title, subtitle) {
+    slide.background = { color: "081018" };
+    slide.addShape(pptx.ShapeType.line, {
+      x: 0.6, y: 0.6, w: 1.0, h: 0,
+      line: { color: "FF9B42", width: 2.5 }
+    });
+    slide.addText(kicker, {
+      x: 0.6, y: 0.78, w: 5.5, h: 0.22,
+      fontFace: "Aptos", fontSize: 9, bold: true, color: "FFB86B",
+      margin: 0, charSpacing: 1.6
+    });
+    slide.addText(title, {
+      x: 0.6, y: 1.15, w: 11.7, h: 0.65,
+      fontFace: "Aptos Display", fontSize: 28, bold: true, color: "F1F5F8",
+      margin: 0, breakLine: false
+    });
+    slide.addText(subtitle, {
+      x: 0.62, y: 1.92, w: 10.8, h: 0.45,
+      fontFace: "Aptos", fontSize: 12, color: "B8C4CE",
+      margin: 0
+    });
+  }
+
+  async function generatePortfolioPresentation(domain, projects) {
+    if (typeof pptxgen === "undefined") {
+      throw new Error("PowerPoint library unavailable.");
+    }
+
+    const pptx = new pptxgen();
+    pptx.layout = "LAYOUT_WIDE";
+    pptx.author = "Lewis Mutwiri";
+    pptx.subject = `${domain.title} engineering portfolio`;
+    pptx.title = `${domain.title} — ${CORE_DISCIPLINE}`;
+    pptx.company = "Lewis Mutwiri";
+    pptx.lang = "en-US";
+    pptx.theme = {
+      headFontFace: "Aptos Display",
+      bodyFontFace: "Aptos",
+      lang: "en-US"
+    };
+    pptx.defineSlideMaster({
+      title: "MASTER",
+      background: { color: "081018" },
+      objects: [
+        { rect: { x: 0, y: 0, w: 0.12, h: 7.5, fill: { color: "FF9B42" }, line: { color: "FF9B42" } } }
+      ],
+      slideNumber: { x: 12.2, y: 7.02, color: "8A96A3", fontFace: "Aptos", fontSize: 7 }
+    });
+
+    const total = projects.length + 2;
+
+    // Cover
+    let slide = pptx.addSlide("MASTER");
+    slide.background = { color: "061018" };
+    slide.addShape(pptx.ShapeType.arc, {
+      x: 8.2, y: -0.4, w: 5.0, h: 5.0,
+      line: { color: "244A5C", transparency: 15, width: 1.2 },
+      adjustPoint: 0.25
+    });
+    slide.addText("MECHANICAL ENGINEER", {
+      x: 0.75, y: 1.05, w: 5.8, h: 0.3,
+      fontSize: 12, bold: true, color: "FFB86B", charSpacing: 2.2, margin: 0
+    });
+    slide.addText(domain.title, {
+      x: 0.75, y: 1.65, w: 10.9, h: 0.8,
+      fontSize: 34, bold: true, color: "F4F7FA", margin: 0
+    });
+    slide.addText(CORE_DISCIPLINE, {
+      x: 0.75, y: 2.65, w: 9.5, h: 0.45,
+      fontSize: 17, bold: true, color: "3FD0FF", margin: 0
+    });
+    slide.addText("Core engineering discipline applied to a specialized domain", {
+      x: 0.75, y: 3.2, w: 8.8, h: 0.4,
+      fontSize: 12, color: "B8C4CE", margin: 0
+    });
+    slide.addShape(pptx.ShapeType.line, {
+      x: 0.75, y: 4.2, w: 4.0, h: 0,
+      line: { color: "FF9B42", width: 1.5 }
+    });
+    slide.addText(`${projects.length} PROJECT${projects.length === 1 ? "" : "S"}  ·  LATEST FIRST`, {
+      x: 0.75, y: 4.45, w: 5.5, h: 0.25,
+      fontSize: 9, bold: true, color: "8A96A3", charSpacing: 1.2, margin: 0
+    });
+    addPptxFooter(slide, 1, total);
+
+    // Engineering focus
+    slide = pptx.addSlide("MASTER");
+    addPptxTitle(slide, domain.kicker, "Engineering focus", domain.subtitle);
+    slide.addText(CORE_DISCIPLINE, {
+      x: 0.7, y: 2.7, w: 5.6, h: 0.5,
+      fontSize: 21, bold: true, color: "3FD0FF", margin: 0
+    });
+    slide.addText("CAD   ·   DFMA   ·   MECHANICS & MATERIALS   ·   FEA   ·   CFD / THERMAL   ·   MANUFACTURING   ·   MECHANISMS", {
+      x: 0.72, y: 3.45, w: 11.2, h: 0.7,
+      fontSize: 12, bold: true, color: "D9E1E7", margin: 0,
+      breakLine: false, fit: "shrink"
+    });
+    slide.addText(domain.description, {
+      x: 0.72, y: 4.45, w: 10.2, h: 0.8,
+      fontSize: 13, color: "AAB7C2", margin: 0
+    });
+    addPptxFooter(slide, 2, total);
+
+    // Projects
+    for (let i = 0; i < projects.length; i++) {
+      const p = projects[i];
+      slide = pptx.addSlide("MASTER");
+      slide.background = { color: "F4F6F8" };
+
+      slide.addText(String(i + 1).padStart(2, "0"), {
+        x: 0.65, y: 0.48, w: 0.55, h: 0.3,
+        fontSize: 11, bold: true, color: "E8823A", margin: 0
+      });
+      slide.addText(pptxSafeText(p.title, "Untitled Project"), {
+        x: 1.35, y: 0.43, w: 8.9, h: 0.55,
+        fontSize: 24, bold: true, color: "12202B", margin: 0, fit: "shrink"
+      });
+      slide.addText([CORE_DISCIPLINE, p.date || "Date not documented", p.status || "Status not documented"].join("  ·  "), {
+        x: 1.36, y: 1.03, w: 10.2, h: 0.25,
+        fontSize: 8.5, bold: true, color: "61717E", margin: 0, charSpacing: 0.5
+      });
+
+      const image = p.thumbnail ? await imageUrlToDataUri(new URL(p.thumbnail, location.href).href) : null;
+      if (image) {
+        slide.addImage({ data: image, x: 0.7, y: 1.55, w: 5.35, h: 3.0, sizingContain: true });
+      } else {
+        slide.addShape(pptx.ShapeType.rect, {
+          x: 0.7, y: 1.55, w: 5.35, h: 3.0,
+          fill: { color: "E5E9ED" }, line: { color: "CAD2D9", width: 1 }
+        });
+        slide.addText("PROJECT IMAGE NOT AVAILABLE", {
+          x: 1.2, y: 2.85, w: 4.3, h: 0.25,
+          fontSize: 8, bold: true, color: "7A8792", align: "center", margin: 0
+        });
+      }
+
+      slide.addText("ENGINEERING OBJECTIVE", {
+        x: 6.45, y: 1.55, w: 3.5, h: 0.22,
+        fontSize: 8, bold: true, color: "E8823A", charSpacing: 1.0, margin: 0
+      });
+      slide.addText(pptxSafeText(p.summary || p.problem, "No project objective documented."), {
+        x: 6.45, y: 1.9, w: 5.7, h: 1.0,
+        fontSize: 13, color: "24323D", margin: 0, fit: "shrink"
+      });
+
+      slide.addText("ENGINEERING APPROACH", {
+        x: 6.45, y: 3.05, w: 3.5, h: 0.22,
+        fontSize: 8, bold: true, color: "E8823A", charSpacing: 1.0, margin: 0
+      });
+      const approach = p.approach || p.solution || "";
+      slide.addText(pptxSafeText(approach, "Approach not documented."), {
+        x: 6.45, y: 3.38, w: 5.7, h: 1.0,
+        fontSize: 12, color: "24323D", margin: 0, fit: "shrink"
+      });
+
+      const tags = [...(p.tags || []), ...(p.software || [])].slice(0, 8);
+      if (tags.length) {
+        slide.addText("TOOLS / EVIDENCE", {
+          x: 0.7, y: 4.85, w: 2.5, h: 0.22,
+          fontSize: 8, bold: true, color: "E8823A", charSpacing: 1.0, margin: 0
+        });
+        slide.addText(tags.join("   ·   "), {
+          x: 0.7, y: 5.18, w: 11.1, h: 0.45,
+          fontSize: 10, color: "465663", margin: 0, fit: "shrink"
+        });
+      }
+      addPptxFooter(slide, i + 3, total);
+    }
+
+    slide = pptx.addSlide("MASTER");
+    addPptxTitle(slide, "END OF PORTFOLIO", "Engineering portfolio", `${domain.title} · ${CORE_DISCIPLINE}`);
+    slide.addText("Mechanical Engineering → Mechanical & Machine Design → Specialized Application", {
+      x: 0.7, y: 2.75, w: 11.0, h: 0.5,
+      fontSize: 18, bold: true, color: "3FD0FF", margin: 0, fit: "shrink"
+    });
+    slide.addText("This presentation is a curated interview portfolio generated from the project library. Detailed case studies remain available on the portfolio website.", {
+      x: 0.72, y: 3.55, w: 9.8, h: 0.8,
+      fontSize: 13, color: "B8C4CE", margin: 0
+    });
+    addPptxFooter(slide, total, total);
+
+    await pptx.writeFile({ fileName: domain.filename });
+  }
+
   async function renderPortfolio() {
     const el = document.getElementById("portfolioProjects");
     const searchBox = document.getElementById("searchBox");
@@ -388,6 +729,7 @@
     try { all = (await loadProjects()).filter(isRealProject); }
     catch (e) { errorState(el, "Couldn't load projects right now — " + e.message); return; }
 
+    await loadSpecializationPanels(all);
     const categories = Array.from(new Set(all.map(p => p.category).filter(Boolean))).sort();
     const statuses = Array.from(new Set(all.map(p => p.status).filter(Boolean))).sort();
     const skillsPresent = Array.from(new Set(all.flatMap(p => p.skills || [])))
@@ -436,7 +778,8 @@
         if (!q) return true;
         return [p.title,p.summary,p.category,p.status,...(p.tags||[]),...(p.software||[]),...(p.skills||[])].join(" ").toLowerCase().includes(q);
       });
-      el.innerHTML = filtered.length ? filtered.map(projectCardHTML).join("") : '<div class="empty-state"><strong>No projects match those filters.</strong><p>Try clearing one of the filters or changing the search term.</p></div>';
+      const ordered = sortProjectsNewestFirst(filtered);
+      el.innerHTML = ordered.length ? ordered.map(projectCardHTML).join("") : '<div class="empty-state"><strong>No projects match those filters.</strong><p>Try clearing one of the filters or changing the search term.</p></div>';
     }
     if (searchBox) searchBox.addEventListener("input", debounce(apply, 150));
     apply();
