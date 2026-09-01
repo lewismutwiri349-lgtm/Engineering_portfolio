@@ -1,11 +1,14 @@
 {
+  "status": "Completed",
+  "requirements": "",
+  "approach": "Built a lightweight recovery module around a NEO-6M GPS module and Arduino, logging and transmitting position data through descent so the airframe could be tracked and recovered quickly after landing.",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "id": "neo6m-rocket-recovery",
   "title": "NEO-6M GPS Rocket Recovery System",
   "category": "control systems",
-  "subcategory": "",
-  "applicationDomain": "aerospace",
-  "status": "Prototyping",
-  "date": "",
   "featured": true,
   "thumbnail": "assets/images/robot1.svg",
   "summary": "Arduino-based GPS recovery beacon for hobby rocketry, transmitting live position after apogee for fast payload recovery.",
@@ -26,12 +29,7 @@
     "Field Testing"
   ],
   "problem": "Recovering a rocket airframe after flight is difficult without live location data, especially over open terrain with dense vegetation.",
-  "requirements": "",
-  "approach": "Built a lightweight recovery module around a NEO-6M GPS module and Arduino, logging and transmitting position data through descent so the airframe could be tracked and recovered quickly after landing.",
-  "analysis": "",
-  "simulation": "",
-  "results": "",
-  "conclusion": "",
+  "solution": "Built a lightweight recovery module around a NEO-6M GPS module and Arduino, logging and transmitting position data through descent so the airframe could be tracked and recovered quickly after landing.",
   "gallery": [
     "assets/images/robot1.svg",
     "assets/images/robot2.svg"
@@ -40,8 +38,8 @@
   "downloads": [],
   "skills": [
     "embedded-systems",
-    "control-engineering",
+    "robotics",
     "research-development"
   ],
-  "solution": "Built a lightweight recovery module around a NEO-6M GPS module and Arduino, logging and transmitting position data through descent so the airframe could be tracked and recovered quickly after landing."
+  "applicationDomain": "aerospace"
 }
