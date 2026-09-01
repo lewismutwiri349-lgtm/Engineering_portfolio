@@ -269,12 +269,12 @@
     "downloads": [],
     "skills": [
       "embedded-systems",
-      "robotics",
+      "control-engineering",
       "research-development"
     ],
     "subcategory": "",
     "robotics": true,
-    "status": "Planned",
+    "status": "Prototyping",
     "requirements": "",
     "approach": "Built a lightweight recovery module around a NEO-6M GPS module and Arduino, logging and transmitting position data through descent so the airframe could be tracked and recovered quickly after landing.",
     "analysis": "",
@@ -282,7 +282,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "aerospace"
   },
   {
     "id": "structural-analysis-dashboard",
