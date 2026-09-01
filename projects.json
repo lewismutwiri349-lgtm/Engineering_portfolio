@@ -134,7 +134,7 @@
     "links": [],
     "downloads": [],
     "skills": [
-      "mechanical-design"
+      "machine-design"
     ],
     "subcategory": "",
     "robotics": false,
@@ -556,7 +556,7 @@
     ],
     "subcategory": "internal-flow",
     "robotics": false,
-    "status": "Planned",
+    "status": "Simulation",
     "date": "",
     "requirements": "",
     "approach": "Created the geometry, generated a computational mesh, applied inlet and outlet boundary conditions, solved the flow field using ANSYS Fluent, and analyzed velocity contours and streamlines to evaluate flow performance.\n",
@@ -564,7 +564,7 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "aerospace"
   },
   {
     "id": "vacuum-mobile-cleaner",
