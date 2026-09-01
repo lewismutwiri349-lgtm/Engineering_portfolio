@@ -3,11 +3,11 @@
   "title": "Gate valve assembly",
   "category": "machine-design",
   "subcategory": "cad",
-  "applicationDomain": "mechanical-machine-design",
+  "applicationDomain": "old-projects",
   "status": "Completed",
   "date": "2026-08-26",
   "featured": false,
-  "thumbnail": "assets/projects/machine-design/cad/assem3.JPG",
+  "thumbnail": "assets/projects/machine-design/cad/gate_valve.JPG",
   "summary": "3D modeling of a gate valve assembly in SolidWorks, focusing on component geometry, assembly relationships, and overall mechanical construction.",
   "tags": [
     "SolidWorks",
