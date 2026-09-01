@@ -2,6 +2,10 @@
   "id": "structural-analysis-dashboard",
   "title": "Structural Analysis Dashboard",
   "category": "automation",
+  "subcategory": "",
+  "applicationDomain": "hobbies",
+  "status": "Simulation",
+  "date": "",
   "featured": true,
   "thumbnail": "assets/images/robot2.svg",
   "summary": "A React web app for beam deflection, SFD/BMD, torsion, stress analysis, section properties and a material library.",
@@ -22,7 +26,12 @@
     "Testing"
   ],
   "problem": "Quick structural checks during design iteration usually meant switching to a spreadsheet or hand calculation, breaking flow.",
-  "solution": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library — combining calculation rigor with fast, visual iteration.",
+  "requirements": "",
+  "approach": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library — combining calculation rigor with fast, visual iteration.",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "gallery": [
     "assets/images/robot2.svg"
   ],
@@ -31,5 +40,6 @@
   "skills": [
     "numerical-analysis",
     "research-development"
-  ]
+  ],
+  "solution": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library — combining calculation rigor with fast, visual iteration."
 }
