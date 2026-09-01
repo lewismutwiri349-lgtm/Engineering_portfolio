@@ -1377,6 +1377,9 @@ body[data-spec="control"] { --spec-accent: #F472B6; --spec-accent-soft: rgba(244
   .spec-hero .container { grid-template-columns: 1fr !important; }
 }
 body[data-spec="cad"] { --spec-accent: #3FD0FF; --spec-accent-soft: rgba(63,208,255,.14); }
+body[data-spec="aerospace"]    { --spec-accent: #3FD0FF; --spec-accent-soft: rgba(63,208,255,.14); }
+body[data-spec="marine"]       { --spec-accent: #2DD4BF; --spec-accent-soft: rgba(45,212,191,.14); }
+body[data-spec="old-projects"] { --spec-accent: #8A96A3; --spec-accent-soft: rgba(138,150,163,.14); }
 .spec-cad-wire { animation: cadRotate 8s linear infinite; transform-origin: 200px 125px; }
 @keyframes cadRotate { to { transform: rotate(360deg); } }
 /* ---------------------------------------------------------

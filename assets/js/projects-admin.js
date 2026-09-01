@@ -27,6 +27,18 @@
     "Simulation", "Prototyping", "Completed", "Archived"
   ];
 
+  // Core discipline stays fixed (Mechanical & Machine Design); this is
+  // the application-area classification described in the admin's
+  // taxonomy panel. Keys match script.js's APPLICATION_DOMAINS plus a
+  // "hobbies" archive bucket that isn't a downloadable presentation.
+  const DOMAIN_OPTIONS = [
+    { value: "mechanical-machine-design", label: "Mechanical & Machine Design (core)" },
+    { value: "aerospace", label: "Aerospace (application area)" },
+    { value: "marine", label: "Marine (application area)" },
+    { value: "old-projects", label: "Old Projects (archive)" },
+    { value: "hobbies", label: "Hobbies (archive)" }
+  ];
+
   const SKILL_OPTIONS = [
     "machine-design",
     "finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics",
@@ -57,6 +69,7 @@
       title: "",
       category: "dfma",
       subcategory: "",
+      applicationDomain: "mechanical-machine-design",
       status: "Planned",
       date: "",
       featured: false,
@@ -276,6 +289,13 @@
       .join("");
   }
 
+  function domainSelect(project) {
+    const current = project.applicationDomain || "mechanical-machine-design";
+    return DOMAIN_OPTIONS
+      .map((d) => `<option value="${d.value}" ${current === d.value ? "selected" : ""}>${d.label}</option>`)
+      .join("");
+  }
+
   function skillCheckboxes(project) {
     return SKILL_OPTIONS
       .map((s) => {
@@ -320,6 +340,9 @@
           </label>
           <label>Subcategory (becomes a subfolder)
             <input class="achievement-input" data-field="subcategory" value="${escapeHtml(project.subcategory || "")}" placeholder="internal-flow">
+          </label>
+          <label>Application area (Mechanical &amp; Machine Design stays the core discipline either way)
+            <select class="achievement-select" data-field="applicationDomain">${domainSelect(project)}</select>
           </label>
           <label>Lifecycle status
             <select class="achievement-select" data-field="status">${statusSelect(project)}</select>

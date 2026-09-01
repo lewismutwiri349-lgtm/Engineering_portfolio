@@ -410,6 +410,14 @@
       description: "Core mechanical and machine design work: CAD, DFMA, mechanisms, analysis and manufacturing.",
       filename: "Mechanical_Machine_Design_Portfolio.pptx",
       kicker: "CORE ENGINEERING EXPERTISE"
+    },
+    "old-projects": {
+      key: "old-projects",
+      title: "Old Projects",
+      subtitle: "Archive of previous work",
+      description: "Archived work kept separate from current Mechanical & Machine Design, Aerospace and Marine application areas.",
+      filename: "Old_Projects_Portfolio.pptx",
+      kicker: "ARCHIVE"
     }
   };
 
@@ -719,6 +727,26 @@
     await pptx.writeFile({ fileName: domain.filename });
   }
 
+  /**
+   * download.html hosts only #specializationGrid (no project library
+   * grid on that page), so it needs the specialization/download cards
+   * without going through the rest of renderPortfolio(). Pages that
+   * already call loadSpecializationPanels() via renderPortfolio() are
+   * skipped here to avoid rendering the grid twice.
+   */
+  async function renderStandaloneSpecialization() {
+    const wrap = document.getElementById("specializationGrid");
+    if (!wrap || document.getElementById("portfolioProjects")) return;
+
+    let all = [];
+    try { all = (await loadProjects()).filter(isRealProject); }
+    catch (e) {
+      wrap.innerHTML = `<div class="empty-state"><strong>Couldn't load projects right now.</strong><p>${escapeHtml(e.message)}</p></div>`;
+      return;
+    }
+    await loadSpecializationPanels(all);
+  }
+
   async function renderPortfolio() {
     const el = document.getElementById("portfolioProjects");
     const searchBox = document.getElementById("searchBox");
@@ -728,6 +756,15 @@
     let all = [];
     try { all = (await loadProjects()).filter(isRealProject); }
     catch (e) { errorState(el, "Couldn't load projects right now — " + e.message); return; }
+
+    // Pages for a single application area (aerospace.html, marine.html,
+    // old-projects.html) set data-domain-filter on #portfolioProjects so
+    // this one rendering system stays reusable instead of duplicating it
+    // per page. portfolio.html (the full library) leaves it unset.
+    const domainFilter = el.dataset.domainFilter || null;
+    if (domainFilter) {
+      all = all.filter((p) => projectBelongsToDomain(p, domainFilter));
+    }
 
     await loadSpecializationPanels(all);
     const categories = Array.from(new Set(all.map(p => p.category).filter(Boolean))).sort();
@@ -779,7 +816,14 @@
         return [p.title,p.summary,p.category,p.status,...(p.tags||[]),...(p.software||[]),...(p.skills||[])].join(" ").toLowerCase().includes(q);
       });
       const ordered = sortProjectsNewestFirst(filtered);
-      el.innerHTML = ordered.length ? ordered.map(projectCardHTML).join("") : '<div class="empty-state"><strong>No projects match those filters.</strong><p>Try clearing one of the filters or changing the search term.</p></div>';
+      if (ordered.length) {
+        el.innerHTML = ordered.map(projectCardHTML).join("");
+      } else if (!all.length && domainFilter) {
+        const domainLabel = (APPLICATION_DOMAINS[domainFilter] || {}).title || "this application area";
+        el.innerHTML = `<div class="empty-state"><strong>No ${escapeHtml(domainLabel)} projects published yet.</strong><p>New work appears here automatically as soon as it's added — the underlying discipline stays ${escapeHtml(CORE_DISCIPLINE)}.</p></div>`;
+      } else {
+        el.innerHTML = '<div class="empty-state"><strong>No projects match those filters.</strong><p>Try clearing one of the filters or changing the search term.</p></div>';
+      }
     }
     if (searchBox) searchBox.addEventListener("input", debounce(apply, 150));
     apply();
@@ -978,6 +1022,16 @@
       '<div id="expertiseGrid" class="expertise-grid" aria-live="polite"></div>' +
       '</div></section>' +
       '<section class="section"><div class="container">' +
+      '<p class="eyebrow">How the portfolio is organized</p><h2 class="section-title">Mechanical Engineer &middot; Mechanical &amp; Machine Design Core</h2>' +
+      '<p style="max-width:760px;">Mechanical &amp; Machine Design is the core engineering discipline behind every project here. Aerospace and Marine are application areas that show where that core discipline gets applied, not separate professional identities. Old Projects and Hobbies are kept as a clearly separate archive.</p>' +
+      '<div class="cards">' +
+      '<a class="card" href="aerospace.html"><h3>Aerospace Projects</h3><p>Mechanical &amp; Machine Design applied to aerospace structures, mechanisms and systems.</p></a>' +
+      '<a class="card" href="marine.html"><h3>Marine Projects</h3><p>Mechanical &amp; Machine Design applied to marine machinery, structures and systems.</p></a>' +
+      '<a class="card" href="old-projects.html"><h3>Old Projects</h3><p>An archive of earlier work, kept separate from current application areas.</p></a>' +
+      '<a class="card" href="download.html"><h3>Download Presentation</h3><p>Generate a separate interview-ready .pptx portfolio for each application area.</p></a>' +
+      '</div>' +
+      '</div></section>' +
+      '<section class="section"><div class="container">' +
       '<p class="eyebrow">Software &amp; methods</p><h2 class="section-title">Technical Stack</h2>' +
       '<div class="tech-grid"><span>SolidWorks</span><span>ANSYS Mechanical</span><span>ANSYS Fluent</span><span>MATLAB</span><span>Simulink</span><span>AutoCAD</span><span>GD&amp;T</span><span>DFMA</span><span>Python</span><span>C/C++</span><span>Arduino</span><span>ESP32</span></div>' +
       '</div></section>'
@@ -1105,6 +1159,7 @@
     // only handles the homepage's featured strip, the full portfolio grid,
     // and the single-project detail page below.
     renderPortfolio();
+    renderStandaloneSpecialization();
     renderProjectDetail();
     renderSharedAbout();
   });
