@@ -543,7 +543,7 @@
     });
   }
 
-  function addPptxTitle(slide, kicker, title, subtitle) {
+  function addPptxTitle(pptx, slide, kicker, title, subtitle) {
     slide.background = { color: "081018" };
     slide.addShape(pptx.ShapeType.line, {
       x: 0.6, y: 0.6, w: 1.0, h: 0,
@@ -630,7 +630,7 @@
 
     // Engineering focus
     slide = pptx.addSlide("MASTER");
-    addPptxTitle(slide, domain.kicker, "Engineering focus", domain.subtitle);
+    addPptxTitle(pptx, slide, domain.kicker, "Engineering focus", domain.subtitle);
     slide.addText(CORE_DISCIPLINE, {
       x: 0.7, y: 2.7, w: 5.6, h: 0.5,
       fontSize: 21, bold: true, color: "3FD0FF", margin: 0
@@ -713,7 +713,7 @@
     }
 
     slide = pptx.addSlide("MASTER");
-    addPptxTitle(slide, "END OF PORTFOLIO", "Engineering portfolio", `${domain.title} · ${CORE_DISCIPLINE}`);
+    addPptxTitle(pptx, slide, "END OF PORTFOLIO", "Engineering portfolio", `${domain.title} · ${CORE_DISCIPLINE}`);
     slide.addText("Mechanical Engineering → Mechanical & Machine Design → Specialized Application", {
       x: 0.7, y: 2.75, w: 11.0, h: 0.5,
       fontSize: 18, bold: true, color: "3FD0FF", margin: 0, fit: "shrink"
