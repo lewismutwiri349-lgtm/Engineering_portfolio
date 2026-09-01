@@ -2,6 +2,10 @@
   "id": "sheet-metal-electronic-enclosure",
   "title": "Sheet Metal Electronic Enclosure",
   "category": "dfma",
+  "subcategory": "",
+  "applicationDomain": "old-projects",
+  "status": "Archived",
+  "date": "",
   "featured": true,
   "thumbnail": "assets/images/sheet-metal-electronic-enclosure-cover.jpg",
   "summary": "Design and assembly of a sheet metal electronic enclosure for efficient thermal management and electromagnetic shielding.",
@@ -18,7 +22,12 @@
     "Detailing"
   ],
   "problem": "Design a sheet metal electronic enclosure that provides efficient thermal management and electromagnetic shielding.",
-  "solution": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
+  "requirements": "",
+  "approach": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
+  "analysis": "",
+  "simulation": "",
+  "results": "",
+  "conclusion": "",
   "gallery": [
     "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpeg"
   ],
@@ -27,5 +36,6 @@
   "skills": [
     "mechanical-design",
     "sheet metal-design"
-  ]
+  ],
+  "solution": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set."
 }
