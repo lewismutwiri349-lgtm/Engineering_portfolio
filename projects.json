@@ -170,7 +170,7 @@
     "problem": "Design a sheet metal electronic enclosure that provides efficient thermal management and electromagnetic shielding.",
     "solution": "Modelled the enclosure as a single part, applied cosmetic threads to the mounting holes, and mated the assembly with a press-fit relationship before producing a full drawing set.",
     "gallery": [
-      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpg"
+      "assets/images/gallery/sheet-metal-electronic-enclosure/1.jpeg"
     ],
     "links": [],
     "downloads": [],
@@ -226,7 +226,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Planned",
+    "status": "Simulation",
     "requirements": "",
     "approach": "Used pywin32 to bind to the SolidWorks COM API, working through a series of environment and binding issues to reliably open documents, edit dimensions and rebuild models from a script — turning a manual, repetitive task into a one-command operation.",
     "analysis": "",
@@ -234,7 +234,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "hobbies"
   },
   {
     "id": "neo6m-rocket-recovery",
@@ -320,7 +320,7 @@
     ],
     "subcategory": "",
     "robotics": false,
-    "status": "Planned",
+    "status": "Simulation",
     "requirements": "",
     "approach": "Built a dark, engineering-styled dashboard covering beam deflection, shear force and bending moment diagrams, torsion, stress analysis and cross-section properties, backed by a built-in material library — combining calculation rigor with fast, visual iteration.",
     "analysis": "",
