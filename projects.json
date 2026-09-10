@@ -655,7 +655,7 @@
     "status": "Completed",
     "date": "2026-08-26",
     "featured": false,
-    "thumbnail": "assets/projects/machine-design/cad/gate_valve.JPG",
+    "thumbnail": "assets/projects/machine-design/cad/gate_valve.jpg",
     "summary": "3D modeling of a gate valve assembly in SolidWorks, focusing on component geometry, assembly relationships, and overall mechanical construction.",
     "tags": [
       "SolidWorks",
@@ -699,5 +699,37 @@
     ],
     "asset-upload": "C:\\fakepath\\asse4.JPG",
     "applicationDomain": "old-projects"
+  },
+  {
+    "id": "SolidWorks Automation#1",
+    "title": "Changing global variables in solidworks API using python lang",
+    "category": "automation",
+    "subcategory": "python_automation",
+    "applicationDomain": "hobbies",
+    "status": "Simulation",
+    "date": "2026-09-06",
+    "featured": true,
+    "thumbnail": "assets\\projects\\python_automation\\solidworks_automation.JPG",
+    "summary": "",
+    "tags": [
+      "SolidWorks API",
+      "Python Automation"
+    ],
+    "software": [
+      "SolidWorks",
+      "python"
+    ],
+    "process": [],
+    "problem": "",
+    "requirements": "",
+    "approach": "",
+    "analysis": "",
+    "simulation": "",
+    "results": "",
+    "conclusion": "",
+    "gallery": [],
+    "links": [],
+    "downloads": [],
+    "skills": []
   }
 ]
