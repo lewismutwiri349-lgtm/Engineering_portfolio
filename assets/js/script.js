@@ -60,6 +60,8 @@
     "mechanical-design": { name: "CAD & Mechanical Design", icon: "gear", desc: "SolidWorks modelling, assemblies and drawings — supporting the simulation work with manufacturable geometry." },
     "matlab": { name: "MATLAB & Simulink", icon: "fx", desc: "Numerical computing, system simulation and controller design." },
     "cpp": { name: "C++", icon: "code", desc: "Systems and embedded programming in C++." },
+    "aerospace": { name: "Aerospace Applications", icon: "flow", desc: "Applying simulation, structures and control to flying objects: hobby rocketry recovery, aerodynamic and flow analysis." },
+    "marine": { name: "Marine Applications", icon: "gear", desc: "Mechanical design and analysis applied to marine machinery and structures." },
     "research-development": { name: "Research & Development", icon: "bulb", desc: "Early-stage concept development, prototyping and applied engineering research." },
   };
 
@@ -67,6 +69,7 @@
     { title: "Simulation & Modelling", skills: ["multiphysics-simulation", "physics-based-modelling", "finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
     { title: "Controls & Dynamics", skills: ["control-engineering", "dynamic-systems", "digital-twins", "embedded-systems"] },
     { title: "Tools & Supporting Skills", skills: ["matlab", "mechanical-design", "cpp", "research-development"] },
+    { title: "Application Areas", skills: ["aerospace", "marine"] },
   ];
 
   /* ---------------------------------------------------------
@@ -393,22 +396,6 @@
   const CORE_DISCIPLINE = "Multiphysics Simulation & Control Systems";
 
   const APPLICATION_DOMAINS = {
-    aerospace: {
-      key: "aerospace",
-      title: "Aerospace Engineering",
-      subtitle: "Mechanical Engineering applied to Aerospace",
-      description: "Aerospace application work built on the core discipline of Multiphysics Simulation & Control Systems.",
-      filename: "Aerospace_Engineering_Portfolio.pptx",
-      kicker: "AEROSPACE APPLICATION DOMAIN"
-    },
-    marine: {
-      key: "marine",
-      title: "Marine Engineering",
-      subtitle: "Mechanical Engineering applied to Marine",
-      description: "Marine application work built on the core discipline of Multiphysics Simulation & Control Systems.",
-      filename: "Marine_Engineering_Portfolio.pptx",
-      kicker: "MARINE APPLICATION DOMAIN"
-    },
     "mechanical-machine-design": {
       key: "mechanical-machine-design",
       title: CORE_DISCIPLINE,
@@ -763,7 +750,7 @@
     try { all = (await loadProjects()).filter(isRealProject); }
     catch (e) { errorState(el, "Couldn't load projects right now — " + e.message); return; }
 
-    // Pages for a single application area (aerospace.html, marine.html,
+    // Pages for a single application area (e.g. old-projects.html,
     // old-projects.html) set data-domain-filter on #portfolioProjects so
     // this one rendering system stays reusable instead of duplicating it
     // per page. portfolio.html (the full library) leaves it unset.
@@ -774,7 +761,7 @@
 
     await loadSpecializationPanels(all);
 
-    // Aerospace and Marine are focused, low-volume application pages —
+    // Single-area pages are focused and low-volume —
     // the Category/Status/Expertise filter chips add clutter without
     // adding value there, so only build them for the full library
     // (portfolio.html, no domainFilter) and the Old Projects archive.
@@ -782,9 +769,10 @@
     const showFilterBars = FILTERABLE_DOMAINS.has(domainFilter);
 
     const requestedFocus = new URLSearchParams(location.search).get("focus");
-    const focusPresent = new Set(all.flatMap(focusKeysFor));
-    if (requestedFocus) focusPresent.add(requestedFocus); // a deep link (e.g. nav "Multiphysics") always shows its chip
-    const focusValues = [...FOCUS_GROUPS.map(g => g.key), "other"].filter(k => focusPresent.has(k));
+    // The simulation groups always show (even before a project exists in them) so the portfolio's
+    // structure is visible: Multiphysics | FEA | CFD | Controls | Dynamic Systems. "Other" only when needed.
+    const hasOther = all.some(p => focusKeysFor(p).includes("other"));
+    const focusValues = [...FOCUS_GROUPS.map(g => g.key), ...(hasOther ? ["other"] : [])];
     const focusLabel = (k) => k === "other" ? "Other" : (FOCUS_GROUPS.find(g => g.key === k) || {}).label || k;
     const statuses = Array.from(new Set(all.map(p => p.status).filter(Boolean))).sort();
     const skillsPresent = Array.from(new Set(all.flatMap(p => p.skills || [])))
@@ -1131,12 +1119,10 @@
       '</div></section>' +
       '<section class="section"><div class="container">' +
       '<p class="eyebrow">How the portfolio is organized</p><h2 class="section-title">Mechanical Engineer &middot; Simulation &amp; Controls Focus</h2>' +
-      '<p style="max-width:760px;">Simulation and control are the core of the work. Aerospace and Marine are application areas that show where it gets applied, not separate professional identities. Old Projects and Hobbies are kept as a clearly separate archive.</p>' +
+      '<p style="max-width:760px;">Simulation and control are the core of the work. Aerospace and marine appear as skills the work is applied to, not as separate portfolios. Old Projects and Hobbies are kept as a clearly separate archive.</p>' +
       '<div class="cards">' +
-      '<a class="card" href="aerospace.html"><h3>Aerospace Projects</h3><p>Simulation, structures and mechanisms applied to aerospace systems.</p></a>' +
-      '<a class="card" href="marine.html"><h3>Marine Projects</h3><p>Simulation and design applied to marine machinery, structures and systems.</p></a>' +
       '<a class="card" href="old-projects.html"><h3>Old Projects</h3><p>An archive of earlier work, kept separate from current application areas.</p></a>' +
-      '<a class="card" href="download.html"><h3>Download Presentation</h3><p>Generate a separate interview-ready .pptx portfolio for each application area.</p></a>' +
+      '<a class="card" href="download.html"><h3>Download Presentation</h3><p>Generate an interview-ready .pptx portfolio.</p></a>' +
       '</div>' +
       '</div></section>' +
       '<section class="section"><div class="container">' +
