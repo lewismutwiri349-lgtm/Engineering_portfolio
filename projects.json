@@ -270,7 +270,8 @@
     "skills": [
       "embedded-systems",
       "robotics",
-      "research-development"
+      "research-development",
+      "aerospace"
     ],
     "subcategory": "",
     "robotics": true,
@@ -282,7 +283,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "aerospace"
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "structural-analysis-dashboard",
@@ -430,7 +431,8 @@
       "machine-design",
       "design-for-manufacturing",
       "sheet-metal-design",
-      "GD&T"
+      "GD&T",
+      "marine"
     ],
     "links": [],
     "downloads": [
@@ -456,7 +458,7 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "applicationDomain": "marine"
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "esp32-iot-automation",
@@ -552,7 +554,8 @@
     "skills": [
       "cfd",
       "numerical-analysis",
-      "thermodynamics"
+      "thermodynamics",
+      "aerospace"
     ],
     "subcategory": "internal-flow",
     "robotics": false,
@@ -564,7 +567,7 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "applicationDomain": "aerospace"
+    "applicationDomain": "mechanical-machine-design"
   },
   {
     "id": "vacuum-mobile-cleaner",
