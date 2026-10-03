@@ -1511,3 +1511,105 @@ body[data-spec="old-projects"] { --spec-accent: #8A96A3; --spec-accent-soft: rgb
   transform: none;
   box-shadow: none;
 }
+
+/* =========================================================
+   Simulation portfolio additions
+   (workflow diagram, focus areas, project case-study layout,
+   responsive video, footer links)
+   ========================================================= */
+
+/* ---- Technical workflow ---- */
+.workflow {
+  list-style: none; margin: 28px 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0;
+  counter-reset: wf;
+}
+.workflow li {
+  position: relative; counter-increment: wf;
+  padding: 18px 16px 18px 16px; margin-right: 18px;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.workflow li::before {
+  content: "0" counter(wf);
+  display: block; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em;
+  color: var(--cyan); margin-bottom: 8px;
+}
+.workflow li:not(:last-child)::after {
+  content: "→"; position: absolute; right: -17px; top: 50%; transform: translateY(-50%);
+  color: var(--cyan); font-family: var(--font-mono); font-size: 1rem; z-index: 1;
+}
+.workflow strong { display: block; font-family: var(--font-display); font-size: .98rem; color: var(--text); }
+.workflow span { display: block; margin-top: 6px; font-size: .8rem; color: var(--text-soft); line-height: 1.45; }
+@media (max-width: 980px) {
+  .workflow { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 18px; }
+  .workflow li:nth-child(3n)::after { content: none; }
+}
+@media (max-width: 620px) {
+  .workflow { grid-template-columns: 1fr; row-gap: 22px; }
+  .workflow li { margin-right: 0; }
+  .workflow li:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -21px; transform: translateX(-50%); }
+  .workflow li:nth-child(3n)::after { content: "↓"; }
+}
+
+/* ---- Areas of focus ---- */
+.focus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 28px; }
+.focus-card {
+  display: block; padding: 22px; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--surface); transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.focus-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
+.focus-card .eyebrow { margin-bottom: 8px; }
+.focus-card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+.focus-card p { margin: 0; font-size: .9rem; }
+
+/* ---- Project cards: video cue ---- */
+.project-card .thumb { position: relative; }
+.play-badge {
+  position: absolute; left: 10px; bottom: 10px; padding: 4px 9px; border-radius: 999px;
+  font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em;
+  background: rgba(5, 12, 20, .78); color: var(--cyan); border: 1px solid var(--line-strong);
+}
+
+/* ---- Project case-study layout ---- */
+.case-study { max-width: 860px; }
+.case-section { padding: 34px 0; border-top: 1px solid var(--border); }
+.case-section:first-child { border-top: 0; }
+.case-section h2 { font-size: 1.5rem; margin: 6px 0 14px; }
+.case-section p, .case-text { white-space: pre-line; color: var(--text-soft); line-height: 1.7; margin: 0; }
+.case-eq {
+  white-space: pre-wrap; font-family: var(--font-mono); font-size: .9rem; line-height: 1.75;
+  margin: 0; padding: 16px 18px; background: var(--bg-alt); color: var(--text);
+  border: 1px solid var(--border); border-left: 3px solid var(--cyan); border-radius: 6px; overflow-x: auto;
+}
+.case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.case-meta h3 { font-family: var(--font-mono); font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; color: var(--cyan); margin: 0 0 10px; }
+.media-wrap { max-width: var(--maxw); }
+.media-videos { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); margin-bottom: 28px; }
+.media-gallery { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.media-figure { margin: 0; }
+.media-figure img {
+  width: 100%; height: auto; display: block; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--bg-alt);
+}
+.media-figure figcaption { margin-top: 8px; font-size: .84rem; line-height: 1.5; color: var(--text-soft); }
+.media-figure figcaption strong { color: var(--text); font-weight: 600; }
+.video-frame {
+  position: relative; width: 100%; aspect-ratio: 16 / 9; background: #05080d;
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+}
+.video-frame video, .video-frame iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: contain; background: #05080d;
+}
+
+/* ---- Footer links ---- */
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 20px; margin: 0 auto 14px; padding: 0 20px; }
+.footer-links a { font-size: .82rem; color: var(--text-soft); }
+.footer-links a:hover { color: var(--cyan); }
+
+.workflow--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 980px) { .workflow--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .workflow--5 li:nth-child(2n)::after { content: none; } .workflow--5 li:nth-child(3n)::after { content: "→"; } .workflow--5 li:nth-child(5)::after { content: none; } }
+@media (max-width: 620px) { .workflow--5 { grid-template-columns: 1fr; } .workflow--5 li:not(:last-child)::after { content: "↓"; } }
+
+/* long summaries shouldn't make one card tower over the rest */
+.project-card > p { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }

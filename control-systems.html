@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Control Systems Engineering | Lewis Mutwiri</title>
+<title>Control Systems | Lewis Mutwiri</title>
 <meta name="description" content="Mechanical control systems engineering by Lewis Mutwiri: PID control, mechatronics, motion control and industrial automation — mechanical focus, not electrical.">
 <link rel="canonical" href="https://lewismutwiri.com/control-systems.html">
 <meta name="theme-color" content="#0A0E14">
@@ -21,14 +21,10 @@
 <nav class="navbar">
 <div class="logo" aria-hidden="true">LM</div>
 <ul class="nav-links"><li><a href="index.html">Home</a></li>
+<li><a href="portfolio.html">Projects</a></li>
+<li><a href="portfolio.html?focus=multiphysics">Multiphysics</a></li>
+<li><a href="control-systems.html">Control Systems</a></li>
 <li><a href="about.html">About</a></li>
-<li><a href="aerospace.html">Aerospace Projects</a></li>
-<li><a href="marine.html">Marine Projects</a></li>
-<li><a href="old-projects.html">Old Projects</a></li>
-<li><a href="download.html">Download Presentation</a></li>
-<li><a href="news.html">News</a></li>
-<li><a href="events.html">Events</a></li>
-<li><a href="achievements.html">Achievements</a></li>
 <li><a href="contact.html">Contact</a></li></ul>
 <button id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
 </nav>
@@ -39,10 +35,10 @@
 <section class="hero hero--section spec-hero">
 <div class="hero-media" role="img" aria-label="A bird glides through a dawn sky carrying twigs — a symbol of building something new."></div>
 <div class="hero-content">
-<span class="spec-badge">Applied Control Systems</span>
-<h1>Control Systems Engineering</h1>
-<h2>Feedback, motion, and mechanical automation</h2>
-<p>This is control engineering from the mechanical side — PID loops, actuator and sensor integration, and dynamic system modelling for mechanisms, not circuit-level electrical design.</p>
+<span class="spec-badge">Control Systems</span>
+<h1>Control Systems</h1>
+<h2>Physical system → model → simulation → controller → controlled response</h2>
+<p>Control engineering from the mechanical side: model a plant, simulate its dynamics, then design and test a controller on it, in MATLAB / Simulink and Python, and on hardware where a prototype exists. This is an area I am actively developing through simulation projects.</p>
 <div class="buttons">
 <a href="#controlProjectsSection" class="btn-accent">View Control Systems Projects</a>
 <a href="contact.html" class="btn-secondary">Start a Project</a>
@@ -56,18 +52,19 @@
 <p class="eyebrow">Capabilities</p>
 <h2 class="section-title">What this covers</h2>
 <div class="spec-capabilities">
-<span>PID control</span>
-<span>Mechanical automation</span>
-<span>Motion control</span>
+<span>Transfer functions</span>
+<span>State-space models</span>
+<span>ODE models</span>
 <span>Dynamic system modelling</span>
-<span>System identification</span>
-<span>Mechatronics</span>
-<span>Actuator &amp; sensor integration</span>
+<span>PID control</span>
 <span>Feedback systems</span>
+<span>Stability analysis</span>
+<span>Frequency response</span>
+<span>System identification</span>
+<span>Actuator modelling</span>
+<span>Sensor modelling</span>
 <span>MATLAB &amp; Simulink</span>
-<span>Hydraulic &amp; pneumatic systems</span>
-<span>Servo systems</span>
-<span>Embedded mechanical control (Arduino)</span>
+<span>Embedded control (Arduino / ESP32)</span>
 </div>
 </div>
 <div class="spec-visual" aria-hidden="true">
@@ -86,6 +83,20 @@
 </div>
 </section>
 
+<section class="section">
+<div class="container">
+<p class="eyebrow">The control chain</p>
+<h2 class="section-title">How a controlled system is built</h2>
+<ol class="workflow workflow--5">
+<li><strong>Plant</strong><span>The physical system: its mass, inertia, thermal capacity, actuators and sensors.</span></li>
+<li><strong>Model</strong><span>Governing ODEs, transfer function or state-space form, with stated assumptions.</span></li>
+<li><strong>Simulation</strong><span>Open-loop response: step, impulse and frequency behaviour.</span></li>
+<li><strong>Controller</strong><span>PID or state feedback tuned against stability and performance targets.</span></li>
+<li><strong>Controlled response</strong><span>Closed-loop results, disturbance rejection and, where possible, hardware validation.</span></li>
+</ol>
+</div>
+</section>
+
 <section class="section" id="controlProjectsSection">
 <div class="container">
 <p class="eyebrow">Selected work</p>
@@ -97,7 +108,7 @@
 <section class="section">
 <div class="container">
 <div class="card" style="max-width:720px;">
-<p>If a mechanism needs to sense, decide and react — not just sit there — this is the lens I bring to it.</p>
+<p>If a physical system needs to sense, decide and react, not just sit there, this is the lens I bring to it.</p>
 <a href="contact.html" class="btn-accent" style="margin-top:1em;">Get in touch</a>
 </div>
 </div>
@@ -106,6 +117,8 @@
 </main>
 
 <footer>
+<nav class="footer-links" aria-label="More pages"><a href="aerospace.html">Aerospace Projects</a><a href="marine.html">Marine Projects</a><a href="old-projects.html">Old Projects</a><a href="achievements.html">Achievements</a><a href="news.html">News</a><a href="events.html">Events</a><a href="download.html">Download Presentation</a></nav>
+
 <p>© <span data-year>2026</span> Lewis Mutwiri</p>
 </footer>
 

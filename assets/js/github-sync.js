@@ -91,7 +91,13 @@
     return putRes.json();
   }
 
-  async function commitBinaryFile(path, file, message) {
+  /**
+   * Commits a binary File/Blob (image, video, ...) to `path`.
+   * `onProgress(fraction)` is optional (0..1); when given, the upload
+   * goes through XMLHttpRequest because fetch() can't report upload
+   * progress. Without it the original fetch() path is used.
+   */
+  async function commitBinaryFile(path, file, message, onProgress) {
     const { apiUrl, headers, branch } = requestContext(path);
 
     let sha;
@@ -101,29 +107,51 @@
       sha = existing.sha;
     } else if (getRes.status !== 404) {
       const err = await getRes.json().catch(() => ({}));
-      throw new Error(`Couldn't check the existing file (${getRes.status}): ${err.message || err.statusText}`);
+      throw new Error(`Couldn't check the existing file (${getRes.status}): ${err.message || getRes.statusText}`);
     }
 
     const arrayBuffer = await file.arrayBuffer();
     const content = b64EncodeBytes(arrayBuffer);
-
-    const putRes = await fetch(apiUrl, {
-      method: "PUT",
-      headers,
-      body: JSON.stringify({
-        message: message || `Upload ${path}`,
-        content,
-        branch,
-        ...(sha ? { sha } : {})
-      })
+    const body = JSON.stringify({
+      message: message || `Upload ${path}`,
+      content,
+      branch,
+      ...(sha ? { sha } : {})
     });
 
+    if (typeof onProgress === "function") {
+      return putWithProgress(apiUrl, headers, body, onProgress);
+    }
+
+    const putRes = await fetch(apiUrl, { method: "PUT", headers, body });
     if (!putRes.ok) {
       const err = await putRes.json().catch(() => ({}));
       throw new Error(`GitHub rejected the upload (${putRes.status}): ${err.message || putRes.statusText}`);
     }
-
     return putRes.json();
+  }
+
+  function putWithProgress(url, headers, body, onProgress) {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("PUT", url);
+      Object.entries(headers).forEach(([k, v]) => xhr.setRequestHeader(k, v));
+      xhr.upload.onprogress = (e) => {
+        if (e.lengthComputable) onProgress(e.loaded / e.total);
+      };
+      xhr.onerror = () => reject(new Error("Network error while uploading to GitHub."));
+      xhr.onload = () => {
+        let data = {};
+        try { data = JSON.parse(xhr.responseText); } catch (e) { /* non-JSON error body */ }
+        if (xhr.status >= 200 && xhr.status < 300) {
+          onProgress(1);
+          resolve(data);
+        } else {
+          reject(new Error(`GitHub rejected the upload (${xhr.status}): ${data.message || xhr.statusText}`));
+        }
+      };
+      xhr.send(body);
+    });
   }
 
   /**

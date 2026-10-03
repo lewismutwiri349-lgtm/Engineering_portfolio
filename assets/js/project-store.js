@@ -60,15 +60,36 @@
     return `${BASE_DIR}/${category}/${slug}`;
   }
 
-  function assetPathFor(project, fileName) {
-    const safeName = String(fileName || "asset").replace(/[\\/]+/g, "_");
-    return `${assetRootFor(project)}/${safeName}`;
+  function safeFileName(fileName) {
+    return String(fileName || "asset")
+      .trim()
+      .toLowerCase()
+      .replace(/[\\/]+/g, "_")
+      .replace(/[^a-z0-9._-]+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^[-.]+/, "") || "asset";
   }
 
+  function assetPathFor(project, fileName) {
+    return `${assetRootFor(project)}/${safeFileName(fileName)}`;
+  }
+
+  /** Videos (and their posters) live in a videos/ subfolder of the project's asset folder. */
+  function videoPathFor(project, fileName) {
+    return `${assetRootFor(project)}/videos/${safeFileName(fileName)}`;
+  }
+
+  /** True if `path` is inside this project's own asset folder (safe to delete with the project). */
+  function isOwnAsset(project, path) {
+    return typeof path === "string" && path.startsWith(assetRootFor(project) + "/");
+  }
+
+  /** Removes editor-only state (anything starting with "_") before saving. */
   function stripInternal(project) {
-    const clean = Object.assign({}, project);
-    delete clean._key;
-    delete clean._path;
+    const clean = {};
+    Object.keys(project).forEach((k) => {
+      if (!k.startsWith("_")) clean[k] = project[k];
+    });
     return clean;
   }
 
@@ -203,6 +224,10 @@
     pathFor,
     assetRootFor,
     assetPathFor,
+    videoPathFor,
+    safeFileName,
+    isOwnAsset,
+    stripInternal,
     saveProject,
     deleteProject,
     rebuildIndex,

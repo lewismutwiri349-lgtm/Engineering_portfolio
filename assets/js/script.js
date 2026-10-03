@@ -47,23 +47,26 @@
   }
 
   const SKILLS = {
-    "mechanical-design": { name: "Design & Drafting", icon: "gear", desc: "Translating requirements into manufacturable CAD models, assemblies and engineering drawings." },
-    "finite-element-analysis": { name: "Finite Element Analysis (FEA)", icon: "mesh", desc: "Stress, deflection and fatigue simulation to validate designs before they're built." },
+    "multiphysics-simulation": { name: "Multiphysics Simulation", icon: "layers", desc: "Coupled thermal, fluid, structural and electromechanical models — building and learning with COMSOL and ANSYS." },
+    "physics-based-modelling": { name: "Physics-based Modelling", icon: "fx", desc: "Turning a physical system into governing equations, assumptions and boundary conditions before simulating it." },
+    "finite-element-analysis": { name: "Finite Element Analysis (FEA)", icon: "mesh", desc: "Stress, deflection, thermal and modal simulation to validate designs before they're built." },
     "cfd": { name: "Computational Fluid Dynamics (CFD)", icon: "flow", desc: "Airflow, heat transfer and fluid flow simulation for thermal and aerodynamic performance." },
-    "numerical-analysis": { name: "Numerical Analysis", icon: "chart", desc: "Numerical methods and computational tools for solving engineering problems." },
-    "thermodynamics": { name: "Thermodynamics", icon: "thermo", desc: "Applying thermodynamic principles to thermal systems and energy analysis." },
-    "embedded-systems": { name: "Embedded Systems", icon: "chip", desc: "Microcontroller-based hardware and firmware for sensing, control and connectivity." },
-    "control-engineering": { name: "Control Engineering", icon: "sliders", desc: "Feedback control, PID tuning and system dynamics for stable automated behaviour." },
-    "cpp": { name: "C++", icon: "code", desc: "Systems and application programming in C++." },
-    "matlab": { name: "MATLAB", icon: "fx", desc: "Numerical computing, simulation and data analysis in MATLAB." },
+    "numerical-analysis": { name: "Numerical Methods", icon: "chart", desc: "Discretisation, solvers and convergence — numerical methods for ODE/PDE engineering problems." },
+    "thermodynamics": { name: "Thermodynamics & Heat Transfer", icon: "thermo", desc: "Applying thermodynamic and heat-transfer principles to thermal systems and energy analysis." },
+    "dynamic-systems": { name: "Dynamic System Modelling", icon: "chart", desc: "Transfer-function, state-space and ODE models of mechanical, thermal and electromechanical systems." },
+    "control-engineering": { name: "Control Systems", icon: "sliders", desc: "Feedback control, PID tuning, stability and response analysis for simulated and physical systems." },
+    "digital-twins": { name: "Digital Twins", icon: "cube", desc: "Exploring simulation-driven, physics-informed models that mirror a physical system's behaviour." },
+    "embedded-systems": { name: "Embedded Systems", icon: "chip", desc: "Microcontroller-based hardware and firmware for sensing, actuation and closed-loop control." },
+    "mechanical-design": { name: "CAD & Mechanical Design", icon: "gear", desc: "SolidWorks modelling, assemblies and drawings — supporting the simulation work with manufacturable geometry." },
+    "matlab": { name: "MATLAB & Simulink", icon: "fx", desc: "Numerical computing, system simulation and controller design." },
+    "cpp": { name: "C++", icon: "code", desc: "Systems and embedded programming in C++." },
     "research-development": { name: "Research & Development", icon: "bulb", desc: "Early-stage concept development, prototyping and applied engineering research." },
   };
 
   const EXPERTISE_GROUPS = [
-    { title: "Engineering Design", skills: ["mechanical-design"] },
-    { title: "Engineering Analysis", skills: ["finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
-    { title: "Controls & Mechatronics", skills: ["control-engineering", "embedded-systems", "cpp", "matlab"] },
-    { title: "Direction", skills: ["research-development"] },
+    { title: "Simulation & Modelling", skills: ["multiphysics-simulation", "physics-based-modelling", "finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
+    { title: "Controls & Dynamics", skills: ["control-engineering", "dynamic-systems", "digital-twins", "embedded-systems"] },
+    { title: "Tools & Supporting Skills", skills: ["matlab", "mechanical-design", "cpp", "research-development"] },
   ];
 
   /* ---------------------------------------------------------
@@ -207,11 +210,14 @@
     const status = p.status ? '<span class="project-status project-status--' +
       escapeHtml(String(p.status).toLowerCase().replace(/\s+/g, "-")) + '">' +
       escapeHtml(p.status) + "</span>" : "";
+    const videos = Array.isArray(p.videos) ? p.videos : [];
+    const cover = p.thumbnail || (p.gallery && p.gallery[0]) || (videos.find((v) => v.poster) || {}).poster || "";
+    const badge = videos.length ? '<span class="play-badge">▶ ' + videos.length + (videos.length === 1 ? " VIDEO" : " VIDEOS") + "</span>" : "";
     return (
       '<a class="card project-card bracket" href="projects.html?id=' +
       encodeURIComponent(p.id) + '">' +
-      '<div class="thumb"><img src="' + escapeHtml(p.thumbnail || "") +
-      '" alt="" loading="lazy" onerror="this.closest(\'.thumb\').style.display=\'none\'"></div>' +
+      '<div class="thumb"><img src="' + escapeHtml(cover).replace(/"/g, "&quot;") +
+      '" alt="" loading="lazy" onerror="this.closest(\'.thumb\').style.display=\'none\'">' + badge + '</div>' +
       '<div class="project-card-head"><div class="meta">' +
       escapeHtml((p.category || "project").toUpperCase()) + "</div>" + status + "</div>" +
       "<h3>" + escapeHtml(p.title) + "</h3>" +
@@ -226,7 +232,7 @@
      field) that shouldn't be there but is, so it doesn't render as
      a broken-looking project card. */
   function isRealProject(p) {
-    return p && !p.issuer;
+    return p && !p.issuer && p.published !== false; // published missing = published (old projects)
   }
 
   /* ---------------------------------------------------------
@@ -384,14 +390,14 @@
      Core discipline is intentionally fixed across application
      domains: Mechanical & Machine Design.
      --------------------------------------------------------- */
-  const CORE_DISCIPLINE = "Mechanical & Machine Design";
+  const CORE_DISCIPLINE = "Multiphysics Simulation & Control Systems";
 
   const APPLICATION_DOMAINS = {
     aerospace: {
       key: "aerospace",
       title: "Aerospace Engineering",
       subtitle: "Mechanical Engineering applied to Aerospace",
-      description: "Aerospace application work built on the core discipline of Mechanical & Machine Design.",
+      description: "Aerospace application work built on the core discipline of Multiphysics Simulation & Control Systems.",
       filename: "Aerospace_Engineering_Portfolio.pptx",
       kicker: "AEROSPACE APPLICATION DOMAIN"
     },
@@ -399,23 +405,23 @@
       key: "marine",
       title: "Marine Engineering",
       subtitle: "Mechanical Engineering applied to Marine",
-      description: "Marine application work built on the core discipline of Mechanical & Machine Design.",
+      description: "Marine application work built on the core discipline of Multiphysics Simulation & Control Systems.",
       filename: "Marine_Engineering_Portfolio.pptx",
       kicker: "MARINE APPLICATION DOMAIN"
     },
     "mechanical-machine-design": {
       key: "mechanical-machine-design",
       title: CORE_DISCIPLINE,
-      subtitle: "Core Engineering Expertise",
-      description: "Core mechanical and machine design work: CAD, DFMA, mechanisms, analysis and manufacturing.",
-      filename: "Mechanical_Machine_Design_Portfolio.pptx",
-      kicker: "CORE ENGINEERING EXPERTISE"
+      subtitle: "Core Engineering Portfolio",
+      description: "Core work: multiphysics simulation, FEA / CFD, control systems and dynamic-system modelling, with supporting mechanical design.",
+      filename: "Simulation_Controls_Portfolio.pptx",
+      kicker: "CORE PORTFOLIO"
     },
     "old-projects": {
       key: "old-projects",
       title: "Old Projects",
       subtitle: "Archive of previous work",
-      description: "Archived work kept separate from current Mechanical & Machine Design, Aerospace and Marine application areas.",
+      description: "Archived work kept separate from the current simulation and controls portfolio.",
       filename: "Old_Projects_Portfolio.pptx",
       kicker: "ARCHIVE"
     }
@@ -775,12 +781,16 @@
     const FILTERABLE_DOMAINS = new Set([null, "old-projects"]);
     const showFilterBars = FILTERABLE_DOMAINS.has(domainFilter);
 
-    const categories = Array.from(new Set(all.map(p => p.category).filter(Boolean))).sort();
+    const requestedFocus = new URLSearchParams(location.search).get("focus");
+    const focusPresent = new Set(all.flatMap(focusKeysFor));
+    if (requestedFocus) focusPresent.add(requestedFocus); // a deep link (e.g. nav "Multiphysics") always shows its chip
+    const focusValues = [...FOCUS_GROUPS.map(g => g.key), "other"].filter(k => focusPresent.has(k));
+    const focusLabel = (k) => k === "other" ? "Other" : (FOCUS_GROUPS.find(g => g.key === k) || {}).label || k;
     const statuses = Array.from(new Set(all.map(p => p.status).filter(Boolean))).sort();
     const skillsPresent = Array.from(new Set(all.flatMap(p => p.skills || [])))
       .sort((a,b) => (SKILLS[a]?.name || a).localeCompare(SKILLS[b]?.name || b));
     const params = new URLSearchParams(location.search);
-    let activeCategory = "all", activeStatus = "all";
+    let activeFocus = focusValues.includes(requestedFocus) ? requestedFocus : "all", activeStatus = "all";
     let activeSkill = showFilterBars && params.get("skill") && skillsPresent.includes(params.get("skill")) ? params.get("skill") : null;
 
     function makeFilterBar(label, values, active, formatter, onChange) {
@@ -803,10 +813,10 @@
     }
 
     if (showFilterBars) {
-      const categoryBar = makeFilterBar("Category", categories, activeCategory, v => v.toUpperCase(), v => activeCategory = v);
+      const focusBar = makeFilterBar("Focus", focusValues, activeFocus, focusLabel, v => activeFocus = v);
       const statusBar = makeFilterBar("Status", statuses, activeStatus, v => v.replace(/\b\w/g, c => c.toUpperCase()), v => activeStatus = v);
       const skillBar = makeFilterBar("Expertise", skillsPresent, activeSkill || "all", v => SKILLS[v]?.name || v, v => { activeSkill = v === "all" ? null : v; syncSkillUrl(); });
-      el.insertAdjacentElement("beforebegin", categoryBar);
+      el.insertAdjacentElement("beforebegin", focusBar);
       el.insertAdjacentElement("beforebegin", statusBar);
       el.insertAdjacentElement("beforebegin", skillBar);
     }
@@ -819,11 +829,11 @@
     function apply() {
       const q = (searchBox?.value || "").trim().toLowerCase();
       const filtered = all.filter(p => {
-        if (activeCategory !== "all" && p.category !== activeCategory) return false;
+        if (activeFocus !== "all" && !focusKeysFor(p).includes(activeFocus)) return false;
         if (activeStatus !== "all" && p.status !== activeStatus) return false;
         if (activeSkill && !(p.skills || []).includes(activeSkill)) return false;
         if (!q) return true;
-        return [p.title,p.summary,p.category,p.status,...(p.tags||[]),...(p.software||[]),...(p.skills||[])].join(" ").toLowerCase().includes(q);
+        return [p.title,p.summary,p.category,p.status,p.objective,...(p.tags||[]),...(p.software||[]),...(p.skills||[])].join(" ").toLowerCase().includes(q);
       });
       const ordered = sortProjectsNewestFirst(filtered);
       if (ordered.length) {
@@ -832,11 +842,33 @@
         const domainLabel = (APPLICATION_DOMAINS[domainFilter] || {}).title || "this application area";
         el.innerHTML = `<div class="empty-state"><strong>No ${escapeHtml(domainLabel)} projects published yet.</strong><p>New work appears here automatically as soon as it's added — the underlying discipline stays ${escapeHtml(CORE_DISCIPLINE)}.</p></div>`;
       } else {
-        el.innerHTML = '<div class="empty-state"><strong>No projects match those filters.</strong><p>Try clearing one of the filters or changing the search term.</p></div>';
+        el.innerHTML = '<div class="empty-state"><strong>No projects match those filters.</strong><p>' + (activeFocus !== "all" && !all.some(p => focusKeysFor(p).includes(activeFocus)) ? escapeHtml(focusLabel(activeFocus)) + " projects are on the way — new work appears here automatically once it's published." : "Try clearing one of the filters or changing the search term.") + "</p></div>";
       }
     }
     if (searchBox) searchBox.addEventListener("input", debounce(apply, 150));
     apply();
+  }
+
+  /* Focus filter on the project library: All | Multiphysics | FEA | CFD | Controls | Dynamic Systems | Other.
+     A project belongs to a group by its category OR by a matching skills[] tag, so it can
+     appear under more than one. Anything matching none lands in "Other". */
+  const FOCUS_GROUPS = [
+    { key: "multiphysics", label: "Multiphysics", categories: ["multiphysics", "heat-transfer", "digital-twins"], skills: ["multiphysics-simulation", "physics-based-modelling", "digital-twins"] },
+    { key: "fea", label: "FEA", categories: ["fea"], skills: ["finite-element-analysis"] },
+    { key: "cfd", label: "CFD", categories: ["cfd", "fluid-mechanics"], skills: ["cfd"] },
+    { key: "controls", label: "Controls", categories: ["control-systems", "control"], skills: ["control-engineering"] },
+    { key: "dynamic-systems", label: "Dynamic Systems", categories: ["dynamic-systems"], skills: ["dynamic-systems"] },
+  ];
+
+  function normCategory(c) { return String(c || "").trim().toLowerCase().replace(/[\s_]+/g, "-"); }
+
+  function focusKeysFor(p) {
+    const cat = normCategory(p.category);
+    const skills = p.skills || [];
+    const keys = FOCUS_GROUPS
+      .filter((g) => g.categories.includes(cat) || g.skills.some((sk) => skills.includes(sk)))
+      .map((g) => g.key);
+    return keys.length ? keys : ["other"];
   }
 
   function debounce(fn, wait) {
@@ -854,6 +886,10 @@
     const titleEl = document.getElementById("projectTitle");
     if (!titleEl) return;
 
+    const M = window.PortfolioMedia;
+    const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const safe = (u) => (M ? M.safeUrl(u) : u);
+
     const params = new URLSearchParams(location.search);
     const id = params.get("id");
 
@@ -865,7 +901,7 @@
     }
 
     try {
-      const projects = await loadProjects();
+      const projects = (await loadProjects()).filter(isRealProject); // drafts are never shown
       const p = projects.find((proj) => proj.id === id);
       if (!p) {
         titleEl.textContent = "Project not found";
@@ -880,28 +916,90 @@
       titleEl.textContent = p.title;
       setText("projectDescription", p.summary || "");
       const metaEl = document.getElementById("projectMeta");
-      if (metaEl) {
-        const parts = [p.category, p.date].filter(Boolean);
-        metaEl.textContent = parts.join(" · ");
-      }
+      if (metaEl) metaEl.textContent = [String(p.category || "").replace(/-/g, " "), p.date].filter(Boolean).join(" · ");
       const statusEl = document.getElementById("projectStatus");
       if (statusEl) {
         statusEl.textContent = p.status || "Status not documented";
         statusEl.className = "project-status project-status--" + String(p.status || "documented").toLowerCase().replace(/\s+/g, "-");
       }
-      setImage("projectImage", p.thumbnail, p.title);
-      setTags("projectTags", p.tags);
-      setChips("softwareList", p.software);
-      setChips("engineeringProcess", p.process);
-      setText("problem", p.problem || "Not documented yet.");
-      setText("solution", p.solution || "Not documented yet.");
-      setOptionalCaseStudy("requirements", "requirementsSection", p.requirements);
-      setOptionalCaseStudy("analysis", "analysisSection", p.analysis);
-      setOptionalCaseStudy("results", "resultsSection", p.results);
-      setOptionalCaseStudy("conclusion", "conclusionSection", p.conclusion);
-      setGallery("projectGallery", p.gallery && p.gallery.length ? p.gallery : [p.thumbnail]);
-      setLinks("downloadButtons", p.downloads, "Download");
-      setLinks("projectLinks", p.links, "View");
+
+      /* ---- lead media: first playable video if there is one, otherwise the cover image ---- */
+      const videos = (Array.isArray(p.videos) ? p.videos : []).filter((v) => M && M.parseVideoUrl(v.url));
+      const hero = document.getElementById("projectHeroMedia");
+      const leadVideo = videos[0];
+      const heroInner = hero && hero.querySelector(".container");
+      if (heroInner) {
+        if (leadVideo) {
+          heroInner.innerHTML = M.videoHTML(leadVideo);
+        } else {
+          const cover = p.thumbnail || (p.gallery && p.gallery[0]);
+          heroInner.innerHTML = cover
+            ? '<img class="project-image" src="' + esc(safe(cover)) + '" alt="' + esc(p.title) + '" decoding="async" onerror="this.closest(\'section\').hidden=true">'
+            : "";
+        }
+        hero.hidden = !heroInner.innerHTML;
+      }
+
+      /* ---- tools / process / tags ---- */
+      const tools = document.getElementById("projectTools");
+      if (tools) {
+        const group = (title, items, cls) => (items && items.length)
+          ? '<div><h3>' + title + '</h3><div class="' + cls + '">' + items.map((i) => "<span>" + esc(i) + "</span>").join("") + "</div></div>" : "";
+        const html = group("Tools", p.software, "tech-grid") + group("Workflow", p.process, "tech-grid") + group("Tags", p.tags, "tag-list");
+        tools.innerHTML = html;
+        document.getElementById("projectToolsSection").hidden = !html;
+      }
+
+      /* ---- case-study sections: each appears only if it has content ---- */
+      const SECTIONS = [
+        ["Overview", "The problem", p.problem, "text"],
+        ["Objective", "What was investigated", p.objective, "text"],
+        ["Requirements", "Design constraints", p.requirements, "text"],
+        ["Mathematical Model", "Governing equations & assumptions", p.mathModel, "eq"],
+        ["Simulation Method", "Software, physics, solver, mesh", p.simulation, "text"],
+        ["Design Approach", "How it was built", p.approach || p.solution, "text"],
+        ["Results", "Evidence", p.results, "text"],
+        ["Analysis", "What the results mean", p.analysis, "text"],
+        ["Control System", "Plant → model → controller → response", p.controlSystem, "text"],
+        ["Key Findings", "Conclusion", p.conclusion, "text"],
+      ];
+      const study = document.getElementById("projectCaseStudy");
+      if (study) {
+        const html = SECTIONS.filter((x) => x[2] && String(x[2]).trim()).map(([title, kicker, body, kind]) =>
+          '<section class="case-section"><p class="eyebrow">' + esc(kicker) + "</p><h2>" + esc(title) + "</h2>" +
+          (kind === "eq" ? '<pre class="case-eq">' + esc(body) + "</pre>" : '<p class="case-text">' + esc(body) + "</p>") +
+          "</section>").join("");
+        study.innerHTML = html || '<section class="case-section"><p class="case-text">A detailed write-up for this project hasn\'t been added yet.</p></section>';
+      }
+
+      /* ---- media: remaining videos, then every image with its caption ---- */
+      const mediaWrap = document.getElementById("projectMedia");
+      if (mediaWrap) {
+        const captions = p.galleryCaptions || {};
+        const images = (p.gallery && p.gallery.length ? p.gallery : []).filter(Boolean);
+        const videoHtml = videos.slice(1).map((v) => M.videoHTML(v)).join("");
+        const imageHtml = images.map((src, i) =>
+          '<figure class="media-figure"><a href="' + esc(safe(src)) + '" target="_blank" rel="noopener">' +
+          '<img src="' + esc(safe(src)) + '" alt="' + esc(captions[src] || (p.title + " — image " + (i + 1))) + '" loading="lazy" onerror="this.closest(\'figure\').remove()"></a>' +
+          (captions[src] ? "<figcaption>" + esc(captions[src]) + "</figcaption>" : "") + "</figure>").join("");
+        mediaWrap.innerHTML =
+          (videoHtml ? '<div class="media-videos">' + videoHtml + "</div>" : "") +
+          (imageHtml ? '<div class="media-gallery">' + imageHtml + "</div>" : "");
+        document.getElementById("projectMediaSection").hidden = !mediaWrap.innerHTML;
+      }
+
+      /* ---- repository, links and downloads ---- */
+      const linkSection = document.getElementById("projectLinksSection");
+      const buttons = document.getElementById("projectLinks");
+      if (buttons && linkSection) {
+        const entries = [].concat(
+          (p.links || []).map((l) => ({ l, cls: "btn-secondary", verb: "View" })),
+          (p.downloads || []).map((l) => ({ l, cls: "btn-primary", verb: "Download" }))
+        ).filter((x) => x.l && x.l.url && safe(x.l.url));
+        buttons.innerHTML = entries.map((x) =>
+          '<a class="' + x.cls + '" href="' + esc(safe(x.l.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(x.l.label || x.verb) + "</a>").join("");
+        linkSection.hidden = !entries.length;
+      }
     } catch (e) {
       titleEl.textContent = "Couldn't load this project";
       document.getElementById("projectDescription").textContent = e.message;
@@ -1019,8 +1117,8 @@
       '<div class="hero-content">' +
       '<p class="eyebrow">The engineer behind the work</p>' +
       '<h1>About Me</h1>' +
-      '<h2>Machine Design &amp; analysis | Applied Control Systems</h2>' +
-      '<p>I am a Mechanical Engineering student developing practical capability in mechanical design, engineering simulation and applied control systems. My work combines CAD-driven design, analysis and manufacturability with selected mechatronic and control applications.</p>' +
+      '<h2>Multiphysics Simulation &amp; Control Systems</h2>' +
+      '<p>I am a Mechanical Engineering student developing toward work that models a physical system, simulates its behaviour, and designs the control that governs it. My projects combine FEA and CFD, dynamic-system modelling and control design, with CAD as a supporting skill.</p>' +
       '</div></section>' +
       '<section class="section"><div class="container">' +
       '<p class="eyebrow">Academics</p><h2 class="section-title">Education</h2>' +
@@ -1028,22 +1126,23 @@
       '</div></section>' +
       '<section class="section"><div class="container">' +
       '<p class="eyebrow">Core direction</p><h2 class="section-title">Engineering Capabilities</h2>' +
-      '<p style="max-width:760px;">The portfolio is organized around mechanical design and engineering analysis first, with applied control systems and mechatronics where they support the engineering problem.</p>' +
+      '<p style="max-width:760px;">The portfolio is organised around the chain physical system → mathematical model → simulation → analysis → controller → validation. Mechanical design supports that chain; it is not the headline.</p>' +
       '<div id="expertiseGrid" class="expertise-grid" aria-live="polite"></div>' +
       '</div></section>' +
       '<section class="section"><div class="container">' +
-      '<p class="eyebrow">How the portfolio is organized</p><h2 class="section-title">Mechanical Engineer &middot; Mechanical &amp; Machine Design Core</h2>' +
-      '<p style="max-width:760px;">Mechanical &amp; Machine Design is the core engineering discipline behind every project here. Aerospace and Marine are application areas that show where that core discipline gets applied, not separate professional identities. Old Projects and Hobbies are kept as a clearly separate archive.</p>' +
+      '<p class="eyebrow">How the portfolio is organized</p><h2 class="section-title">Mechanical Engineer &middot; Simulation &amp; Controls Focus</h2>' +
+      '<p style="max-width:760px;">Simulation and control are the core of the work. Aerospace and Marine are application areas that show where it gets applied, not separate professional identities. Old Projects and Hobbies are kept as a clearly separate archive.</p>' +
       '<div class="cards">' +
-      '<a class="card" href="aerospace.html"><h3>Aerospace Projects</h3><p>Mechanical &amp; Machine Design applied to aerospace structures, mechanisms and systems.</p></a>' +
-      '<a class="card" href="marine.html"><h3>Marine Projects</h3><p>Mechanical &amp; Machine Design applied to marine machinery, structures and systems.</p></a>' +
+      '<a class="card" href="aerospace.html"><h3>Aerospace Projects</h3><p>Simulation, structures and mechanisms applied to aerospace systems.</p></a>' +
+      '<a class="card" href="marine.html"><h3>Marine Projects</h3><p>Simulation and design applied to marine machinery, structures and systems.</p></a>' +
       '<a class="card" href="old-projects.html"><h3>Old Projects</h3><p>An archive of earlier work, kept separate from current application areas.</p></a>' +
       '<a class="card" href="download.html"><h3>Download Presentation</h3><p>Generate a separate interview-ready .pptx portfolio for each application area.</p></a>' +
       '</div>' +
       '</div></section>' +
       '<section class="section"><div class="container">' +
       '<p class="eyebrow">Software &amp; methods</p><h2 class="section-title">Technical Stack</h2>' +
-      '<div class="tech-grid"><span>SolidWorks</span><span>ANSYS Mechanical</span><span>ANSYS Fluent</span><span>MATLAB</span><span>Simulink</span><span>AutoCAD</span><span>GD&amp;T</span><span>DFMA</span><span>Python</span><span>C/C++</span><span>Arduino</span><span>ESP32</span></div>' +
+      '<div class="tech-grid"><span>ANSYS Mechanical</span><span>ANSYS Fluent</span><span>MATLAB</span><span>Simulink</span><span>Python</span><span>SolidWorks</span><span>C/C++</span><span>Arduino</span><span>ESP32</span><span>GD&amp;T</span><span>DFMA</span></div>' +
+      '<p style="margin-top:1rem;">Currently learning: COMSOL Multiphysics, ODE / PDE modelling, system identification.</p>' +
       '</div></section>'
     );
   }

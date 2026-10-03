@@ -37,9 +37,10 @@ async function getProjects() {
 
     // projects.json is a flat array of project objects. (Also accepts the
     // older category-grouped-object shape, for safety.)
-    projectsCache = Array.isArray(data)
+    projectsCache = (Array.isArray(data)
         ? data
-        : Object.values(data).filter(Array.isArray).flat();
+        : Object.values(data).filter(Array.isArray).flat()
+    ).filter(p => p && !p.issuer && p.published !== false); // drafts stay hidden
 
     return projectsCache;
 }
@@ -144,7 +145,7 @@ async function loadFeaturedProjects() {
 /* ==========================================================
    CATEGORY GRIDS (specialization page, robotics.html)
 ========================================================== */
-async function loadCategoryGrid(containerId, categories) {
+async function loadCategoryGrid(containerId, categories, skills = []) {
     const el = document.getElementById(containerId);
     if (!el) return;
 
@@ -153,7 +154,7 @@ async function loadCategoryGrid(containerId, categories) {
     try {
         const projects = await getProjects();
         const wanted = categories.map(normalizeCategory);
-        const filtered = projects.filter(p => wanted.includes(normalizeCategory(p.category)));
+        const filtered = projects.filter(p => wanted.includes(normalizeCategory(p.category)) || skills.some(sk => (p.skills || []).includes(sk)));
         renderGrid(containerId, filtered, "No projects in this discipline yet");
     } catch (err) {
         el.innerHTML = renderEmptyState("Couldn't load projects", err.message);
@@ -367,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCategoryGrid("feaProjects", ["fea"]);
     loadCategoryGrid("cfdProjects", ["cfd"]);
     loadCategoryGrid("eacgProjects", ["eacg"]);
-    loadCategoryGrid("controlProjects", ["control-systems", "control"]);
+    loadCategoryGrid("controlProjects", ["control-systems", "control"], ["control-engineering", "dynamic-systems"]);
     loadPortfolio();
     loadProject();
 });
