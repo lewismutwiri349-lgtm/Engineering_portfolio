@@ -254,6 +254,29 @@
     }
   }
 
+  async function renderHomeAchievements() {
+    const el = document.getElementById("homeAchievements");
+    if (!el) return;
+    skeletons(el, 3);
+    try {
+      const res = await fetch("data/achievements.json");
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const data = await res.json();
+      const list = (Array.isArray(data) ? data : data.achievements || [])
+        .filter((a) => a && a.title && a.published !== false)
+        .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || String(b.date || "").localeCompare(String(a.date || "")))
+        .slice(0, 3);
+      el.innerHTML = list.length ? list.map((a) =>
+        '<a class="card" href="achievements.html">' +
+        '<div class="meta">' + escapeHtml(String(a.category || "Achievement").toUpperCase()) + "</div>" +
+        "<h3>" + escapeHtml(a.title) + "</h3>" +
+        "<p>" + escapeHtml([a.organization, formatDate(a.date)].filter(Boolean).join(" · ")) + "</p></a>").join("")
+        : '<div class="empty-state">No achievements have been published yet.</div>';
+    } catch (e) {
+      errorState(el, "Couldn't load achievements right now — " + e.message);
+    }
+  }
+
   function formatDate(value) {
     if (!value) return "";
     const d = new Date(value.length === 7 ? value + "-01" : value);
@@ -1225,6 +1248,7 @@
     stampYear();
 
     renderHomeProjects();
+    renderHomeAchievements();
     renderNewsEvents();
     // Per-discipline project grids (#cadProjects, #dfmaProjects, #feaProjects,
     // #cfdProjects, #eacgProjects, #controlProjects, #roboticsProjects) are
