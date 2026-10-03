@@ -31,32 +31,19 @@
   const VIDEO_TYPES = /\.(mp4|m4v|webm)$/i;
   const IMAGE_TYPES = /\.(webp|png|jpe?g)$/i;
 
+  // Only the four portfolio areas. A project saved earlier with a different category keeps it
+  // (shown as "Existing value" in the dropdown) until you pick one of these.
   const CATEGORY_GROUPS = [
-    { label: "Computational engineering", options: [
-      ["multiphysics", "Multiphysics Simulation"], ["fea", "FEA"], ["cfd", "CFD"],
-      ["control-systems", "Control Systems"], ["heat-transfer", "Heat Transfer"],
-      ["fluid-mechanics", "Fluid Mechanics"], ["dynamic-systems", "Dynamic Systems"],
-      ["numerical-analysis", "Numerical Analysis"], ["digital-twins", "Digital Twins"],
-      ["robotics", "Robotics / Autonomous Systems"], ["other", "Other"]
+    { label: "Portfolio area", options: [
+      ["cfd", "CFD"], ["fea", "FEA"], ["control-systems", "Control Systems"], ["multiphysics", "Multiphysics"]
     ]}
   ];
 
-  const STATUS_OPTIONS = [
-    "Upcoming", "Planned", "In Progress", "Research", "Design",
-    "Simulation", "Prototyping", "Completed", "Archived"
-  ];
-
-  const DOMAIN_OPTIONS = [
-    { value: "mechanical-machine-design", label: "Core portfolio (default)" },
-    { value: "old-projects", label: "Old Projects (archive)" },
-    { value: "hobbies", label: "Hobbies (archive)" }
-  ];
+  const STATUS_OPTIONS = ["Planned", "In Progress", "Research", "Simulation", "Completed", "Archived"];
 
   // Slugs match SKILLS in script.js
   const SKILL_OPTIONS = [
-    "multiphysics-simulation", "physics-based-modelling", "finite-element-analysis", "cfd",
-    "numerical-analysis", "thermodynamics", "dynamic-systems", "control-engineering",
-    "digital-twins", "embedded-systems", "matlab", "cpp", "research-development"
+    "multiphysics-simulation", "finite-element-analysis", "cfd", "control-engineering"
   ];
 
   let projects = [];
@@ -98,7 +85,7 @@
     return {
       _key: uid(), _path: null, _open: true, _autoSlug: true,
       _files: {}, _preview: {}, _deleteQueue: [],
-      id: "", title: "", category: "multiphysics", subcategory: "",
+      id: "", title: "", category: "cfd", subcategory: "",
       applicationDomain: "mechanical-machine-design", status: "In Progress",
       date: "", featured: false, published: false, thumbnail: "",
       summary: "", tags: [], software: [], process: [],
@@ -249,12 +236,8 @@
   }
 
   function statusSelect(project) {
-    return STATUS_OPTIONS.map((s) => `<option value="${s}" ${project.status === s ? "selected" : ""}>${s}</option>`).join("");
-  }
-
-  function domainSelect(project) {
-    const current = project.applicationDomain || "mechanical-machine-design";
-    return DOMAIN_OPTIONS.map((d) => `<option value="${d.value}" ${current === d.value ? "selected" : ""}>${d.label}</option>`).join("");
+    const opts = STATUS_OPTIONS.includes(project.status) || !project.status ? STATUS_OPTIONS : [project.status, ...STATUS_OPTIONS];
+    return opts.map((s) => `<option value="${escapeHtml(s)}" ${project.status === s ? "selected" : ""}>${escapeHtml(s)}</option>`).join("");
   }
 
   function skillCheckboxes(project) {
@@ -451,19 +434,16 @@
           </div>
         </details>
 
-        <details class="admin-section"><summary>5 · Other fields <small>(older / design-oriented projects)</small></summary>
+        <details class="admin-section"><summary>5 · Other fields <small>(optional)</small></summary>
           <div class="achievement-form-grid">
-            <label>Application area
-              <select class="achievement-select" data-field="applicationDomain">${domainSelect(project)}</select>
-            </label>
             <label>Process steps (comma separated)
               <input class="achievement-input" data-field="process" value="${escapeHtml((project.process || []).join(", "))}" placeholder="Modelling, Meshing, Solving, Validation">
             </label>
             <label>Cover image path (set with ★ in the media list)
               <input class="achievement-input" data-field="thumbnail" value="${escapeHtml(project.thumbnail)}">
             </label>
-            ${textArea(project, "requirements", "Requirements / design constraints", 3, "")}
-            ${textArea(project, "approach", "Design approach / solution", 3, "")}
+            ${textArea(project, "requirements", "Requirements / constraints", 3, "")}
+            ${textArea(project, "approach", "Approach / solution", 3, "")}
           </div>
         </details>
 

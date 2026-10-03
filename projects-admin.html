@@ -29,7 +29,7 @@
     <div>
       <p class="eyebrow">MASTER CONTENT CONTROL</p>
       <h1>Engineering Portfolio <span>Admin</span></h1>
-      <p>Manage the simulation portfolio: multiphysics, FEA / CFD, control systems and dynamic-system modelling — with images, simulation animations, equations and source links for every project.</p>
+      <p>Manage the computational engineering portfolio: CFD, FEA, control systems and multiphysics, with images, simulation animations, equations and source links for every project.</p>
     </div>
     <div class="admin-status-card">
       <span class="admin-status-dot" id="adminConnectionDot"></span>
@@ -41,7 +41,7 @@
 <section class="section admin-dashboard">
 <div class="container">
   <div class="admin-stat-grid" aria-label="Content overview">
-    <button class="admin-stat-card is-active" data-admin-tab="projects"><span>Projects</span><strong id="statProjects">—</strong><small>Simulation · Controls · Modelling</small></button>
+    <button class="admin-stat-card is-active" data-admin-tab="projects"><span>Projects</span><strong id="statProjects">—</strong><small>CFD · FEA · Control Systems · Multiphysics</small></button>
     <button class="admin-stat-card" data-admin-tab="news"><span>News</span><strong id="statNews">—</strong><small>Updates · articles · milestones</small></button>
     <button class="admin-stat-card" data-admin-tab="events"><span>Events</span><strong id="statEvents">—</strong><small>Upcoming · past · workshops</small></button>
     <button class="admin-stat-card" data-admin-tab="achievements"><span>Achievements</span><strong id="statAchievements">—</strong><small>Certificates · awards · training</small></button>
@@ -84,10 +84,10 @@
             <button id="projectsPasteLoad" type="button" class="btn-secondary" hidden>Load pasted JSON</button>
           </div>
           <div class="admin-project-taxonomy" aria-label="Project classification">
-            <div><strong>Simulation</strong><span>Multiphysics · FEA · CFD · Heat Transfer · Fluid Mechanics</span></div>
-            <div><strong>Controls &amp; dynamics</strong><span>Control Systems · Dynamic Systems · Digital Twins</span></div>
-            <div><strong>Methods</strong><span>Numerical Analysis · Physics-based modelling</span></div>
-            <div><strong>Supporting</strong><span>Mechanical Systems · Robotics · CAD · Automation</span></div>
+            <div><strong>CFD</strong><span>Flow, heat transfer, aerodynamics</span></div>
+            <div><strong>FEA</strong><span>Stress, deformation, thermal, modal</span></div>
+            <div><strong>Control Systems</strong><span>Plant models, feedback, dynamics</span></div>
+            <div><strong>Multiphysics</strong><span>Coupled thermal / fluid / structural</span></div>
           </div>
           <p id="projectAdminStatus" class="achievement-admin-status"></p>
           <div id="projectAdminList" class="achievement-admin-list"></div>
@@ -129,7 +129,7 @@
       <section class="admin-tab-panel" data-admin-panel="help">
         <div class="admin-panel-heading"><div><p class="eyebrow">WORKFLOW</p><h2>How to use the master admin</h2><p>A simple publishing workflow for keeping the portfolio current without editing HTML by hand.</p></div></div>
         <div class="admin-guide-grid">
-          <article class="admin-guide-card"><span>01</span><h3>Create &amp; classify</h3><p>+ New Project, enter a title (the slug fills itself), pick a category. New projects start as <strong>drafts</strong> and stay hidden until you tick Published.</p></article>
+          <article class="admin-guide-card"><span>01</span><h3>Create &amp; classify</h3><p>+ New Project, enter a title (the slug fills itself), pick one of CFD, FEA, Control Systems or Multiphysics. New projects start as <strong>drafts</strong> and stay hidden until you tick Published.</p></article>
           <article class="admin-guide-card"><span>02</span><h3>Write the model → result chain</h3><p>Fill only the sections that apply: overview, objective, mathematical model, simulation method, control system, results, analysis. Empty sections are hidden on the site.</p></article>
           <article class="admin-guide-card"><span>03</span><h3>Add media</h3><p>Images: PNG/JPG are converted to WebP, ★ sets the cover. Videos: MP4/WebM up to 24 MB are uploaded to the repo; larger or longer ones go on YouTube — paste the link instead.</p></article>
           <article class="admin-guide-card"><span>04</span><h3>Save to GitHub</h3><p>Uploads media, commits the project file and rebuilds projects.json. Cloudflare Pages redeploys in about a minute. "Publish &amp; save" toggles visibility in one click.</p></article>
