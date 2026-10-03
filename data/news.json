@@ -1,22 +1,12 @@
 [
   {
-    "id": "product-design-development-certification",
-    "title": "Product Design & Development Course Completed",
-    "date": "2026-06",
-    "category": "Certification",
-    "summary": "Completed a product design and development course covering concept generation, design methodology, material selection, prototyping, DFM, product testing and product lifecycle management.",
+    "id": "Attended Innovation and entrepreneurship training at South Eastern Kenya University By ICTA Kenya",
+    "title": "Innovation and Entrepreneurship Training",
+    "date": "2026-03-09",
+    "category": "Engineering Update",
+    "summary": "An interactive session on entrepreneurship and innovation as part of the Whitebox County Innovation Training 2026.",
     "featured": true,
-    "content": "Completed a Product Design and Development course focused on the end-to-end product development process, including concept generation, design methodology, material selection, prototyping, design for manufacturing, product testing and product lifecycle management.",
-    "image": "assets/images/achievements/product-design-and-development-course-certification.JPG"
-  },
-  {
-    "id": "ansys-fluent-cfd-bootcamp",
-    "title": "ANSYS Fluent CFD Bootcamp Participation",
-    "date": "2026-08-01",
-    "category": "Engineering Simulation",
-    "summary": "Completed an intensive ANSYS Fluent CFD learning bootcamp with hands-on simulation exercises covering meshing, boundary conditions, solver setup and post-processing.",
-    "featured": true,
-    "content": "Completed an intensive ANSYS Fluent CFD learning bootcamp with hands-on engineering simulations and practical exercises. The recorded achievement covers meshing, boundary conditions, solver setup, post-processing and engineering simulation workflows.",
-    "image": "assets/images/achievements/chatgpt-fluent-bootcamp.jpg"
+    "content": "A great learning experience yesterday at South Eastern Kenya University.\nThanks to ICT Authority (ICTA Kenya) for the interactive session on entrepreneurship and innovation as part of the Whitebox County Innovation Training 2026.\nIt was a valuable opportunity to learn more about developing ideas, identifying opportunities, building solutions, and nurturing the next generation of entrepreneurs and innovators.\nIt was also a great opportunity to connect, learn, and exchange ideas with other aspiring innovators.\n\nLooking forward to applying these lessons and continuing to turn ideas into solutions that create real impact.",
+    "image": "assets\\projects\\News\\ICTA.jpg"
   }
 ]
