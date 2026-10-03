@@ -32,17 +32,12 @@
   const IMAGE_TYPES = /\.(webp|png|jpe?g)$/i;
 
   const CATEGORY_GROUPS = [
-    { label: "Simulation & controls", options: [
+    { label: "Computational engineering", options: [
       ["multiphysics", "Multiphysics Simulation"], ["fea", "FEA"], ["cfd", "CFD"],
-      ["heat-transfer", "Heat Transfer"], ["fluid-mechanics", "Fluid Mechanics"],
-      ["control-systems", "Control Systems"], ["dynamic-systems", "Dynamic Systems"],
-      ["numerical-analysis", "Numerical Analysis"], ["digital-twins", "Digital Twins"]
-    ]},
-    { label: "Systems & design", options: [
-      ["mechanical-systems", "Mechanical Systems"], ["robotics", "Robotics / Autonomous Systems"],
-      ["machine-design", "Machine Design"], ["cad", "CAD"], ["dfma", "DFMA"],
-      ["automation", "Automation"], ["mechatronics", "Mechatronics"],
-      ["product-development", "Product Development"], ["other", "Other"]
+      ["control-systems", "Control Systems"], ["heat-transfer", "Heat Transfer"],
+      ["fluid-mechanics", "Fluid Mechanics"], ["dynamic-systems", "Dynamic Systems"],
+      ["numerical-analysis", "Numerical Analysis"], ["digital-twins", "Digital Twins"],
+      ["robotics", "Robotics / Autonomous Systems"], ["other", "Other"]
     ]}
   ];
 
@@ -53,8 +48,6 @@
 
   const DOMAIN_OPTIONS = [
     { value: "mechanical-machine-design", label: "Core portfolio (default)" },
-    { value: "aerospace", label: "Aerospace (application area)" },
-    { value: "marine", label: "Marine (application area)" },
     { value: "old-projects", label: "Old Projects (archive)" },
     { value: "hobbies", label: "Hobbies (archive)" }
   ];
@@ -63,7 +56,7 @@
   const SKILL_OPTIONS = [
     "multiphysics-simulation", "physics-based-modelling", "finite-element-analysis", "cfd",
     "numerical-analysis", "thermodynamics", "dynamic-systems", "control-engineering",
-    "digital-twins", "embedded-systems", "mechanical-design", "matlab", "cpp", "research-development"
+    "digital-twins", "embedded-systems", "matlab", "cpp", "research-development"
   ];
 
   let projects = [];

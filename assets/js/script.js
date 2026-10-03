@@ -57,19 +57,15 @@
     "control-engineering": { name: "Control Systems", icon: "sliders", desc: "Feedback control, PID tuning, stability and response analysis for simulated and physical systems." },
     "digital-twins": { name: "Digital Twins", icon: "cube", desc: "Exploring simulation-driven, physics-informed models that mirror a physical system's behaviour." },
     "embedded-systems": { name: "Embedded Systems", icon: "chip", desc: "Microcontroller-based hardware and firmware for sensing, actuation and closed-loop control." },
-    "mechanical-design": { name: "CAD & Mechanical Design", icon: "gear", desc: "SolidWorks modelling, assemblies and drawings — supporting the simulation work with manufacturable geometry." },
     "matlab": { name: "MATLAB & Simulink", icon: "fx", desc: "Numerical computing, system simulation and controller design." },
     "cpp": { name: "C++", icon: "code", desc: "Systems and embedded programming in C++." },
-    "aerospace": { name: "Aerospace Applications", icon: "flow", desc: "Applying simulation, structures and control to flying objects: hobby rocketry recovery, aerodynamic and flow analysis." },
-    "marine": { name: "Marine Applications", icon: "gear", desc: "Mechanical design and analysis applied to marine machinery and structures." },
     "research-development": { name: "Research & Development", icon: "bulb", desc: "Early-stage concept development, prototyping and applied engineering research." },
   };
 
   const EXPERTISE_GROUPS = [
     { title: "Simulation & Modelling", skills: ["multiphysics-simulation", "physics-based-modelling", "finite-element-analysis", "cfd", "numerical-analysis", "thermodynamics"] },
     { title: "Controls & Dynamics", skills: ["control-engineering", "dynamic-systems", "digital-twins", "embedded-systems"] },
-    { title: "Tools & Supporting Skills", skills: ["matlab", "mechanical-design", "cpp", "research-development"] },
-    { title: "Application Areas", skills: ["aerospace", "marine"] },
+    { title: "Tools & Research", skills: ["matlab", "cpp", "research-development"] },
   ];
 
   /* ---------------------------------------------------------
@@ -765,21 +761,13 @@
     // the Category/Status/Expertise filter chips add clutter without
     // adding value there, so only build them for the full library
     // (portfolio.html, no domainFilter) and the Old Projects archive.
-    const FILTERABLE_DOMAINS = new Set([null, "old-projects"]);
-    const showFilterBars = FILTERABLE_DOMAINS.has(domainFilter);
+    // One filter row only: CFD | FEA | Control Systems | Multiphysics (library page only).
+    const showFilterBars = !domainFilter;
 
     const requestedFocus = new URLSearchParams(location.search).get("focus");
-    // The simulation groups always show (even before a project exists in them) so the portfolio's
-    // structure is visible: Multiphysics | FEA | CFD | Controls | Dynamic Systems. "Other" only when needed.
-    const hasOther = all.some(p => focusKeysFor(p).includes("other"));
-    const focusValues = [...FOCUS_GROUPS.map(g => g.key), ...(hasOther ? ["other"] : [])];
-    const focusLabel = (k) => k === "other" ? "Other" : (FOCUS_GROUPS.find(g => g.key === k) || {}).label || k;
-    const statuses = Array.from(new Set(all.map(p => p.status).filter(Boolean))).sort();
-    const skillsPresent = Array.from(new Set(all.flatMap(p => p.skills || [])))
-      .sort((a,b) => (SKILLS[a]?.name || a).localeCompare(SKILLS[b]?.name || b));
-    const params = new URLSearchParams(location.search);
-    let activeFocus = focusValues.includes(requestedFocus) ? requestedFocus : "all", activeStatus = "all";
-    let activeSkill = showFilterBars && params.get("skill") && skillsPresent.includes(params.get("skill")) ? params.get("skill") : null;
+    const focusValues = FOCUS_GROUPS.map(g => g.key);
+    const focusLabel = (k) => (FOCUS_GROUPS.find(g => g.key === k) || {}).label || k;
+    let activeFocus = focusValues.includes(requestedFocus) ? requestedFocus : "all";
 
     function makeFilterBar(label, values, active, formatter, onChange) {
       const bar = document.createElement("div");
@@ -801,27 +789,15 @@
     }
 
     if (showFilterBars) {
-      const focusBar = makeFilterBar("Focus", focusValues, activeFocus, focusLabel, v => activeFocus = v);
-      const statusBar = makeFilterBar("Status", statuses, activeStatus, v => v.replace(/\b\w/g, c => c.toUpperCase()), v => activeStatus = v);
-      const skillBar = makeFilterBar("Expertise", skillsPresent, activeSkill || "all", v => SKILLS[v]?.name || v, v => { activeSkill = v === "all" ? null : v; syncSkillUrl(); });
-      el.insertAdjacentElement("beforebegin", focusBar);
-      el.insertAdjacentElement("beforebegin", statusBar);
-      el.insertAdjacentElement("beforebegin", skillBar);
+      el.insertAdjacentElement("beforebegin", makeFilterBar("Focus", focusValues, activeFocus, focusLabel, v => activeFocus = v));
     }
 
-    function syncSkillUrl() {
-      const url = new URL(location.href);
-      if (activeSkill) url.searchParams.set("skill", activeSkill); else url.searchParams.delete("skill");
-      history.replaceState(null, "", url);
-    }
     function apply() {
       const q = (searchBox?.value || "").trim().toLowerCase();
       const filtered = all.filter(p => {
         if (activeFocus !== "all" && !focusKeysFor(p).includes(activeFocus)) return false;
-        if (activeStatus !== "all" && p.status !== activeStatus) return false;
-        if (activeSkill && !(p.skills || []).includes(activeSkill)) return false;
         if (!q) return true;
-        return [p.title,p.summary,p.category,p.status,p.objective,...(p.tags||[]),...(p.software||[]),...(p.skills||[])].join(" ").toLowerCase().includes(q);
+        return [p.title,p.summary,p.category,p.status,p.objective,...(p.tags||[]),...(p.software||[])].join(" ").toLowerCase().includes(q);
       });
       const ordered = sortProjectsNewestFirst(filtered);
       if (ordered.length) {
@@ -841,11 +817,10 @@
      A project belongs to a group by its category OR by a matching skills[] tag, so it can
      appear under more than one. Anything matching none lands in "Other". */
   const FOCUS_GROUPS = [
-    { key: "multiphysics", label: "Multiphysics", categories: ["multiphysics", "heat-transfer", "digital-twins"], skills: ["multiphysics-simulation", "physics-based-modelling", "digital-twins"] },
-    { key: "fea", label: "FEA", categories: ["fea"], skills: ["finite-element-analysis"] },
     { key: "cfd", label: "CFD", categories: ["cfd", "fluid-mechanics"], skills: ["cfd"] },
-    { key: "controls", label: "Controls", categories: ["control-systems", "control"], skills: ["control-engineering"] },
-    { key: "dynamic-systems", label: "Dynamic Systems", categories: ["dynamic-systems"], skills: ["dynamic-systems"] },
+    { key: "fea", label: "FEA", categories: ["fea"], skills: ["finite-element-analysis"] },
+    { key: "controls", label: "Control Systems", categories: ["control-systems", "control", "dynamic-systems"], skills: ["control-engineering", "dynamic-systems", "embedded-systems"] },
+    { key: "multiphysics", label: "Multiphysics", categories: ["multiphysics", "heat-transfer", "digital-twins"], skills: ["multiphysics-simulation", "physics-based-modelling", "digital-twins"] },
   ];
 
   function normCategory(c) { return String(c || "").trim().toLowerCase().replace(/[\s_]+/g, "-"); }
@@ -856,7 +831,7 @@
     const keys = FOCUS_GROUPS
       .filter((g) => g.categories.includes(cat) || g.skills.some((sk) => skills.includes(sk)))
       .map((g) => g.key);
-    return keys.length ? keys : ["other"];
+    return keys;
   }
 
   function debounce(fn, wait) {
@@ -1140,6 +1115,11 @@
      own filtered view on the portfolio page. Add a project's
      skills[] tag and its count updates everywhere automatically.
      --------------------------------------------------------- */
+  function expertiseHref(slug) {
+    const g = FOCUS_GROUPS.find((x) => x.skills.includes(slug));
+    return g ? "portfolio.html?focus=" + g.key : "portfolio.html";
+  }
+
   async function renderExpertise(el = document.getElementById("expertiseGrid")) {
     if (!el) return;
 
@@ -1153,9 +1133,7 @@
             const s = SKILLS[slug];
             if (!s) return "";
             return (
-              '<a class="expertise-card bracket" href="portfolio.html?skill=' +
-              encodeURIComponent(slug) +
-              '" data-skill="' + slug + '">' +
+              '<a class="expertise-card bracket" href="' + expertiseHref(slug) + '" data-skill="' + slug + '">' +
               '<div class="expertise-icon">' + iconSVG(s.icon) + "</div>" +
               "<h4>" + escapeHtml(s.name) + "</h4>" +
               "<p>" + escapeHtml(s.desc) + "</p>" +
