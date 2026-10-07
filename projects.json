@@ -742,7 +742,7 @@
     "date": "2026-10-07",
     "featured": true,
     "published": true,
-    "thumbnail": "assets\\projects\\comsol\\multiphysics\\day2",
+    "thumbnail": "assets/projects/multiphysics/transient-thermal-simulation-of-a-rectangular-plate/day_2_thumb.webp",
     "summary": "",
     "tags": [
       "Heat transfer",
@@ -764,7 +764,9 @@
     "conclusion": "The temperature fields will therefore become 2-D/3-D, producing curved-looking isotherms, and as the transient temperature field adapts to boundary conditions at the end of the plate, the temperature contours become curved.",
     "requirements": "",
     "approach": "",
-    "gallery": [],
+    "gallery": [
+      "assets/projects/multiphysics/transient-thermal-simulation-of-a-rectangular-plate/day_2_thumb.webp"
+    ],
     "galleryCaptions": {},
     "videos": [
       {
