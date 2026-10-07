@@ -1,0 +1,44 @@
+{
+  "id": "modeling-dynamic-response-analysis-of-a-1-dof-mass-spring-damper-system",
+  "title": "Modeling & Dynamic Response Analysis of a 1-DOF Mass-Spring-Damper System",
+  "category": "fea",
+  "subcategory": "dynamics",
+  "applicationDomain": "mechanical-machine-design",
+  "status": "Simulation",
+  "date": "2026-10-07",
+  "featured": true,
+  "published": true,
+  "thumbnail": "assets/projects/fea/modeling-dynamic-response-analysis-of-a-1-dof-mass-spring-damper-system/1790205606966.webp",
+  "summary": "",
+  "tags": [
+    "dynamics",
+    "vibrations"
+  ],
+  "software": [
+    "Python"
+  ],
+  "process": [],
+  "problem": "n mechanical and structural engineering, understanding dynamic system behavior under transient conditions is critical for vibration control, fatigue analysis, and system stability design.I recently developed and simulated a classic Single-Degree-of-Freedom (1-DOF) Linear Mass-Spring-Damper System using Python libraries (scipy.integrate ,solve_ivp, numpy, and matplotlib) to evaluate state-space ODE numerical solutions and dynamic responses. The system is governed by the second-order linear differential equation: m*x'' + c*x' + k*x = F(t). The system exhibits underdamped free vibration. Because c > 0, energy is dissipated over time, causing the amplitude to decay exponentially towards zero. Peak amplitudes decay over time following an exponential decay e^-(wnt).",
+  "objective": "",
+  "mathModel": "",
+  "simulation": "Software: Python, with matplot library, numpy and scipy",
+  "controlSystem": "",
+  "results": "Because c > 0, energy is dissipated over time, causing the amplitude to decay exponentially towards zero. Peak amplitudes decay over time following an exponential decay e^-(wnt).",
+  "analysis": "",
+  "conclusion": "",
+  "requirements": "",
+  "approach": "",
+  "gallery": [
+    "assets/projects/fea/modeling-dynamic-response-analysis-of-a-1-dof-mass-spring-damper-system/1790205606966.webp"
+  ],
+  "galleryCaptions": {},
+  "videos": [],
+  "links": [
+    {
+      "label": "LinkedIn",
+      "url": "https://lnkd.in/p/dgmSFBtb"
+    }
+  ],
+  "downloads": [],
+  "skills": []
+}
