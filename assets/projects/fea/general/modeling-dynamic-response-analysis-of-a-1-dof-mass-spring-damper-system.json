@@ -23,7 +23,7 @@
   "mathModel": "",
   "simulation": "Software: Python, with matplot library, numpy and scipy",
   "controlSystem": "",
-  "results": "",
+  "results": "Because c > 0, energy is dissipated over time, causing the amplitude to decay exponentially towards zero. Peak amplitudes decay over time following an exponential decay e^-(wnt).",
   "analysis": "",
   "conclusion": "",
   "requirements": "",
