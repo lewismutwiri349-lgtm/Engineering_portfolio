@@ -270,8 +270,7 @@
     "skills": [
       "embedded-systems",
       "robotics",
-      "research-development",
-      "aerospace"
+      "research-development"
     ],
     "subcategory": "",
     "robotics": true,
@@ -283,7 +282,7 @@
     "results": "",
     "conclusion": "",
     "date": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "aerospace"
   },
   {
     "id": "structural-analysis-dashboard",
@@ -431,8 +430,7 @@
       "machine-design",
       "design-for-manufacturing",
       "sheet-metal-design",
-      "GD&T",
-      "marine"
+      "GD&T"
     ],
     "links": [],
     "downloads": [
@@ -458,7 +456,7 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "marine"
   },
   {
     "id": "esp32-iot-automation",
@@ -554,8 +552,7 @@
     "skills": [
       "cfd",
       "numerical-analysis",
-      "thermodynamics",
-      "aerospace"
+      "thermodynamics"
     ],
     "subcategory": "internal-flow",
     "robotics": false,
@@ -567,7 +564,7 @@
     "simulation": "",
     "results": "",
     "conclusion": "",
-    "applicationDomain": "mechanical-machine-design"
+    "applicationDomain": "aerospace"
   },
   {
     "id": "vacuum-mobile-cleaner",
@@ -734,5 +731,58 @@
     "links": [],
     "downloads": [],
     "skills": []
+  },
+  {
+    "id": "transient-thermal-simulation-of-a-rectangular-plate",
+    "title": "Transient thermal simulation of a rectangular plate",
+    "category": "multiphysics",
+    "subcategory": "",
+    "applicationDomain": "mechanical-machine-design",
+    "status": "Simulation",
+    "date": "2026-10-07",
+    "featured": true,
+    "published": true,
+    "thumbnail": "assets\\projects\\comsol\\multiphysics\\day2",
+    "summary": "",
+    "tags": [
+      "Heat transfer",
+      "PDE",
+      "Fourier's law"
+    ],
+    "software": [
+      "Comsol Multiphysics",
+      "SolidWorks"
+    ],
+    "process": [],
+    "problem": " In this project, I was tasked to perform a transient thermal simulation of a rectangular plate with dimensions 0.2 m by 0.1 m by 0.01 m. The domain was supposed to be 0.002 m³. I carried out the exercise with varying heat flux values, where I was able to obtain maximums and minimums for the same convection rate, with the coefficient, h, as 20.The material used was Aluminum 6061-T6(solid,T6 temper), with properties as follows: Poissons ratio = 0.29, E = 1.93 × 10¹¹ Pa, Cp = 500 J/(kg·K), density = 8000 kg/m³, k = 16.2 W/(m·K).Since this was a transient simulation, Cp was not ignored, unlike past simulations involving steady-state simulations. For this specific simulation, the ambient temperature was larger than that of plate, meaning that convection rate was minimized and cooling was slow, otherwise, this could be a violation of Clausius statement. From the contours, at the beginning, characteristic lines are very close, meaning that temperature is changing very fast over a short distance, meaning a higher temperature change at the beginning. From Fouriers law,q = -k(dT/dx)meaning higher temperature change will result in a higher heat flux.The rate at which these energy lines arrive at the end of the plate depends on the thermal diffusivity of the material used, given as:α = thermal conductivity / (density × heat capacity)Then diffusion time will be: t_diff = L² / α. For my plate, the diffusion time was 988 seconds. From the plate I used, heat can conduct in multiple directions (x, y, z); the temperature fields will therefore become 2-D/3-D, producing curved-looking isotherms, and as the transient temperature field adapts to boundary conditions at the end of the plate, the temperature contours become curved.",
+    "objective": "Thermal analysis of a simple rectangular plate",
+    "mathModel": "Fouriers law,q = -k(dT/dx)meaning higher temperature change will result in a higher heat flux.\n thermal diffusivity of the material used, given as:α = thermal conductivity / (density × heat capacity)\ndiffusion time will be: t_diff = L² / α",
+    "simulation": "Comsol Multiphysics, physics governed simulation\nMesh: Fine mesh",
+    "controlSystem": "",
+    "results": "Curved-looking isotherms\nAs the transient temperature field adapts to boundary conditions at the end of the plate, the temperature contours become curved.\n From Fouriers law,q = -k(dT/dx)meaning higher temperature change will result in a higher heat flux\nThe rate at which these energy lines arrive at the end of the plate depends on the thermal diffusivity of the material used",
+    "analysis": "For this specific simulation, the ambient temperature was larger than that of plate, meaning that convection rate was minimized and cooling was slow, otherwise, this could be a violation of Clausius statement , meaning, heat cannot flow from a region of low temperature to a region of high temperature unaided",
+    "conclusion": "The temperature fields will therefore become 2-D/3-D, producing curved-looking isotherms, and as the transient temperature field adapts to boundary conditions at the end of the plate, the temperature contours become curved.",
+    "requirements": "",
+    "approach": "",
+    "gallery": [],
+    "galleryCaptions": {},
+    "videos": [
+      {
+        "url": "assets/projects/multiphysics/transient-thermal-simulation-of-a-rectangular-plate/videos/dayy2.webm",
+        "title": "dayy2",
+        "caption": "",
+        "poster": "assets/projects/multiphysics/transient-thermal-simulation-of-a-rectangular-plate/videos/dayy2-poster.webp"
+      }
+    ],
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://lnkd.in/p/d4ay349H"
+      }
+    ],
+    "downloads": [],
+    "skills": [
+      "multiphysics-simulation"
+    ]
   }
 ]
