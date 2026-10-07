@@ -786,5 +786,85 @@
     "skills": [
       "multiphysics-simulation"
     ]
+  },
+  {
+    "id": "i-learnt-about-steady-state-2-d-heat-conduction",
+    "title": "I learnt about steady-state 2-D heat conduction",
+    "category": "cfd",
+    "subcategory": "",
+    "applicationDomain": "mechanical-machine-design",
+    "status": "Research",
+    "date": "2026-10-07",
+    "featured": false,
+    "published": true,
+    "thumbnail": "assets/projects/cfd/i-learnt-about-steady-state-2-d-heat-conduction/1790630825756.webp",
+    "summary": "The physical meaning I understood is that, for an elliptic problem, a temperature disturbance at a point in the domain influences the solution throughout the domain. Unlike hyperbolic problems, there is no finite propagation speed or preferred direction of propagation",
+    "tags": [],
+    "software": [],
+    "process": [],
+    "problem": "The physical meaning I understood is that, for an elliptic problem, a temperature disturbance at a point in the domain influences the solution throughout the domain. Unlike hyperbolic problems, there is no finite propagation speed or preferred direction of propagation.\n\nI also learnt about 1-D unsteady heat conduction, which is a parabolic problem. Here, temperature varies as a function of both position and time.\n\nThe equation contains one real characteristic direction associated with the time evolution, and heat conduction is diffusive rather than wave-like. Unlike a wave equation, it does not have two characteristic directions such as x − ct and x + ct, and it does not behave like a system where information travels forward and backward as waves.\n\nI also learnt about hyperbolic equations, which have two real characteristics",
+    "objective": "",
+    "mathModel": "◇²T = 0.\nx − ct = constant\nx + ct = constant",
+    "simulation": "◇²T = 0\n\nThe physical meaning I understood is that, for an elliptic problem, a temperature disturbance at a point in the domain influences the solution throughout the domain. Unlike hyperbolic problems, there is no finite propagation speed or preferred direction of propagation.\n\nI also learnt about 1-D unsteady heat conduction, which is a parabolic problem. Here, temperature varies as a function of both position and time.\n\nThe equation contains one real characteristic direction associated with the time evolution, and heat conduction is diffusive rather than wave-like. Unlike a wave equation, it does not have two characteristic directions such as x − ct and x + ct, and it does not behave like a system where information travels forward and backward as waves.\n\nI also learnt about hyperbolic equations, which have two real characteristics. Using a vibrating string as an example, these characteristics can be represented by:\n\nx − ct = constant\n\nand\n\nx + ct = constant\n\nThis Has helped me in  understanding how information, disturbances, and physical effects move through a system.",
+    "controlSystem": "",
+    "results": "",
+    "analysis": "",
+    "conclusion": "",
+    "requirements": "",
+    "approach": "",
+    "gallery": [
+      "assets/projects/cfd/i-learnt-about-steady-state-2-d-heat-conduction/1790630825756.webp"
+    ],
+    "galleryCaptions": {},
+    "videos": [],
+    "links": [],
+    "downloads": [],
+    "skills": [
+      "cfd"
+    ]
+  },
+  {
+    "id": "modeling-dynamic-response-analysis-of-a-1-dof-mass-spring-damper-system",
+    "title": "Modeling & Dynamic Response Analysis of a 1-DOF Mass-Spring-Damper System",
+    "category": "fea",
+    "subcategory": "",
+    "applicationDomain": "mechanical-machine-design",
+    "status": "Simulation",
+    "date": "2026-10-07",
+    "featured": true,
+    "published": true,
+    "thumbnail": "assets/projects/fea/modeling-dynamic-response-analysis-of-a-1-dof-mass-spring-damper-system/1790205606966.webp",
+    "summary": "",
+    "tags": [
+      "dynamics",
+      "vibrations"
+    ],
+    "software": [
+      "Python"
+    ],
+    "process": [],
+    "problem": "n mechanical and structural engineering, understanding dynamic system behavior under transient conditions is critical for vibration control, fatigue analysis, and system stability design.I recently developed and simulated a classic Single-Degree-of-Freedom (1-DOF) Linear Mass-Spring-Damper System using Python libraries (scipy.integrate ,solve_ivp, numpy, and matplotlib) to evaluate state-space ODE numerical solutions and dynamic responses. The system is governed by the second-order linear differential equation: m*x'' + c*x' + k*x = F(t). The system exhibits underdamped free vibration. Because c > 0, energy is dissipated over time, causing the amplitude to decay exponentially towards zero. Peak amplitudes decay over time following an exponential decay e^-(wnt).",
+    "objective": "",
+    "mathModel": "",
+    "simulation": "Software: Python, with matplot library, numpy and scipy",
+    "controlSystem": "",
+    "results": "Because c > 0, energy is dissipated over time, causing the amplitude to decay exponentially towards zero. Peak amplitudes decay over time following an exponential decay e^-(wnt).",
+    "analysis": "",
+    "conclusion": "",
+    "requirements": "",
+    "approach": "",
+    "gallery": [
+      "assets/projects/fea/modeling-dynamic-response-analysis-of-a-1-dof-mass-spring-damper-system/1790205606966.webp"
+    ],
+    "galleryCaptions": {},
+    "videos": [],
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://lnkd.in/p/dgmSFBtb"
+      }
+    ],
+    "downloads": [],
+    "skills": []
   }
 ]
