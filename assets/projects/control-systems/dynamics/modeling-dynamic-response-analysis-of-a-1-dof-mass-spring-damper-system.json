@@ -1,8 +1,8 @@
 {
   "id": "modeling-dynamic-response-analysis-of-a-1-dof-mass-spring-damper-system",
   "title": "Modeling & Dynamic Response Analysis of a 1-DOF Mass-Spring-Damper System",
-  "category": "fea",
-  "subcategory": "",
+  "category": "control-systems",
+  "subcategory": "dynamics",
   "applicationDomain": "mechanical-machine-design",
   "status": "Simulation",
   "date": "2026-10-07",
@@ -40,5 +40,7 @@
     }
   ],
   "downloads": [],
-  "skills": []
+  "skills": [
+    "control-engineering"
+  ]
 }
