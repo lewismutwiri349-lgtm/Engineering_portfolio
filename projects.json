@@ -868,5 +868,59 @@
     "skills": [
       "control-engineering"
     ]
+  },
+  {
+    "id": "how-heat-is-dissipated-from-raspberry-pi-and-what-happens-when-the-surrounding-temperature-increases",
+    "title": "How heat is dissipated from Raspberry Pi, and what happens when the surrounding temperature increases?",
+    "category": "multiphysics",
+    "subcategory": "",
+    "applicationDomain": "mechanical-machine-design",
+    "status": "Simulation",
+    "date": "2026-10-12",
+    "featured": true,
+    "published": true,
+    "thumbnail": "assets/projects/multiphysics/how-heat-is-dissipated-from-raspberry-pi-and-what-happens-when-the-surrounding-temperature-increases/day4.webp",
+    "summary": "",
+    "tags": [
+      "Heat transfer",
+      "thermal analysis"
+    ],
+    "software": [
+      "SolidWorks",
+      "Comsol"
+    ],
+    "process": [],
+    "problem": "Have you ever asked yourself how heat is dissipated from Raspberry Pi, and what happens when the surrounding temperature increases?CPU is the major heat generating source, coupled with other components like power management circuitry also contributes to board's thermal load.\n",
+    "objective": "Using Comsol multiphysics, i carried out a time dependent (transient ) simulation usinga simplified Raspberry Pi board, to investigate temperature distribution and how surrounding temperature influences heat dissipation by convection. The aim was to understand how increasing ambient temperature affects the cooling potentia",
+    "mathModel": " rho(p)*Cp(specific heat capacity)* dT/dt=◇.(k◇T)+Q, where Q rep heat generated internally  while ◇.(k.◇T)+Q  is the heat conducted through the material .",
+    "simulation": "Comsol, SolidWorks",
+    "controlSystem": "",
+    "results": "",
+    "analysis": "Natural convection transfers heat from a warmer surface to cooler surroundings . As the ambient temperature approaches the board  temperature, the temperature difference decreases, reducing the potential for convectivion to take place or cooling to take place.\nIf the ambient temperature exceeds the board temperature, heat may instead flow from the surroundings into the component. Therefore, direction of heat transfer depends on the local temperature difference",
+    "conclusion": "1. Improved ventilation to increase availability of cool air around the board\n2. Forced convection by using a fan instead  and improve heat removal incase the convection method is insufficient \n3. Also, applying individual components heat sink",
+    "requirements": "",
+    "approach": "",
+    "gallery": [
+      "assets/projects/multiphysics/how-heat-is-dissipated-from-raspberry-pi-and-what-happens-when-the-surrounding-temperature-increases/day4.webp"
+    ],
+    "galleryCaptions": {},
+    "videos": [
+      {
+        "url": "assets/projects/multiphysics/how-heat-is-dissipated-from-raspberry-pi-and-what-happens-when-the-surrounding-temperature-increases/videos/2026-10-12-18-59-29.mp4",
+        "title": "2026 10 12 18 59 29",
+        "caption": "Comsol thermal analysis for a Rasberry Pi",
+        "poster": "assets/projects/multiphysics/how-heat-is-dissipated-from-raspberry-pi-and-what-happens-when-the-surrounding-temperature-increases/videos/2026-10-12-18-59-29-poster.webp"
+      }
+    ],
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://lnkd.in/p/ddj4nbuy"
+      }
+    ],
+    "downloads": [],
+    "skills": [
+      "multiphysics-simulation"
+    ]
   }
 ]
