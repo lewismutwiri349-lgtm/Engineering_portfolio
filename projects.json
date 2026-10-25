@@ -922,5 +922,48 @@
     "skills": [
       "multiphysics-simulation"
     ]
+  },
+  {
+    "id": "analysis-of-a-t-joint-weld",
+    "title": "Analysis of a T-joint weld",
+    "category": "fea",
+    "subcategory": "",
+    "applicationDomain": "mechanical-machine-design",
+    "status": "Simulation",
+    "date": "2026-10-26",
+    "featured": true,
+    "published": true,
+    "thumbnail": "assets/projects/fea/analysis-of-a-t-joint-weld/capture.webp",
+    "summary": "",
+    "tags": [
+      "Static Structural",
+      "weldments",
+      "fea"
+    ],
+    "software": [
+      "SolidWorks",
+      "Ansys Mechanical"
+    ],
+    "process": [],
+    "problem": "Welded T-joints are widely used in structural and mechanical assemblies to transfer loads between connected members. Under tensile and shear loading, stress concentrations can develop around the weld throat and weld toes, potentially contributing to yielding or fatigue failure.\n\nThis project uses finite element analysis (FEA) to investigate the mechanical response of a double-sided fillet-welded T-joint under applied loading",
+    "objective": "Investigate the deformation of a welded T-joint under tensile and shear loading.\n\n\n\nIdentify regions of elevated shear stress, maximum shear stress, elastic strain and equivalent stress.\n\n\n\nUnderstand how the weld region transfers loads between the vertical and horizontal plates.\n\n\n\nIdentify potential fatigue-critical locations for future investigation",
+    "mathModel": "Governing equations\nFor a static structural analysis, the equilibrium equation is:\n\n∇ · σ + b = 0\n\nwhere:\n- σ = stress tensor\n- b = body force per unit volume\nThe linear elastic constitutive relationship is:\n\nσ = D : ε\n\nwhere D is the elastic constitutive tensor and ε is the strain tensor.\n\nFor small deformations:\n\nε = ½[∇u + (∇u)ᵀ]\n\nwhere u is the displacement vector.\n\nThe finite element equilibrium equation is:\n\n[K] = \n\nwhere K is the global stiffness matrix, u is the nodal displacement vector and F is the applied force vector.\nThroat area= 2*L*(0.707*S) where S=6mm representing weld leg size",
+    "simulation": "Materials are homogeneous and isotropic.\n\n\n\nThe initial analysis assumes linear elastic material behaviour.\n\n\n\nDeformations are sufficiently small for linear static analysis.\n\n\n\nThe welds are represented as explicit solid geometry.\n\n\n\nThe applied tensile and shear loads are treated as separate load cases.",
+    "controlSystem": "",
+    "results": "The applied loads were 1,000 N in tension and 500 N in shear. The evaluated outputs were:\n- Directional deformation.\n- Total deformation.\n- Maximum shear elastic strain.\n- Shear stress.\n- Maximum shear stress.\n- Equivalent (von Mises) stress.\nThe qualitative results indicated deformation toward the ends of the vertical member and elevated shear-related quantities around the weld region.\n\nNumerical result values: Insert the maximum and minimum values from your ANSYS result probes. Do not report numerical stress or deformation values without extracting them from the simulation.\n\nFor two equal-leg fillet welds, the nominal combined throat area is:\n\nAₜ = 2 × 0.707 × s × L\n\nUsing s = 6 mm and L = 100 mm:\n\nAₜ = 2 × 0.707 × 6 × 100 = 848.4 mm²\n\nFor a 1,000 N force acting directly across this effective area, the nominal average stress magnitude would be:\n\nσₙ = F / Aₜ = 1,000 / 848.4 = 1.18 MPa\n\nThis is a simplified nominal-stress estimate, not the local stress predicted by FEA. The appropriate stress component depends on the load direction and weld geometry.",
+    "analysis": "Directional deformation: The deformation field indicates how the vertical plate moves along the selected coordinate direction. High displacement near an unconstrained end does not necessarily indicate failure; it must be interpreted alongside the stress field and boundary conditions.\n\nMaximum shear elastic strain: Elevated values near the weld suggest significant local shear deformation. These regions deserve closer examination because cyclic shear strain can be relevant to fatigue damage.\n\nShear stress and maximum shear stress: Elevated shear stress in the weld region is consistent with the welds transferring load between the connected plates. The weld throat is a critical region for evaluating load-carrying capacity.\n\nEquivalent stress: Von Mises stress is useful for assessing the onset of yielding in ductile materials. It should be compared with the yield strength of the appropriate material, not automatically interpreted as a weld-failure criterion.\n\nFatigue implications: Static stress concentrations can help identify potential fatigue-critical regions, but a static analysis cannot predict fatigue life. A fatigue assessment requires cyclic loading information, an appropriate fatigue method and suitable material or welded-joint fatigue data",
+    "conclusion": "The simulation demonstrates how finite element analysis can be used to investigate load transfer and stress distribution in a double-sided fillet-welded T-joint.\n\nThe results highlighted the weld region as an important area for examining shear-related stresses and strains, while the deformation fields provided insight into the overall structural response.\n\nThe study provides a foundation for further work involving mesh convergence, weld-size comparisons, nonlinear material behaviour and fatigue assessment under cyclic loading.",
+    "requirements": "",
+    "approach": "",
+    "gallery": [
+      "assets/projects/fea/analysis-of-a-t-joint-weld/capture.webp"
+    ],
+    "galleryCaptions": {},
+    "videos": [],
+    "links": [],
+    "downloads": [],
+    "skills": [
+      "finite-element-analysis"
+    ]
   }
 ]
