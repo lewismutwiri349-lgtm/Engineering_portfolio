@@ -35,7 +35,12 @@
   ],
   "galleryCaptions": {},
   "videos": [],
-  "links": [],
+  "links": [
+    {
+      "label": "Watch on LinkedIn",
+      "url": "https://lnkd.in/p/dHqYSPcT"
+    }
+  ],
   "downloads": [],
   "skills": [
     "finite-element-analysis"
