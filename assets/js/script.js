@@ -412,22 +412,22 @@
      Core discipline is intentionally fixed across application
      domains: Mechanical & Machine Design.
      --------------------------------------------------------- */
-  const CORE_DISCIPLINE = "Multiphysics Simulation & Control Systems";
+  const CORE_DISCIPLINE = "Mechanical Engineer · Energy Systems Focus";
 
   const APPLICATION_DOMAINS = {
     "mechanical-machine-design": {
       key: "mechanical-machine-design",
       title: CORE_DISCIPLINE,
       subtitle: "Core Engineering Portfolio",
-      description: "Core work: multiphysics simulation, FEA / CFD, control systems and dynamic-system modelling, with supporting mechanical design.",
-      filename: "Simulation_Controls_Portfolio.pptx",
+      description: "Mechanical engineering work with a focus on energy systems, covering analysis, simulation and design.",
+      filename: "Mechanical_Engineering_Portfolio.pptx",
       kicker: "CORE PORTFOLIO"
     },
     "old-projects": {
       key: "old-projects",
       title: "Old Projects",
       subtitle: "Archive of previous work",
-      description: "Archived work kept separate from the current simulation and controls portfolio.",
+      description: "Archived work kept separate from the current portfolio.",
       filename: "Old_Projects_Portfolio.pptx",
       kicker: "ARCHIVE"
     }
@@ -626,7 +626,7 @@
       x: 0.75, y: 2.65, w: 9.5, h: 0.45,
       fontSize: 17, bold: true, color: "3FD0FF", margin: 0
     });
-    slide.addText("Core engineering discipline applied to a specialized domain", {
+    slide.addText("Mechanical engineering with a focus on energy systems", {
       x: 0.75, y: 3.2, w: 8.8, h: 0.4,
       fontSize: 12, color: "B8C4CE", margin: 0
     });
@@ -726,7 +726,7 @@
 
     slide = pptx.addSlide("MASTER");
     addPptxTitle(pptx, slide, "END OF PORTFOLIO", "Engineering portfolio", `${domain.title} · ${CORE_DISCIPLINE}`);
-    slide.addText("Mechanical Engineering → Mechanical & Machine Design → Specialized Application", {
+    slide.addText("Mechanical Engineering · Energy Systems Focus", {
       x: 0.7, y: 2.75, w: 11.0, h: 0.5,
       fontSize: 18, bold: true, color: "3FD0FF", margin: 0, fit: "shrink"
     });
@@ -780,6 +780,16 @@
 
     await loadSpecializationPanels(all);
 
+    // A category added through the admin (data/taxonomy.json) that isn't one of the built-in
+    // groups gets its own filter button once at least one project uses it.
+    const tax = await loadTaxonomyPublic();
+    (tax.categories || []).forEach((c) => {
+      const value = normCategory(c && c.value);
+      if (!value || FOCUS_GROUPS.some((g) => g.key === value || g.categories.includes(value))) return;
+      if (!all.some((p) => normCategory(p.category) === value)) return;
+      FOCUS_GROUPS.push({ key: value, label: String(c.label || value), categories: [value], skills: [] });
+    });
+
     // Single-area pages are focused and low-volume —
     // the Category/Status/Expertise filter chips add clutter without
     // adding value there, so only build them for the full library
@@ -827,13 +837,25 @@
         el.innerHTML = ordered.map(projectCardHTML).join("");
       } else if (!all.length && domainFilter) {
         const domainLabel = (APPLICATION_DOMAINS[domainFilter] || {}).title || "this application area";
-        el.innerHTML = `<div class="empty-state"><strong>No ${escapeHtml(domainLabel)} projects published yet.</strong><p>New work appears here automatically as soon as it's added — the underlying discipline stays ${escapeHtml(CORE_DISCIPLINE)}.</p></div>`;
+        el.innerHTML = `<div class="empty-state"><strong>No ${escapeHtml(domainLabel)} projects published yet.</strong><p>New work appears here automatically as soon as it's added.</p></div>`;
       } else {
         el.innerHTML = '<div class="empty-state"><strong>No projects match those filters.</strong><p>' + (activeFocus !== "all" && !all.some(p => focusKeysFor(p).includes(activeFocus)) ? escapeHtml(focusLabel(activeFocus)) + " projects are on the way — new work appears here automatically once it's published." : "Try clearing one of the filters or changing the search term.") + "</p></div>";
       }
     }
     if (searchBox) searchBox.addEventListener("input", debounce(apply, 150));
     apply();
+  }
+
+  /* Categories & skills typed in the admin are listed in data/taxonomy.json.
+     Optional: if the file isn't there, the built-in groups below are all that's used. */
+  let taxonomyCache = null;
+  async function loadTaxonomyPublic() {
+    if (taxonomyCache) return taxonomyCache;
+    try {
+      const res = await fetch("data/taxonomy.json");
+      taxonomyCache = res.ok ? await res.json() : {};
+    } catch (e) { taxonomyCache = {}; }
+    return taxonomyCache;
   }
 
   /* Focus filter on the project library: All | Multiphysics | FEA | CFD | Controls | Dynamic Systems | Other.
@@ -1096,6 +1118,41 @@
     });
   }
 
+  /* CV section at the bottom of the homepage. Text comes from data/cv.json (typed in the admin).
+     "# Heading" = section heading, "- item" = bullet, blank line = new paragraph. */
+  function cvToHTML(text) {
+    const out = [];
+    let list = [], para = [];
+    const flushList = () => { if (list.length) { out.push("<ul>" + list.map((i) => "<li>" + escapeHtml(i) + "</li>").join("") + "</ul>"); list = []; } };
+    const flushPara = () => { if (para.length) { out.push("<p>" + para.map(escapeHtml).join("<br>") + "</p>"); para = []; } };
+    String(text).replace(/\r/g, "").split("\n").forEach((raw) => {
+      const line = raw.trim();
+      if (!line) { flushList(); flushPara(); return; }
+      const heading = line.match(/^#{1,3}\s+(.*)$/);
+      const bullet = line.match(/^[-*•]\s+(.*)$/);
+      if (heading) { flushList(); flushPara(); out.push("<h3>" + escapeHtml(heading[1]) + "</h3>"); }
+      else if (bullet) { flushPara(); list.push(bullet[1]); }
+      else { flushList(); para.push(line); }
+    });
+    flushList(); flushPara();
+    return out.join("");
+  }
+
+  async function renderCV() {
+    const section = document.getElementById("cvSection");
+    const el = document.getElementById("cvContent");
+    if (!section || !el) return;
+    try {
+      const res = await fetch("data/cv.json");
+      if (!res.ok) throw new Error("no cv");
+      const data = await res.json();
+      const text = String(data && data.text || "").trim();
+      if (!text) return;                       // nothing typed yet: the section stays hidden
+      el.innerHTML = cvToHTML(text);
+      section.style.display = "";
+    } catch (e) { /* no CV published yet: keep the section hidden */ }
+  }
+
   function buildAboutSectionHTML() {
     return (
       '<section class="hero hero--section">' +
@@ -1103,8 +1160,8 @@
       '<div class="hero-content">' +
       '<p class="eyebrow">The engineer behind the work</p>' +
       '<h1>About Me</h1>' +
-      '<h2>Multiphysics Simulation &amp; Control Systems</h2>' +
-      '<p>I am a Mechanical Engineering student developing toward work that models a physical system, simulates its behaviour, and designs the control that governs it. My projects combine FEA and CFD, dynamic-system modelling and control design, with CAD as a supporting skill.</p>' +
+      '<h2>Mechanical Engineer</h2>' +
+      '<p>I am a Mechanical Engineering student with a focus on energy systems. My projects combine analysis and simulation (FEA, CFD) with mechanical design, and each one is documented here as it is built.</p>' +
       '</div></section>' +
       '<section class="section"><div class="container">' +
       '<p class="eyebrow">Academics</p><h2 class="section-title">Education</h2>' +
@@ -1112,12 +1169,12 @@
       '</div></section>' +
       '<section class="section"><div class="container">' +
       '<p class="eyebrow">Core direction</p><h2 class="section-title">Engineering Capabilities</h2>' +
-      '<p style="max-width:760px;">The portfolio is organised around the chain physical system → mathematical model → simulation → analysis → controller → validation. Mechanical design supports that chain; it is not the headline.</p>' +
+      '<p style="max-width:760px;">The skills and tools used across the projects in this portfolio. The counts update automatically from the published projects.</p>' +
       '<div id="expertiseGrid" class="expertise-grid" aria-live="polite"></div>' +
       '</div></section>' +
       '<section class="section"><div class="container">' +
-      '<p class="eyebrow">How the portfolio is organized</p><h2 class="section-title">Mechanical Engineer &middot; Simulation &amp; Controls Focus</h2>' +
-      '<p style="max-width:760px;">Simulation and control are the core of the work. Aerospace and marine appear as skills the work is applied to, not as separate portfolios. Old Projects and Hobbies are kept as a clearly separate archive.</p>' +
+      '<p class="eyebrow">How the portfolio is organized</p><h2 class="section-title">Mechanical Engineer &middot; Energy Systems Focus</h2>' +
+      '<p style="max-width:760px;">Projects are organised by category and skill. Old Projects and Hobbies are kept as a clearly separate archive.</p>' +
       '<div class="cards">' +
       '<a class="card" href="old-projects.html"><h3>Old Projects</h3><p>An archive of earlier work, kept separate from current application areas.</p></a>' +
       '<a class="card" href="download.html"><h3>Download Presentation</h3><p>Generate an interview-ready .pptx portfolio.</p></a>' +
@@ -1179,6 +1236,18 @@
         const n = counts[span.dataset.countFor] || 0;
         span.textContent = n === 1 ? "1 Project" : n + " Projects";
       });
+      // Skills typed in the admin that have no built-in card yet: show them once a project uses them.
+      const tax = await loadTaxonomyPublic();
+      const extra = (tax.skills || []).filter((x) => x && x.value && !SKILLS[x.value] && counts[x.value]);
+      if (extra.length) {
+        el.insertAdjacentHTML("beforeend",
+          '<div class="expertise-group"><h3>More skills</h3><div class="expertise-cards">' +
+          extra.map((x) =>
+            '<a class="expertise-card bracket" href="portfolio.html"><div class="expertise-icon">' + iconSVG("gear") + "</div>" +
+            "<h4>" + escapeHtml(x.label || x.value) + "</h4>" +
+            '<div class="expertise-meta"><span class="expertise-count">' + (counts[x.value] === 1 ? "1 Project" : counts[x.value] + " Projects") + "</span></div></a>"
+          ).join("") + "</div></div>");
+      }
     } catch (e) {
       el.querySelectorAll("[data-count-for]").forEach((span) => (span.textContent = "—"));
     }
@@ -1250,6 +1319,7 @@
     renderHomeProjects();
     renderHomeAchievements();
     renderNewsEvents();
+    renderCV();
     // Per-discipline project grids (#cadProjects, #dfmaProjects, #feaProjects,
     // #cfdProjects, #eacgProjects, #controlProjects, #roboticsProjects) are
     // owned entirely by projects.js on the pages that load it — script.js

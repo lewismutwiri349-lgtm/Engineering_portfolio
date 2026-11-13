@@ -46,6 +46,216 @@
     "multiphysics-simulation", "finite-element-analysis", "cfd", "control-engineering"
   ];
 
+  /* ---------------------------------------------------------
+     Editable categories & skills (data/taxonomy.json)
+     Additive only: a project still stores `category` (a string) and
+     `skills` (an array) exactly as before. This list only controls what
+     the Category dropdown and Skills checkboxes offer, so a new
+     category or skill can be typed here BEFORE any project uses it.
+     --------------------------------------------------------- */
+  const TAXONOMY_PATH = "data/taxonomy.json";
+  const TAXONOMY_DRAFT_KEY = "portfolio-taxonomy-draft";
+  const DEFAULT_SKILL_LABELS = {
+    "multiphysics-simulation": "Multiphysics Simulation",
+    "finite-element-analysis": "Finite Element Analysis (FEA)",
+    "cfd": "Computational Fluid Dynamics (CFD)",
+    "control-engineering": "Control Systems"
+  };
+
+  function prettify(slug) {
+    return String(slug || "").replace(/[-_]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+
+  function defaultTaxonomy() {
+    return {
+      categories: CATEGORY_GROUPS.flatMap((g) => g.options.map(([value, label]) => ({ value, label }))),
+      skills: SKILL_OPTIONS.map((value) => ({ value, label: DEFAULT_SKILL_LABELS[value] || prettify(value) }))
+    };
+  }
+
+  function normTaxItems(list) {
+    const out = [];
+    const seen = new Set();
+    (Array.isArray(list) ? list : []).forEach((it) => {
+      const value = String(typeof it === "string" ? it : (it && it.value) || "").trim();
+      if (!value || seen.has(value)) return;
+      seen.add(value);
+      const label = (it && typeof it === "object" && it.label) ? String(it.label).trim() : prettify(value);
+      out.push({ value, label: label || prettify(value) });
+    });
+    return out;
+  }
+
+  let taxonomy = defaultTaxonomy();
+  let taxonomyDirty = false;
+
+  function applyTaxonomy(data) {
+    const base = defaultTaxonomy();
+    if (!data || typeof data !== "object") { taxonomy = base; return; }
+    taxonomy = { categories: normTaxItems(data.categories), skills: normTaxItems(data.skills) };
+    if (!taxonomy.categories.length) taxonomy.categories = base.categories;
+    if (!taxonomy.skills.length) taxonomy.skills = base.skills;
+  }
+
+  function skillLabel(value) {
+    const hit = taxonomy.skills.find((x) => x.value === value);
+    return hit ? hit.label : value;   // legacy skills keep showing exactly as they were stored
+  }
+
+  async function loadTaxonomy() {
+    // unsaved additions from this browser win, so nothing typed is ever lost on refresh
+    try {
+      const draft = JSON.parse(localStorage.getItem(TAXONOMY_DRAFT_KEY) || "null");
+      if (draft && draft.dirty && draft.data) { applyTaxonomy(draft.data); taxonomyDirty = true; return; }
+    } catch (e) { /* ignore a bad draft */ }
+
+    let data = null;
+    try {
+      if (window.GitHubSync && window.GitHubSync.getConfig().token) {
+        const file = await window.GitHubSync.getFile(TAXONOMY_PATH);   // GitHub is the source of truth
+        if (file) data = JSON.parse(file.content);
+      }
+    } catch (e) { /* fall back to the deployed copy */ }
+    if (!data) {
+      try {
+        const res = await fetch(TAXONOMY_PATH, { cache: "no-store" });
+        if (res.ok) data = await res.json();
+      } catch (e) { /* first run: no file yet, built-in defaults are used */ }
+    }
+    applyTaxonomy(data);
+  }
+
+  function touchTaxonomy() {
+    taxonomyDirty = true;
+    try { localStorage.setItem(TAXONOMY_DRAFT_KEY, JSON.stringify({ dirty: true, data: taxonomy })); } catch (e) { /* storage full/blocked */ }
+    renderTaxonomyManager();
+  }
+
+  function addCategory(text) {
+    const label = String(text || "").trim();
+    const value = slugify(label);
+    if (!value) return "";
+    if (!taxonomy.categories.some((c) => c.value === value)) taxonomy.categories.push({ value, label });
+    touchTaxonomy();
+    return value;
+  }
+
+  function addSkill(text) {
+    const label = String(text || "").trim();
+    const value = slugify(label);
+    if (!value) return "";
+    if (!taxonomy.skills.some((x) => x.value === value)) taxonomy.skills.push({ value, label });
+    touchTaxonomy();
+    return value;
+  }
+
+  async function saveTaxonomyToGitHub(statusEl) {
+    if (!taxonomyDirty) return true;
+    const say = (msg, state) => { if (statusEl) { statusEl.dataset.state = state || ""; statusEl.textContent = msg; } };
+    if (!window.GitHubSync) { say("GitHub sync isn't loaded, so the lists were only saved in this browser.", "error"); return false; }
+    try {
+      say("Saving categories & skills to GitHub…");
+      await window.GitHubSync.commitFile(TAXONOMY_PATH, JSON.stringify(taxonomy, null, 2), "Update categories and skills");
+      taxonomyDirty = false;
+      try { localStorage.removeItem(TAXONOMY_DRAFT_KEY); } catch (e) { /* ignore */ }
+      renderTaxonomyManager();
+      say("Categories & skills saved to GitHub.", "success");
+      return true;
+    } catch (err) {
+      say(`Couldn't save the lists to GitHub (they're kept in this browser): ${err.message}`, "error");
+      return false;
+    }
+  }
+
+  function renderTaxonomyManager() {
+    const host = document.getElementById("taxonomyManager");
+    if (!host) return;
+    const usedCats = new Set(projects.map((p) => p.category));
+    const usedSkills = new Set(projects.flatMap((p) => p.skills || []));
+    const chip = (attr, value, label, used) =>
+      `<span class="tax-chip"><span>${escapeHtml(label)}</span>${used ? `<em title="Used by a project">in use</em>` : ""}` +
+      `<button type="button" ${attr}="${escapeHtml(value)}" aria-label="Remove ${escapeHtml(label)}">×</button></span>`;
+    host.querySelector("[data-tax-cats]").innerHTML =
+      taxonomy.categories.map((c) => chip("data-rm-cat", c.value, c.label, usedCats.has(c.value))).join("") || "<small>No categories.</small>";
+    host.querySelector("[data-tax-skills]").innerHTML =
+      taxonomy.skills.map((x) => chip("data-rm-skill", x.value, x.label, usedSkills.has(x.value))).join("") || "<small>No skills.</small>";
+    const note = host.querySelector("[data-tax-dirty]");
+    if (note) note.textContent = taxonomyDirty ? "Unsaved changes — saved in this browser, press “Save lists to GitHub” (or push any project) to publish them." : "";
+  }
+
+  function initTaxonomyManager() {
+    const list = document.getElementById("projectAdminList");
+    if (!list || document.getElementById("taxonomyManager")) return;
+
+    const style = document.createElement("style");
+    style.textContent =
+      ".tax-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:6px}" +
+      ".tax-chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}" +
+      ".tax-chip{display:inline-flex;align-items:center;gap:8px;padding:5px 6px 5px 11px;border:1px solid var(--border,#24303d);border-radius:999px;font:.78rem var(--font-mono,monospace)}" +
+      ".tax-chip em{font-style:normal;font-size:.62rem;opacity:.65}" +
+      ".tax-chip button{border:0;background:transparent;color:inherit;cursor:pointer;font-size:1rem;line-height:1;padding:0 6px;opacity:.7}.tax-chip button:hover{opacity:1}" +
+      ".tax-add{display:flex;gap:8px}.tax-add input{flex:1;min-width:0}" +
+      ".admin-taxonomy-add{display:flex;gap:8px;margin-top:10px}.admin-taxonomy-add input{flex:1;min-width:0}" +
+      "@media(max-width:720px){.tax-grid{grid-template-columns:1fr}}";
+    document.head.appendChild(style);
+
+    const host = document.createElement("details");
+    host.className = "admin-section";
+    host.id = "taxonomyManager";
+    host.innerHTML = `
+      <summary>Categories &amp; skills <small>— add new ones here (or right inside a project) before you upload it</small></summary>
+      <div class="tax-grid">
+        <div>
+          <span class="admin-subhead">Categories</span>
+          <div class="tax-chips" data-tax-cats></div>
+          <div class="tax-add"><input class="achievement-input" data-tax-new-cat placeholder="New category, e.g. Energy Systems"><button type="button" class="btn-secondary" data-tax-add-cat>+ Add</button></div>
+        </div>
+        <div>
+          <span class="admin-subhead">Skills</span>
+          <div class="tax-chips" data-tax-skills></div>
+          <div class="tax-add"><input class="achievement-input" data-tax-new-skill placeholder="New skill, e.g. Heat Exchanger Design"><button type="button" class="btn-secondary" data-tax-add-skill>+ Add</button></div>
+        </div>
+      </div>
+      <div class="admin-toolbar" style="margin-top:14px">
+        <button type="button" class="btn-primary" data-tax-save>Save lists to GitHub</button>
+        <span class="achievement-admin-status" data-tax-status></span>
+      </div>
+      <small data-tax-dirty></small>`;
+    list.insertAdjacentElement("beforebegin", host);
+
+    const statusEl = host.querySelector("[data-tax-status]");
+    const addCat = () => { const i = host.querySelector("[data-tax-new-cat]"); if (addCategory(i.value)) i.value = ""; renderList(); };
+    const addSk = () => { const i = host.querySelector("[data-tax-new-skill]"); if (addSkill(i.value)) i.value = ""; renderList(); };
+
+    host.addEventListener("click", (e) => {
+      if (e.target.closest("[data-tax-add-cat]")) return addCat();
+      if (e.target.closest("[data-tax-add-skill]")) return addSk();
+      if (e.target.closest("[data-tax-save]")) return void saveTaxonomyToGitHub(statusEl);
+      const rmCat = e.target.closest("[data-rm-cat]");
+      if (rmCat) {
+        const v = rmCat.dataset.rmCat;
+        const inUse = projects.filter((p) => p.category === v).length;
+        if (!confirm(`Remove this category from the list?${inUse ? ` ${inUse} project(s) already use it and will keep it.` : ""}`)) return;
+        taxonomy.categories = taxonomy.categories.filter((c) => c.value !== v);
+        touchTaxonomy(); renderList(); return;
+      }
+      const rmSk = e.target.closest("[data-rm-skill]");
+      if (rmSk) {
+        const v = rmSk.dataset.rmSkill;
+        const inUse = projects.filter((p) => (p.skills || []).includes(v)).length;
+        if (!confirm(`Remove this skill from the list?${inUse ? ` ${inUse} project(s) already use it and will keep it.` : ""}`)) return;
+        taxonomy.skills = taxonomy.skills.filter((x) => x.value !== v);
+        touchTaxonomy(); renderList();
+      }
+    });
+    host.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter") return;
+      if (e.target.matches("[data-tax-new-cat]")) { e.preventDefault(); addCat(); }
+      if (e.target.matches("[data-tax-new-skill]")) { e.preventDefault(); addSk(); }
+    });
+    renderTaxonomyManager();
+  }
+
   let projects = [];
 
   /* ---------------------------------------------------------
@@ -224,15 +434,15 @@
      Rendering
      --------------------------------------------------------- */
   function categorySelect(project) {
-    const known = new Set(CATEGORY_GROUPS.flatMap((g) => g.options.map((o) => o[0])));
     const current = project.category || "";
+    const known = new Set(taxonomy.categories.map((c) => c.value));
     // keep legacy categories (e.g. "control systems") selectable instead of silently resetting them
     const legacy = current && !known.has(current)
       ? `<optgroup label="Existing value"><option value="${escapeHtml(current)}" selected>${escapeHtml(current)}</option></optgroup>` : "";
-    return legacy + CATEGORY_GROUPS.map((g) =>
-      `<optgroup label="${g.label}">` +
-      g.options.map(([v, l]) => `<option value="${v}" ${current === v ? "selected" : ""}>${l}</option>`).join("") +
-      "</optgroup>").join("");
+    return legacy +
+      `<optgroup label="Portfolio area">` +
+      taxonomy.categories.map((c) => `<option value="${escapeHtml(c.value)}" ${current === c.value ? "selected" : ""}>${escapeHtml(c.label)}</option>`).join("") +
+      `</optgroup><optgroup label="Manage"><option value="__new__">＋ Add a new category…</option></optgroup>`;
   }
 
   function statusSelect(project) {
@@ -241,11 +451,19 @@
   }
 
   function skillCheckboxes(project) {
-    const all = Array.from(new Set([...SKILL_OPTIONS, ...(project.skills || [])]));
-    return all.map((s) => {
+    const all = Array.from(new Set([...taxonomy.skills.map((x) => x.value), ...(project.skills || [])]));
+    const boxes = all.map((s) => {
       const checked = (project.skills || []).includes(s) ? "checked" : "";
-      return `<label class="admin-skill"><input type="checkbox" data-field="skills" value="${escapeHtml(s)}" ${checked}> ${escapeHtml(s)}</label>`;
+      return `<label class="admin-skill"><input type="checkbox" data-field="skills" value="${escapeHtml(s)}" ${checked}> ${escapeHtml(skillLabel(s))}</label>`;
     }).join("");
+    return boxes;
+  }
+
+  function skillAddRow() {
+    return `<div class="admin-taxonomy-add">
+      <input class="achievement-input" data-new-skill placeholder="Type a new skill and press Add, e.g. Energy Systems">
+      <button type="button" class="btn-secondary" data-add-skill>+ Add skill</button>
+    </div>`;
   }
 
   function textArea(project, field, label, rows, hint) {
@@ -430,6 +648,7 @@
             <div class="achievement-form-grid__full">
               <span class="admin-subhead">Skills (drives the filters and counts on the site)</span>
               <div class="admin-skill-grid">${skillCheckboxes(project)}</div>
+              ${skillAddRow()}
             </div>
           </div>
         </details>
@@ -464,11 +683,13 @@
     const live = projects.filter((p) => p.published !== false).length;
     count.textContent = `${projects.length} project${projects.length === 1 ? "" : "s"} · ${live} published · ${projects.length - live} draft`;
 
+    renderTaxonomyManager();
     if (!projects.length) {
       list.innerHTML = `<div class="achievement-empty"><strong>No projects yet</strong><p>Click "+ New Project" to create your first entry, or load an existing projects.json above.</p></div>`;
       return;
     }
     list.innerHTML = projects.map(renderItem).join("");
+    renderTaxonomyManager();
   }
 
   function rerenderMedia(project) {
@@ -693,6 +914,7 @@
 
       const field = e.target.dataset.field;
       if (!field || field === "skills") return;
+      if (field === "category" && e.target.value === "__new__") return;   // handled on "change"
 
       if (field === "tags" || field === "software" || field === "process") project[field] = linesToArray(e.target.value);
       else if (field === "links" || field === "downloads") project[field] = pairsToArray(e.target.value);
@@ -714,6 +936,13 @@
       const project = findProject(item.dataset.key);
       if (!project) return;
 
+      if (e.target.dataset.field === "category" && e.target.value === "__new__") {
+        const name = (prompt("Name of the new category (e.g. Energy Systems):") || "").trim();
+        if (name) { const v = addCategory(name); if (v) project.category = v; }
+        renderList();
+        return;
+      }
+
       if (e.target.dataset.field === "skills") {
         project.skills = Array.from(item.querySelectorAll('input[data-field="skills"]:checked')).map((b) => b.value);
       } else if (e.target.dataset.field === "published") {
@@ -734,7 +963,28 @@
       }
     });
 
+    const addSkillToProject = (item) => {
+      const project = findProject(item.dataset.key);
+      const input = item.querySelector("[data-new-skill]");
+      if (!project || !input) return;
+      const value = addSkill(input.value);
+      if (!value) return;
+      if (!Array.isArray(project.skills)) project.skills = [];
+      if (!project.skills.includes(value)) project.skills.push(value);
+      renderList();
+    };
+
+    list.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target.matches("[data-new-skill]")) {
+        e.preventDefault();
+        addSkillToProject(e.target.closest(".achievement-admin-item"));
+      }
+    });
+
     list.addEventListener("click", (e) => {
+      const addBtn = e.target.closest("[data-add-skill]");
+      if (addBtn) { addSkillToProject(addBtn.closest(".achievement-admin-item")); return; }
+
       const mediaBtn = e.target.closest("button[data-media]");
       if (mediaBtn) {
         const item = mediaBtn.closest(".achievement-admin-item");
@@ -822,6 +1072,9 @@
     statusEl.dataset.state = "";
     statusEl.textContent = "Saving to GitHub…";
     try {
+      await saveTaxonomyToGitHub();   // any new category/skill typed since the last save goes up with the project
+      statusEl.dataset.state = "";
+      statusEl.textContent = "Saving to GitHub…";
       const uploaded = await syncMedia(project, statusEl);
       statusEl.textContent = "Saving project file…";
       project._path = await window.ProjectStore.saveProject(project, project._path);
@@ -914,6 +1167,7 @@
         return;
       }
       localStorage.setItem(DRAFT_KEY, JSON.stringify(exportProjects()));
+      await saveTaxonomyToGitHub();
 
       let saved = 0;
       const failed = [];
@@ -973,6 +1227,7 @@
     initImport();
     initListEvents();
     initToolbar();
-    loadFromFetch();
+    initTaxonomyManager();
+    loadTaxonomy().catch(() => {}).then(() => { renderTaxonomyManager(); loadFromFetch(); });
   });
 })();
