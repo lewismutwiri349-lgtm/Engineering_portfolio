@@ -970,5 +970,41 @@
     "skills": [
       "finite-element-analysis"
     ]
+  },
+  {
+    "id": "Newton's forward interpolation formula",
+    "title": "Numerical problems",
+    "category": "control-systems",
+    "subcategory": "",
+    "applicationDomain": "mechanical-machine-design",
+    "status": "Research",
+    "date": "2026-11-14",
+    "featured": true,
+    "published": true,
+    "thumbnail": "assets/projects/control-systems/newton-s-forward-interpolation-formula/newton-forwad.webp",
+    "summary": "",
+    "tags": [],
+    "software": [],
+    "process": [],
+    "problem": "",
+    "objective": "",
+    "mathModel": "",
+    "simulation": "",
+    "controlSystem": "",
+    "results": "",
+    "analysis": "",
+    "conclusion": "",
+    "requirements": "",
+    "approach": "",
+    "gallery": [
+      "assets/projects/control-systems/newton-s-forward-interpolation-formula/newton-forwad.webp"
+    ],
+    "galleryCaptions": {},
+    "videos": [],
+    "links": [],
+    "downloads": [],
+    "skills": [
+      "control-engineering"
+    ]
   }
 ]
