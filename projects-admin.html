@@ -41,7 +41,7 @@
 <section class="section admin-dashboard">
 <div class="container">
   <div class="admin-stat-grid" aria-label="Content overview">
-    <button class="admin-stat-card is-active" data-admin-tab="projects"><span>Projects</span><strong id="statProjects">—</strong><small>CFD · FEA · Control Systems · Multiphysics</small></button>
+    <button class="admin-stat-card is-active" data-admin-tab="projects"><span>Projects</span><strong id="statProjects">—</strong><small>All categories · editable below</small></button>
     <button class="admin-stat-card" data-admin-tab="news"><span>News</span><strong id="statNews">—</strong><small>Updates · articles · milestones</small></button>
     <button class="admin-stat-card" data-admin-tab="events"><span>Events</span><strong id="statEvents">—</strong><small>Upcoming · past · workshops</small></button>
     <button class="admin-stat-card" data-admin-tab="achievements"><span>Achievements</span><strong id="statAchievements">—</strong><small>Certificates · awards · training</small></button>
@@ -82,12 +82,6 @@
             </div>
             <textarea id="projectsPasteArea" class="achievement-textarea project-admin-paste" hidden placeholder="Paste projects.json here…"></textarea>
             <button id="projectsPasteLoad" type="button" class="btn-secondary" hidden>Load pasted JSON</button>
-          </div>
-          <div class="admin-project-taxonomy" aria-label="Project classification">
-            <div><strong>CFD</strong><span>Flow, heat transfer, aerodynamics</span></div>
-            <div><strong>FEA</strong><span>Stress, deformation, thermal, modal</span></div>
-            <div><strong>Control Systems</strong><span>Plant models, feedback, dynamics</span></div>
-            <div><strong>Multiphysics</strong><span>Coupled thermal / fluid / structural</span></div>
           </div>
           <p id="projectAdminStatus" class="achievement-admin-status"></p>
           <div id="projectAdminList" class="achievement-admin-list"></div>
