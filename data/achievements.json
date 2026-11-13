@@ -1,32 +1,6 @@
 {
   "achievements": [
     {
-      "id": "solidworks-certification",
-      "title": "Certified SolidWorks Professional",
-      "category": "Certificate",
-      "organization": "Dassault Systèmes",
-      "date": "2024-09-15",
-      "description": "Completed a professional certification focused on advanced part and assembly modeling workflows.",
-      "skills": ["SolidWorks", "DFMA", "Product Design"],
-      "thumbnail": "",
-      "documentUrl": "assets/resumes/General_CV.pdf",
-      "featured": true,
-      "displayOrder": 1
-    },
-    {
-      "id": "robotics-automation-award",
-      "title": "Robotics Automation Innovation Award",
-      "category": "Award",
-      "organization": "Engineering Innovation Forum",
-      "date": "2024-03-01",
-      "description": "Recognized for a compact automation concept that improved repeatability and ease of maintenance.",
-      "skills": ["Robotics", "Automation", "Systems Design"],
-      "thumbnail": "",
-      "documentUrl": "assets/resumes/Robotics_CV.pdf",
-      "featured": true,
-      "displayOrder": 2
-    },
-    {
       "id": "achievement-1785662406854",
       "title": "ChatGPT ANSYS Fluent CFD Bootcamp – Participation",
       "category": "Certificate",
@@ -49,19 +23,6 @@
       "documentUrl": "https://chatgpt.com/s/m_6a6e578480048191b614f0d5f586febc",
       "featured": true,
       "displayOrder": 1
-    },
-    {
-      "id": "design-symposium",
-      "title": "Design for Manufacturing Workshop",
-      "category": "Workshop",
-      "organization": "Manufacturing Excellence Institute",
-      "date": "2023-11-20",
-      "description": "Attended an intensive workshop covering design-for-manufacturing principles and rapid prototyping strategies.",
-      "skills": ["DFM", "Prototyping", "Manufacturing"],
-      "thumbnail": "",
-      "documentUrl": "assets/resumes/DFMA_FEA_CFD_CV.pdf",
-      "featured": false,
-      "displayOrder": 3
     },
     {
       "id": "product-design-and-development-course-certification",
