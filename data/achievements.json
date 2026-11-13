@@ -25,23 +25,6 @@
       "displayOrder": 1
     },
     {
-      "id": "design-symposium",
-      "title": "Design for Manufacturing Workshop",
-      "category": "Workshop",
-      "organization": "Manufacturing Excellence Institute",
-      "date": "2023-11-20",
-      "description": "Attended an intensive workshop covering design-for-manufacturing principles and rapid prototyping strategies.",
-      "skills": [
-        "DFM",
-        "Prototyping",
-        "Manufacturing"
-      ],
-      "thumbnail": "",
-      "documentUrl": "assets/resumes/DFMA_FEA_CFD_CV.pdf",
-      "featured": false,
-      "displayOrder": 3
-    },
-    {
       "id": "product-design-and-development-course-certification",
       "title": "Product Design and Development Course Certification",
       "issuer": "SKILL LYNC",
