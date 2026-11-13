@@ -1,0 +1,14 @@
+{
+  "categories": [
+    { "value": "cfd", "label": "CFD" },
+    { "value": "fea", "label": "FEA" },
+    { "value": "control-systems", "label": "Control Systems" },
+    { "value": "multiphysics", "label": "Multiphysics" }
+  ],
+  "skills": [
+    { "value": "multiphysics-simulation", "label": "Multiphysics Simulation" },
+    { "value": "finite-element-analysis", "label": "Finite Element Analysis (FEA)" },
+    { "value": "cfd", "label": "Computational Fluid Dynamics (CFD)" },
+    { "value": "control-engineering", "label": "Control Systems" }
+  ]
+}
